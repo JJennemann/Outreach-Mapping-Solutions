@@ -12,6 +12,7 @@ import { ClientSearchResultsItemComponent } from './client-portal/client-search-
 import { UserInfoComponent } from './header/user-info/user-info.component';
 import { SearchComponent } from './header/search/search.component';
 import { NavItemComponent } from './navigation/nav-item/nav-item.component';
+import { SetDateComponent } from './header/set-date/set-date.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NavItemComponent } from './navigation/nav-item/nav-item.component';
     ClientSearchResultsItemComponent,
     UserInfoComponent,
     SearchComponent,
-    NavItemComponent
+    NavItemComponent,
+    SetDateComponent
   ],
   imports: [
     BrowserModule,
