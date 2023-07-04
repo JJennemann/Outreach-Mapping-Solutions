@@ -1,1 +1,8 @@
-<p>navigation works!</p>
+<div class="row">
+    <div class="col-xs-10 list-group">
+      <app-nav-item
+        *ngFor="let navItem of navItems"
+        [navItemElement]="navItem">
+    </app-nav-item>
+    </div>
+</div>
