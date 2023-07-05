@@ -13,6 +13,15 @@ import { UserInfoComponent } from './header/user-info/user-info.component';
 import { SearchComponent } from './header/search/search.component';
 import { NavItemComponent } from './navigation/nav-item/nav-item.component';
 import { SetDateComponent } from './header/set-date/set-date.component';
+import { ClientProfileComponent } from './client-portal/client-profile/client-profile.component';
+import { CaseNotesComponent } from './client-portal/client-profile/case-notes/case-notes.component';
+import { AssessmentsComponent } from './client-portal/client-profile/assessments/assessments.component';
+import { MapComponent } from './client-portal/client-profile/map/map.component';
+import { DemographicsComponent } from './client-portal/client-profile/overview/demographics/demographics.component';
+import { ContactInformationComponent } from './client-portal/client-profile/overview/contact-information/contact-information.component';
+import { PhotoComponent } from './client-portal/client-profile/overview/photo/photo.component';
+import { OverviewComponent } from './client-portal/client-profile/overview/overview.component';
+import { ClientProfileNavBarComponent } from './client-portal/client-profile/client-profile-nav-bar/client-profile-nav-bar.component';
 
 
 @NgModule({
@@ -26,7 +35,17 @@ import { SetDateComponent } from './header/set-date/set-date.component';
     UserInfoComponent,
     SearchComponent,
     NavItemComponent,
-    SetDateComponent
+    SetDateComponent,
+    ClientProfileComponent,
+    CaseNotesComponent,
+    AssessmentsComponent,
+    MapComponent,
+    DemographicsComponent,
+    ContactInformationComponent,
+    PhotoComponent,
+    OverviewComponent,
+    ClientProfileNavBarComponent
+    
   ],
   imports: [
     BrowserModule,

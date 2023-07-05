@@ -1,3 +1,5 @@
+<div class="container" *ngIf="currentPage === 'clientSearch'">
+
 <div class="col">
     <div class="row">
         <app-client-search></app-client-search>
@@ -5,5 +7,10 @@
     <div class="row mt-4 border border-light">
         <app-client-search-results-list></app-client-search-results-list>  
     </div>
-
 </div>
+</div>
+
+<div class="container" *ngIf="currentPage === 'clientProfile'">
+
+  <app-client-profile></app-client-profile>
+    </div>

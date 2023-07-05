@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./client-portal.component.css']
 })
 export class ClientPortalComponent {
+  currentPage = "clientProfile";
 
 }
