@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./nav-item.component.css']
 })
 export class NavItemComponent {
-  @Input() navItemElement: string="";
+  @Input() navItemElement: string;
 }

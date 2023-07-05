@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./client-search.component.css']
 })
 export class ClientSearchComponent {
+  dataQuality= ["Complete", "Partial", "Client Did Not Know", "Client Refused", "Data Not Collected"]
   monthsDays=[
     {month: 'January',
      days: 30},

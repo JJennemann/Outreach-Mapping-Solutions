@@ -44,6 +44,14 @@
       <input type="text" class="form-control" id="inputLastName">
     </div>
 
+    <label for="nameDataQuality" class="form-label mb-0">Name Data Quality</label>
+    <div class="col-md-3">
+      <select id="nameDataQuality"class="form-select">
+        <option Selected>Please Select..</option>
+        <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+      </select>
+    </div>
+
     <label for="inputDob" class="form-label mb-0">Date of Birth</label>
     <div class="col-md-3">
         <select class="form-select" id="inputDob" (change)="monthSelected($event)">
@@ -61,6 +69,13 @@
         <input type="text" class="form-control" id="inputDob" minLength="4" maxLength="4" placeholder="yyyy">
     </div>
 
+    <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality</label>
+    <div class="col-md-3">
+      <select id="dobDataQuality"class="form-select">
+        <option Selected>Please Select..</option>
+        <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+      </select>
+    </div>
 
     <label for="inputSsn" class="form-label mb-0">Social Security Number</label>
     <div class="col-md-2">
@@ -71,6 +86,14 @@
         </div>
       <div class="col-md-2">
         <input type="text" class="form-control" id="inputSsn" maxlength="4" placeholder="6789">
+      </div>
+
+      <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality</label>
+      <div class="col-md-3">
+        <select id="ssnDataQuality"class="form-select">
+          <option Selected>Please Select..</option>
+          <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+        </select>
       </div>
 
     <div class="row g-1 " style="justify-content: center;">

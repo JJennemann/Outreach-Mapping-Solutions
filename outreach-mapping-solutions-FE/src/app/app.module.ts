@@ -8,7 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ClientPortalComponent } from './client-portal/client-portal.component';
 import { ClientSearchComponent } from './client-portal/client-search/client-search.component';
 import { ClientSearchResultsListComponent } from './client-portal/client-search-results-list/client-search-results-list.component';
-import { ClientSearchResultsItemComponent } from './client-portal/client-search-results-list/client-search-results-item/client-search-results-item.component';
+
 import { UserInfoComponent } from './header/user-info/user-info.component';
 import { SearchComponent } from './header/search/search.component';
 import { NavItemComponent } from './navigation/nav-item/nav-item.component';
@@ -23,7 +23,6 @@ import { SetDateComponent } from './header/set-date/set-date.component';
     ClientPortalComponent,
     ClientSearchComponent,
     ClientSearchResultsListComponent,
-    ClientSearchResultsItemComponent,
     UserInfoComponent,
     SearchComponent,
     NavItemComponent,
