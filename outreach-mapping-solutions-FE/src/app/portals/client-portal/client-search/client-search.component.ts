@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { NgForm,FormsModule } from '@angular/forms';
+import { Client } from 'src/app/models/client.model';
+import { ClientPortalService } from 'src/app/services/client-portal.service';
 
 @Component({
-  selector: 'app-client-search-form',
-  templateUrl: './client-search-form.component.html',
-  styleUrls: ['./client-search-form.component.css']
+  selector: 'app-client-search',
+  templateUrl: './client-search.component.html',
+  styleUrls: ['./client-search.component.css']
 })
-export class ClientSearchFormComponent {
+export class ClientSearchComponent {
   dataQuality= ["Complete", "Partial", "Client Did Not Know", "Client Refused", "Data Not Collected"]
   monthsDays=[
     {month: 'January',
@@ -42,6 +45,17 @@ export class ClientSearchFormComponent {
 
   months31Days=["January", "March", "May", "July", "August", "October", "December"];
   months30Days=["April", "June", "September", "November"];
+  
+  formData={
+    firstName: '',
+    middleName: '',
+    lastName: '',
+
+  }
+
+returnedClients: Client[];
+
+  constructor(private clientPortalService: ClientPortalService){}
 
   monthSelected(event: Event){
     const monthSelected = (event.target as HTMLSelectElement).value
@@ -55,4 +69,19 @@ export class ClientSearchFormComponent {
       this.days=this.days29;
     }
   }
+
+
+  clientSearch(){
+    this.returnedClients = this.clientPortalService.getAllClients();
+  }
+
+  // clientSearch(form: NgForm){
+  //   // const clientSearched = new Client()
+  //   // const firstNameValue=this.formData.firstName;
+  //   // const middleNameValue=this.formData.middleName;
+  //   // const lastNameValue=this.formData.lastName;
+
+  //   // this.searchResults = this.clientPortalService.getClientReturnedByFormElements();
+    
+  // }
 }

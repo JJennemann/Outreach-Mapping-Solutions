@@ -1,14 +1,16 @@
-<div class="container">
-    <app-header></app-header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 border" style="width:auto; align-items:top; ">
-                <app-navigation></app-navigation>
-            </div>
-            <div class="col-md-10 p-1">
-                <app-client-portal></app-client-portal>
-            </div>
-        </div>
+
+<div class="row mx-5">
+    <div class="col-md-12">
+        <app-header></app-header>
+    </div>
+    <div class="col-md-2 border">
+        <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-10">
+        <router-outlet></router-outlet>
+       
     </div>
 </div>
+
+
 
