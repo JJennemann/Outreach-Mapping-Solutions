@@ -9,7 +9,6 @@ import { Client } from 'src/app/models/client.model';
   styleUrls: ['./client-search-results-list.component.css']
 })
 export class ClientSearchResultsListComponent{
-  @Input() clientsReturned: Client[];
 
 
 }

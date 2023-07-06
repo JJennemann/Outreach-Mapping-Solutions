@@ -1,4 +1,4 @@
-import {  Injectable } from '@angular/core';
+import {  EventEmitter, Injectable, Output } from '@angular/core';
 import { Client } from '../models/client.model';
 import { ClientDemographics } from '../models/client-demographics.model';
 import { ClientContactInfo } from '../models/client-contact-info.model';
@@ -21,6 +21,10 @@ export class ClientPortalService {
 
     clientToReturnById: Client;
 
+    allClientsEmitted=new EventEmitter<Client[]>();
+
+
+
     getAllClients(){
         return this.allClients.slice();
     }
@@ -33,11 +37,7 @@ export class ClientPortalService {
         }
         return this.allClients[id];
     }
-
-  
-
     getClientReturnedByFormElements(client: Client){
-
     }
 
     getClientReturned(index: number){
