@@ -1,0 +1,49 @@
+
+    
+
+<div class="row g-2 border form-group px-4 py-2">
+    <h4 style="text-decoration: underline;">Client Demographics</h4>
+    <div class="col-md-4">
+        <label for="inputName" class="form-label mb-0"><strong>Name:</strong></label>
+        <div id="inputName"> {{ clientReturned.lastName + ", " + clientReturned.firstName + " " + clientReturned.middleName }}</div>
+    </div>
+    <div class="col-md-4">
+        <label for="inputDob" class="form-label mb-0"><strong>Date of Birth:</strong></label>
+        <div id="inputDob"> {{ clientReturned.dobMonth + "/" + clientReturned.dobDay + "/" + clientReturned.dobYear }}</div>
+    </div>
+    <div class="col-md-4">
+        <label for="inputSsn" class="form-label mb-0"><strong>Social Security Number:</strong></label>
+
+        <div id="inputSsn"> {{ clientReturned.firstThreeSsn + "-" + clientReturned.middleTwoSsn + "-" + clientReturned.lastFourSsn }}</div>
+    </div>
+
+    <div class="col-md-12">
+        <label for="inputGender" class="form-label mb-0"><strong>Gender:</strong></label>
+        <div id="inputGender"> {{ clientIdFourDemos.gender }} </div>
+    </div>
+    <div class="col-md-4">
+        <label for="inputPrimaryRace" class="form-label mb-0"><strong>Race(Primary):</strong></label>
+        <div id="inputPrimaryRace"> {{ clientIdFourDemos.racePrimary }} </div>
+    </div>
+    <div class="col-md-4">
+        <label for="inputSecondaryRace" class="form-label mb-0"><strong>Race(Secondary):</strong></label>
+
+        <div> {{ clientIdFourDemos.raceSecondary }} </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="inputEthnicity" class="form-label mb-0"><strong>Ethnicity:</strong></label>
+        <div id="inputEthnicity"> {{ clientIdFourDemos.ethnicity }} </div>
+    </div>
+    <div class="col-md-12">
+        <label for="inputVeteran" class="form-label mb-0"><strong>Veteran:</strong></label>
+        <div id="inputVeteran">{{ clientIdFourDemos.veteran }}</div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <div class="btn btn-secondary">Edit Client Information</div>
+    </div>
+</div>
+
+
+
+
