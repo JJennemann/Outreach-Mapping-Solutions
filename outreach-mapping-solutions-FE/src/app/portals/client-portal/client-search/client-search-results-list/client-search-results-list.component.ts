@@ -1,5 +1,6 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { Client } from 'src/app/models/client.model';
+import { ClientPortalService } from 'src/app/services/client-portal.service';
 
 
 
@@ -8,7 +9,21 @@ import { Client } from 'src/app/models/client.model';
   templateUrl: './client-search-results-list.component.html',
   styleUrls: ['./client-search-results-list.component.css']
 })
-export class ClientSearchResultsListComponent{
+export class ClientSearchResultsListComponent implements OnInit{
+  @Input() returnedClients: Client[];
+
+
+
+  constructor(private clientPortalService: ClientPortalService){
+    this.clientPortalService.allClientsEmitted.subscribe(
+      (clientsReturned: Client[]) => this.returnedClients = clientsReturned
+    );
+    console.log(this.returnedClients)
+  }
+  
+  ngOnInit(): void {
+   this.returnedClients = this.clientPortalService.getAllClients();
+  }
 
 
 }

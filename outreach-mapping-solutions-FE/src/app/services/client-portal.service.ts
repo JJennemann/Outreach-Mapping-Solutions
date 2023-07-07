@@ -21,7 +21,7 @@ export class ClientPortalService {
 
     clientToReturnById: Client;
 
-    allClientsEmitted=new EventEmitter<Client[]>();
+    @Output() allClientsEmitted=new EventEmitter<Client[]>();
 
 
 

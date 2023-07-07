@@ -1,8 +1,9 @@
-<div class="col-md-8 border">
-    <div class="row-xs-10 list-group-horizontal d-flex">
-        <a *ngFor="let navItem of navItems" href="#" class="col list-group-item clearfix p-1 border" style="cursor: pointer; text-align: center;">
-            <p class="list-group-item-text">{{navItem}}</p>
+<div class="row border">
+    <div class="col-md-6 list-group d-flex flex-row">
+        <a *ngFor="let navItem of navItems;" class="col list-group-item clearfix p-1" style="cursor: pointer; text-align: center;" 
+           routerLink="{{navItem.pathName}}" routerLinkActive="active"
+           >
+            <p class="list-group-item-text">{{navItem.displayName}}</p>
         </a>
     </div>
 </div>
-

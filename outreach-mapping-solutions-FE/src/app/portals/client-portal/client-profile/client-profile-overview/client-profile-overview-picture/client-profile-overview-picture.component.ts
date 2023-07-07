@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class ClientProfileOverviewPictureComponent {
 
+  photo = "/assets/default_profile_picture.png"
 }

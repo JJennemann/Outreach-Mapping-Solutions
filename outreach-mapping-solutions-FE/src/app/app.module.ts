@@ -30,6 +30,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PortalsComponent } from './portals/portals.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { PortalsComponent } from './portals/portals.component';
     ReportsPortalComponent,
     MapsPortalComponent,
     HomePageComponent,
-    PortalsComponent
+    PortalsComponent,
+  
     
   ],
   imports: [
