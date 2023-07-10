@@ -5,7 +5,7 @@ export class Client {
     public middleName: string;
     public lastName: string;
 
-    public dobMonth: number;
+    public dobMonth: string;
     public dobDay: number;
     public dobYear: number
 
@@ -14,7 +14,7 @@ export class Client {
     public lastFourSsn: number;
 
     constructor(id: number, firstName: string, middleName: string, lastName:string,
-                dobMonth: number, dobDay: number, dobYear: number,
+                dobMonth: string, dobDay: number, dobYear: number,
                 firstThreeSsn: number, middleTwoSsn: number, lastFourSsn: number){
         this.id = id;
         this.firstName = firstName;
@@ -27,5 +27,4 @@ export class Client {
         this.middleTwoSsn = middleTwoSsn;
         this.lastFourSsn = lastFourSsn;
     }
-
 }

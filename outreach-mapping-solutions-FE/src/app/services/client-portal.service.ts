@@ -12,17 +12,26 @@ export class ClientPortalService {
 
 
     private allClients: Client[] =[
-        new Client(1, 'John', 'Amos', 'Doe', 1, 1, 1999, 123, 45, 6789),
-        new Client(2, 'Jane', 'D', 'Doe', 2, 5, 2000, 698, 13, 5313),
-        new Client(3, 'Luke', 'Vader', 'Skywalker', 12, 9, 1984, 543, 65, 1344),
-        new Client(4, 'Leia', 'Padme', 'Doe', 7, 22, 1948, 655, 77, 3453),
-        new Client(5, 'Cee', 'Three', 'PeeOh', 11, 1, 1988, 456, 23, 1131)
+        new Client(1, 'John', 'Amos', 'Doe', 'January', 1, 1999, 123, 45, 6789),
+        new Client(2, 'Jane', 'D', 'Doe', 'February', 5, 2000, 698, 13, 5313),
+        new Client(3, 'Luke', 'Vader', 'Skywalker', 'December', 9, 1984, 543, 65, 1344),
+        new Client(4, 'Leia', 'Padme', 'Doe', 'July', 22, 1948, 655, 77, 3453),
+        new Client(5, 'Cee', 'Three', 'PeeOh', 'November', 1, 1988, 456, 23, 1131)
     ]
 
-    private clientIdFourDemographics: ClientDemographics = new ClientDemographics("Female", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran");
+    private allClientDemographics: ClientDemographics[] =[
+     new ClientDemographics(1, 1, "Male", "Black/African American", "Not Applicable", "Non-Hispanic", "Is a veteran"),
+     new ClientDemographics(2, 2, "Female", "Asian/Pacific Islander", "Black/African American", "Non-Hispanic", "Not a Veteran"),
+     new ClientDemographics(3, 3, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Is a Veteran"),
+     new ClientDemographics(4, 4, "Female", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran"),
+     new ClientDemographics(5, 5, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran")
+    ]
+
+
     private clientIdFourContactInfo: ClientContactInfo = new ClientContactInfo("123-456-7890", "098-765-4321", "leia.doe@example.com", "Han Solo", "Ex-Husband", "113-535-7524", "Not Applicable", "han@example.com"  )
 
     clientToReturnById: Client;
+    clientDemographicsToReturnById: ClientDemographics;
 
     @Output() allClientsEmitted=new EventEmitter<Client[]>();
 
@@ -33,19 +42,28 @@ export class ClientPortalService {
     getClientReturnedById(id: number,){
         for(let client of this.allClients){
             if(client.id === id){
-                this. clientToReturnById = client;
+                this.clientToReturnById = client;
             }
         }
-        return this.allClients[id];
+        return this.clientToReturnById;
     }
 
-    getClientReturned(index: number){
-        return this.allClients[index];
+  
+
+    getAllClientDemographics(){
+       return this.allClientDemographics.slice();
     }
 
-    getClientIdFourDemographics(){
-        return this.clientIdFourDemographics;
+    getClientDemographicsById(id: number){
+        for(let client of this.allClientDemographics){
+            if(client.id === id){
+                this.clientDemographicsToReturnById = client;
+            }
+        }
+        return this.allClientDemographics[id];
     }
+
+
 
     getClientIdFourContactInfo(){
         return this.clientIdFourContactInfo;
@@ -101,18 +119,25 @@ export class ClientPortalService {
         const monthSelected = (event.target as HTMLSelectElement).value
         if(this.months31Days.includes(monthSelected)){
             this.days.emit(this.days31);
-            console.log(this.days);
         }
         if(this.months30Days.includes(monthSelected)){
             this.days.emit(this.days30);
-            console.log(this.days);
 
         }
         if(monthSelected==='February'){
             this.days.emit(this.days29);
-            console.log(this.days);
         }
       }
 
-
+    clientDobMonth(month:string){
+        if(this.months31Days.includes(month)){
+            this.days.emit(this.days31);
+        }
+        if(this.months30Days.includes(month)){
+            this.days.emit(this.days30);
+        }
+        if(month==='February'){
+            this.days.emit(this.days29);
+        }
+    }
 }
