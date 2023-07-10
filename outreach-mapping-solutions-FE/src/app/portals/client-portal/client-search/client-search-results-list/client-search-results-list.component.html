@@ -11,7 +11,7 @@
         <tr *ngFor="let client of returnedClients">
             <td> {{ client.id }}</td>
             <td><a [routerLink]="['/client-portal', client.id, 'overview']"  >{{ client.lastName + ", " + client.firstName + " " + client.middleName }}</a> </td>
-            <td>{{ client.dobMonth + "/" + client.dobDay + "/" + client.dobYear}}</td>
+            <td>{{ client.dobMonth + " " + client.dobDay + ", " + client.dobYear}}</td>
             <td>{{ client.firstThreeSsn + "-" + client.middleTwoSsn + "-" + client.lastFourSsn }}</td>
         </tr>
     </tbody>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ClientContactInfo } from 'src/app/models/client-contact-info.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
 
@@ -9,12 +10,17 @@ import { ClientPortalService } from 'src/app/services/client-portal.service';
 })
 export class ClientProfileOverviewContactInfoComponent implements OnInit{
   clientContactInfo: ClientContactInfo;
+  clientReturnedId: number;
 
-  constructor(private clientPortalService: ClientPortalService){
+  constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute){
 
   }
 
   ngOnInit(): void {
-    this.clientContactInfo = this.clientPortalService.getClientIdFourContactInfo();
+    this.route.params.subscribe((params: Params) => {
+      this.clientReturnedId = +params['id'];
+    })
+
+    this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
   }
 }

@@ -27,11 +27,20 @@ export class ClientPortalService {
      new ClientDemographics(5, 5, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran")
     ]
 
+    private allClientContactInfo: ClientContactInfo[] = [
+        new ClientContactInfo(1, 1, "111-111-1111", "111-111-1112", "john.doe@example.com", "Helen Smith", "Sister", "111-111-1113", " ", "hsmith@example.com"),
+        new ClientContactInfo(2, 2, "222-222-2221", "222-222-2222", "jane.doe@example.com", "Ellen Fitzgerald", "Mother", "222-222-2223", "222-222-2224", "efitzgerald@example.com"),
+        new ClientContactInfo(3, 3, "333-333-3331", "333-333-3332", "luke.skywalker@example.com", "Darth Vader", "Father", "333-333-3333", " ", "darthV@example.com"),
+        new ClientContactInfo(4, 4, "444-444-4441", " ", "leia.doe@example.com", "Han Solo", "Ex-Husband", "444-444-4443", " ", "han@example.com"),
+        new ClientContactInfo(5, 5, "555-555-5551", " ", "c3po@example.com", "Artoo Detoo", "Friend", "555-555-5554", " ", "r2d2@example.com"),
+    ]  
 
-    private clientIdFourContactInfo: ClientContactInfo = new ClientContactInfo("123-456-7890", "098-765-4321", "leia.doe@example.com", "Han Solo", "Ex-Husband", "113-535-7524", "Not Applicable", "han@example.com"  )
+
+ 
 
     clientToReturnById: Client;
     clientDemographicsToReturnById: ClientDemographics;
+    clientContactInfoToReturnById: ClientContactInfo
 
     @Output() allClientsEmitted=new EventEmitter<Client[]>();
 
@@ -55,18 +64,21 @@ export class ClientPortalService {
     }
 
     getClientDemographicsById(id: number){
-        for(let client of this.allClientDemographics){
-            if(client.id === id){
-                this.clientDemographicsToReturnById = client;
+        for(let clientDemo of this.allClientDemographics){
+            if(clientDemo.id === id){
+                this.clientDemographicsToReturnById = clientDemo;
             }
         }
-        return this.allClientDemographics[id];
+        return this.clientDemographicsToReturnById;
     }
 
-
-
-    getClientIdFourContactInfo(){
-        return this.clientIdFourContactInfo;
+    getClientContactInfoById(id: number){
+        for(let clientContactInfo of this.allClientContactInfo){
+            if(clientContactInfo.id===id){
+                this.clientContactInfoToReturnById = clientContactInfo;
+            }
+        }
+        return this.clientContactInfoToReturnById;
     }
 
 

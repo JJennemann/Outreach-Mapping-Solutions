@@ -63,20 +63,20 @@
             <form #form="ngForm" class="row g-1 border">
                 <div class="row my-3">
                     <div class="col-md-4">
-                        <label for="inputFirstName" class="form-label mb-0" >First Name</label>
+                        <label for="inputFirstName" class="form-label mb-0" >First Name:</label>
                         <input type="text" class="form-control" id="inputFirstName" name="firstName" value="{{clientReturned.firstName}}">
                     </div>
                     <div class="col-md-4">
-                        <label for="inputMiddleName" class="form-label mb-0">Middle Name</label>
+                        <label for="inputMiddleName" class="form-label mb-0">Middle Name:</label>
                         <input type="text" class="form-control" id="inputMiddleName"  name="middleName" value="{{clientReturned.middleName}}">
                         </div>
                     <div class="col-md-4">
-                        <label for="inputLastName" class="form-label mb-0">Last Name</label>
+                        <label for="inputLastName" class="form-label mb-0">Last Name:</label>
                         <input type="text" class="form-control" id="inputLastName" name="lastName" value="{{clientReturned.lastName}}">
                     </div> 
                 </div>
                 <div class="row my-3">
-                    <label for="nameDataQuality" class="form-label mb-0">Name Data Quality</label>
+                    <label for="nameDataQuality" class="form-label mb-0">Name Data Quality:</label>
                     <div class="col-md-6">
                         <select id="nameDataQuality"class="form-select">
                             <option Selected>Please Select..</option>
@@ -86,7 +86,7 @@
                 </div>
                 
               <div class="row my-3">
-                <label for="inputDob" class="form-label mb-0">Date of Birth</label>
+                <label for="inputDob" class="form-label mb-0">Date of Birth:</label>
                 <div class="col-md-5">
                     <select class="form-select" id="inputDob" (change)="monthSelected($event)" value="{{clientReturned.dobMonth}}">
                         <option Selected>{{clientReturned.dobMonth}}</option>
@@ -104,7 +104,7 @@
                 </div>
                 </div>
               <div class="row my-3">
-                <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality</label>
+                <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality:</label>
                 <div class="col-md-6">
                   <select id="dobDataQuality"class="form-select">
                     <option Selected>Please Select..</option>
@@ -114,7 +114,7 @@
               </div>
                
               <div class="row my-3">
-                <label for="inputSsn" class="form-label mb-0">Social Security Number</label>
+                <label for="inputSsn" class="form-label mb-0">Social Security Number:</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control" id="inputSsn" maxlength="3" placeholder="123" value="{{clientReturned.firstThreeSsn}}">
                   </div>
@@ -126,7 +126,7 @@
                   </div>
               </div>
               <div class="row my-3">
-                <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality</label>
+                <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality:</label>
                 <div class="col-md-6">
                   <select id="ssnDataQuality"class="form-select">
                     <option Selected>Please Select..</option>

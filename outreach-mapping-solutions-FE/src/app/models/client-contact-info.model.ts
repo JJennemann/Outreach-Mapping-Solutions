@@ -1,4 +1,6 @@
 export class ClientContactInfo{
+    public id: number;
+    public client: number;
     public phonePrimary: string;
     public phoneSecondary: string;
     public email: string;
@@ -8,8 +10,10 @@ export class ClientContactInfo{
     public icePhoneSecondary: string;
     public iceEmail: string;
 
-    constructor(phonePrimary: string, phoneSecondary: string, email: string, 
+    constructor(id: number, client: number, phonePrimary: string, phoneSecondary: string, email: string, 
                 iceName: string, iceRelationship: string, icePhonePrimary: string, icePhoneSecondary: string, iceEmail: string){
+        this.id = id;
+        this.client = client;
         this.phonePrimary = phonePrimary;
         this.phoneSecondary = phoneSecondary;
         this.email = email;
