@@ -40,10 +40,110 @@
         <div id="inputVeteran">{{ clientIdFourDemos.veteran }}</div>
     </div>
     <div class="d-flex justify-content-end">
-        <div class="btn btn-secondary">Edit Client Information</div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Edit Client Information
+          </button>
+        
     </div>
 </div>
 
 
 
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Client Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+
+            <form #form="ngForm" class="row g-1 border">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="inputFirstName" class="form-label mb-0">First Name</label>
+                        <input type="text" class="form-control" id="inputFirstName" name="firstName">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputMiddleName" class="form-label mb-0">Middle Name</label>
+                        <input type="text" class="form-control" id="inputMiddleName"  name="middleName" >
+                        </div>
+                    <div class="col-md-4">
+                        <label for="inputLastName" class="form-label mb-0">Last Name</label>
+                        <input type="text" class="form-control" id="inputLastName" name="lastName" >
+                    </div> 
+                </div>
+                <div class="row">
+                    <label for="nameDataQuality" class="form-label mb-0">Name Data Quality</label>
+                    <div class="col-md-6">
+                        <select id="nameDataQuality"class="form-select">
+                            <option Selected>Please Select..</option>
+                            <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                        </select>
+                    </div>
+                </div>
+                
+              <div class="row">
+                <label for="inputDob" class="form-label mb-0">Date of Birth</label>
+                <div class="col-md-4">
+                    <select class="form-select" id="inputDob" (change)="monthSelected($event)">
+                        <option selected>Month</option>
+                        <option *ngFor="let monthDay of monthsDays" > {{ monthDay.month }}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="inputDob">
+                        <option selected>Day</option>
+                        <option *ngFor="let day of days">{{ day }}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="inputDob" minLength="4" maxLength="4" placeholder="yyyy">
+                </div>
+                </div>
+              <div class="row">
+                <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality</label>
+                <div class="col-md-6">
+                  <select id="dobDataQuality"class="form-select">
+                    <option Selected>Please Select..</option>
+                    <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                  </select>
+                </div>
+              </div>
+               
+              <div class="row">
+                <label for="inputSsn" class="form-label mb-0">Social Security Number</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="inputSsn" maxlength="3" placeholder="123">
+                  </div>
+                  <div class="col-md-2">
+                      <input type="text" class="form-control" id="inputSsn" maxlength="2" placeholder="45">
+                    </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" id="inputSsn" maxlength="4" placeholder="6789">
+                  </div>
+              </div>
+              <div class="row">
+                <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality</label>
+                <div class="col-md-6">
+                  <select id="ssnDataQuality"class="form-select">
+                    <option Selected>Please Select..</option>
+                    <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                  </select>
+                </div>
+              </div>
+                  
+              </form>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="confirmation()">Exit without Saving</button>
+          <button type="button" class="btn btn-primary">Save Updated Info</button>
+        </div>
+      </div>
+    </div>
+  </div>
