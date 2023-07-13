@@ -13,14 +13,21 @@ export class ClientProfileOverviewContactInfoComponent implements OnInit{
   clientReturnedId: number;
 
   constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute){
-
+  this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
+  console.log(this.clientReturnedId);
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.clientReturnedId = +params['id'];
     })
-
     this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
+    console.log(this.clientReturnedId);
+
+  }
+
+  loadClientContactInfoAndOpenModal(){
+    this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
+    console.log(this.clientContactInfo);
   }
 }

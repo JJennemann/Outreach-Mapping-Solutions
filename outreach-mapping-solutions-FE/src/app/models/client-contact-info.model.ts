@@ -10,8 +10,8 @@ export class ClientContactInfo{
     public icePhoneSecondary: string;
     public iceEmail: string;
 
-    constructor(id: number, client: number, phonePrimary: string, phoneSecondary: string, email: string, 
-                iceName: string, iceRelationship: string, icePhonePrimary: string, icePhoneSecondary: string, iceEmail: string){
+    constructor(id: number, client?: number, phonePrimary?: string, phoneSecondary?: string, email?: string, 
+                iceName?: string, iceRelationship?: string, icePhonePrimary?: string, icePhoneSecondary?: string, iceEmail?: string){
         this.id = id;
         this.client = client;
         this.phonePrimary = phonePrimary;

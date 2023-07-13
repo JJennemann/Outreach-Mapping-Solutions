@@ -42,11 +42,13 @@
     </div>
 
     <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClientContactInformationModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClientContactInformationModal"
+        >
             Edit Client Contact Information
           </button>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="editClientContactInformationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -63,41 +65,41 @@
                     <div class="row my-3">
                         <div class="col">
                             <label for="inputPhonePrimary" class="form-label">Phone(Primary):</label>
-                            <input type="text" class="form-control" id="inputPhonePrimary" name="phonePrimary" value="{{clientContactInfo.phonePrimary}}">
+                            <input type="text" class="form-control" id="inputPhonePrimary" name="phonePrimary" [(ngModel)]="clientContactInfo.phonePrimary">
                         </div>
                         <div class="col">
                             <label for="inputPhoneSecondary" class="form-label">Phone(Secondary):</label>
-                            <input type="text" class="form-control" id="inputPhoneSecondary" name="phoneSecondary" value="{{clientContactInfo.phoneSecondary}}">
+                            <input type="text" class="form-control" id="inputPhoneSecondary" name="phoneSecondary" [(ngModel)]="clientContactInfo.phoneSecondary">
                         </div>
                         <div class="col">
                             <label for="inputEmail" class="form-label">Email:</label>
-                            <input type="text" class="form-control" id="inputEmail" name="email" value="{{clientContactInfo.email}}">
+                            <input type="text" class="form-control" id="inputEmail" name="email" [(ngModel)]="clientContactInfo.email">
                         </div>
                     </div>
 
                     <div class="row my-3">
                         <div class="col">
                             <label for="inputIceName" class="form-label">Emergency Contact - Name:</label>
-                            <input type="text" class="form-control" id="inputIceName" name="iceName" value="{{clientContactInfo.iceName}}">
+                            <input type="text" class="form-control" id="inputIceName" name="iceName" [(ngModel)]="clientContactInfo.iceName">
                         </div>
                         <div class="col">
                             <label for="inputIceRelationship" class="form-label">Emergency Contact - Relationship:</label>
-                            <input type="text" class="form-control" id="inputIceRelationship" name="iceRelationship" value="{{clientContactInfo.iceRelationship}}">
+                            <input type="text" class="form-control" id="inputIceRelationship" name="iceRelationship" [(ngModel)]="clientContactInfo.iceRelationship">
                         </div>
                     </div>
 
                     <div class="row my-3">
                         <div class="col">
                             <label for="inputIcePhonePrimary" class="form-label">Emergency Contact - Phone(Primary):</label>
-                            <input type="text" class="form-control" id="inputIcePhonePrimary" name="icePhonePrimary" value="{{clientContactInfo.icePhonePrimary}}">
+                            <input type="text" class="form-control" id="inputIcePhonePrimary" name="icePhonePrimary" [(ngModel)]="clientContactInfo.icePhonePrimary">
                         </div>
                         <div class="col">
                             <label for="inputIcePhoneSecondary" class="form-label">Emergency Contact - Phone(Secondary):</label>
-                            <input type="text" class="form-control" id="inputIcePhoneSecondary" name="icePhoneSecondary" value="{{clientContactInfo.icePhoneSecondary}}">
+                            <input type="text" class="form-control" id="inputIcePhoneSecondary" name="icePhoneSecondary" [(ngModel)]="clientContactInfo.icePhoneSecondary">
                         </div>
                         <div class="col">
                             <label for="inputIceEmail" class="form-label">Emergency Contact - Email:</label>
-                            <input type="text" class="form-control" id="inputIceEmail" name="iceEmail" value="{{clientContactInfo.iceEmail}}">
+                            <input type="text" class="form-control" id="inputIceEmail" name="iceEmail" [(ngModel)]="clientContactInfo.iceEmail">
                         </div>
                     </div>
 
