@@ -20,11 +20,13 @@ export class ClientPortalService {
     ]
 
     private allClientDemographics: ClientDemographics[] =[
-     new ClientDemographics(1, 1, "Male", "Black/African American", "Not Applicable", "Non-Hispanic", "Is a veteran"),
+     new ClientDemographics(1, 1, "Male", "Black/African-American", "Not Applicable", "Non-Hispanic", "Veteran"),
      new ClientDemographics(2, 2, "Female", "Asian/Pacific Islander", "Black/African American", "Non-Hispanic", "Not a Veteran"),
-     new ClientDemographics(3, 3, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Is a Veteran"),
+     new ClientDemographics(3, 3, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Veteran"),
      new ClientDemographics(4, 4, "Female", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran"),
-     new ClientDemographics(5, 5, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran")
+     new ClientDemographics(5, 5, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran"),
+    //  new ClientDemographics(6, 6, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran")
+
     ]
 
     private allClientContactInfo: ClientContactInfo[] = [
@@ -35,7 +37,11 @@ export class ClientPortalService {
         new ClientContactInfo(5, 5, "555-555-5551", " ", "c3po@example.com", "Artoo Detoo", "Friend", "555-555-5554", " ", "r2d2@example.com"),
     ]  
 
-
+    addClientToDatabase(newClient: Client){
+        this.allClients.push(newClient);
+        this.allClientDemographics.push(new ClientDemographics(6))
+        console.log(this.allClients);
+    }
  
 
     clientToReturnById: Client;
@@ -43,6 +49,18 @@ export class ClientPortalService {
     clientContactInfoToReturnById: ClientContactInfo
 
     @Output() allClientsEmitted=new EventEmitter<Client[]>();
+    // @Output() clientSelected = new EventEmitter<number>();
+    clientIdSelected: number;
+
+    setClientIdSelected(clientId: number){
+        this.clientIdSelected = clientId;
+    }
+
+    getClientIdSelected(){
+        return this.clientIdSelected;
+    }
+
+   
 
     getAllClients(){
         return this.allClients.slice();
@@ -56,8 +74,6 @@ export class ClientPortalService {
         }
         return this.clientToReturnById;
     }
-
-  
 
     getAllClientDemographics(){
        return this.allClientDemographics.slice();

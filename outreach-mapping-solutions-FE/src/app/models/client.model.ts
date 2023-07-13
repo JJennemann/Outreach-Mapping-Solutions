@@ -7,15 +7,15 @@ export class Client {
 
     public dobMonth: string;
     public dobDay: number;
-    public dobYear: number
+    public dobYear: number;
 
     public firstThreeSsn: number;
     public middleTwoSsn: number;
     public lastFourSsn: number;
 
-    constructor(id: number, firstName: string, middleName: string, lastName:string,
-                dobMonth: string, dobDay: number, dobYear: number,
-                firstThreeSsn: number, middleTwoSsn: number, lastFourSsn: number){
+    constructor(id: number, firstName?: string, middleName?: string, lastName?:string,
+                dobMonth?: string, dobDay?: number, dobYear?: number,
+                firstThreeSsn?: number, middleTwoSsn?: number, lastFourSsn?: number){
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;

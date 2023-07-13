@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Client } from 'src/app/models/client.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
+import { NgForm } from '@angular/forms';
+import { ClientDemographics } from 'src/app/models/client-demographics.model';
 
 @Component({
   selector: 'app-client-search',
@@ -8,6 +10,19 @@ import { ClientPortalService } from 'src/app/services/client-portal.service';
   styleUrls: ['./client-search.component.css']
 })
 export class ClientSearchComponent {
+  
+  clientToAdd: Client;
+  formFirstName: string;
+  formMiddleName: string;
+  formLastName: string;
+  formDobMonth: string;
+  formDobDay: number;
+  formDobYear: number;
+  formSsnFirstThree: number;
+  formSsnMiddleTwo: number;
+  formSsnLastFour: number;
+
+
   dataQuality: string[];
   monthsDays: {month: string, days: number}[];
   days: number[];
@@ -31,4 +46,17 @@ allClients = this.clientPortalService.getAllClients();
 clientSearch(){
   this.clientPortalService.allClientsEmitted.emit(this.allClients) 
 }
+
+
+
+
+addToDatabase(){
+  this.clientToAdd = new Client(6, this.formFirstName, this.formMiddleName, this.formLastName, this.formDobMonth,
+                                this.formDobDay, this.formDobYear, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour);
+  this.clientPortalService.addClientToDatabase(this.clientToAdd);
+
+
+  }
+
+
 }

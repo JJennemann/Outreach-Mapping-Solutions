@@ -56,8 +56,7 @@ import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.
     ReportsPortalComponent,
     MapsPortalComponent,
     HomePageComponent,
-    PortalsComponent
-  
+    PortalsComponent,
     
   ],
   imports: [
