@@ -23,20 +23,14 @@ const routes: Routes = [
     {path: 'search', component: ClientSearchComponent, children:[
       {path: 'results', component: ClientSearchResultsListComponent}
     ] },
-    { path: ':id', redirectTo:'/client-portal/:id/overview', pathMatch:'full'},
-    { path: ':id', component: ClientProfileComponent, children:[
-      {path: 'overview', component: ClientProfileOverviewComponent},
-      {path: 'map', component: ClientProfileMapComponent},
-      {path: 'assessments', component: ClientProfileAssessmentsComponent},
-      {path: 'case-notes', component: ClientProfileCaseNotesComponent}
-      
-
-
-    ] }
+    {path: 'profile', component: ClientProfileComponent, children: [
+      // { path: ':id', redirectTo:'/client-portal/profile/:id/overview', pathMatch:'full'},
+      { path: ':id/overview', component: ClientProfileOverviewComponent},
+      { path: ':id/map', component: ClientProfileMapComponent},
+      { path: ':id/assessments', component: ClientProfileAssessmentsComponent},
+      { path: ':id/case-notes', component: ClientProfileCaseNotesComponent},
+    ]},
   ] },
-  // {path: ':id', component: ClientProfileComponent, children:[
-  //   {path: 'overview', component: ClientProfileOverviewComponent}
-  // ]},
   { path: 'reports-portal', component: ReportsPortalComponent },
   { path: 'maps-portal', component: MapsPortalComponent },
   { path: 'logout', component: HomePageComponent }

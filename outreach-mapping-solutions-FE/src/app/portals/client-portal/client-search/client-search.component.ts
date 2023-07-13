@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Client } from 'src/app/models/client.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
+import { NgForm } from '@angular/forms';
+import { ClientDemographics } from 'src/app/models/client-demographics.model';
 
 @Component({
   selector: 'app-client-search',
@@ -8,94 +10,53 @@ import { ClientPortalService } from 'src/app/services/client-portal.service';
   styleUrls: ['./client-search.component.css']
 })
 export class ClientSearchComponent {
- 
-  dataQuality= ["Complete", "Partial", "Client Did Not Know", "Client Refused", "Data Not Collected"]
-  monthsDays=[
-    {month: 'January',
-     days: 30},
-     {month: 'February',
-     days: 29},
-     {month: 'March',
-     days: 31},
-     {month: 'April',
-     days: 30},
-     {month: 'May',
-     days: 31},
-     {month: 'June',
-     days: 30},
-     {month: 'July',
-     days: 31},
-     {month: 'August',
-     days: 31},
-     {month: 'September',
-     days: 30},
-     {month: 'October',
-     days: 31},
-     {month: 'November',
-     days: 30},
-     {month: 'December',
-     days: 31},
-  ]
-
-  days: number[]=[];
-  days29=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
-  days30=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-  days31=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-
-
-  months31Days=["January", "March", "May", "July", "August", "October", "December"];
-  months30Days=["April", "June", "September", "November"];
   
-  formData={
-    firstName: '',
-    middleName: '',
-    lastName: '',
+  clientToAdd: Client;
+  formFirstName: string;
+  formMiddleName: string;
+  formLastName: string;
+  formDobMonth: string;
+  formDobDay: number;
+  formDobYear: number;
+  formSsnFirstThree: number;
+  formSsnMiddleTwo: number;
+  formSsnLastFour: number;
 
-  }
 
-@Output() returnedClients = new EventEmitter<Client[]>();
+  dataQuality: string[];
+  monthsDays: {month: string, days: number}[];
+  days: number[];
+  @Output() returnedClients = new EventEmitter<Client[]>();
 
 constructor(private clientPortalService: ClientPortalService){
-  // this.showSearchForm = this.clientPortalService.showSearchFormOnClientPortal;
-  // this.clientPortalService.showSearchFormOnClientPortal.subscribe(
-  //   () => !this.showSearchForm
-  // );
+  this.dataQuality = this.clientPortalService.dataQuality;
+  this.monthsDays = this.clientPortalService.monthsDays;
 
+  this.clientPortalService.days.subscribe(
+    (days) => this.days = days
+  );
+}
 
+monthSelected(event: Event){
+  this.clientPortalService.selectedMonth(event);
+}
 
-  
+allClients = this.clientPortalService.getAllClients();
+
+clientSearch(){
+  this.clientPortalService.allClientsEmitted.emit(this.allClients) 
 }
 
 
 
-  monthSelected(event: Event){
-    const monthSelected = (event.target as HTMLSelectElement).value
-    if(this.months31Days.includes(monthSelected)){
-      this.days = this.days31;
-    }
-    if(this.months30Days.includes(monthSelected)){
-      this.days=this.days30;
-    }
-    if(monthSelected==='February'){
-      this.days=this.days29;
-    }
+
+addToDatabase(){
+  this.clientToAdd = new Client(6, this.formFirstName, this.formMiddleName, this.formLastName, this.formDobMonth,
+                                this.formDobDay, this.formDobYear, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour);
+  this.clientPortalService.addClientToDatabase(this.clientToAdd);
+
+
   }
 
-  allClients = this.clientPortalService.getAllClients();
 
-  clientSearch(){
-    this.clientPortalService.allClientsEmitted.emit(this.allClients)
-
-    
-  }
-
-  // clientSearch(form: NgForm){
-  //   // const clientSearched = new Client()
-  //   // const firstNameValue=this.formData.firstName;
-  //   // const middleNameValue=this.formData.middleName;
-  //   // const lastNameValue=this.formData.lastName;
-
-  //   // this.searchResults = this.clientPortalService.getClientReturnedByFormElements();
-    
-  // }
 }

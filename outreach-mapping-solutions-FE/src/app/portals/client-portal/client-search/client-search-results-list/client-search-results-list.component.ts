@@ -18,12 +18,14 @@ export class ClientSearchResultsListComponent implements OnInit{
     this.clientPortalService.allClientsEmitted.subscribe(
       (clientsReturned: Client[]) => this.returnedClients = clientsReturned
     );
-    console.log(this.returnedClients)
   }
   
   ngOnInit(): void {
    this.returnedClients = this.clientPortalService.getAllClients();
   }
 
+  onClientSelected(clientId: number){
+    this.clientPortalService.setClientIdSelected(clientId);
+  }
 
 }

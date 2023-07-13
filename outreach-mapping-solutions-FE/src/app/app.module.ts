@@ -24,10 +24,11 @@ import { ClientProfileOverviewPictureComponent } from './portals/client-portal/c
 import { ClientProfileOverviewDemographicsComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-demographics/client-profile-overview-demographics.component';
 import { ClientProfileOverviewContactInfoComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-contact-info/client-profile-overview-contact-info.component';
 import { ClientProfileOverviewCaseManagersComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-case-managers/client-profile-overview-case-managers.component';
-import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.component';
 import { MapsPortalComponent } from './portals/maps-portal/maps-portal.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PortalsComponent } from './portals/portals.component';
+import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.component';
+
 
 
 
@@ -56,13 +57,13 @@ import { PortalsComponent } from './portals/portals.component';
     MapsPortalComponent,
     HomePageComponent,
     PortalsComponent,
-  
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
+
   
   ],
   providers: [],

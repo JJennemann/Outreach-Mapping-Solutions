@@ -2,48 +2,337 @@
     
 
 <div class="row g-2 border form-group px-4 py-2">
-    <h4 style="text-decoration: underline;">Client Demographics</h4>
+    <h4 style="text-decoration: underline;">Client Basic Information</h4>
     <div class="col-md-4">
-        <label for="inputName" class="form-label mb-0"><strong>Name:</strong></label>
+        <label for="inputName" class="form-label mb-0">Name:</label>
         <div id="inputName"> {{ clientReturned.lastName + ", " + clientReturned.firstName + " " + clientReturned.middleName }}</div>
     </div>
     <div class="col-md-4">
-        <label for="inputDob" class="form-label mb-0"><strong>Date of Birth:</strong></label>
-        <div id="inputDob"> {{ clientReturned.dobMonth + "/" + clientReturned.dobDay + "/" + clientReturned.dobYear }}</div>
+        <label for="inputDob" class="form-label mb-0">Date of Birth:</label>
+        <div > {{ clientReturned.dobMonth + " " + clientReturned.dobDay + ", " + clientReturned.dobYear }}</div>
     </div>
     <div class="col-md-4">
-        <label for="inputSsn" class="form-label mb-0"><strong>Social Security Number:</strong></label>
+        <label for="inputSsn" class="form-label mb-0">Social Security Number:</label>
 
-        <div id="inputSsn"> {{ clientReturned.firstThreeSsn + "-" + clientReturned.middleTwoSsn + "-" + clientReturned.lastFourSsn }}</div>
+        <div> {{ clientReturned.firstThreeSsn + "-" + clientReturned.middleTwoSsn + "-" + clientReturned.lastFourSsn }}</div>
     </div>
 
     <div class="col-md-12">
-        <label for="inputGender" class="form-label mb-0"><strong>Gender:</strong></label>
-        <div id="inputGender"> {{ clientIdFourDemos.gender }} </div>
+        <label for="inputGender" class="form-label mb-0">Gender:</label>
+        <div id="inputGender"> {{ clientDemographics.gender }} </div>
     </div>
     <div class="col-md-4">
-        <label for="inputPrimaryRace" class="form-label mb-0"><strong>Race(Primary):</strong></label>
-        <div id="inputPrimaryRace"> {{ clientIdFourDemos.racePrimary }} </div>
+        <label for="inputPrimaryRace" class="form-label mb-0">Race (Primary):</label>
+        <div id="inputPrimaryRace"> {{ clientDemographics.racePrimary }} </div>
     </div>
     <div class="col-md-4">
-        <label for="inputSecondaryRace" class="form-label mb-0"><strong>Race(Secondary):</strong></label>
+        <label for="inputSecondaryRace" class="form-label mb-0">Race (Secondary):</label>
 
-        <div> {{ clientIdFourDemos.raceSecondary }} </div>
+        <div> {{ clientDemographics.raceSecondary }} </div>
     </div>
 
     <div class="col-md-4">
-        <label for="inputEthnicity" class="form-label mb-0"><strong>Ethnicity:</strong></label>
-        <div id="inputEthnicity"> {{ clientIdFourDemos.ethnicity }} </div>
+        <label for="inputEthnicity" class="form-label mb-0">Ethnicity:</label>
+        <div id="inputEthnicity"> {{ clientDemographics.ethnicity }} </div>
     </div>
     <div class="col-md-12">
-        <label for="inputVeteran" class="form-label mb-0"><strong>Veteran:</strong></label>
-        <div id="inputVeteran">{{ clientIdFourDemos.veteran }}</div>
+        <label for="inputVeteran" class="form-label mb-0">Veteran Status:</label>
+        <div id="inputVeteran">{{ clientDemographics.veteran }}</div>
     </div>
     <div class="d-flex justify-content-end">
-        <div class="btn btn-secondary">Edit Client Information</div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClientBasicInformationModal" 
+        (click)="clientDobMonth(clientReturned.dobMonth); loadClientDetailsAndOpenModal()">
+            Edit Client Information
+          </button>
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="editClientBasicInformationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Client Basic Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+
+            <form #form="ngForm" class="row g-1 border">
+                <div class="row my-3">
+                    <div class="col-md-4">
+                        <label for="inputFirstName" class="form-label mb-0" >First Name:</label>
+                        <input type="text" class="form-control" id="inputFirstName" name="firstName" [(ngModel)]="clientReturned.firstName"  >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputMiddleName" class="form-label mb-0">Middle Name:</label>
+                        <input type="text" class="form-control" id="inputMiddleName"  name="middleName" [(ngModel)]="clientReturned.middleName">
+                        </div>
+                    <div class="col-md-4">
+                        <label for="inputLastName" class="form-label mb-0">Last Name:</label>
+                        <input type="text" class="form-control" id="inputLastName" name="lastName" [(ngModel)]="clientReturned.lastName">
+                    </div> 
+                </div>
+                <div class="row my-3">
+                    <label for="nameDataQuality" class="form-label mb-0">Name Data Quality:</label>
+                    <div class="col-md-6">
+                        <select id="nameDataQuality" class="form-select">
+                            <option Selected>Please Select..</option>
+                            <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                        </select>
+                    </div>
+                </div>
+                
+              <div class="row my-3">
+                <label  class="form-label mb-0">Date of Birth:</label>
+                <div class="col-md-5">
+                    <select class="form-select"  (change)="monthSelected($event)" name="dobMonth" [(ngModel)]="clientReturned.dobMonth">
+                        <option Selected>{{clientReturned.dobMonth}}</option>
+                        <option *ngFor="let monthDay of monthsDays"> {{ monthDay.month }}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" name="dobDay" [(ngModel)]="clientReturned.dobDay">
+                        <option Selected>{{clientReturned.dobDay}}</option>
+                        <option *ngFor="let day of days">{{ day }}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control"  minLength="4" maxLength="4" name="dobYear" placeholder="YYYY" [(ngModel)]="clientReturned.dobYear">
+                </div>
+                </div>
+              <div class="row my-3">
+                <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality:</label>
+                <div class="col-md-6">
+                  <select id="dobDataQuality"class="form-select">
+                    <option Selected>Please Select..</option>
+                    <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                  </select>
+                </div>
+              </div>
+               
+              <div class="row my-3">
+                <label class="form-label mb-0">Social Security Number:</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" maxlength="3" placeholder="123" name="firstThreeSsn" [(ngModel)]="clientReturned.firstThreeSsn">
+                  </div>
+                  <div class="col-md-2">
+                      <input type="text" class="form-control" maxlength="2" placeholder="45" name="middleTwoSsn" [(ngModel)]="clientReturned.middleTwoSsn">
+                    </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" maxlength="4" placeholder="6789" name="lastFourSsn" [(ngModel)]="clientReturned.lastFourSsn">
+                  </div>
+              </div>
+              <div class="row my-3">
+                <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality:</label>
+                <div class="col-md-6">
+                  <select id="ssnDataQuality"class="form-select">
+                    <option Selected>Please Select..</option>
+                    <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                  </select>
+                </div>
+              </div>
+                  
+              <div class="row my-3">
+                <div class="col-md-4">
+                <label  class="form-label mb-0">Gender:</label>
+                  <select class="form-select" name="gender" [(ngModel)]="clientDemographics.gender" >
+                    <option [value]="undefined" disabled selected>Please Select...</option>
+                    <option *ngFor="let gender of genderSelections">{{ gender }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-4">
+                <label  class="form-label mb-0">Race (Primary):</label>
+                  <select class="form-select" name="racePrimary" [(ngModel)]="clientDemographics.racePrimary">
+                    <option [value]="undefined" disabled selected>Please Select...</option>
+                    <option *ngFor="let race of raceSelections"> {{ race }}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                <label  class="form-label mb-0">Race (Secondary):</label>
+                  <select class="form-select" name="raceSecondary" [(ngModel)]="clientDemographics.raceSecondary">
+                    <option [value]="undefined" disabled selected>Please Select...</option>
+                    <option *ngFor="let race of raceSelections"> {{ race }}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                <label  class="form-label mb-0">Ethnicity:</label>
+                  <select class="form-select" name="ethnicity" [(ngModel)]="clientDemographics.ethnicity">
+                    <option [value]="undefined" disabled selected>Please Select...</option>
+                    <option *ngFor="let ethnicity of ethnicitySelections"> {{ ethnicity }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-4">
+                <label  class="form-label mb-0">Veteran Status:</label>
+                  <select class="form-select" name="veteran" [(ngModel)]="clientDemographics.veteran" >
+                    <option [value]="undefined" disabled selected>Please Select...</option>
+                    <option *ngFor="let veteranStatus of veteranSelections">{{ veteranStatus }}</option>
+                  </select>
+                </div>
+              </div>
+
+          </form>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="confirmation()">Exit without Saving</button>
+          <button type="button" class="btn btn-primary">Save Updated Info</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+<!-- 
+    
 
+<div class="row g-2 border form-group px-4 py-2">
+  <h4 style="text-decoration: underline;">Client Basic Information</h4>
+  <div class="col-md-4">
+      <label for="inputName" class="form-label mb-0">Name:</label>
+      <div id="inputName"> {{ clientReturned.lastName + ", " + clientReturned.firstName + " " + clientReturned.middleName }}</div>
+  </div>
+  <div class="col-md-4">
+      <label for="inputDob" class="form-label mb-0">Date of Birth:</label>
+      <div > {{ clientReturned.dobMonth + " " + clientReturned.dobDay + ", " + clientReturned.dobYear }}</div>
+  </div>
+  <div class="col-md-4">
+      <label for="inputSsn" class="form-label mb-0">Social Security Number:</label>
+
+      <div> {{ clientReturned.firstThreeSsn + "-" + clientReturned.middleTwoSsn + "-" + clientReturned.lastFourSsn }}</div>
+  </div>
+
+  <div class="col-md-12">
+      <label for="inputGender" class="form-label mb-0">Gender:</label>
+      <div id="inputGender"> {{ clientDemographics.gender }} </div>
+  </div>
+  <div class="col-md-4">
+      <label for="inputPrimaryRace" class="form-label mb-0">Race(Primary):</label>
+      <div id="inputPrimaryRace"> {{ clientDemographics.racePrimary }} </div>
+  </div>
+  <div class="col-md-4">
+      <label for="inputSecondaryRace" class="form-label mb-0">Race(Secondary):</label>
+
+      <div> {{ clientDemographics.raceSecondary }} </div>
+  </div>
+
+  <div class="col-md-4">
+      <label for="inputEthnicity" class="form-label mb-0">Ethnicity:</label>
+      <div id="inputEthnicity"> {{ clientDemographics.ethnicity }} </div>
+  </div>
+  <div class="col-md-12">
+      <label for="inputVeteran" class="form-label mb-0">Veteran:</label>
+      <div id="inputVeteran">{{ clientDemographics.veteran }}</div>
+  </div>
+  <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClientBasicInformationModal" 
+      (click)="clientDobMonth(clientReturned.dobMonth); loadClientDetailsAndOpenModal()">
+          Edit Client Information
+        </button>
+  </div>
+</div>
+
+
+<div class="modal fade" id="editClientBasicInformationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-fullscreen">
+  <div class="modal-content">
+  <div class="modal-header">
+      <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Client Basic Information</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+      <div class="container-fluid">
+
+          <form #form="ngForm" class="row g-1 border">
+              <div class="row my-3">
+                  <div class="col-md-4">
+                      <label for="inputFirstName" class="form-label mb-0" >First Name:</label>
+                      <input type="text" class="form-control" id="inputFirstName" name="firstName" value="{{clientReturned.firstName}}">
+                  </div>
+                  <div class="col-md-4">
+                      <label for="inputMiddleName" class="form-label mb-0">Middle Name:</label>
+                      <input type="text" class="form-control" id="inputMiddleName"  name="middleName" value="{{clientReturned.middleName}}">
+                      </div>
+                  <div class="col-md-4">
+                      <label for="inputLastName" class="form-label mb-0">Last Name:</label>
+                      <input type="text" class="form-control" id="inputLastName" name="lastName" value="{{clientReturned.lastName}}">
+                  </div> 
+              </div>
+              <div class="row my-3">
+                  <label for="nameDataQuality" class="form-label mb-0">Name Data Quality:</label>
+                  <div class="col-md-6">
+                      <select id="nameDataQuality" class="form-select">
+                          <option Selected>Please Select..</option>
+                          <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                      </select>
+                  </div>
+              </div>
+              
+            <div class="row my-3">
+              <label for="inputDob" class="form-label mb-0">Date of Birth:</label>
+              <div class="col-md-5">
+                  <select class="form-select"  (change)="monthSelected($event)" value="{{clientReturned.dobMonth}}">
+                      <option Selected>{{clientReturned.dobMonth}}</option>
+                      <option *ngFor="let monthDay of monthsDays"> {{ monthDay.month }}</option>
+                  </select>
+              </div>
+              <div class="col-md-3">
+                  <select class="form-select"  value="{{clientReturned.dobDay}}">
+                      <option Selected>{{clientReturned.dobDay}}</option>
+                      <option *ngFor="let day of days">{{ day }}</option>
+                  </select>
+              </div>
+              <div class="col-md-4">
+                  <input type="text" class="form-control"  minLength="4" maxLength="4" placeholder="YYYY" value="{{clientReturned.dobYear}}">
+              </div>
+              </div>
+            <div class="row my-3">
+              <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality:</label>
+              <div class="col-md-6">
+                <select id="dobDataQuality"class="form-select">
+                  <option Selected>Please Select..</option>
+                  <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                </select>
+              </div>
+            </div>
+             
+            <div class="row my-3">
+              <label for="inputSsn" class="form-label mb-0">Social Security Number:</label>
+              <div class="col-md-4">
+                  <input type="text" class="form-control" maxlength="3" placeholder="123" value="{{clientReturned.firstThreeSsn}}">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" maxlength="2" placeholder="45" value="{{clientReturned.middleTwoSsn}}">
+                  </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" maxlength="4" placeholder="6789" value="{{clientReturned.lastFourSsn}}">
+                </div>
+            </div>
+            <div class="row my-3">
+              <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality:</label>
+              <div class="col-md-6">
+                <select id="ssnDataQuality"class="form-select">
+                  <option Selected>Please Select..</option>
+                  <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+                </select>
+              </div>
+            </div>
+                
+            </form>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="confirmation()">Exit without Saving</button>
+        <button type="button" class="btn btn-primary">Save Updated Info</button>
+      </div>
+    </div>
+  </div>
+</div> -->
