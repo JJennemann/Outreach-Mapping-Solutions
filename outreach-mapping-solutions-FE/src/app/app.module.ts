@@ -28,6 +28,7 @@ import { MapsPortalComponent } from './portals/maps-portal/maps-portal.component
 import { HomePageComponent } from './home-page/home-page.component';
 import { PortalsComponent } from './portals/portals.component';
 import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.component';
+import { DemographicsEditComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-demographics/demographics-edit/demographics-edit.component';
 
 
 
@@ -57,6 +58,7 @@ import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.
     MapsPortalComponent,
     HomePageComponent,
     PortalsComponent,
+    DemographicsEditComponent,
     
   ],
   imports: [
