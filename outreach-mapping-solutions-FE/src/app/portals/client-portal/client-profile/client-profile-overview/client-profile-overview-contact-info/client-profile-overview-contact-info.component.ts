@@ -23,7 +23,6 @@ export class ClientProfileOverviewContactInfoComponent implements OnInit{
     })
     this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
     console.log(this.clientReturnedId);
-
   }
 
   loadClientContactInfoAndOpenModal(){

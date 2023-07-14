@@ -2,6 +2,7 @@ import {  EventEmitter, Injectable, Output } from '@angular/core';
 import { Client } from '../models/client.model';
 import { ClientDemographics } from '../models/client-demographics.model';
 import { ClientContactInfo } from '../models/client-contact-info.model';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -20,13 +21,11 @@ export class ClientPortalService {
     ]
 
     private allClientDemographics: ClientDemographics[] =[
-     new ClientDemographics(1, 1, "Male", "White", "Not Applicable", "Non-Hispanic", "Veteran"),
+     new ClientDemographics(1, 1, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Veteran"),
      new ClientDemographics(2, 2, "Female", "Asian/Pacific Islander", "Black/African American", "Non-Hispanic", "Not a Veteran"),
      new ClientDemographics(3, 3, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Veteran"),
      new ClientDemographics(4, 4, "Female", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran"),
      new ClientDemographics(5, 5, "Male", "White/Caucasian", "Not Applicable", "Non-Hispanic", "Not a Veteran"),
-
-
     ]
 
     private allClientContactInfo: ClientContactInfo[] = [
@@ -36,14 +35,13 @@ export class ClientPortalService {
         new ClientContactInfo(4, 4, "444-444-4441", " ", "leia.doe@example.com", "Han Solo", "Ex-Husband", "444-444-4443", " ", "han@example.com"),
         new ClientContactInfo(5, 5, "555-555-5551", " ", "c3po@example.com", "Artoo Detoo", "Friend", "555-555-5554", " ", "r2d2@example.com"),
     ]  
-
+    
     addClientToDatabase(newClient: Client){
         this.allClients.push(newClient);
         this.allClientDemographics.push(new ClientDemographics(6))
         this.allClientContactInfo.push(new ClientContactInfo(6));
         console.log(this.allClients);
     }
- 
 
     clientToReturnById: Client;
     clientDemographicsToReturnById: ClientDemographics;
@@ -61,7 +59,12 @@ export class ClientPortalService {
         return this.clientIdSelected;
     }
 
-   
+    updateClient(updatedClient: Client){
+        const clientIndex = this.allClients.findIndex((client => client.id === updatedClient.id));
+        this.allClients[clientIndex] = updatedClient;
+        
+
+    }
 
     getAllClients(){
         return this.allClients.slice();
