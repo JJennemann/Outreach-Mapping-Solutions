@@ -23,13 +23,13 @@
   <label for="inputDob" class="form-label mb-0">Date of Birth</label>
   <div class="col-md-3">
       <select class="form-select" id="inputDob" (change)="monthSelected($event)" name="formDobMonth" [(ngModel)]="formDobMonth">
-          <option selected>Month</option>
-          <option *ngFor="let monthDay of monthsDays" > {{ monthDay.month }}</option>
+        <option [value]="undefined" disabled selected>Month</option>
+        <option *ngFor="let monthDay of monthsDays" > {{ monthDay.month }}</option>
       </select>
   </div>
   <div class="col-md-2">
       <select class="form-select" id="inputDob" name="formDobDay" [(ngModel)]="formDobDay">
-          <option selected>Day</option>
+        <option [value]="undefined" disabled selected>Day</option>
           <option *ngFor="let day of days">{{ day }}</option>
       </select>
   </div>
