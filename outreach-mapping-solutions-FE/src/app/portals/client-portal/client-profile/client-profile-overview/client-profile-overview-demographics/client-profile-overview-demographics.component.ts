@@ -1,3 +1,5 @@
+
+
 import { Component, ElementRef, OnInit, ViewChild, Renderer2} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientDemographics } from 'src/app/models/client-demographics.model';
