@@ -1,10 +1,8 @@
-
 <div class="modal fade" #editClientBasicInformationModal id="editClientBasicInformationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Client Basic Information</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="container-fluid">
@@ -133,10 +131,9 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="confirmation()">Exit without Saving</button>
+              <button type="button" class="btn btn-secondary exitWithoutSavingBtn" aria-label="Close" (click)="confirmation()" #exitWithoutSavingBtn>Exit without Saving</button>
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveUpdatedFormData()">Save Updated Info</button>
             </div>
           </div>
         </div>
       </div>
-    
