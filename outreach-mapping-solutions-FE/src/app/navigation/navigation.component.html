@@ -1,0 +1,9 @@
+
+<div class="row">
+  <div class="col-xs-10 list-group">
+    <a  *ngFor="let navItem of navItems; let i=index" class="col list-group-item clearfix p-1" style="cursor: pointer; text-align: center;" routerLink="/{{navItem.pathName}}" routerLinkActive="active">
+      <p class="list-group-item-text" >{{ navItem.displayName }}</p>
+    </a>
+  </div>
+</div>
+

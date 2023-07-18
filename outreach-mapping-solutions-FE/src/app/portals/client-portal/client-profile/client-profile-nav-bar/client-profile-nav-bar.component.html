@@ -1,0 +1,8 @@
+<div class="row border">
+    <div class="col-md-6 list-group d-flex flex-row">
+        <a *ngFor="let navItem of navItems;" class="col list-group-item clearfix p-1" style="cursor: pointer; text-align: center;" 
+          [routerLink]="['/client-portal', 'profile', clientIdUrl, navItem.pathName]" routerLinkActive="active">
+            <p class="list-group-item-text">{{navItem.displayName}}</p>
+        </a>
+    </div>
+</div>
