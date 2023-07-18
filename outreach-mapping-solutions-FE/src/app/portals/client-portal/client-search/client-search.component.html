@@ -1,0 +1,76 @@
+
+<form #form="ngForm" class="row g-1 border">
+  <div class="col-md-4">
+    <label for="inputFirstName" class="form-label mb-0">First Name</label>
+    <input type="text" class="form-control" id="inputFirstName" name="formFirstName" [(ngModel)]="formFirstName">
+  </div>
+  <div class="col-md-2">
+      <label for="inputMiddleName" class="form-label mb-0">Middle Name</label>
+      <input type="text" class="form-control" id="inputMiddleName" name="formMiddleName" [(ngModel)]="formMiddleName">
+    </div>
+  <div class="col-md-6">
+    <label for="inputLastName" class="form-label mb-0">Last Name</label>
+    <input type="text" class="form-control" id="inputLastName" name="formLastName" [(ngModel)]="formLastName">
+  </div>
+  <label for="nameDataQuality" class="form-label mb-0">Name Data Quality</label>
+  <div class="col-md-3">
+    <select id="nameDataQuality"class="form-select">
+      <option Selected>Please Select..</option>
+      <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+    </select>
+  </div>
+
+  <label for="inputDob" class="form-label mb-0">Date of Birth</label>
+  <div class="col-md-3">
+      <select class="form-select" id="inputDob" (change)="monthSelected($event)" name="formDobMonth" [(ngModel)]="formDobMonth">
+        <option [value]="undefined" disabled selected>Month</option>
+        <option *ngFor="let monthDay of monthsDays" > {{ monthDay.month }}</option>
+      </select>
+  </div>
+  <div class="col-md-2">
+      <select class="form-select" id="inputDob" name="formDobDay" [(ngModel)]="formDobDay">
+        <option [value]="undefined" disabled selected>Day</option>
+          <option *ngFor="let day of days">{{ day }}</option>
+      </select>
+  </div>
+  <div class="col-md-4">
+      <input type="text" class="form-control" id="inputDob" minLength="4" maxLength="4" placeholder="YYYY" name="formDobYear" [(ngModel)]="formDobYear">
+  </div>
+
+  <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality</label>
+  <div class="col-md-3">
+    <select id="dobDataQuality"class="form-select">
+      <option Selected>Please Select..</option>
+      <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+    </select>
+  </div>
+
+  <label for="inputSsn" class="form-label mb-0">Social Security Number</label>
+  <div class="col-md-2">
+      <input type="text" class="form-control" id="inputSsn" maxlength="3" placeholder="123" name="formSsnFirstThree" [(ngModel)]="formSsnFirstThree">
+    </div>
+    <div class="col-md-1">
+        <input type="text" class="form-control" id="inputSsn" maxlength="2" placeholder="45" name="formSsnMiddleTwo" [(ngModel)]="formSsnMiddleTwo">
+      </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="inputSsn" maxlength="4" placeholder="6789" name="formSsnLastFour" [(ngModel)]="formSsnLastFour">
+    </div>
+
+    <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality</label>
+    <div class="col-md-3">
+      <select id="ssnDataQuality"class="form-select">
+        <option Selected>Please Select..</option>
+        <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
+      </select>
+    </div>
+  <div class="row g-1 " style="justify-content: center;">
+    <div class="col-md-4 m-1" >
+      <button type="button" class="m-1 btn btn-primary btn-sm" (click)="clientSearch()" routerLink="results">Search Client</button>
+    </div>
+    <div class="col-md-4 m-1" >
+      <button type="button" class="m-1 btn btn-secondary btn-sm" (click)="addToDatabase()" [routerLink]="['/client-portal', 'profile', 6, 'overview']"  >Add Client</button>
+    </div>
+  </div>
+</form>
+
+<router-outlet></router-outlet>

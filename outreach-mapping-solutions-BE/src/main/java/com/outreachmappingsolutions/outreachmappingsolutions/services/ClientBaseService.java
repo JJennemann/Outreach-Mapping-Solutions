@@ -15,9 +15,8 @@ import java.util.Optional;
 public class ClientBaseService {
 
     private static final String NO_CLIENTS_FOUND = "No clients matching your criteria were found";
-//    private static final String CLIENT_ADDED_SUCCESS = "Client was successfully added to the database";
-    private static final String CLIENT_DELETED_SUCCESS = "Client was successfully deleted";
-    private static final String CLIENT_UPDATED_SUCCESS = "Client was successfully updated";
+    private static final String CLIENT_ADDED_SUCCESS = "Client was successfully added to the database";
+    private static final String Client_DELETED_SUCCESS = "Client was successfully deleted";
 
     @Autowired
     private ClientBaseRepository clientBaseRepository;
@@ -31,8 +30,8 @@ public class ClientBaseService {
         }
     }
 
-    public ResponseEntity<?> returnClientById(Integer clientId){
-        Optional<ClientBase> returnedClient = findOptionalClientById(clientId);;
+    public ResponseEntity<?> returnClientById(Integer id){
+        Optional<ClientBase> returnedClient = clientBaseRepository.findById(id);
         if(returnedClient.isEmpty()){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
@@ -42,51 +41,16 @@ public class ClientBaseService {
 
     public ResponseEntity<?> addClientToDatabase(ClientBase clientBase){
         clientBaseRepository.save(clientBase);
-        return new ResponseEntity<>(clientBase.getId(), HttpStatus.CREATED);
+        return new ResponseEntity<>(CLIENT_ADDED_SUCCESS, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<?> deleteClient(Integer clientId){
-        Optional<ClientBase> returnedClient = findOptionalClientById(clientId);
+    public ResponseEntity<?> deleteClient(Integer id){
+        Optional<ClientBase> returnedClient = clientBaseRepository.findById(id);
         if(returnedClient.isEmpty()){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
-            clientBaseRepository.deleteById(clientId);
-            return new ResponseEntity<>(CLIENT_DELETED_SUCCESS, HttpStatus.OK);
+            clientBaseRepository.deleteById(id);
+            return new ResponseEntity<>(Client_DELETED_SUCCESS, HttpStatus.OK);
         }
-    }
-
-    public ResponseEntity<?> updateClient(Integer clientId, ClientBase clientBase){
-        Optional<ClientBase> returnedClient = findOptionalClientById(clientId);
-        if(returnedClient.isEmpty()){
-            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
-        } else {
-            ClientBase clientToUpdate = returnedClient.get();
-            clientToUpdate.setFirstName(clientBase.getFirstName());
-            clientToUpdate.setMiddleName(clientBase.getMiddleName());
-            clientToUpdate.setLastName(clientBase.getLastName());
-            clientToUpdate.setNameDataQuality(clientBase.getNameDataQuality());
-
-            clientToUpdate.setDobMonth(clientBase.getDobMonth());
-            clientToUpdate.setDobDay(clientBase.getDobDay());
-            clientToUpdate.setDobYear(clientBase.getDobYear());
-            clientToUpdate.setDobDataQuality(clientBase.getDobDataQuality());
-
-            clientToUpdate.setFirstThreeSsn(clientBase.getFirstThreeSsn());
-            clientToUpdate.setMiddleTwoSsn(clientBase.getMiddleTwoSsn());
-            clientToUpdate.setLastFourSsn(clientBase.getLastFourSsn());
-            clientToUpdate.setSsnDataQuality(clientBase.getSsnDataQuality());
-
-            saveClientToDatabase(clientToUpdate);
-            return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
-    public Optional<ClientBase> findOptionalClientById(Integer clientId){
-        Optional<ClientBase> returnedClient = clientBaseRepository.findById(clientId);
-        return returnedClient;
-    }
-
-    public void saveClientToDatabase(ClientBase clientBase){
-        clientBaseRepository.save(clientBase);
     }
 }
