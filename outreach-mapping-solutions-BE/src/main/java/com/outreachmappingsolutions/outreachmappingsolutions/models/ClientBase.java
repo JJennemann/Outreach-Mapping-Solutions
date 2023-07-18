@@ -1,5 +1,6 @@
 package com.outreachmappingsolutions.outreachmappingsolutions.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,7 +11,6 @@ public class ClientBase {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
-    @Column(name="client_id")
     private Integer id;
 
     private String firstName;
@@ -28,10 +28,12 @@ public class ClientBase {
     private Integer lastFourSsn;
     private String ssnDataQuality;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private ClientDemographics clientDemographics;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private ClientContactInfo clientContactInfo;
 
     public ClientBase() {
