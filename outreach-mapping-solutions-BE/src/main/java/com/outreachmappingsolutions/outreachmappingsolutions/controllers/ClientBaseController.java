@@ -14,24 +14,29 @@ public class ClientBaseController {
     @Autowired
     private ClientBaseService clientBaseService;
 
-    @GetMapping("/returnAllClients")
+    @GetMapping("/returnAll")
     public ResponseEntity<?> returnAllClients(){
         return clientBaseService.returnAllClients();
     }
 
-    @GetMapping("/returnClient/{id}")
-    public ResponseEntity<?> returnClientById(@PathVariable Integer id){
-        return clientBaseService.returnClientById(id);
+    @GetMapping("/return/{clientId}")
+    public ResponseEntity<?> returnClientById(@PathVariable Integer clientId){
+        return clientBaseService.returnClientById(clientId);
     }
 
-    @PostMapping("/addNewClient")
+    @PostMapping("/add")
     public ResponseEntity<?> addToClientToDatabase(@RequestBody ClientBase clientBase){
         return clientBaseService.addClientToDatabase(clientBase);
     }
 
-    @PostMapping("/deleteClient/{id}")
-    public ResponseEntity<?> deleteClient(@PathVariable Integer id){
-        return clientBaseService.deleteClient(id);
+    @PostMapping("/delete/{clientId}")
+    public ResponseEntity<?> deleteClient(@PathVariable Integer clientId){
+        return clientBaseService.deleteClient(clientId);
+    }
+
+    @PutMapping("/update/{clientId}")
+    public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody ClientBase clientBase){
+        return clientBaseService.updateClient(clientId, clientBase);
     }
 
 

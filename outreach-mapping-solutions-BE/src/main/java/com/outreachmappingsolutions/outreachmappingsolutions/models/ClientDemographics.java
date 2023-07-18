@@ -5,16 +5,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name="client_demographic_data")
+@Table(name="client_demographics")
 public class ClientDemographics {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name="native", strategy="native")
-    @Column(name="client_id")
     private Integer id;
 
-    @OneToOne(mappedBy="clientDemographics")
+    @OneToOne
     private ClientBase client;
 
     private String gender;
