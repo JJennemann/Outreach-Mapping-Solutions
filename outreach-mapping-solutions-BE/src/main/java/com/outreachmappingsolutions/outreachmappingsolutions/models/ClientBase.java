@@ -28,6 +28,12 @@ public class ClientBase {
     private Integer lastFourSsn;
     private String ssnDataQuality;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private ClientDemographics clientDemographics;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private ClientContactInfo clientContactInfo;
+
     public ClientBase() {
     }
 
@@ -146,5 +152,21 @@ public class ClientBase {
 
     public void setSsnDataQuality(String ssnDataQuality) {
         this.ssnDataQuality = ssnDataQuality;
+    }
+
+    public ClientDemographics getClientDemographics() {
+        return clientDemographics;
+    }
+
+    public void setClientDemographics(ClientDemographics clientDemographics) {
+        this.clientDemographics = clientDemographics;
+    }
+
+    public ClientContactInfo getClientContactInfo() {
+        return clientContactInfo;
+    }
+
+    public void setClientContactInfo(ClientContactInfo clientContactInfo) {
+        this.clientContactInfo = clientContactInfo;
     }
 }
