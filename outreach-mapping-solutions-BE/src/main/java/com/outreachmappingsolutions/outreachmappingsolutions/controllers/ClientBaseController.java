@@ -16,8 +16,8 @@ public class ClientBaseController {
     private ClientBaseService clientBaseService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createToClientToDatabase(@RequestBody ClientBase clientBase){
-        return clientBaseService.createClientToDatabase(clientBase);
+    public ResponseEntity<?> createNewClient(@RequestBody ClientBase clientBase){
+        return clientBaseService.createNewClient(clientBase);
     }
 
     @GetMapping("/returnAll")
@@ -31,8 +31,8 @@ public class ClientBaseController {
     }
 
     @PutMapping("/update/{clientId}")
-    public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody ClientBase clientBase){
-        return clientBaseService.updateClient(clientId, clientBase);
+    public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody ClientBase updateClientBase){
+        return clientBaseService.updateClient(clientId, updateClientBase);
     }
 
     @DeleteMapping("/delete/{clientId}")
