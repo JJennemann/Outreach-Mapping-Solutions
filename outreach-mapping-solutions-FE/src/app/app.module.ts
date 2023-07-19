@@ -30,7 +30,7 @@ import { PortalsComponent } from './portals/portals.component';
 import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.component';
 import { DemographicsEditComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-demographics/demographics-edit/demographics-edit.component';
 import { ContactInfoEditComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-contact-info/contact-info-edit/contact-info-edit.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -67,8 +67,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    NgbModule
+    FormsModule
 
   
   ],
