@@ -29,6 +29,18 @@ public class ClientDemographicsService {
     @Autowired
     private ClientBaseService clientBaseService;
 
+    public ResponseEntity<?> createClientDemographicsToDatabase(Integer clientId, ClientDemographics clientDemographics){
+        ClientBase returnedClient = clientBaseService.findClientById(clientId);
+        if(returnedClient.getId() == null){
+            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
+        } else{
+            clientDemographics.setClient(returnedClient);
+            clientDemographicsRepository.save(clientDemographics);
+
+            return new ResponseEntity<>(clientDemographics, HttpStatus.OK);
+        }
+    }
+
     public ResponseEntity<?> returnAllClientDemographics(){
         List<ClientDemographics> allClientDemos = (List<ClientDemographics>) clientDemographicsRepository.findAll();
         if(allClientDemos.isEmpty()){
@@ -39,51 +51,48 @@ public class ClientDemographicsService {
     }
 
     public ResponseEntity<?> returnClientDemographicsById(Integer clientId){
-        Optional<ClientDemographics> returnedClientDemo = clientDemographicsRepository.findByClientId(clientId);
-        if(returnedClientDemo.isEmpty()){
+        ClientDemographics returnedClientDemo = findClientDemoById(clientId);
+        if(returnedClientDemo.getId() == null){
             return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
         } else{
             return new ResponseEntity<>(returnedClientDemo, HttpStatus.OK);
         }
     }
 
-    public ResponseEntity<?> addClientDemographicsToDatabase(Integer clientId, ClientDemographics clientDemographics){
-        Optional<ClientBase> returnedClient = clientBaseService.findOptionalClientById(clientId);
-        if(returnedClient.isEmpty()){
-            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
-        } else{
-            clientDemographics.setClient(returnedClient.get());
-            clientDemographicsRepository.save(clientDemographics);
-            returnedClient.get().setClientDemographics(clientDemographics);
-            clientBaseService.saveClientToDatabase(returnedClient.get());
-            return new ResponseEntity<>(CLIENT_DEMO_ADDED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
-    public ResponseEntity<?> deleteClientDemographics(Integer clientId){
-        Optional<ClientDemographics> returnedClientDemo = clientDemographicsRepository.findByClientId(clientId);
-        if(returnedClientDemo.isEmpty()){
-            return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
-        } else{
-            clientDemographicsRepository.deleteById(returnedClientDemo.get().getId());
-            return new ResponseEntity<>(CLIENT_DEMO_DELETED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
     public ResponseEntity<?> updateClientDemographics(Integer clientId, ClientDemographics clientDemographics){
-        Optional<ClientDemographics> returnedClientDemo = clientDemographicsRepository.findByClientId(clientId);
-        if(returnedClientDemo.isEmpty()){
+        ClientDemographics returnedClientDemo = findClientDemoById(clientId);
+        if(returnedClientDemo.getId() == null){
             return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            ClientDemographics clientDemosToUpdate = returnedClientDemo.get();
-            clientDemosToUpdate.setGender(clientDemographics.getGender());
-            clientDemosToUpdate.setRacePrimary(clientDemographics.getRacePrimary());
-            clientDemosToUpdate.setRaceSecondary(clientDemographics.getRaceSecondary());
-            clientDemosToUpdate.setEthnicity(clientDemographics.getEthnicity());
-            clientDemosToUpdate.setVeteranStatus(clientDemographics.getVeteranStatus());
-            clientDemographicsRepository.save(clientDemosToUpdate);
+            returnedClientDemo.setGender(clientDemographics.getGender());
+            returnedClientDemo.setRacePrimary(clientDemographics.getRacePrimary());
+            returnedClientDemo.setRaceSecondary(clientDemographics.getRaceSecondary());
+            returnedClientDemo.setEthnicity(clientDemographics.getEthnicity());
+            returnedClientDemo.setVeteranStatus(clientDemographics.getVeteranStatus());
+
+            clientDemographicsRepository.save(returnedClientDemo);
             return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
         }
     }
 
+    public ResponseEntity<?> deleteClientDemographics(Integer clientId){
+        ClientDemographics returnedClientDemo = findClientDemoById(clientId);
+        if(returnedClientDemo.getId() == null){
+            return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
+        } else{
+            Integer clientDemoToDeleteId = returnedClientDemo.getId();
+            clientDemographicsRepository.deleteById(clientDemoToDeleteId);
+            return new ResponseEntity<>(CLIENT_DEMO_DELETED_SUCCESS, HttpStatus.OK);
+        }
+    }
+
+    public ClientDemographics findClientDemoById(Integer clientId) {
+        Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);
+        if (returnedOptionalClientDemo.isEmpty()) {
+            return new ClientDemographics();
+        } else {
+            ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();
+            return returnedClientDemo;
+        }
+    }
 }

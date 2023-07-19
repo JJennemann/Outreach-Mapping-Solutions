@@ -13,6 +13,12 @@ public class ClientDemographicsController {
     @Autowired
     private ClientDemographicsService clientDemographicsService;
 
+    @PostMapping("/create/{clientId}")
+    public ResponseEntity<?> createClientDemographicsToDatabase(@PathVariable Integer clientId,
+                                                                @RequestBody ClientDemographics clientDemographics){
+        return clientDemographicsService.createClientDemographicsToDatabase(clientId, clientDemographics);
+    }
+
     @GetMapping("/returnAll")
     public ResponseEntity<?> returnAllClientDemographics(){
         return clientDemographicsService.returnAllClientDemographics();
@@ -23,20 +29,14 @@ public class ClientDemographicsController {
         return clientDemographicsService.returnClientDemographicsById(clientId);
     }
 
-    @PostMapping("/add/{clientId}")
-    public ResponseEntity<?> addClientDemographicsToDatabase(@PathVariable Integer clientId,
-                                                             @RequestBody ClientDemographics clientDemographics){
-        return clientDemographicsService.addClientDemographicsToDatabase(clientId, clientDemographics);
-    }
-
-    @PostMapping("/delete/{clientId}")
-    public ResponseEntity<?> deleteClientDemographics(@PathVariable Integer clientId){
-        return clientDemographicsService.deleteClientDemographics(clientId);
-    }
-
     @PutMapping("/update/{clientId}")
     public ResponseEntity<?> updateClientDemographics(@PathVariable Integer clientId,
                                                       @RequestBody ClientDemographics clientDemographics){
         return clientDemographicsService.updateClientDemographics(clientId, clientDemographics);
+    }
+
+    @DeleteMapping("/delete/{clientId}")
+    public ResponseEntity<?> deleteClientDemographics(@PathVariable Integer clientId){
+        return clientDemographicsService.deleteClientDemographics(clientId);
     }
 }
