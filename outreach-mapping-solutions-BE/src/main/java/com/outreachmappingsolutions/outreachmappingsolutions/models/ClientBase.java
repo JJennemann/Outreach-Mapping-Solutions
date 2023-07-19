@@ -28,12 +28,10 @@ public class ClientBase {
     private Integer lastFourSsn;
     private String ssnDataQuality;
 
-    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     private ClientDemographics clientDemographics;
 
-    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     private ClientContactInfo clientContactInfo;
 
     public ClientBase() {
