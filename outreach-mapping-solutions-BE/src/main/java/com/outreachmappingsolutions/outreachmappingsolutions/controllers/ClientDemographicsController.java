@@ -14,9 +14,9 @@ public class ClientDemographicsController {
     private ClientDemographicsService clientDemographicsService;
 
     @PostMapping("/create/{clientId}")
-    public ResponseEntity<?> createClientDemographicsToDatabase(@PathVariable Integer clientId,
-                                                                @RequestBody ClientDemographics clientDemographics){
-        return clientDemographicsService.createClientDemographicsToDatabase(clientId, clientDemographics);
+    public ResponseEntity<?> createNewClientDemographics(@PathVariable Integer clientId,
+                                                         @RequestBody ClientDemographics clientDemographics){
+        return clientDemographicsService.createNewClientDemographics(clientId, clientDemographics);
     }
 
     @GetMapping("/returnAll")
@@ -25,8 +25,8 @@ public class ClientDemographicsController {
     }
 
     @GetMapping("/return/{clientId}")
-    public ResponseEntity<?> returnClientDemographicsById(@PathVariable Integer clientId){
-        return clientDemographicsService.returnClientDemographicsById(clientId);
+    public ResponseEntity<?> returnClientDemographicsByClientId(@PathVariable Integer clientId){
+        return clientDemographicsService.returnClientDemographicsByClientId(clientId);
     }
 
     @PutMapping("/update/{clientId}")

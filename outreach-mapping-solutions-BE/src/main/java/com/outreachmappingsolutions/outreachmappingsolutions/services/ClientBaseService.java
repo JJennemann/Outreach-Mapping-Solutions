@@ -24,8 +24,8 @@ public class ClientBaseService {
     @Autowired
     private ClientBaseRepository clientBaseRepository;
 
-    public ResponseEntity<?> createClientToDatabase(ClientBase clientBase){
-        saveClientToDatabase(clientBase);
+    public ResponseEntity<?> createNewClient(ClientBase clientBase){
+        clientBaseRepository.save(clientBase);
         return new ResponseEntity<>(clientBase.getId(), HttpStatus.CREATED);
     }
 
@@ -47,30 +47,35 @@ public class ClientBaseService {
         }
     }
 
-    public ResponseEntity<?> updateClient(Integer clientId, ClientBase clientBase){
+    public ResponseEntity<?> updateClient(Integer clientId, ClientBase updatedClientBase){
         ClientBase clientToUpdate = findClientById(clientId);
         if(clientToUpdate.getId() == null){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
-            clientToUpdate.setFirstName(clientBase.getFirstName());
-            clientToUpdate.setMiddleName(clientBase.getMiddleName());
-            clientToUpdate.setLastName(clientBase.getLastName());
-            clientToUpdate.setNameDataQuality(clientBase.getNameDataQuality());
+            clientToUpdate.setFirstName(updatedClientBase.getFirstName());
+            clientToUpdate.setMiddleName(updatedClientBase.getMiddleName());
+            clientToUpdate.setLastName(updatedClientBase.getLastName());
+            clientToUpdate.setNameDataQuality(updatedClientBase.getNameDataQuality());
 
-            clientToUpdate.setDobMonth(clientBase.getDobMonth());
-            clientToUpdate.setDobDay(clientBase.getDobDay());
-            clientToUpdate.setDobYear(clientBase.getDobYear());
-            clientToUpdate.setDobDataQuality(clientBase.getDobDataQuality());
+            clientToUpdate.setDobMonth(updatedClientBase.getDobMonth());
+            clientToUpdate.setDobDay(updatedClientBase.getDobDay());
+            clientToUpdate.setDobYear(updatedClientBase.getDobYear());
+            clientToUpdate.setDobDataQuality(updatedClientBase.getDobDataQuality());
 
-            clientToUpdate.setFirstThreeSsn(clientBase.getFirstThreeSsn());
-            clientToUpdate.setMiddleTwoSsn(clientBase.getMiddleTwoSsn());
-            clientToUpdate.setLastFourSsn(clientBase.getLastFourSsn());
-            clientToUpdate.setSsnDataQuality(clientBase.getSsnDataQuality());
+            clientToUpdate.setFirstThreeSsn(updatedClientBase.getFirstThreeSsn());
+            clientToUpdate.setMiddleTwoSsn(updatedClientBase.getMiddleTwoSsn());
+            clientToUpdate.setLastFourSsn(updatedClientBase.getLastFourSsn());
+            clientToUpdate.setSsnDataQuality(updatedClientBase.getSsnDataQuality());
 
-            clientBase.getClientDemographics().setClient(clientToUpdate);
-            clientToUpdate.setClientDemographics(clientBase.getClientDemographics());
+            // setting the clientDemo/clientContactInfo, etc. client here rather than when I create the
+            // initial clientDemo, to not have to access clientBaseService or Repo from the clientDemoService
+//            updatedClientBase.getClientDemographics().setClient(clientToUpdate);
+            clientToUpdate.setClientDemographics(updatedClientBase.getClientDemographics());
 
-            saveClientToDatabase(clientToUpdate);
+//            updatedClientBase.getClientContactInfo().setClient(clientToUpdate);
+            clientToUpdate.setClientContactInfo(updatedClientBase.getClientContactInfo());
+            clientBaseRepository.save(clientToUpdate);
+
             return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
         }
     }
@@ -90,12 +95,7 @@ public class ClientBaseService {
         if(returnedOptionalClient.isEmpty()){
             return new ClientBase();
         }else {
-            ClientBase returnedClient = returnedOptionalClient.get();
-            return returnedClient;
+            return returnedOptionalClient.get();
         }
-    }
-
-    public void saveClientToDatabase(ClientBase clientBase){
-        clientBaseRepository.save(clientBase);
     }
 }
