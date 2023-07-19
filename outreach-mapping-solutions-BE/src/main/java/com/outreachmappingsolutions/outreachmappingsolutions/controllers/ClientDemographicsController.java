@@ -29,7 +29,7 @@ public class ClientDemographicsController {
         return clientDemographicsService.addClientDemographicsToDatabase(clientId, clientDemographics);
     }
 
-    @PostMapping("/delete/{clientId}")
+    @DeleteMapping("/delete/{clientId}")
     public ResponseEntity<?> deleteClientDemographics(@PathVariable Integer clientId){
         return clientDemographicsService.deleteClientDemographics(clientId);
     }

@@ -54,9 +54,8 @@ public class ClientDemographicsService {
         } else{
             clientDemographics.setClient(returnedClient.get());
             clientDemographicsRepository.save(clientDemographics);
-            returnedClient.get().setClientDemographics(clientDemographics);
-            clientBaseService.saveClientToDatabase(returnedClient.get());
-            return new ResponseEntity<>(CLIENT_DEMO_ADDED_SUCCESS, HttpStatus.OK);
+
+            return new ResponseEntity<>(clientDemographics, HttpStatus.OK);
         }
     }
 
@@ -65,7 +64,8 @@ public class ClientDemographicsService {
         if(returnedClientDemo.isEmpty()){
             return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            clientDemographicsRepository.deleteById(returnedClientDemo.get().getId());
+            Integer clientDemoToDeleteId = returnedClientDemo.get().getId();
+            clientDemographicsRepository.deleteById(clientDemoToDeleteId);
             return new ResponseEntity<>(CLIENT_DEMO_DELETED_SUCCESS, HttpStatus.OK);
         }
     }
@@ -76,11 +76,13 @@ public class ClientDemographicsService {
             return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
         } else{
             ClientDemographics clientDemosToUpdate = returnedClientDemo.get();
+
             clientDemosToUpdate.setGender(clientDemographics.getGender());
             clientDemosToUpdate.setRacePrimary(clientDemographics.getRacePrimary());
             clientDemosToUpdate.setRaceSecondary(clientDemographics.getRaceSecondary());
             clientDemosToUpdate.setEthnicity(clientDemographics.getEthnicity());
             clientDemosToUpdate.setVeteranStatus(clientDemographics.getVeteranStatus());
+
             clientDemographicsRepository.save(clientDemosToUpdate);
             return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
         }

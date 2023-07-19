@@ -29,7 +29,6 @@ public class ClientBase {
     private String ssnDataQuality;
 
     @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
     private ClientDemographics clientDemographics;
 
     @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)

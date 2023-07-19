@@ -1,10 +1,12 @@
 package com.outreachmappingsolutions.outreachmappingsolutions.services;
 
 import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientBase;
+import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.outreachmappingsolutions.repositories.ClientBaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -75,6 +77,9 @@ public class ClientBaseService {
             clientToUpdate.setMiddleTwoSsn(clientBase.getMiddleTwoSsn());
             clientToUpdate.setLastFourSsn(clientBase.getLastFourSsn());
             clientToUpdate.setSsnDataQuality(clientBase.getSsnDataQuality());
+
+            clientBase.getClientDemographics().setClient(clientToUpdate);
+            clientToUpdate.setClientDemographics(clientBase.getClientDemographics());
 
             saveClientToDatabase(clientToUpdate);
             return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);

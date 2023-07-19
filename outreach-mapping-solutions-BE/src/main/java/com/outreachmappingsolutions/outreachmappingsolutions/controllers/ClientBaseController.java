@@ -1,6 +1,7 @@
 package com.outreachmappingsolutions.outreachmappingsolutions.controllers;
 
 import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientBase;
+import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.outreachmappingsolutions.services.ClientBaseService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class ClientBaseController {
         return clientBaseService.addClientToDatabase(clientBase);
     }
 
-    @PostMapping("/delete/{clientId}")
+    @DeleteMapping("/delete/{clientId}")
     public ResponseEntity<?> deleteClient(@PathVariable Integer clientId){
         return clientBaseService.deleteClient(clientId);
     }
@@ -38,6 +39,12 @@ public class ClientBaseController {
     public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody ClientBase clientBase){
         return clientBaseService.updateClient(clientId, clientBase);
     }
+
+//    @PostMapping("/setClientDemographics/{clientId}")
+//    public ResponseEntity<?> setClientDemographics(@PathVariable Integer clientId,
+//                                                   @RequestBody ClientDemographics clientDemographics){
+//        return clientBaseService.setClientDemographics(clientId, clientDemographics);
+//    }
 
 
 }

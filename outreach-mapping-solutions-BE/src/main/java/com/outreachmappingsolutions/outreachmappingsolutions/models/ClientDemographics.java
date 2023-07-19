@@ -1,5 +1,6 @@
 package com.outreachmappingsolutions.outreachmappingsolutions.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,6 +15,7 @@ public class ClientDemographics {
     private Integer id;
 
     @OneToOne
+    @JsonIgnore
     private ClientBase client;
 
     private String gender;
