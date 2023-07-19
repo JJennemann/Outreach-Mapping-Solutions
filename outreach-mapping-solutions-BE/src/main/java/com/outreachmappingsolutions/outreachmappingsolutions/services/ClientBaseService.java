@@ -24,6 +24,11 @@ public class ClientBaseService {
     @Autowired
     private ClientBaseRepository clientBaseRepository;
 
+    public ResponseEntity<?> createClientToDatabase(ClientBase clientBase){
+        saveClientToDatabase(clientBase);
+        return new ResponseEntity<>(clientBase.getId(), HttpStatus.CREATED);
+    }
+
     public ResponseEntity<?> returnAllClients(){
         List<ClientBase> allClients = (List<ClientBase>) clientBaseRepository.findAll();
         if(allClients.isEmpty()){
@@ -34,35 +39,19 @@ public class ClientBaseService {
     }
 
     public ResponseEntity<?> returnClientById(Integer clientId){
-        Optional<ClientBase> returnedClient = findOptionalClientById(clientId);;
-        if(returnedClient.isEmpty()){
+        ClientBase returnedClient = findClientById(clientId);;
+        if(returnedClient.getId() == null){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(returnedClient, HttpStatus.OK);
         }
     }
 
-    public ResponseEntity<?> addClientToDatabase(ClientBase clientBase){
-        clientBaseRepository.save(clientBase);
-        return new ResponseEntity<>(clientBase.getId(), HttpStatus.CREATED);
-    }
-
-    public ResponseEntity<?> deleteClient(Integer clientId){
-        Optional<ClientBase> returnedClient = findOptionalClientById(clientId);
-        if(returnedClient.isEmpty()){
-            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
-        } else {
-            clientBaseRepository.deleteById(clientId);
-            return new ResponseEntity<>(CLIENT_DELETED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
     public ResponseEntity<?> updateClient(Integer clientId, ClientBase clientBase){
-        Optional<ClientBase> returnedClient = findOptionalClientById(clientId);
-        if(returnedClient.isEmpty()){
+        ClientBase clientToUpdate = findClientById(clientId);
+        if(clientToUpdate.getId() == null){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
-            ClientBase clientToUpdate = returnedClient.get();
             clientToUpdate.setFirstName(clientBase.getFirstName());
             clientToUpdate.setMiddleName(clientBase.getMiddleName());
             clientToUpdate.setLastName(clientBase.getLastName());
@@ -86,9 +75,24 @@ public class ClientBaseService {
         }
     }
 
-    public Optional<ClientBase> findOptionalClientById(Integer clientId){
-        Optional<ClientBase> returnedClient = clientBaseRepository.findById(clientId);
-        return returnedClient;
+    public ResponseEntity<?> deleteClient(Integer clientId){
+        ClientBase returnedClient = findClientById(clientId);
+        if(returnedClient.getId() == null){
+            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
+        } else {
+            clientBaseRepository.deleteById(clientId);
+            return new ResponseEntity<>(CLIENT_DELETED_SUCCESS, HttpStatus.OK);
+        }
+    }
+
+    public ClientBase findClientById(Integer clientId){
+        Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
+        if(returnedOptionalClient.isEmpty()){
+            return new ClientBase();
+        }else {
+            ClientBase returnedClient = returnedOptionalClient.get();
+            return returnedClient;
+        }
     }
 
     public void saveClientToDatabase(ClientBase clientBase){
