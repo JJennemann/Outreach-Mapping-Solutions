@@ -10,9 +10,10 @@ public class ClientContactInfo {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name="native", strategy="native")
+    @Column(name="client_id")
     private Integer id;
 
-    @OneToOne
+    @OneToOne(mappedBy="clientContactInfo")
     private ClientBase client;
 
     private String phonePrimary;

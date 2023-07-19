@@ -1,0 +1,117 @@
+
+    
+
+<div class="row g-2 border form-group px-4 py-2">
+    <h4 style="text-decoration: underline;">Client Contact Information</h4>
+    <div class="col-md-4 my-0">
+        <label for="inputName" class="form-label mb-0">Phone(Primary):</label>
+        <div id="inputName"> {{ clientContactInfo.phonePrimary }}</div>
+    </div>
+    <div class="col-md-4 my-0">
+        <label for="inputDob" class="form-label mb-0">Phone(Secondary):</label>
+        <div id="inputDob"> {{ clientContactInfo.phoneSecondary }}</div>
+    </div>
+    <div class="col-md-4 my-0">
+        <label for="inputSsn" class="form-label mb-0">Email:</label>
+
+        <div id="inputSsn"> {{ clientContactInfo.email }}</div>
+    </div>
+
+    <h5 class="mt-4" style="text-decoration: underline;">Emergency Contact Information</h5>
+
+    <div class="col-md-6">
+        <label for="inputGender" class="form-label mb-0">Emergency Contact - Name:</label>
+        <div id="inputGender"> {{ clientContactInfo.iceName }} </div>
+    </div>
+    <div class="col-md-6">
+        <label for="inputPrimaryRace" class="form-label mb-0">Emergency Contact - Relationship:</label>
+        <div id="inputPrimaryRace"> {{ clientContactInfo.iceRelationship }} </div>
+    </div>
+    <div class="col-md-6">
+        <label for="inputPrimaryRace" class="form-label mb-0">Emergency Contact - Phone(Primary):</label>
+        <div id="inputPrimaryRace"> {{ clientContactInfo.icePhonePrimary }} </div>
+    </div>
+    <div class="col-md-6">
+        <label for="inputSecondaryRace" class="form-label mb-0">Emergency Contact - Phone(Secondary):</label>
+        <div> {{ clientContactInfo.icePhoneSecondary }} </div>
+    </div>
+
+    <div class="col-md-12">
+        <label for="inputEthnicity" class="form-label mb-0">Emergency Contact - Email:</label>
+        <div id="inputEthnicity"> {{ clientContactInfo.iceEmail }} </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClientContactInformationModal"
+        >
+            Edit Client Contact Information
+          </button>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editClientContactInformationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Client Contact Information</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+    
+                <form #form="ngForm" class="row g border">
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="inputPhonePrimary" class="form-label">Phone(Primary):</label>
+                            <input type="text" class="form-control" id="inputPhonePrimary" name="phonePrimary" [(ngModel)]="clientContactInfo.phonePrimary">
+                        </div>
+                        <div class="col">
+                            <label for="inputPhoneSecondary" class="form-label">Phone(Secondary):</label>
+                            <input type="text" class="form-control" id="inputPhoneSecondary" name="phoneSecondary" [(ngModel)]="clientContactInfo.phoneSecondary">
+                        </div>
+                        <div class="col">
+                            <label for="inputEmail" class="form-label">Email:</label>
+                            <input type="text" class="form-control" id="inputEmail" name="email" [(ngModel)]="clientContactInfo.email">
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="inputIceName" class="form-label">Emergency Contact - Name:</label>
+                            <input type="text" class="form-control" id="inputIceName" name="iceName" [(ngModel)]="clientContactInfo.iceName">
+                        </div>
+                        <div class="col">
+                            <label for="inputIceRelationship" class="form-label">Emergency Contact - Relationship:</label>
+                            <input type="text" class="form-control" id="inputIceRelationship" name="iceRelationship" [(ngModel)]="clientContactInfo.iceRelationship">
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="inputIcePhonePrimary" class="form-label">Emergency Contact - Phone(Primary):</label>
+                            <input type="text" class="form-control" id="inputIcePhonePrimary" name="icePhonePrimary" [(ngModel)]="clientContactInfo.icePhonePrimary">
+                        </div>
+                        <div class="col">
+                            <label for="inputIcePhoneSecondary" class="form-label">Emergency Contact - Phone(Secondary):</label>
+                            <input type="text" class="form-control" id="inputIcePhoneSecondary" name="icePhoneSecondary" [(ngModel)]="clientContactInfo.icePhoneSecondary">
+                        </div>
+                        <div class="col">
+                            <label for="inputIceEmail" class="form-label">Emergency Contact - Email:</label>
+                            <input type="text" class="form-control" id="inputIceEmail" name="iceEmail" [(ngModel)]="clientContactInfo.iceEmail">
+                        </div>
+                    </div>
+
+                </form>
+    
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit without Saving</button>
+              <button type="button" class="btn btn-primary">Save Updated Info</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
