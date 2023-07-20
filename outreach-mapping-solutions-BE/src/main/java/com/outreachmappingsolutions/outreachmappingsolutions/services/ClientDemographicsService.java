@@ -29,17 +29,17 @@ public class ClientDemographicsService {
     @Autowired
     private ClientBaseService clientBaseService;
 
-    public ResponseEntity<?> createNewClientDemographics(Integer clientId, ClientDemographics clientDemographics){
-        ClientBase returnedClient = clientBaseService.findClientById(clientId);
-        if(returnedClient.getId() == null){
-            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
-        } else{
-            clientDemographics.setClient(returnedClient);
-            clientDemographicsRepository.save(clientDemographics);
-
-            return new ResponseEntity<>(clientDemographics, HttpStatus.OK);
-        }
-    }
+//    public ResponseEntity<?> createNewClientDemographics(Integer clientId, ClientDemographics clientDemographics){
+//        ClientBase returnedClient = clientBaseService.findClientById(clientId);
+//        if(returnedClient.getId() == null){
+//            return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
+//        } else{
+//            clientDemographics.setClient(returnedClient);
+//            clientDemographicsRepository.save(clientDemographics);
+//
+//            return new ResponseEntity<>(clientDemographics, HttpStatus.OK);
+//        }
+//    }
 
     public ResponseEntity<?> returnAllClientDemographics(){
         List<ClientDemographics> allClientDemos = (List<ClientDemographics>) clientDemographicsRepository.findAll();
@@ -75,16 +75,16 @@ public class ClientDemographicsService {
         }
     }
 
-    public ResponseEntity<?> deleteClientDemographics(Integer clientId){
-        ClientDemographics returnedClientDemo = findClientDemoByClientId(clientId);
-        if(returnedClientDemo.getId() == null){
-            return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
-        } else{
-            Integer clientDemoToDeleteId = returnedClientDemo.getId();
-            clientDemographicsRepository.deleteById(clientDemoToDeleteId);
-            return new ResponseEntity<>(CLIENT_DEMO_DELETED_SUCCESS, HttpStatus.OK);
-        }
-    }
+//    public ResponseEntity<?> deleteClientDemographics(Integer clientId){
+//        ClientDemographics returnedClientDemo = findClientDemoByClientId(clientId);
+//        if(returnedClientDemo.getId() == null){
+//            return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
+//        } else{
+//            Integer clientDemoToDeleteId = returnedClientDemo.getId();
+//            clientDemographicsRepository.deleteById(clientDemoToDeleteId);
+//            return new ResponseEntity<>(CLIENT_DEMO_DELETED_SUCCESS, HttpStatus.OK);
+//        }
+//    }
 
     public ClientDemographics findClientDemoByClientId(Integer clientId) {
         Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);

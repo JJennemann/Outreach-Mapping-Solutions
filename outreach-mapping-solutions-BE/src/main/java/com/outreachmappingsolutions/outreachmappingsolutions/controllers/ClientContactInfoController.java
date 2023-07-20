@@ -13,12 +13,6 @@ public class ClientContactInfoController {
     @Autowired
     private ClientContactInfoService clientContactInfoService;
 
-    @PostMapping("/create/{clientId}")
-    public ResponseEntity<?> createNewClientContactInfo(@PathVariable Integer clientId,
-                                                        @RequestBody ClientContactInfo clientContactInfo){
-        return clientContactInfoService.createNewClientContactInfo(clientId, clientContactInfo);
-    }
-
     @GetMapping("/returnAll")
     public ResponseEntity<?> returnAllClientContactInfo(){
         return clientContactInfoService.returnAllClientContactInfo();
@@ -35,8 +29,15 @@ public class ClientContactInfoController {
         return clientContactInfoService.updateClientContactInfo(clientId, clientContactInfo);
     }
 
-    @DeleteMapping("/delete/{clientId}")
-    public ResponseEntity<?> deleteClientContactInfo(@PathVariable Integer clientId){
-        return clientContactInfoService.deleteClientContactInfo(clientId);
-    }
+
+// Creation and deletion of clientDemographics is cascaded with the clientBase creation and deletion
+//    @PostMapping("/create/{clientId}")
+//    public ResponseEntity<?> createNewClientContactInfo(@PathVariable Integer clientId,
+//                                                        @RequestBody ClientContactInfo clientContactInfo){
+//        return clientContactInfoService.createNewClientContactInfo(clientId, clientContactInfo);
+//    }
+//    @DeleteMapping("/delete/{clientId}")
+//    public ResponseEntity<?> deleteClientContactInfo(@PathVariable Integer clientId){
+//        return clientContactInfoService.deleteClientContactInfo(clientId);
+//    }
 }
