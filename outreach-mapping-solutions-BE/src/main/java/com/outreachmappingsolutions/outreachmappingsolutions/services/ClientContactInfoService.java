@@ -26,9 +26,6 @@ public class ClientContactInfoService {
     @Autowired
     private ClientContactInfoRepository clientContactInfoRepository;
 
-    @Autowired
-    private ClientBaseService clientBaseService;
-
     public ResponseEntity<?> returnAllClientContactInfo(){
         List<ClientContactInfo> allClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
         if(allClientContactInfo.isEmpty()){
