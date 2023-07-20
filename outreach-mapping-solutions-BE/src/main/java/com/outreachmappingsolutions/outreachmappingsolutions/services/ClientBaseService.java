@@ -28,10 +28,8 @@ public class ClientBaseService {
     @Autowired
     private ClientBaseRepository clientBaseRepository;
 
-    @Autowired
-    private EntityManager entityManager;
 
-    @Transactional
+
     public ResponseEntity<?> createNewClient(ClientBase clientBase){
         ClientBase newClient = new ClientBase(clientBase.getFirstName(), clientBase.getMiddleName(),
                 clientBase.getLastName(), clientBase.getNameDataQuality(), clientBase.getDobMonth(),
@@ -45,7 +43,8 @@ public class ClientBaseService {
 
         newClient.setClientDemographics(newClientDemographics);
         newClient.setClientContactInfo(newClientContactInfo);
-        entityManager.persist(newClient);
+
+        clientBaseRepository.save(newClient);
 
         return new ResponseEntity<>(newClient.getId(), HttpStatus.CREATED);
     }
@@ -88,13 +87,6 @@ public class ClientBaseService {
             clientToUpdate.setLastFourSsn(updatedClientBase.getLastFourSsn());
             clientToUpdate.setSsnDataQuality(updatedClientBase.getSsnDataQuality());
 
-            // setting the clientDemo/clientContactInfo, etc. client here rather than when I create the
-            // initial clientDemo, to not have to access clientBaseService or Repo from the clientDemoService
-//            updatedClientBase.getClientDemographics().setClient(clientToUpdate);
-            clientToUpdate.setClientDemographics(updatedClientBase.getClientDemographics());
-
-//            updatedClientBase.getClientContactInfo().setClient(clientToUpdate);
-            clientToUpdate.setClientContactInfo(updatedClientBase.getClientContactInfo());
             clientBaseRepository.save(clientToUpdate);
 
             return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
