@@ -27,10 +27,10 @@ public class ClientBase {
     private Integer lastFourSsn;
     private String ssnDataQuality;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private ClientDemographics clientDemographics;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private ClientContactInfo clientContactInfo;
 
     public ClientBase() {

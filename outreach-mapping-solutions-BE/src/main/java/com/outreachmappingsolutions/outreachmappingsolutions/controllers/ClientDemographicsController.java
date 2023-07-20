@@ -13,12 +13,6 @@ public class ClientDemographicsController {
     @Autowired
     private ClientDemographicsService clientDemographicsService;
 
-    @PostMapping("/create/{clientId}")
-    public ResponseEntity<?> createNewClientDemographics(@PathVariable Integer clientId,
-                                                         @RequestBody ClientDemographics clientDemographics){
-        return clientDemographicsService.createNewClientDemographics(clientId, clientDemographics);
-    }
-
     @GetMapping("/returnAll")
     public ResponseEntity<?> returnAllClientDemographics(){
         return clientDemographicsService.returnAllClientDemographics();
@@ -35,8 +29,18 @@ public class ClientDemographicsController {
         return clientDemographicsService.updateClientDemographics(clientId, clientDemographics);
     }
 
-    @DeleteMapping("/delete/{clientId}")
-    public ResponseEntity<?> deleteClientDemographics(@PathVariable Integer clientId){
-        return clientDemographicsService.deleteClientDemographics(clientId);
-    }
+
+// Creation and deletion of clientDemographics is cascaded with the clientBase creation and deletion
+//    @PostMapping("/create/{clientId}")
+//    public ResponseEntity<?> createNewClientDemographics(@PathVariable Integer clientId,
+//                                                         @RequestBody ClientDemographics clientDemographics){
+//        return clientDemographicsService.createNewClientDemographics(clientId, clientDemographics);
+//    }
+
+//    @DeleteMapping("/delete/{clientId}")
+//    public ResponseEntity<?> deleteClientDemographics(@PathVariable Integer clientId){
+//        return clientDemographicsService.deleteClientDemographics(clientId);
+//    }
+
+
 }

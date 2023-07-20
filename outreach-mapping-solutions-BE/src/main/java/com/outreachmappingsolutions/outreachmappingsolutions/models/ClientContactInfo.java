@@ -14,6 +14,7 @@ public class ClientContactInfo {
 
     @OneToOne
     @JsonIgnore
+    @JoinColumn(name = "client_id")
     private ClientBase client;
 
     private String phonePrimary;
