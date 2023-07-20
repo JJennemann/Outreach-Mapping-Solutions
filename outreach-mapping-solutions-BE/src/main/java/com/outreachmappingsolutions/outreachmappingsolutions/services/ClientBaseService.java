@@ -1,9 +1,12 @@
 package com.outreachmappingsolutions.outreachmappingsolutions.services;
 
 import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientBase;
+import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.outreachmappingsolutions.repositories.ClientBaseRepository;
 import com.outreachmappingsolutions.outreachmappingsolutions.repositories.ClientDemographicsRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +28,26 @@ public class ClientBaseService {
     @Autowired
     private ClientBaseRepository clientBaseRepository;
 
+    @Autowired
+    private EntityManager entityManager;
+
+    @Transactional
     public ResponseEntity<?> createNewClient(ClientBase clientBase){
-        clientBaseRepository.save(clientBase);
-        return new ResponseEntity<>(clientBase.getId(), HttpStatus.CREATED);
+        ClientBase newClient = new ClientBase(clientBase.getFirstName(), clientBase.getMiddleName(),
+                clientBase.getLastName(), clientBase.getNameDataQuality(), clientBase.getDobMonth(),
+                clientBase.getDobDay(), clientBase.getDobYear(), clientBase.getDobDataQuality(),
+                clientBase.getFirstThreeSsn(), clientBase.getMiddleTwoSsn(), clientBase.getLastFourSsn(),
+                clientBase.getSsnDataQuality());
+        ClientDemographics newClientDemographics = new ClientDemographics();
+        newClientDemographics.setClient(newClient);
+        ClientContactInfo newClientContactInfo = new ClientContactInfo();
+        newClientContactInfo.setClient(newClient);
+
+        newClient.setClientDemographics(newClientDemographics);
+        newClient.setClientContactInfo(newClientContactInfo);
+        entityManager.persist(newClient);
+
+        return new ResponseEntity<>(newClient.getId(), HttpStatus.CREATED);
     }
 
     public ResponseEntity<?> returnAllClients(){
