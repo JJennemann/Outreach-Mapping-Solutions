@@ -3,6 +3,7 @@ package com.outreachmappingsolutions.outreachmappingsolutions.services;
 import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.outreachmappingsolutions.repositories.ClientBaseRepository;
+import com.outreachmappingsolutions.outreachmappingsolutions.repositories.ClientDemographicsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

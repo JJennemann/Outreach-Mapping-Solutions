@@ -9,8 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class ClientContactInfo {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name="native", strategy="native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne
