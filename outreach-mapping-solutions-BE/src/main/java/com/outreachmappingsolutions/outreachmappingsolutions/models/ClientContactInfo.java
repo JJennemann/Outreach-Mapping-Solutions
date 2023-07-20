@@ -13,7 +13,6 @@ public class ClientContactInfo {
     private Integer id;
 
     @OneToOne
-//    @JoinColumn(name = "client_id")
     @JsonIgnore
     private ClientBase client;
 

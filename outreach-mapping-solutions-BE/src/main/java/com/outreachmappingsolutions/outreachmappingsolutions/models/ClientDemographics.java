@@ -15,7 +15,6 @@ public class ClientDemographics {
 
     @OneToOne
     @JsonIgnore
-//    @JoinColumn(name = "client_id")
     private ClientBase client;
 
     private String gender;
