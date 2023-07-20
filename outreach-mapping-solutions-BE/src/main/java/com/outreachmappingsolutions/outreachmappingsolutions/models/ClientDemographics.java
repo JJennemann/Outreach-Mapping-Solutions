@@ -10,12 +10,12 @@ import org.hibernate.annotations.GenericGenerator;
 public class ClientDemographics {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name="native", strategy="native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne
     @JsonIgnore
+//    @JoinColumn(name = "client_id")
     private ClientBase client;
 
     private String gender;

@@ -9,8 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class ClientBase {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
-    @GenericGenerator(name = "native",strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String firstName;
@@ -28,10 +27,10 @@ public class ClientBase {
     private Integer lastFourSsn;
     private String ssnDataQuality;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     private ClientDemographics clientDemographics;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     private ClientContactInfo clientContactInfo;
 
     public ClientBase() {
