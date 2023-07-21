@@ -30,19 +30,6 @@ public class ClientContactInfo {
     public ClientContactInfo() {
     }
 
-    public ClientContactInfo(ClientBase client, String phonePrimary, String phoneSecondary, String email, String iceName,
-                             String iceRelationship, String icePhonePrimary, String icePhoneSecondary, String iceEmail) {
-        this.client = client;
-        this.phonePrimary = phonePrimary;
-        this.phoneSecondary = phoneSecondary;
-        this.email = email;
-        this.iceName = iceName;
-        this.iceRelationship = iceRelationship;
-        this.icePhonePrimary = icePhonePrimary;
-        this.icePhoneSecondary = icePhoneSecondary;
-        this.iceEmail = iceEmail;
-    }
-
     public Integer getId() {
         return id;
     }
