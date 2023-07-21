@@ -117,7 +117,7 @@ public class ClientDemographicsControllerUnitTest {
     }
 
     @Test
-    public void testUpdateClientDemographics() {
+    public void testUpdateClientDemographicsSuccess() {
         ResponseEntity<?> expectedResponse = new ResponseEntity<>("Client demographics were successfully updated", HttpStatus.OK);
         when(clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics))
                 .thenAnswer(invocation -> expectedResponse);

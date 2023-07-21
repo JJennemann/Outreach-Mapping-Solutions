@@ -26,9 +26,6 @@ public class ClientDemographicsService {
     @Autowired
     private ClientDemographicsRepository clientDemographicsRepository;
 
-    @Autowired
-    private ClientBaseService clientBaseService;
-
     public ResponseEntity<?> returnAllClientDemographics(){
         List<ClientDemographics> allClientDemos = (List<ClientDemographics>) clientDemographicsRepository.findAll();
         if(allClientDemos.isEmpty()){
@@ -39,19 +36,22 @@ public class ClientDemographicsService {
     }
 
     public ResponseEntity<?> returnClientDemographicsByClientId(Integer clientId){
-        ClientDemographics returnedClientDemo = findClientDemoByClientId(clientId);
-        if(returnedClientDemo.getId() == null){
+        Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);
+        if(returnedOptionalClientDemo.isEmpty()){
             return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
         } else{
+            ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();
             return new ResponseEntity<>(returnedClientDemo, HttpStatus.OK);
         }
     }
 
     public ResponseEntity<?> updateClientDemographics(Integer clientId, ClientDemographics clientDemographics){
-        ClientDemographics returnedClientDemo = findClientDemoByClientId(clientId);
-        if(returnedClientDemo.getId() == null){
+        Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);
+        if(returnedOptionalClientDemo.isEmpty()){
             return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
         } else{
+            ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();
+
             returnedClientDemo.setGender(clientDemographics.getGender());
             returnedClientDemo.setRacePrimary(clientDemographics.getRacePrimary());
             returnedClientDemo.setRaceSecondary(clientDemographics.getRaceSecondary());
@@ -60,15 +60,6 @@ public class ClientDemographicsService {
             clientDemographicsRepository.save(returnedClientDemo);
 
             return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
-    public ClientDemographics findClientDemoByClientId(Integer clientId) {
-        Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);
-        if (returnedOptionalClientDemo.isEmpty()) {
-            return new ClientDemographics();
-        } else {
-            return returnedOptionalClientDemo.get();
         }
     }
 }
