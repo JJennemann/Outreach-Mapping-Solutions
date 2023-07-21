@@ -27,16 +27,6 @@ public class ClientDemographics {
     public ClientDemographics() {
     }
 
-    public ClientDemographics(ClientBase client, String gender, String racePrimary, String raceSecondary,
-                              String ethnicity, String veteranStatus) {
-        this.client = client;
-        this.gender = gender;
-        this.racePrimary = racePrimary;
-        this.raceSecondary = raceSecondary;
-        this.ethnicity = ethnicity;
-        this.veteranStatus = veteranStatus;
-    }
-
     public Integer getId() {
         return id;
     }

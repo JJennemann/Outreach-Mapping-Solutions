@@ -33,7 +33,6 @@ public class ClientDemographicsControllerUnitTest {
     ClientBase testClient1;
     ClientBase testClient2;
     ClientDemographics testClientDemographics1;
-    ClientDemographics testClientDemographics2;
     ClientDemographics testUpdatedClientDemographics;
     List<ClientDemographics> allClientDemographics = new ArrayList<>();
 
@@ -43,21 +42,22 @@ public class ClientDemographicsControllerUnitTest {
 
         testClient1 = new ClientBase("John", null, "Doe", null, null, null, null, null, null, null, null, null);
         testClient1.setId(1);
-        testClientDemographics1 = new ClientDemographics(testClient1, "Male", "Black/African-American", null, null, null);
+        testClientDemographics1 = new ClientDemographics();
+        testClientDemographics1.setClient(testClient1);
         testClientDemographics1.setId(1);
         testClient1.setClientDemographics(testClientDemographics1);
 
-        testClient2 = new ClientBase("Jane", null, "Doe", null, null, null, null, null, null, null, null, null);
+        testClient2 = new ClientBase("Jane", null, null, null, null, null, null, null, null, null, null, null);
         testClient2.setId(2);
-        testClientDemographics2 = new ClientDemographics(testClient2, null, null, null, null, null);
-        testClientDemographics2.setId(2);
-        testClient2.setClientDemographics(testClientDemographics2);
 
-        allClientDemographics.add(testClientDemographics1);
+        testUpdatedClientDemographics = new ClientDemographics();
+        testUpdatedClientDemographics.setGender("Female");
+        testUpdatedClientDemographics.setRacePrimary("White/Caucasian");
+        testUpdatedClientDemographics.setRaceSecondary("Asian/Pacific Islander");
+        testUpdatedClientDemographics.setEthnicity("Non-Hispanic");
+        testUpdatedClientDemographics.setVeteranStatus("Not a Veteran");
 
 
-        testUpdatedClientDemographics = new ClientDemographics(testClient1, "Female", "White/Caucasian", "Not Applicable",
-                "Non-Hispanic", "Veteran");
     }
 
     @Test
@@ -118,6 +118,12 @@ public class ClientDemographicsControllerUnitTest {
 
     @Test
     public void testUpdateClientDemographicsSuccess() {
+        testUpdatedClientDemographics.setGender("Female");
+        testUpdatedClientDemographics.setRacePrimary("White/Caucasian");
+        testUpdatedClientDemographics.setRaceSecondary("Asian/Pacific Islander");
+        testUpdatedClientDemographics.setEthnicity("Non-Hispanic");
+        testUpdatedClientDemographics.setVeteranStatus("Not a Veteran");
+
         ResponseEntity<?> expectedResponse = new ResponseEntity<>("Client demographics were successfully updated", HttpStatus.OK);
         when(clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics))
                 .thenAnswer(invocation -> expectedResponse);

@@ -37,7 +37,6 @@ public class ClientDemographicsServiceUnitTest {
     ClientBase testClient1;
     ClientBase testClient2;
     ClientDemographics testClientDemographics1;
-    ClientDemographics testClientDemographics2;
     ClientDemographics testUpdatedClientDemographics;
     List<ClientDemographics> allClientDemographics = new ArrayList<>();
 
@@ -45,21 +44,23 @@ public class ClientDemographicsServiceUnitTest {
     public void createTestData() {
         MockitoAnnotations.openMocks(this);
 
-        testClient1 = new ClientBase("John", "James", "Doe", "Data Quality Complete", "January", "1", "1999",
-                "Data Quality Complete", 123, 45, 6789, "Data Quality Completed");
+        testClient1 = new ClientBase("John", null, "Doe", null, null, null, null, null, null, null, null, null);
         testClient1.setId(1);
-        testClientDemographics1 = new ClientDemographics(testClient1, "Male", "Black/African-American", "Not Applicable",
-                "Non-Hispanic", "Is a Veteran");
+        testClientDemographics1 = new ClientDemographics();
         testClientDemographics1.setId(1);
+        testClientDemographics1.setClient(testClient1);
         testClient1.setClientDemographics(testClientDemographics1);
+        allClientDemographics.add(testClientDemographics1);
 
         testClient2 = new ClientBase("Jane", null, "Doe", null, null, null, null, null, null, null, null, null);
         testClient2.setId(2);
 
-        allClientDemographics.add(testClientDemographics1);
-
-        testUpdatedClientDemographics = new ClientDemographics(testClient1, "Female", "White/Caucasian", "Not Applicable",
-                "Non-Hispanic", "Is a Veteran");
+        testUpdatedClientDemographics = new ClientDemographics();
+        testUpdatedClientDemographics.setGender("Female");
+        testUpdatedClientDemographics.setRacePrimary("White/Caucasian");
+        testUpdatedClientDemographics.setRaceSecondary("Asian/Pacific Islander");
+        testUpdatedClientDemographics.setEthnicity("Non-Hispanic");
+        testUpdatedClientDemographics.setVeteranStatus("Not a Veteran");
     }
 
     @Test
@@ -114,7 +115,7 @@ public class ClientDemographicsServiceUnitTest {
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), is("Client demographics were successfully updated"));
         assertThat(testClientDemographics1.getId(), is(1));
-        assertThat(testClientDemographics1.getClient(), is(testClient1));
+        assertThat(testClientDemographics1.getClient().getId(), is(testClient1.getId()));
         assertThat(testClientDemographics1.getGender(), is(testUpdatedClientDemographics.getGender()));
         assertThat(testClientDemographics1.getRacePrimary(), is(testUpdatedClientDemographics.getRacePrimary()));
         assertThat(testClientDemographics1.getRaceSecondary(), is(testUpdatedClientDemographics.getRaceSecondary()));
