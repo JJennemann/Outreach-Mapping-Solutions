@@ -21,7 +21,6 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,10 +48,11 @@ public class ClientDemographicsServiceUnitTest {
         testClientDemographics1.setId(1);
         testClientDemographics1.setClient(testClient1);
         testClient1.setClientDemographics(testClientDemographics1);
-        allClientDemographics.add(testClientDemographics1);
 
         testClient2 = new ClientBase("Jane", null, "Doe", null, null, null, null, null, null, null, null, null);
         testClient2.setId(2);
+
+        allClientDemographics.add(testClientDemographics1);
 
         testUpdatedClientDemographics = new ClientDemographics();
         testUpdatedClientDemographics.setGender("Female");
