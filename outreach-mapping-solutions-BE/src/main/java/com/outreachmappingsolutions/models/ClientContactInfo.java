@@ -26,11 +26,13 @@ public class ClientContactInfo {
     private String icePhoneSecondary;
     private String iceEmail;
 
-    public ClientContactInfo() {
-    }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public ClientBase getClient() {

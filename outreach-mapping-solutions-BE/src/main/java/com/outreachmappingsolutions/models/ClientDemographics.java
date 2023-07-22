@@ -23,8 +23,6 @@ public class ClientDemographics {
     private String ethnicity;
     private String veteranStatus;
 
-    public ClientDemographics() {
-    }
 
     public Integer getId() {
         return id;
