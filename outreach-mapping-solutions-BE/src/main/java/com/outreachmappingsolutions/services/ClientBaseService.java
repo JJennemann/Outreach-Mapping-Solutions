@@ -54,19 +54,21 @@ public class ClientBaseService {
     }
 
     public ResponseEntity<?> returnClientById(Integer clientId){
-        ClientBase returnedClient = findClientById(clientId);;
-        if(returnedClient.getId() == null){
+        Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
+        if(returnedOptionalClient.isEmpty()){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
+            ClientBase returnedClient = returnedOptionalClient.get();
             return new ResponseEntity<>(returnedClient, HttpStatus.OK);
         }
     }
 
     public ResponseEntity<?> updateClient(Integer clientId, ClientBase updatedClientBase){
-        ClientBase clientToUpdate = findClientById(clientId);
-        if(clientToUpdate.getId() == null){
+        Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
+        if(returnedOptionalClient.isEmpty()){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
+            ClientBase clientToUpdate = returnedOptionalClient.get();
             clientToUpdate.setFirstName(updatedClientBase.getFirstName());
             clientToUpdate.setMiddleName(updatedClientBase.getMiddleName());
             clientToUpdate.setLastName(updatedClientBase.getLastName());
@@ -89,21 +91,12 @@ public class ClientBaseService {
     }
 
     public ResponseEntity<?> deleteClient(Integer clientId){
-        ClientBase returnedClient = findClientById(clientId);
-        if(returnedClient.getId() == null){
+        Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
+        if(returnedOptionalClient.isEmpty()){
             return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
             clientBaseRepository.deleteById(clientId);
             return new ResponseEntity<>(CLIENT_DELETED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
-    public ClientBase findClientById(Integer clientId){
-        Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
-        if(returnedOptionalClient.isEmpty()){
-            return new ClientBase();
-        }else {
-            return returnedOptionalClient.get();
         }
     }
 }

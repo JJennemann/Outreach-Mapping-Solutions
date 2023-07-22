@@ -124,7 +124,7 @@ public class ClientContactInfoControllerUnitTest {
         ResponseEntity<?> expectedResponse = new ResponseEntity<>("Client contact information was " +
                 "successfully updated", HttpStatus.OK);
         when(clientContactInfoService.updateClientContactInfo(testClient1.getId(), testUpdatedClientContactInfo))
-                .then(invocation -> expectedResponse);
+                .thenAnswer(invocation -> expectedResponse);
 
         ResponseEntity<?> response = clientContactInfoController.updateClientContactInfo(testClient1.getId(), testUpdatedClientContactInfo);
 
