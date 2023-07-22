@@ -14,9 +14,6 @@ import java.util.Optional;
 public class ClientContactInfoService {
 
     private static final String NO_CONTACT_INFO_FOUND = "No client contact information matching your criteria was found";
-    private static final String NO_CLIENTS_FOUND = "No clients matching your criteria were found";
-//    private static final String CONTACT_INFO_ADDED_SUCCESS = "Client contact information was successfully added to the database";
-    private static final String CONTACT_INFO_DELETED_SUCCESS = "Client contact information was successfully deleted";
     private static final String CONTACT_INFO_UPDATED_SUCCESS = "Client contact information was successfully updated";
 
     @Autowired

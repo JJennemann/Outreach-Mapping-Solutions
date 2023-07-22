@@ -50,14 +50,14 @@ public class ClientDemographicsControllerUnitTest {
         testClient2 = new ClientBase("Jane", null, null, null, null, null, null, null, null, null, null, null);
         testClient2.setId(2);
 
+        allClientDemographics.add(testClientDemographics1);
+
         testUpdatedClientDemographics = new ClientDemographics();
         testUpdatedClientDemographics.setGender("Female");
         testUpdatedClientDemographics.setRacePrimary("White/Caucasian");
         testUpdatedClientDemographics.setRaceSecondary("Asian/Pacific Islander");
         testUpdatedClientDemographics.setEthnicity("Non-Hispanic");
         testUpdatedClientDemographics.setVeteranStatus("Not a Veteran");
-
-
     }
 
     @Test
@@ -118,12 +118,6 @@ public class ClientDemographicsControllerUnitTest {
 
     @Test
     public void testUpdateClientDemographicsSuccess() {
-        testUpdatedClientDemographics.setGender("Female");
-        testUpdatedClientDemographics.setRacePrimary("White/Caucasian");
-        testUpdatedClientDemographics.setRaceSecondary("Asian/Pacific Islander");
-        testUpdatedClientDemographics.setEthnicity("Non-Hispanic");
-        testUpdatedClientDemographics.setVeteranStatus("Not a Veteran");
-
         ResponseEntity<?> expectedResponse = new ResponseEntity<>("Client demographics were successfully updated", HttpStatus.OK);
         when(clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics))
                 .thenAnswer(invocation -> expectedResponse);
