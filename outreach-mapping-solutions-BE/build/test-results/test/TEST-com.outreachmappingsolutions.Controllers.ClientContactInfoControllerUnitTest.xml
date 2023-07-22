@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-07-22T05:07:24" hostname="Joshs-Air.lan" time="0.378">
+  <properties/>
+  <testcase name="testReturnClientContactInfoByClientIdNotFound()" classname="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" time="0.361"/>
+  <testcase name="testUpdateClientContactInfoNotFound()" classname="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" time="0.002"/>
+  <testcase name="testReturnAllClientContactInfoNotFound()" classname="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" time="0.003"/>
+  <testcase name="testReturnClientContactInfoByClientIdSuccess()" classname="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" time="0.002"/>
+  <testcase name="testUpdateClientContactInfoSuccess()" classname="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" time="0.002"/>
+  <testcase name="testReturnAllClientContactInfoSuccess()" classname="com.outreachmappingsolutions.Controllers.ClientContactInfoControllerUnitTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
