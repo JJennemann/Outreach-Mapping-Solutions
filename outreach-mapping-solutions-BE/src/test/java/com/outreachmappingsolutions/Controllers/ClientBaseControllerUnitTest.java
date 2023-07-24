@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CilentBaseControllerUnitTest {
+public class ClientBaseControllerUnitTest {
 
     @Mock
     private ClientBaseService clientBaseService;
@@ -33,8 +33,6 @@ public class CilentBaseControllerUnitTest {
     ClientBase testClient1;
     ClientBase testClient2;
     ClientBase testClientBase;
-    ClientContactInfo testClientContactInfo;
-    ClientDemographics testClientDemographics;
     List<ClientBase> allClients = new ArrayList<>();
 
     @BeforeEach
@@ -44,10 +42,6 @@ public class CilentBaseControllerUnitTest {
         testClientBase = new ClientBase("John", null, "Doe", null, null, null, null, null, null, null, null, null);
         testClient1 = new ClientBase();
         testClient1.setId(1);
-        testClientContactInfo = new ClientContactInfo();
-        testClientContactInfo.setId(1);
-        testClientDemographics = new ClientDemographics();
-        testClientDemographics.setId(1);
 
         testClient2 = new ClientBase();
         testClient2.setId(2);
