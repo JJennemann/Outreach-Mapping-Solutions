@@ -62,5 +62,4 @@ public class ClientContactInfoUnitTest {
         assertThat(testClientContactInfo.getIcePhoneSecondary(), nullValue());
         assertThat(testClientContactInfo.getIceEmail(), nullValue());
     }
-
 }
