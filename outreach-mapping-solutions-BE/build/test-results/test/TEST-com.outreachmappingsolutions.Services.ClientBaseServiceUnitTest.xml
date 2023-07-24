@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2023-07-24T18:46:06" hostname="Joshs-Air.lan" time="0.384">
+  <properties/>
+  <testcase name="testReturnAllClientsError()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.352"/>
+  <testcase name="testReturnClientByIdNotFound()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.006"/>
+  <testcase name="testReturnClientByIdSuccess()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testUpdateClientNotFound()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testReturnAllClientsSuccess()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.003"/>
+  <testcase name="testDeleteClientNotFound()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.003"/>
+  <testcase name="testCreateNewClientSuccess()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.003"/>
+  <testcase name="testReturnAllClientsNotFound()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.002"/>
+  <testcase name="testUpdateClientError()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testDeleteClientSuccess()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testUpdateClientSuccess()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testReturnClientByIdError()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testCreateNewClientError()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <testcase name="testDeleteClientError()" classname="com.outreachmappingsolutions.Services.ClientBaseServiceUnitTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
