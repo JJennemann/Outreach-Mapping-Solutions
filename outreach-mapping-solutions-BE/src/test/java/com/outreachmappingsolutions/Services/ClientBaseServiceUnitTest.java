@@ -115,7 +115,6 @@ public class ClientBaseServiceUnitTest {
     @Test
     public void testReturnAllClientsError(){
         when(clientBaseRepository.findAll()).thenThrow(new RuntimeException());
-
         ResponseEntity<?> response = clientBaseService.returnAllClients();
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
@@ -149,7 +148,6 @@ public class ClientBaseServiceUnitTest {
     @Test
     public void testReturnClientByIdError(){
         when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
-
         ResponseEntity<?> response = clientBaseService.returnClientById(testClient1.getId());
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
@@ -198,7 +196,6 @@ public class ClientBaseServiceUnitTest {
     @Test
     public void testUpdateClientError(){
         when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
-
         ResponseEntity<?> response = clientBaseService.updateClient(testClient1.getId(), testUpdatedClientBase);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
@@ -233,7 +230,6 @@ public class ClientBaseServiceUnitTest {
     @Test
     public void testDeleteClientError(){
         when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
-
         ResponseEntity<?> response = clientBaseService.deleteClient(testClient1.getId());
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());

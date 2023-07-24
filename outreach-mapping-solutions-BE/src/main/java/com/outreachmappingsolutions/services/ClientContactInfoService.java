@@ -19,45 +19,57 @@ public class ClientContactInfoService {
     @Autowired
     private ClientContactInfoRepository clientContactInfoRepository;
 
-    public ResponseEntity<?> returnAllClientContactInfo(){
-        List<ClientContactInfo> allClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
-        if(allClientContactInfo.isEmpty()){
-            return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(allClientContactInfo, HttpStatus.OK);
+    public ResponseEntity<?> returnAllClientContactInfo() {
+        try {
+            List<ClientContactInfo> allClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
+            if (allClientContactInfo.isEmpty()) {
+                return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(allClientContactInfo, HttpStatus.OK);
+            }
+        } catch(Exception e){
+            return new ResponseEntity<>("Failed to retrieve all client contact information", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<?> returnClientContactInfoByClientId(Integer clientId){
-        Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
-        if(returnedOptionalClientContactInfo.isEmpty()){
-            return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
-        } else {
-            ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
-            return new ResponseEntity<>(returnedClientContactInfo, HttpStatus.OK);
+    public ResponseEntity<?> returnClientContactInfoByClientId(Integer clientId) {
+        try {
+            Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
+            if (returnedOptionalClientContactInfo.isEmpty()) {
+                return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
+            } else {
+                ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
+                return new ResponseEntity<>(returnedClientContactInfo, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to retrieve the client's contact information", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<?> updateClientContactInfo(Integer clientId, ClientContactInfo clientContactInfo){
-        Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
-        if(returnedOptionalClientContactInfo.isEmpty()){
-            return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
-        } else{
-            ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
-            returnedClientContactInfo.setPhonePrimary(clientContactInfo.getPhonePrimary());
-            returnedClientContactInfo.setPhoneSecondary(clientContactInfo.getPhoneSecondary());
-            returnedClientContactInfo.setEmail(clientContactInfo.getEmail());
-            returnedClientContactInfo.setIceName(clientContactInfo.getIceName());
-            returnedClientContactInfo.setIceRelationship(clientContactInfo.getIceRelationship());
-            returnedClientContactInfo.setIcePhonePrimary(clientContactInfo.getIcePhonePrimary());
-            returnedClientContactInfo.setIcePhoneSecondary(clientContactInfo.getIcePhoneSecondary());
-            returnedClientContactInfo.setIceEmail(clientContactInfo.getIceEmail());
-            clientContactInfoRepository.save(returnedClientContactInfo);
+    public ResponseEntity<?> updateClientContactInfo(Integer clientId, ClientContactInfo clientContactInfo) {
+        try {
+            Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
+            if (returnedOptionalClientContactInfo.isEmpty()) {
+                return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
+            } else {
+                ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
+                returnedClientContactInfo.setPhonePrimary(clientContactInfo.getPhonePrimary());
+                returnedClientContactInfo.setPhoneSecondary(clientContactInfo.getPhoneSecondary());
+                returnedClientContactInfo.setEmail(clientContactInfo.getEmail());
+                returnedClientContactInfo.setIceName(clientContactInfo.getIceName());
+                returnedClientContactInfo.setIceRelationship(clientContactInfo.getIceRelationship());
+                returnedClientContactInfo.setIcePhonePrimary(clientContactInfo.getIcePhonePrimary());
+                returnedClientContactInfo.setIcePhoneSecondary(clientContactInfo.getIcePhoneSecondary());
+                returnedClientContactInfo.setIceEmail(clientContactInfo.getIceEmail());
+                clientContactInfoRepository.save(returnedClientContactInfo);
 
-            return new ResponseEntity<>(CONTACT_INFO_UPDATED_SUCCESS, HttpStatus.OK);
+                return new ResponseEntity<>(CONTACT_INFO_UPDATED_SUCCESS, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to update the client's contact information", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+}
 
 // Creation and deletion of clientDemographics is cascaded with the clientBase creation and deletion
 //    public ResponseEntity<?> createNewClientContactInfo(Integer clientId, ClientContactInfo clientContactInfo){
@@ -81,5 +93,3 @@ public class ClientContactInfoService {
 //        return new ResponseEntity<>(CONTACT_INFO_DELETED_SUCCESS, HttpStatus.OK);
 //    }
 //}
-
-}

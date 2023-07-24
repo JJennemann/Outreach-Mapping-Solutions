@@ -22,6 +22,8 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @ExtendWith(MockitoExtension.class)
 public class ClientDemographicsServiceUnitTest {
@@ -85,6 +87,17 @@ public class ClientDemographicsServiceUnitTest {
     }
 
     @Test
+    public void testReturnAllClientDemographicsError(){
+        when(clientDemographicsRepository.findAll()).thenThrow(new RuntimeException());
+        ResponseEntity<?> response = clientDemographicsService.returnAllClientDemographics();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to retrieve all client demographics", response.getBody());
+        verify(clientDemographicsRepository).findAll();
+        verifyNoMoreInteractions(clientDemographicsRepository);
+    }
+
+    @Test
     public void testReturnClientDemographicsByClientIdSuccess(){
         when(clientDemographicsRepository.findByClientId(testClient1.getId())).thenReturn(Optional.of(testClientDemographics1));
         ResponseEntity<?> response = clientDemographicsService.returnClientDemographicsByClientId(testClient1.getId());
@@ -103,6 +116,17 @@ public class ClientDemographicsServiceUnitTest {
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
         assertThat(response.getBody(), is("No client demographics matching your criteria were found"));
         verify(clientDemographicsRepository).findByClientId(testClient2.getId());
+        verifyNoMoreInteractions(clientDemographicsRepository);
+    }
+
+    @Test
+    public void testReturnClientDemographicsByClientIdError(){
+        when(clientDemographicsRepository.findByClientId(testClient1.getId())).thenThrow(new RuntimeException());
+        ResponseEntity<?> response = clientDemographicsService.returnClientDemographicsByClientId(testClient1.getId());
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to retrieve the client's demographics", response.getBody());
+        verify(clientDemographicsRepository).findByClientId(testClient1.getId());
         verifyNoMoreInteractions(clientDemographicsRepository);
     }
 
@@ -133,6 +157,16 @@ public class ClientDemographicsServiceUnitTest {
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
         assertThat(response.getBody(), is("No client demographics matching your criteria were found"));
         verify(clientDemographicsRepository).findByClientId(testClient2.getId());
+        verifyNoMoreInteractions(clientDemographicsRepository);
+    }
+
+    @Test public void testUpdateClientDemographicsError(){
+        when(clientDemographicsRepository.findByClientId(testClient1.getId())).thenThrow(new RuntimeException());
+        ResponseEntity<?> response = clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to update the client's demographics", response.getBody());
+        verify(clientDemographicsRepository).findByClientId(testClient1.getId());
         verifyNoMoreInteractions(clientDemographicsRepository);
     }
 }
