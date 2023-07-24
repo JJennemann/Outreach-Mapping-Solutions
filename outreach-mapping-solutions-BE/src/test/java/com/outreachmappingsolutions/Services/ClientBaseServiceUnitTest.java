@@ -21,6 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,6 +76,18 @@ public class ClientBaseServiceUnitTest {
     }
 
     @Test
+    public void testCreateNewClientError(){
+        when(clientBaseRepository.save(any(ClientBase.class))).thenThrow(new RuntimeException());
+
+        ResponseEntity<?> response = clientBaseService.createNewClient(testClient1);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to create new client", response.getBody());
+        verify(clientBaseRepository).save(testClient1);
+        verifyNoMoreInteractions(clientBaseRepository);
+    }
+
+    @Test
     public void testReturnAllClientsSuccess(){
         testClient1.setId(1);
         allClients.add(testClient1);
@@ -100,6 +113,18 @@ public class ClientBaseServiceUnitTest {
     }
 
     @Test
+    public void testReturnAllClientsError(){
+        when(clientBaseRepository.findAll()).thenThrow(new RuntimeException());
+
+        ResponseEntity<?> response = clientBaseService.returnAllClients();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to retrieve clients", response.getBody());
+        verify(clientBaseRepository).findAll();
+        verifyNoMoreInteractions(clientBaseRepository);
+    }
+
+    @Test
     public void testReturnClientByIdSuccess(){
         when(clientBaseRepository.findById(testClient1.getId())).thenReturn(Optional.of(testClient1));
         ResponseEntity<?> response = clientBaseService.returnClientById(testClient1.getId());
@@ -118,6 +143,18 @@ public class ClientBaseServiceUnitTest {
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
         assertThat(response.getBody(), is("No clients matching your criteria were found"));
         verify(clientBaseRepository).findById(testClient2.getId());
+        verifyNoMoreInteractions(clientBaseRepository);
+    }
+
+    @Test
+    public void testReturnClientByIdError(){
+        when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
+
+        ResponseEntity<?> response = clientBaseService.returnClientById(testClient1.getId());
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to retrieve the client", response.getBody());
+        verify(clientBaseRepository).findById(testClient1.getId());
         verifyNoMoreInteractions(clientBaseRepository);
     }
 
@@ -159,6 +196,18 @@ public class ClientBaseServiceUnitTest {
     }
 
     @Test
+    public void testUpdateClientError(){
+        when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
+
+        ResponseEntity<?> response = clientBaseService.updateClient(testClient1.getId(), testUpdatedClientBase);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to update the client", response.getBody());
+        verify(clientBaseRepository).findById(testClient1.getId());
+        verifyNoMoreInteractions(clientBaseRepository);
+    }
+
+    @Test
     public void testDeleteClientSuccess(){
         when(clientBaseRepository.findById(testClient1.getId())).thenReturn(Optional.of(testClient1));
         ResponseEntity<?> response = clientBaseService.deleteClient(testClient1.getId());
@@ -181,5 +230,16 @@ public class ClientBaseServiceUnitTest {
         verifyNoMoreInteractions(clientBaseRepository);
     }
 
+    @Test
+    public void testDeleteClientError(){
+        when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
+
+        ResponseEntity<?> response = clientBaseService.deleteClient(testClient1.getId());
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to delete the client", response.getBody());
+        verify(clientBaseRepository).findById(testClient1.getId());
+        verifyNoMoreInteractions(clientBaseRepository);
+    }
 
 }
