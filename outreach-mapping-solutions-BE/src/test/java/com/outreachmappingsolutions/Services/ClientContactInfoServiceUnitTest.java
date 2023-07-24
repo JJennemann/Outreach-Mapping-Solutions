@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -90,6 +91,17 @@ public class ClientContactInfoServiceUnitTest {
     }
 
     @Test
+    public void testReturnAllClientContactInfoError(){
+        when(clientContactInfoRepository.findAll()).thenThrow(new RuntimeException());
+        ResponseEntity<?> response = clientContactInfoService.returnAllClientContactInfo();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to retrieve all client contact information", response.getBody());
+        verify(clientContactInfoRepository).findAll();
+        verifyNoMoreInteractions(clientContactInfoRepository);
+    }
+
+    @Test
     public void testReturnClientContactInfoByClientIdSuccess(){
         when(clientContactInfoRepository.findByClientId(testClient1.getId())).thenReturn(Optional.of(testClientContactInfo1));
         ResponseEntity<?> response = clientContactInfoService.returnClientContactInfoByClientId(testClient1.getId());
@@ -108,6 +120,17 @@ public class ClientContactInfoServiceUnitTest {
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
         assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
         verify(clientContactInfoRepository).findByClientId(testClient2.getId());
+        verifyNoMoreInteractions(clientContactInfoRepository);
+    }
+
+    @Test
+    public void testReturnClientContactInfoByClientIdError(){
+        when(clientContactInfoRepository.findByClientId(testClient1.getId())).thenThrow(new RuntimeException());
+        ResponseEntity<?> response = clientContactInfoService.returnClientContactInfoByClientId(testClient1.getId());
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to retrieve the client's contact information", response.getBody());
+        verify(clientContactInfoRepository).findByClientId(testClient1.getId());
         verifyNoMoreInteractions(clientContactInfoRepository);
     }
 
@@ -142,6 +165,17 @@ public class ClientContactInfoServiceUnitTest {
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
         assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
         verify(clientContactInfoRepository).findByClientId(testClient2.getId());
+        verifyNoMoreInteractions(clientContactInfoRepository);
+    }
+
+    @Test
+    public void testUpdateClientContactInfoError(){
+        when(clientContactInfoRepository.findByClientId(testClient1.getId())).thenThrow(new RuntimeException());
+        ResponseEntity<?> response = clientContactInfoService.updateClientContactInfo(testClient1.getId(), testUpdatedClientContactInfo);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Failed to update the client's contact information", response.getBody());
+        verify(clientContactInfoRepository).findByClientId(testClient1.getId());
         verifyNoMoreInteractions(clientContactInfoRepository);
     }
 }
