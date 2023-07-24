@@ -29,19 +29,21 @@ public class ClientContactInfoService {
     }
 
     public ResponseEntity<?> returnClientContactInfoByClientId(Integer clientId){
-        ClientContactInfo returnedClientContactInfo = findClientContactInfoByClientId(clientId);
-        if(returnedClientContactInfo.getId() == null){
+        Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
+        if(returnedOptionalClientContactInfo.isEmpty()){
             return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
         } else {
+            ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
             return new ResponseEntity<>(returnedClientContactInfo, HttpStatus.OK);
         }
     }
 
     public ResponseEntity<?> updateClientContactInfo(Integer clientId, ClientContactInfo clientContactInfo){
-        ClientContactInfo returnedClientContactInfo = findClientContactInfoByClientId(clientId);
-        if(returnedClientContactInfo.getId() == null){
+        Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
+        if(returnedOptionalClientContactInfo.isEmpty()){
             return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
         } else{
+            ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
             returnedClientContactInfo.setPhonePrimary(clientContactInfo.getPhonePrimary());
             returnedClientContactInfo.setPhoneSecondary(clientContactInfo.getPhoneSecondary());
             returnedClientContactInfo.setEmail(clientContactInfo.getEmail());
@@ -53,15 +55,6 @@ public class ClientContactInfoService {
             clientContactInfoRepository.save(returnedClientContactInfo);
 
             return new ResponseEntity<>(CONTACT_INFO_UPDATED_SUCCESS, HttpStatus.OK);
-        }
-    }
-
-    public ClientContactInfo findClientContactInfoByClientId(Integer clientId){
-        Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
-        if(returnedOptionalClientContactInfo.isEmpty()){
-            return new ClientContactInfo();
-        } else{
-            return returnedOptionalClientContactInfo.get();
         }
     }
 
