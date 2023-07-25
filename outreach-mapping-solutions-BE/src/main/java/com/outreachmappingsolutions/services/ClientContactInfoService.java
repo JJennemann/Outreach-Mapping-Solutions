@@ -63,7 +63,7 @@ public class ClientContactInfoService {
                 returnedClientContactInfo.setIceEmail(clientContactInfo.getIceEmail());
                 clientContactInfoRepository.save(returnedClientContactInfo);
 
-                return new ResponseEntity<>(CONTACT_INFO_UPDATED_SUCCESS, HttpStatus.OK);
+                return new ResponseEntity<>(returnedClientContactInfo, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to update the client's contact information", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -38,9 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @DirtiesContext(classMode=DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ClientDemographicsControllerIntegrationTest {
 
-    @LocalServerPort
-    private int port;
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -51,15 +48,12 @@ public class ClientDemographicsControllerIntegrationTest {
     private ClientDemographicsService clientDemographicsService;
 
     @Autowired
-    private ClientBaseService clientBaseService;
-
-    @Autowired
     private ClientBaseRepository clientBaseRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
 //
-    ClientBase testClient1;
+    ClientBase testClient;
 //    ClientBase testClient2;
 //    ClientBase testClient3;
     ClientDemographics testClientDemographics1;
@@ -70,9 +64,9 @@ public class ClientDemographicsControllerIntegrationTest {
     @BeforeEach
     public void setup(){
 
-        testClient1 = new ClientBase("John", null, "Doe", null, null, null, null, null, null, null, null, null);
-        clientBaseRepository.save(testClient1);
-//        clientBaseService.createNewClient(testClient1);
+        testClient = new ClientBase("John", null, "Doe", null, null, null, null, null, null, null, null, null);
+        clientBaseRepository.save(testClient);
+//        clientBaseService.createNewClient(testClient);
 //
 //
 //        testClient2 = new ClientBase("Jane", null, null, null, null, null, null, null, null, null, null, null);
@@ -87,7 +81,7 @@ public class ClientDemographicsControllerIntegrationTest {
         testClientDemographics1.setRaceSecondary("Black/African-American");
         testClientDemographics1.setEthnicity("Hispanic");
         testClientDemographics1.setVeteranStatus("Not A Veteran");
-        testClientDemographics1.setClient(testClient1);
+        testClientDemographics1.setClient(testClient);
 
 
         testClientDemographics2 = new ClientDemographics();
@@ -110,7 +104,8 @@ public class ClientDemographicsControllerIntegrationTest {
         clientDemographicsRepository.save(testClientDemographics1);
         clientDemographicsRepository.save(testClientDemographics2);
         clientDemographicsRepository.save(testClientDemographics3);
-        List<ClientDemographics> allTestClientDemographics = (List<ClientDemographics>) clientDemographicsService.returnAllClientDemographics().getBody();
+        List<ClientDemographics> allTestClientDemographics =
+                (List<ClientDemographics>) clientDemographicsService.returnAllClientDemographics().getBody();
 
         assert allTestClientDemographics !=null;
         mockMvc.perform(get("/clientDemographics/returnAll"))
@@ -145,10 +140,10 @@ public class ClientDemographicsControllerIntegrationTest {
         clientDemographicsRepository.save(testClientDemographics2);
         clientDemographicsRepository.save(testClientDemographics3);
 
-        ClientDemographics returnedTestClientDemographics = (ClientDemographics) clientDemographicsService.returnClientDemographicsByClientId(testClient1.getId()).getBody();
+        ClientDemographics returnedTestClientDemographics = (ClientDemographics) clientDemographicsService.returnClientDemographicsByClientId(testClient.getId()).getBody();
 
         assert returnedTestClientDemographics != null;
-        mockMvc.perform(get("/clientDemographics/return/{clientId}", testClient1.getId()))
+        mockMvc.perform(get("/clientDemographics/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
@@ -161,10 +156,10 @@ public class ClientDemographicsControllerIntegrationTest {
 
     @Test
     public void testReturnClientDemographicsByClientIdNotFound() throws Exception {
-        String allTestClientDemographics = (String) clientDemographicsService.returnClientDemographicsByClientId(testClient1.getId()).getBody();
+        String allTestClientDemographics = (String) clientDemographicsService.returnClientDemographicsByClientId(testClient.getId()).getBody();
 
         assert allTestClientDemographics.equals("No client demographics matching your criteria were found");
-        mockMvc.perform(get("/clientDemographics/return/{clientId}", testClient1.getId()))
+        mockMvc.perform(get("/clientDemographics/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
@@ -180,10 +175,10 @@ public class ClientDemographicsControllerIntegrationTest {
         testUpdatedClientDemographics.setRaceSecondary("Not Applicable");
         testUpdatedClientDemographics.setEthnicity("Non-Hispanic");
         testUpdatedClientDemographics.setVeteranStatus("Is A Veteran");
-        ClientDemographics returnedTestClientDemographics = (ClientDemographics) clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics).getBody();
+        ClientDemographics returnedTestClientDemographics = (ClientDemographics) clientDemographicsService.updateClientDemographics(testClient.getId(), testUpdatedClientDemographics).getBody();
 
         assert returnedTestClientDemographics != null;
-        mockMvc.perform(put("/clientDemographics/update/{clientId}", testClient1.getId())
+        mockMvc.perform(put("/clientDemographics/update/{clientId}", testClient.getId())
                         .content(objectMapper.writeValueAsString(testUpdatedClientDemographics))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -196,16 +191,16 @@ public class ClientDemographicsControllerIntegrationTest {
                 .andExpect(jsonPath("$.ethnicity", is("Non-Hispanic")))
                 .andExpect(jsonPath("$.veteranStatus", is("Is A Veteran")));
 
-        assertThat(returnedTestClientDemographics.getClient().getId(), is(testClient1.getId()));
+        assertThat(returnedTestClientDemographics.getClient().getId(), is(testClient.getId()));
     }
 
     @Test
-    public void setTestUpdatedClientDemographicsNotFound() throws Exception{
+    public void testUpdateClientDemographicsNotFound() throws Exception{
         testUpdatedClientDemographics = new ClientDemographics();
-        String returnedTestClientDemographics = (String) clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics).getBody();
+        String returnedTestClientDemographics = (String) clientDemographicsService.updateClientDemographics(testClient.getId(), testUpdatedClientDemographics).getBody();
 
         assert returnedTestClientDemographics.equals("No client demographics matching your criteria were found");
-        mockMvc.perform(put("/clientDemographics/update/{clientId}", testClient1.getId())
+        mockMvc.perform(put("/clientDemographics/update/{clientId}", testClient.getId())
                         .content(objectMapper.writeValueAsString(testUpdatedClientDemographics))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
