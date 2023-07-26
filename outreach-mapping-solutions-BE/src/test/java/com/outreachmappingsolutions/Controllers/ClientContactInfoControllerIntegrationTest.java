@@ -66,13 +66,12 @@ public class ClientContactInfoControllerIntegrationTest {
 
         testClientContactInfo1 = createTestClientContactInfo("111-111-1111", "111-111-1112", "miles@test.com",
                 "Keiko O'Brien", "Ex-Wife", "111-111-1113", "111-111-1114", "keiko@test.com");
-        testClientContactInfo1.setClient(testClient);
-
         testClientContactInfo2 = createTestClientContactInfo("222-222-2221", "222-222-2222", "wesley@test.com",
                 "Beverly Crusher", "Mother", "222-222-2223", "222-222-2224", "dr.crusher@email.com");
-
         testClientContactInfo3 = createTestClientContactInfo("111-111-1111", "222-222-2222", "thomas@test.com",
                 "Will Riker", "Brother", "333-333-3333", "444-444-4444", "will@email.com");
+
+        testClientContactInfo1.setClient(testClient);
     }
 
     private ClientContactInfo createTestClientContactInfo(String phonePrimary, String phoneSecondary, String email,
@@ -122,12 +121,10 @@ public class ClientContactInfoControllerIntegrationTest {
 
     @Test
     public void testReturnAllClientContactInfoNotFound() throws Exception{
-        String allTestClientContactInfo = (String) clientContactInfoService.returnAllClientContactInfo().getBody();
-
-        assertThat(allTestClientContactInfo, is("No client contact information matching your criteria was found"));
         mockMvc.perform(get("/clientContactInfo/returnAll"))
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No client contact information matching your criteria was found")));
     }
 
     @Test
@@ -135,10 +132,7 @@ public class ClientContactInfoControllerIntegrationTest {
         clientContactInfoRepository.save(testClientContactInfo1);
         clientContactInfoRepository.save(testClientContactInfo2);
         clientContactInfoRepository.save(testClientContactInfo3);
-        ClientContactInfo returnedTestClientContactInfo =
-                (ClientContactInfo) clientContactInfoService.returnClientContactInfoByClientId(testClient.getId()).getBody();
 
-        assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -157,12 +151,10 @@ public class ClientContactInfoControllerIntegrationTest {
 
     @Test
     public void testReturnClientContactInfoByIdNotFound() throws Exception{
-    String returnedTestClientContactInfo = (String) clientContactInfoService.returnClientContactInfoByClientId(testClient.getId()).getBody();
-
-        assertThat(returnedTestClientContactInfo, is("No client contact information matching your criteria was found"));
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No client contact information matching your criteria was found")));
     }
 
     @Test
@@ -177,14 +169,13 @@ public class ClientContactInfoControllerIntegrationTest {
                 (ClientContactInfo) clientContactInfoService.updateClientContactInfo(testClient.getId(),
                         testUpdatedClientContactInfo).getBody();
 
-        assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                     .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(returnedTestClientContactInfo.getId())))
+                .andExpect(jsonPath("$.id", is(testClientContactInfo1.getId())))
                 .andExpect(jsonPath("$.phonePrimary", is(testUpdatedClientContactInfo.getPhonePrimary())))
                 .andExpect(jsonPath("$.phoneSecondary", is(testUpdatedClientContactInfo.getPhoneSecondary())))
                 .andExpect(jsonPath("$.email", is(testUpdatedClientContactInfo.getEmail())))
@@ -199,16 +190,14 @@ public class ClientContactInfoControllerIntegrationTest {
     @Test
     public void testUpdateClientContactInfoNotFound() throws Exception{
         testUpdatedClientContactInfo = new ClientContactInfo();
-        String returnedTestClientContactInfo = (String) clientContactInfoService.updateClientContactInfo(testClient.getId(),
-                testUpdatedClientContactInfo).getBody();
 
-        assertThat(returnedTestClientContactInfo, is("No client contact information matching your criteria was found"));
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                         .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No client contact information matching your criteria was found")));
     }
 }
 

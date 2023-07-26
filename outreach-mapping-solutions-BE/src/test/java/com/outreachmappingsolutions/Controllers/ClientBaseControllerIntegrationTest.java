@@ -166,8 +166,9 @@ public class ClientBaseControllerIntegrationTest {
 
     @Test
     public void testReturnClientByIdNotFound() throws Exception {
-        testClient1.setId(1);
-        mockMvc.perform(get("/clientBase/return/{clientId}", testClient1.getId()))
+        clientBaseRepository.save(testClient1);
+
+        mockMvc.perform(get("/clientBase/return/{clientId}", 2))
                 .andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$", is("No clients matching your criteria were found")));
