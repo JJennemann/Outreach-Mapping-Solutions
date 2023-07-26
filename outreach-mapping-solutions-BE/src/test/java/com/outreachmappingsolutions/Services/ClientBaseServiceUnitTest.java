@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -59,18 +60,10 @@ public class ClientBaseServiceUnitTest {
 
     @Test
     public void testCreateNewClientSuccess(){
-        AtomicInteger generatedId = new AtomicInteger(1);
-
-        doAnswer(invocation -> {
-            ClientBase clientBase = invocation.getArgument(0);
-            clientBase.setId(generatedId.getAndIncrement());
-            return clientBase;
-        }).when(clientBaseRepository).save(any(ClientBase.class));
-
         ResponseEntity<?> response = clientBaseService.createNewClient(testClient1);
 
         assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-        assertThat(response.getBody(), is(1));
+        assertThat(response.getBody(), is(testClient1));
         verify(clientBaseRepository).save(any(ClientBase.class));
         verifyNoMoreInteractions(clientBaseRepository);
     }
@@ -163,20 +156,20 @@ public class ClientBaseServiceUnitTest {
         ResponseEntity<?> response = clientBaseService.updateClient(testClient1.getId(), testUpdatedClientBase);
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody(), is("Client was successfully updated"));
+        assertThat(response.getBody(), is(testClient1));
         assertThat(testClient1.getId(), is(1));
-        assertThat(testClient1.getFirstName(), is("Jack"));
-        assertThat(testClient1.getMiddleName(), is("Delano"));
-        assertThat(testClient1.getLastName(), is("Johnson"));
-        assertThat(testClient1.getNameDataQuality(), is("Data Quality Complete"));
-        assertThat(testClient1.getDobMonth(), is("January"));
-        assertThat(testClient1.getDobDay(), is("1"));
-        assertThat(testClient1.getDobYear(), is("1999"));
-        assertThat(testClient1.getDobDataQuality(), is("Data Quality Complete"));
-        assertThat(testClient1.getFirstThreeSsn(), is(222));
-        assertThat(testClient1.getMiddleTwoSsn(), is(22));
-        assertThat(testClient1.getLastFourSsn(), is(2222));
-        assertThat(testClient1.getSsnDataQuality(), is("Data Quality Complete"));
+        assertThat(testClient1.getFirstName(), is(testUpdatedClientBase.getFirstName()));
+        assertThat(testClient1.getMiddleName(), is(testUpdatedClientBase.getMiddleName()));
+        assertThat(testClient1.getLastName(), is(testUpdatedClientBase.getLastName()));
+        assertThat(testClient1.getNameDataQuality(), is(testUpdatedClientBase.getDobDataQuality()));
+        assertThat(testClient1.getDobMonth(), is(testUpdatedClientBase.getDobMonth()));
+        assertThat(testClient1.getDobDay(), is(testUpdatedClientBase.getDobDay()));
+        assertThat(testClient1.getDobYear(), is(testUpdatedClientBase.getDobYear()));
+        assertThat(testClient1.getDobDataQuality(), is(testUpdatedClientBase.getDobDataQuality()));
+        assertThat(testClient1.getFirstThreeSsn(), is(testUpdatedClientBase.getFirstThreeSsn()));
+        assertThat(testClient1.getMiddleTwoSsn(), is(testUpdatedClientBase.getMiddleTwoSsn()));
+        assertThat(testClient1.getLastFourSsn(), is(testUpdatedClientBase.getLastFourSsn()));
+        assertThat(testClient1.getSsnDataQuality(), is(testUpdatedClientBase.getSsnDataQuality()));
         verify(clientBaseRepository).findById(testClient1.getId());
         verify(clientBaseRepository).save(testClient1);
         verifyNoMoreInteractions(clientBaseRepository);

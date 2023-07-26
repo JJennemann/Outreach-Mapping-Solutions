@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -140,7 +141,7 @@ public class ClientContactInfoServiceUnitTest {
         ResponseEntity<?> response = clientContactInfoService.updateClientContactInfo(testClient1.getId(), testUpdatedClientContactInfo);
         
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody(), is("Client contact information was successfully updated"));
+        assertThat(response.getBody(), is(testClientContactInfo1));
         assertThat(testClientContactInfo1.getId(), is(1));
         assertThat(testClientContactInfo1.getClient().getId(), is(testClient1.getId()));
         assertThat(testClientContactInfo1.getPhonePrimary(), is(testUpdatedClientContactInfo.getPhonePrimary()));

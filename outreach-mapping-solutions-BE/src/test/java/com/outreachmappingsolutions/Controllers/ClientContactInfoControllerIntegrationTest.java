@@ -22,8 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -65,38 +64,33 @@ public class ClientContactInfoControllerIntegrationTest {
         testClient = new ClientBase("Miles", null, "O'Brien", null, null, null, null, null, null, null, null, null);
         clientBaseRepository.save(testClient);
 
-        testClientContactInfo1 = new ClientContactInfo();
-        testClientContactInfo1.setPhonePrimary("111-111-1111");
-        testClientContactInfo1.setPhoneSecondary("111-111-1112");
-        testClientContactInfo1.setEmail("miles@test.com");
-        testClientContactInfo1.setIceName("Keiko O'Brien");
-        testClientContactInfo1.setIceRelationship("Ex-Wife");
-        testClientContactInfo1. setIcePhonePrimary("111-111-1113");
-        testClientContactInfo1.setIcePhoneSecondary("111-111-1114");
-        testClientContactInfo1.setIceEmail("keiko@test.com");
+        testClientContactInfo1 = createTestClientContactInfo("111-111-1111", "111-111-1112", "miles@test.com",
+                "Keiko O'Brien", "Ex-Wife", "111-111-1113", "111-111-1114", "keiko@test.com");
         testClientContactInfo1.setClient(testClient);
 
-        testClientContactInfo2 = new ClientContactInfo();
-        testClientContactInfo2.setPhonePrimary("222-222-2221");
-        testClientContactInfo2.setPhoneSecondary("222-222-2222");
-        testClientContactInfo2.setEmail("wesley@test.com");
-        testClientContactInfo2.setIceName("Beverly Crusher");
-        testClientContactInfo2.setIceRelationship("Mother");
-        testClientContactInfo2. setIcePhonePrimary("222-222-2223");
-        testClientContactInfo2.setIcePhoneSecondary("222-222-2224");
-        testClientContactInfo2.setIceEmail("dr.crusher@email.com");
+        testClientContactInfo2 = createTestClientContactInfo("222-222-2221", "222-222-2222", "wesley@test.com",
+                "Beverly Crusher", "Mother", "222-222-2223", "222-222-2224", "dr.crusher@email.com");
 
-        testClientContactInfo3 = new ClientContactInfo();
-        testClientContactInfo3.setPhonePrimary("111-111-1111");
-        testClientContactInfo3.setPhoneSecondary("222-222-2222");
-        testClientContactInfo3.setEmail("thomas@test.com");
-        testClientContactInfo3.setIceName("Will Riker");
-        testClientContactInfo3.setIceRelationship("Brother");
-        testClientContactInfo3.setIcePhonePrimary("333-333-3333");
-        testClientContactInfo3.setIcePhoneSecondary("444-444-4444");
-        testClientContactInfo3.setIceEmail("will@email.com");
-
+        testClientContactInfo3 = createTestClientContactInfo("111-111-1111", "222-222-2222", "thomas@test.com",
+                "Will Riker", "Brother", "333-333-3333", "444-444-4444", "will@email.com");
     }
+
+    private ClientContactInfo createTestClientContactInfo(String phonePrimary, String phoneSecondary, String email,
+                                                          String iceName, String iceRelationship,
+                                                          String icePhonePrimary, String icePhoneSecondary, String iceEmail) {
+        ClientContactInfo clientContactInfo = new ClientContactInfo();
+        clientContactInfo.setPhonePrimary(phonePrimary);
+        clientContactInfo.setPhoneSecondary(phoneSecondary);
+        clientContactInfo.setEmail(email);
+        clientContactInfo.setIceName(iceName);
+        clientContactInfo.setIceRelationship(iceRelationship);
+        clientContactInfo.setIcePhonePrimary(icePhonePrimary);
+        clientContactInfo.setIcePhoneSecondary(icePhoneSecondary);
+        clientContactInfo.setIceEmail(iceEmail);
+        return clientContactInfo;
+    }
+
+
 
     @Test
     public void testReturnAllClientContactInfoSuccess() throws Exception {
@@ -106,7 +100,7 @@ public class ClientContactInfoControllerIntegrationTest {
         List<ClientContactInfo> allTestClientContactInfo =
                 (List<ClientContactInfo>) clientContactInfoService.returnAllClientContactInfo().getBody();
 
-        assert allTestClientContactInfo != null;
+        assertThat(allTestClientContactInfo, notNullValue());
         mockMvc.perform(get("/clientContactInfo/returnAll"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -130,7 +124,7 @@ public class ClientContactInfoControllerIntegrationTest {
     public void testReturnAllClientContactInfoNotFound() throws Exception{
         String allTestClientContactInfo = (String) clientContactInfoService.returnAllClientContactInfo().getBody();
 
-        assert allTestClientContactInfo.equals("No client contact information matching your criteria was found");
+        assertThat(allTestClientContactInfo, is("No client contact information matching your criteria was found"));
         mockMvc.perform(get("/clientContactInfo/returnAll"))
                 .andDo(print())
                 .andExpect(status().isNotFound());
@@ -144,19 +138,20 @@ public class ClientContactInfoControllerIntegrationTest {
         ClientContactInfo returnedTestClientContactInfo =
                 (ClientContactInfo) clientContactInfoService.returnClientContactInfoByClientId(testClient.getId()).getBody();
 
-        assert returnedTestClientContactInfo !=null;
+        assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.phonePrimary", is("111-111-1111")))
-                .andExpect(jsonPath("$.phoneSecondary", is("111-111-1112")))
-                .andExpect(jsonPath("$.email", is("miles@test.com")))
-                .andExpect(jsonPath("$.iceName", is("Keiko O'Brien")))
-                .andExpect(jsonPath("$.iceRelationship", is("Ex-Wife")))
-                .andExpect(jsonPath("$.icePhonePrimary", is("111-111-1113")))
-                .andExpect(jsonPath("$.icePhoneSecondary", is("111-111-1114")))
-                .andExpect(jsonPath("$.iceEmail", is("keiko@test.com")));
+                .andExpect(jsonPath("$.id", is(testClientContactInfo1.getId())))
+                .andExpect(jsonPath("$.phonePrimary", is(testClientContactInfo1.getPhonePrimary())))
+                .andExpect(jsonPath("$.phoneSecondary", is(testClientContactInfo1.getPhoneSecondary())))
+                .andExpect(jsonPath("$.email", is(testClientContactInfo1.getEmail())))
+                .andExpect(jsonPath("$.iceName", is(testClientContactInfo1.getIceName())))
+                .andExpect(jsonPath("$.iceRelationship", is(testClientContactInfo1.getIceRelationship())))
+                .andExpect(jsonPath("$.icePhonePrimary", is(testClientContactInfo1.getIcePhonePrimary())))
+                .andExpect(jsonPath("$.icePhoneSecondary", is(testClientContactInfo1.getIcePhoneSecondary())))
+                .andExpect(jsonPath("$.iceEmail", is(testClientContactInfo1.getIceEmail())));
+        assertThat(testClientContactInfo1.getClient().getId(), is(testClient.getId()));
     }
 
 
@@ -164,7 +159,7 @@ public class ClientContactInfoControllerIntegrationTest {
     public void testReturnClientContactInfoByIdNotFound() throws Exception{
     String returnedTestClientContactInfo = (String) clientContactInfoService.returnClientContactInfoByClientId(testClient.getId()).getBody();
 
-        assert returnedTestClientContactInfo.equals("No client contact information matching your criteria was found");
+        assertThat(returnedTestClientContactInfo, is("No client contact information matching your criteria was found"));
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isNotFound());
@@ -175,36 +170,29 @@ public class ClientContactInfoControllerIntegrationTest {
         clientContactInfoRepository.save(testClientContactInfo1);
         clientContactInfoRepository.save(testClientContactInfo2);
         clientContactInfoRepository.save(testClientContactInfo3);
-        testUpdatedClientContactInfo = new ClientContactInfo();
-        testUpdatedClientContactInfo.setPhonePrimary("111-111-1115");
-        testUpdatedClientContactInfo.setPhoneSecondary("111-111-1116");
-        testUpdatedClientContactInfo.setEmail("miles@test.com");
-        testUpdatedClientContactInfo.setIceName("Julian Bashir");
-        testUpdatedClientContactInfo.setIceRelationship("Friend");
-        testUpdatedClientContactInfo. setIcePhonePrimary("111-111-1117");
-        testUpdatedClientContactInfo.setIcePhoneSecondary("111-111-1118");
-        testUpdatedClientContactInfo.setIceEmail("julian@test.com");
+        testUpdatedClientContactInfo = createTestClientContactInfo("111-111-1115", "111-111-1116", "miles@test.com",
+                "Julian Bashir", "Friend", "111-111-1117", "111-111-1118", "julian@test.com");
 
         ClientContactInfo returnedTestClientContactInfo =
                 (ClientContactInfo) clientContactInfoService.updateClientContactInfo(testClient.getId(),
                         testUpdatedClientContactInfo).getBody();
 
-        assert returnedTestClientContactInfo != null;
+        assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                     .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.phonePrimary", is("111-111-1115")))
-                .andExpect(jsonPath("$.phoneSecondary", is("111-111-1116")))
-                .andExpect(jsonPath("$.email", is("miles@test.com")))
-                .andExpect(jsonPath("$.iceName", is("Julian Bashir")))
-                .andExpect(jsonPath("$.iceRelationship", is("Friend")))
-                .andExpect(jsonPath("$.icePhonePrimary", is("111-111-1117")))
-                .andExpect(jsonPath("$.icePhoneSecondary", is("111-111-1118")))
-                .andExpect(jsonPath("$.iceEmail", is("julian@test.com")));
+                .andExpect(jsonPath("$.id", is(returnedTestClientContactInfo.getId())))
+                .andExpect(jsonPath("$.phonePrimary", is(testUpdatedClientContactInfo.getPhonePrimary())))
+                .andExpect(jsonPath("$.phoneSecondary", is(testUpdatedClientContactInfo.getPhoneSecondary())))
+                .andExpect(jsonPath("$.email", is(testUpdatedClientContactInfo.getEmail())))
+                .andExpect(jsonPath("$.iceName", is(testUpdatedClientContactInfo.getIceName())))
+                .andExpect(jsonPath("$.iceRelationship", is(testUpdatedClientContactInfo.getIceRelationship())))
+                .andExpect(jsonPath("$.icePhonePrimary", is(testUpdatedClientContactInfo.getIcePhonePrimary())))
+                .andExpect(jsonPath("$.icePhoneSecondary", is(testUpdatedClientContactInfo.getIcePhoneSecondary())))
+                .andExpect(jsonPath("$.iceEmail", is(testUpdatedClientContactInfo.getIceEmail())));
         assertThat (returnedTestClientContactInfo.getClient().getId(), is(testClient.getId()));
     }
 
@@ -214,7 +202,7 @@ public class ClientContactInfoControllerIntegrationTest {
         String returnedTestClientContactInfo = (String) clientContactInfoService.updateClientContactInfo(testClient.getId(),
                 testUpdatedClientContactInfo).getBody();
 
-        assert returnedTestClientContactInfo.equals("No client contact information matching your criteria was found");
+        assertThat(returnedTestClientContactInfo, is("No client contact information matching your criteria was found"));
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                         .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))
                         .contentType(MediaType.APPLICATION_JSON)
@@ -223,3 +211,20 @@ public class ClientContactInfoControllerIntegrationTest {
                 .andExpect(status().isNotFound());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

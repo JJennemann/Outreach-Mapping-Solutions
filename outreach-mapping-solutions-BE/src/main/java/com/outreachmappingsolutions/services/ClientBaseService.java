@@ -39,7 +39,7 @@ public class ClientBaseService {
 
             clientBaseRepository.save(newClient);
 
-            return new ResponseEntity<>(newClient.getId(), HttpStatus.CREATED);
+            return new ResponseEntity<>(newClient, HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>("Failed to create new client", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -94,7 +94,7 @@ public class ClientBaseService {
 
                 clientBaseRepository.save(clientToUpdate);
 
-                return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
+                return new ResponseEntity<>(clientToUpdate, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to update the client", HttpStatus.INTERNAL_SERVER_ERROR);
