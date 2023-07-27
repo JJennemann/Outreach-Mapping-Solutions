@@ -4,31 +4,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.outreachmappingsolutions.Config.DatabaseTestConfiguration;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.models.ClientContactInfo;
-import com.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.repositories.ClientBaseRepository;
 import com.outreachmappingsolutions.repositories.ClientContactInfoRepository;
 import com.outreachmappingsolutions.services.ClientContactInfoService;
-import com.outreachmappingsolutions.services.ClientDemographicsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 
@@ -70,6 +69,8 @@ public class ClientContactInfoControllerIntegrationTest {
                 "Beverly Crusher", "Mother", "222-222-2223", "222-222-2224", "dr.crusher@email.com");
         testClientContactInfo3 = createTestClientContactInfo("111-111-1111", "222-222-2222", "thomas@test.com",
                 "Will Riker", "Brother", "333-333-3333", "444-444-4444", "will@email.com");
+        testUpdatedClientContactInfo = createTestClientContactInfo("111-111-1115", "111-111-1116", "miles@test.com",
+                "Julian Bashir", "Friend", "111-111-1117", "111-111-1118", "julian@test.com");
 
         testClientContactInfo1.setClient(testClient);
     }
@@ -121,6 +122,10 @@ public class ClientContactInfoControllerIntegrationTest {
 
     @Test
     public void testReturnAllClientContactInfoNotFound() throws Exception{
+        ResponseEntity<?> response = clientContactInfoService.returnAllClientContactInfo();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
         mockMvc.perform(get("/clientContactInfo/returnAll"))
                 .andDo(print())
                 .andExpect(status().isNotFound())
@@ -132,25 +137,32 @@ public class ClientContactInfoControllerIntegrationTest {
         clientContactInfoRepository.save(testClientContactInfo1);
         clientContactInfoRepository.save(testClientContactInfo2);
         clientContactInfoRepository.save(testClientContactInfo3);
+        ClientContactInfo returnedTestClientContactInfo = (ClientContactInfo)
+                clientContactInfoService.returnClientContactInfoByClientId(testClient.getId()).getBody();
 
+        assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(testClientContactInfo1.getId())))
-                .andExpect(jsonPath("$.phonePrimary", is(testClientContactInfo1.getPhonePrimary())))
-                .andExpect(jsonPath("$.phoneSecondary", is(testClientContactInfo1.getPhoneSecondary())))
-                .andExpect(jsonPath("$.email", is(testClientContactInfo1.getEmail())))
-                .andExpect(jsonPath("$.iceName", is(testClientContactInfo1.getIceName())))
-                .andExpect(jsonPath("$.iceRelationship", is(testClientContactInfo1.getIceRelationship())))
-                .andExpect(jsonPath("$.icePhonePrimary", is(testClientContactInfo1.getIcePhonePrimary())))
-                .andExpect(jsonPath("$.icePhoneSecondary", is(testClientContactInfo1.getIcePhoneSecondary())))
-                .andExpect(jsonPath("$.iceEmail", is(testClientContactInfo1.getIceEmail())));
-        assertThat(testClientContactInfo1.getClient().getId(), is(testClient.getId()));
+                .andExpect(jsonPath("$.id", is(returnedTestClientContactInfo.getId())))
+                .andExpect(jsonPath("$.phonePrimary", is(returnedTestClientContactInfo.getPhonePrimary())))
+                .andExpect(jsonPath("$.phoneSecondary", is(returnedTestClientContactInfo.getPhoneSecondary())))
+                .andExpect(jsonPath("$.email", is(returnedTestClientContactInfo.getEmail())))
+                .andExpect(jsonPath("$.iceName", is(returnedTestClientContactInfo.getIceName())))
+                .andExpect(jsonPath("$.iceRelationship", is(returnedTestClientContactInfo.getIceRelationship())))
+                .andExpect(jsonPath("$.icePhonePrimary", is(returnedTestClientContactInfo.getIcePhonePrimary())))
+                .andExpect(jsonPath("$.icePhoneSecondary", is(returnedTestClientContactInfo.getIcePhoneSecondary())))
+                .andExpect(jsonPath("$.iceEmail", is(returnedTestClientContactInfo.getIceEmail())));
+        assertThat(returnedTestClientContactInfo.getClient().getId(), is(testClient.getId()));
     }
 
 
     @Test
     public void testReturnClientContactInfoByIdNotFound() throws Exception{
+        ResponseEntity<?> response = clientContactInfoService.returnClientContactInfoByClientId(1);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
                 .andExpect(status().isNotFound())
@@ -160,37 +172,36 @@ public class ClientContactInfoControllerIntegrationTest {
     @Test
     public void testUpdateClientContactInfoSuccess() throws Exception{
         clientContactInfoRepository.save(testClientContactInfo1);
-        clientContactInfoRepository.save(testClientContactInfo2);
-        clientContactInfoRepository.save(testClientContactInfo3);
-        testUpdatedClientContactInfo = createTestClientContactInfo("111-111-1115", "111-111-1116", "miles@test.com",
-                "Julian Bashir", "Friend", "111-111-1117", "111-111-1118", "julian@test.com");
 
         ClientContactInfo returnedTestClientContactInfo =
                 (ClientContactInfo) clientContactInfoService.updateClientContactInfo(testClient.getId(),
                         testUpdatedClientContactInfo).getBody();
 
+        assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                     .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(testClientContactInfo1.getId())))
-                .andExpect(jsonPath("$.phonePrimary", is(testUpdatedClientContactInfo.getPhonePrimary())))
-                .andExpect(jsonPath("$.phoneSecondary", is(testUpdatedClientContactInfo.getPhoneSecondary())))
-                .andExpect(jsonPath("$.email", is(testUpdatedClientContactInfo.getEmail())))
-                .andExpect(jsonPath("$.iceName", is(testUpdatedClientContactInfo.getIceName())))
-                .andExpect(jsonPath("$.iceRelationship", is(testUpdatedClientContactInfo.getIceRelationship())))
-                .andExpect(jsonPath("$.icePhonePrimary", is(testUpdatedClientContactInfo.getIcePhonePrimary())))
-                .andExpect(jsonPath("$.icePhoneSecondary", is(testUpdatedClientContactInfo.getIcePhoneSecondary())))
-                .andExpect(jsonPath("$.iceEmail", is(testUpdatedClientContactInfo.getIceEmail())));
+                .andExpect(jsonPath("$.id", is(returnedTestClientContactInfo.getId())))
+                .andExpect(jsonPath("$.phonePrimary", is(returnedTestClientContactInfo.getPhonePrimary())))
+                .andExpect(jsonPath("$.phoneSecondary", is(returnedTestClientContactInfo.getPhoneSecondary())))
+                .andExpect(jsonPath("$.email", is(returnedTestClientContactInfo.getEmail())))
+                .andExpect(jsonPath("$.iceName", is(returnedTestClientContactInfo.getIceName())))
+                .andExpect(jsonPath("$.iceRelationship", is(returnedTestClientContactInfo.getIceRelationship())))
+                .andExpect(jsonPath("$.icePhonePrimary", is(returnedTestClientContactInfo.getIcePhonePrimary())))
+                .andExpect(jsonPath("$.icePhoneSecondary", is(returnedTestClientContactInfo.getIcePhoneSecondary())))
+                .andExpect(jsonPath("$.iceEmail", is(returnedTestClientContactInfo.getIceEmail())));
         assertThat (returnedTestClientContactInfo.getClient().getId(), is(testClient.getId()));
     }
 
     @Test
     public void testUpdateClientContactInfoNotFound() throws Exception{
-        testUpdatedClientContactInfo = new ClientContactInfo();
+        ResponseEntity<?> response = clientContactInfoService.updateClientContactInfo(1, testUpdatedClientContactInfo);
 
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                         .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))
                         .contentType(MediaType.APPLICATION_JSON)
