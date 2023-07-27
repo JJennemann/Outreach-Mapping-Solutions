@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -100,6 +101,16 @@ public class ClientBaseServiceIntegrationTest {
     }
 
     @Test
+    public void testReturnAllClientsNotFound(){
+        ResponseEntity<?> response = clientBaseService.returnAllClients();
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No clients matching your criteria were found"));
+
+        List<ClientBase> allTestClients = (List<ClientBase>) clientBaseRepository.findAll();
+        assertThat(allTestClients, is(empty()));
+    }
+
+    @Test
     public void testReturnClientByIdSuccess(){
         clientBaseRepository.save(testClient1);
 
@@ -111,6 +122,16 @@ public class ClientBaseServiceIntegrationTest {
 
         assertThat(responseBody, notNullValue());
         assertThat(returnedTestClient.getId(), is(responseBody.getId()));
+    }
+
+    @Test
+    public void testReturnClientByIdNotFound(){
+        ResponseEntity<?> response = clientBaseService.returnClientById(1);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No clients matching your criteria were found"));
+
+        Optional<ClientBase> returnedTestClient = clientBaseRepository.findById(1);
+        assertThat(returnedTestClient, is(Optional.empty()));
     }
 
     @Test
@@ -144,6 +165,16 @@ public class ClientBaseServiceIntegrationTest {
     }
 
     @Test
+    public void testUpdateClientNotFound(){
+        ResponseEntity<?> response = clientBaseService.updateClient(1, testUpdatedClient);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No clients matching your criteria were found"));
+
+        Optional<ClientBase> returnedTestClient = clientBaseRepository.findById(1);
+        assertThat(returnedTestClient, is(Optional.empty()));
+    }
+
+    @Test
     public void testDeleteClientSuccess(){
         clientBaseRepository.save(testClient1);
         clientBaseRepository.save(testClient2);
@@ -158,5 +189,15 @@ public class ClientBaseServiceIntegrationTest {
         assertThat(allTestClients, hasSize(2));
         assertThat(allTestClients.get(0).getId(), is(testClient2.getId()));
         assertThat(allTestClients.get(1).getId(), is(testClient3.getId()));
+    }
+
+    @Test
+    public void testDeleteClientNotFound(){
+        ResponseEntity<?> response = clientBaseService.deleteClient(1);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No clients matching your criteria were found"));
+
+        Optional<ClientBase> returnedTestClient = clientBaseRepository.findById(1);
+        assertThat(returnedTestClient, is(Optional.empty()));
     }
 }

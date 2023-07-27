@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -81,12 +82,22 @@ public class ClientContactInfoServiceIntegrationTest {
         List<ClientContactInfo> responseBody = (List<ClientContactInfo>) response.getBody();
         assertThat(responseBody, hasSize(3));
 
-        List<ClientContactInfo> allClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
-        assertThat(allClientContactInfo, hasSize(3));
+        List<ClientContactInfo> allTestClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
+        assertThat(allTestClientContactInfo, hasSize(3));
 
-        assertThat(allClientContactInfo.get(0).getId(), is(responseBody.get(0).getId()));
-        assertThat(allClientContactInfo.get(1).getId(), is(responseBody.get(1).getId()));
-        assertThat(allClientContactInfo.get(2).getId(), is(responseBody.get(2).getId()));
+        assertThat(allTestClientContactInfo.get(0).getId(), is(responseBody.get(0).getId()));
+        assertThat(allTestClientContactInfo.get(1).getId(), is(responseBody.get(1).getId()));
+        assertThat(allTestClientContactInfo.get(2).getId(), is(responseBody.get(2).getId()));
+    }
+
+    @Test
+    public void testReturnAllClientContactInfoNotFound(){
+        ResponseEntity<?> response = clientContactInfoService.returnAllClientContactInfo();
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
+
+        List<ClientContactInfo> allTestClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
+        assertThat(allTestClientContactInfo, is(empty()));
     }
 
     @Test
@@ -101,6 +112,16 @@ public class ClientContactInfoServiceIntegrationTest {
 
         assertThat(responseBody, notNullValue());
         assertThat(returnedTestClientContactInfo.getId(), is(responseBody.getId()));
+    }
+
+    @Test
+    public void testReturnClientContactInfoByClientIdNotFound(){
+        ResponseEntity<?> response = clientContactInfoService.returnClientContactInfoByClientId(1);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
+
+        Optional<ClientContactInfo> returnedTestClientContactInfo = clientContactInfoRepository.findByClientId(1);
+        assertThat(returnedTestClientContactInfo, is(Optional.empty()));
     }
 
     @Test
@@ -123,6 +144,16 @@ public class ClientContactInfoServiceIntegrationTest {
         assertThat(returnedTestClientContactInfo.getIcePhonePrimary(), is(responseBody.getIcePhonePrimary()));
         assertThat(returnedTestClientContactInfo.getIcePhoneSecondary(), is(responseBody.getIcePhoneSecondary()));
         assertThat(returnedTestClientContactInfo.getIceEmail(), is(responseBody.getIceEmail()));
+    }
+
+    @Test
+    public void testUpdateClientContactInfoNotFound(){
+        ResponseEntity<?> response = clientContactInfoService.updateClientContactInfo(1, testUpdatedClientContactInfo);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client contact information matching your criteria was found"));
+
+        Optional<ClientContactInfo> returnedTestClientContactInfo = clientContactInfoRepository.findByClientId(1);
+        assertThat(returnedTestClientContactInfo, is(Optional.empty()));
     }
 
 }

@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">6</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.166s</div>
+<div class="counter">0.190s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,33 @@
 </tr>
 </thead>
 <tr>
+<td class="success">testReturnAllClientDemographicsNotFound()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnAllClientDemographicsSuccess()</td>
+<td class="success">0.153s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnClientDemographicsByClientIdNotFound()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnClientDemographicsByClientIdSuccess()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">testUpdateClientContactInfo()</td>
-<td class="success">0.166s</td>
+<td class="success">0.021s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testUpdateClientDemographicsNotFound()</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,8 +112,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>16:00:23.941 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]: ClientDemographicsServiceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:00:23.994 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.outreachmappingsolutions.OutreachMappingSolutionsApplication for test class com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest
+<pre>17:08:44.345 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]: ClientDemographicsServiceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:08:44.398 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.outreachmappingsolutions.OutreachMappingSolutionsApplication for test class com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -98,37 +123,37 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.1)
 
-2023-07-27T16:00:24.163-05:00  INFO 65880 --- [    Test worker] ClientDemographicsServiceIntegrationTest : Starting ClientDemographicsServiceIntegrationTest using Java 17.0.7 with PID 65880 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
-2023-07-27T16:00:24.164-05:00  INFO 65880 --- [    Test worker] ClientDemographicsServiceIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-07-27T16:00:24.459-05:00  INFO 65880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2023-07-27T16:00:24.459-05:00  INFO 65880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2023-07-27T16:00:24.474-05:00  INFO 65880 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2023-07-27T16:00:24.475-05:00  INFO 65880 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2023-07-27T16:00:24.475-05:00  INFO 65880 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2023-07-27T16:00:24.475-05:00  INFO 65880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 JDBC repository interfaces.
-2023-07-27T16:00:24.481-05:00  INFO 65880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2023-07-27T16:00:24.482-05:00  INFO 65880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-07-27T16:00:24.496-05:00  INFO 65880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 3 JPA repository interfaces.
-2023-07-27T16:00:24.739-05:00  INFO 65880 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2023-07-27T16:00:24.745-05:00  INFO 65880 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-07-27T16:00:24.745-05:00  INFO 65880 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
-2023-07-27T16:00:24.794-05:00  INFO 65880 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-07-27T16:00:24.795-05:00  INFO 65880 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 621 ms
-2023-07-27T16:00:24.810-05:00  INFO 65880 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-07-27T16:00:24.908-05:00  INFO 65880 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2023-07-27T16:00:24.909-05:00  INFO 65880 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-07-27T16:00:24.915-05:00  INFO 65880 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
-2023-07-27T16:00:24.984-05:00  INFO 65880 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-07-27T16:00:25.006-05:00  INFO 65880 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
-2023-07-27T16:00:25.007-05:00  INFO 65880 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2023-07-27T16:00:25.069-05:00  INFO 65880 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2023-07-27T16:00:25.135-05:00  INFO 65880 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-07-27T16:00:25.241-05:00  INFO 65880 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2023-07-27T16:00:25.552-05:00  INFO 65880 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-07-27T16:00:25.575-05:00  INFO 65880 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-07-27T16:00:25.748-05:00  WARN 65880 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-27T16:00:25.951-05:00  INFO 65880 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54916 (http) with context path ''
-2023-07-27T16:00:25.956-05:00  INFO 65880 --- [    Test worker] ClientDemographicsServiceIntegrationTest : Started ClientDemographicsServiceIntegrationTest in 1.902 seconds (process running for 2.391)
+2023-07-27T17:08:44.568-05:00  INFO 66591 --- [    Test worker] ClientDemographicsServiceIntegrationTest : Starting ClientDemographicsServiceIntegrationTest using Java 17.0.7 with PID 66591 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-27T17:08:44.569-05:00  INFO 66591 --- [    Test worker] ClientDemographicsServiceIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-27T17:08:44.866-05:00  INFO 66591 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-27T17:08:44.867-05:00  INFO 66591 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-27T17:08:44.880-05:00  INFO 66591 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-27T17:08:44.881-05:00  INFO 66591 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-27T17:08:44.881-05:00  INFO 66591 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-27T17:08:44.881-05:00  INFO 66591 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JDBC repository interfaces.
+2023-07-27T17:08:44.887-05:00  INFO 66591 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-27T17:08:44.887-05:00  INFO 66591 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-27T17:08:44.901-05:00  INFO 66591 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 3 JPA repository interfaces.
+2023-07-27T17:08:45.120-05:00  INFO 66591 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-27T17:08:45.125-05:00  INFO 66591 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-27T17:08:45.125-05:00  INFO 66591 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-27T17:08:45.173-05:00  INFO 66591 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-27T17:08:45.174-05:00  INFO 66591 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 596 ms
+2023-07-27T17:08:45.189-05:00  INFO 66591 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-27T17:08:45.283-05:00  INFO 66591 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2023-07-27T17:08:45.284-05:00  INFO 66591 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-27T17:08:45.290-05:00  INFO 66591 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-27T17:08:45.359-05:00  INFO 66591 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-27T17:08:45.382-05:00  INFO 66591 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-27T17:08:45.384-05:00  INFO 66591 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-27T17:08:45.445-05:00  INFO 66591 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-27T17:08:45.505-05:00  INFO 66591 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-27T17:08:45.603-05:00  INFO 66591 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-27T17:08:45.901-05:00  INFO 66591 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-27T17:08:45.923-05:00  INFO 66591 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-27T17:08:46.080-05:00  WARN 66591 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-27T17:08:46.276-05:00  INFO 66591 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 55398 (http) with context path ''
+2023-07-27T17:08:46.281-05:00  INFO 66591 --- [    Test worker] ClientDemographicsServiceIntegrationTest : Started ClientDemographicsServiceIntegrationTest in 1.824 seconds (process running for 2.311)
 </pre>
 </span>
 </div>
@@ -140,7 +165,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.1.1</a> at Jul 27, 2023, 4:00:26 PM</p>
+<a href="http://www.gradle.org">Gradle 8.1.1</a> at Jul 27, 2023, 5:08:46 PM</p>
 </div>
 </div>
 </body>

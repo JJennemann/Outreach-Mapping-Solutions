@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -87,6 +88,16 @@ public class ClientDemographicsServiceIntegrationTest {
     }
 
     @Test
+    public void testReturnAllClientDemographicsNotFound(){
+        ResponseEntity<?> response = clientDemographicsService.returnAllClientDemographics();
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client demographics matching your criteria were found"));
+
+        List<ClientDemographics> allTestClientDemographics = (List<ClientDemographics>) clientDemographicsRepository.findAll();
+        assertThat(allTestClientDemographics, is(empty()));
+    }
+
+    @Test
     public void testReturnClientDemographicsByClientIdSuccess(){
         clientDemographicsRepository.save(testClientDemographics1);
 
@@ -98,6 +109,16 @@ public class ClientDemographicsServiceIntegrationTest {
 
         assertThat(responseBody, notNullValue());
         assertThat(returnedTestClientDemographics.getId(), is(responseBody.getId()));
+    }
+
+    @Test
+    public void testReturnClientDemographicsByClientIdNotFound(){
+        ResponseEntity<?> response = clientDemographicsService.returnClientDemographicsByClientId(1);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client demographics matching your criteria were found"));
+
+        Optional<ClientDemographics> returnedTestClientDemographics = clientDemographicsRepository.findByClientId(1);
+        assertThat(returnedTestClientDemographics, is(Optional.empty()));
     }
 
     @Test
@@ -118,4 +139,15 @@ public class ClientDemographicsServiceIntegrationTest {
         assertThat(returnedTestClientDemographics.getEthnicity(), is(responseBody.getEthnicity()));
         assertThat(returnedTestClientDemographics.getVeteranStatus(), is(responseBody.getVeteranStatus()));
     }
+
+    @Test
+    public void testUpdateClientDemographicsNotFound(){
+        ResponseEntity<?> response = clientDemographicsService.updateClientDemographics(1, testUpdatedClientDemographics);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No client demographics matching your criteria were found"));
+
+        Optional<ClientDemographics> returnedTestClientDemographics = clientDemographicsRepository.findByClientId(1);
+        assertThat(returnedTestClientDemographics, is(Optional.empty()));
+    }
+
 }
