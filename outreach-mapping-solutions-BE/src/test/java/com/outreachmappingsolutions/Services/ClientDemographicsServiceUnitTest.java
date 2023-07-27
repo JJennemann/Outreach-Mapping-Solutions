@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -136,7 +137,7 @@ public class ClientDemographicsServiceUnitTest {
         ResponseEntity<?> response = clientDemographicsService.updateClientDemographics(testClient1.getId(), testUpdatedClientDemographics);
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody(), is("Client demographics were successfully updated"));
+        assertThat(response.getBody(), is(testClientDemographics1));
         assertThat(testClientDemographics1.getId(), is(1));
         assertThat(testClientDemographics1.getClient().getId(), is(testClient1.getId()));
         assertThat(testClientDemographics1.getGender(), is(testUpdatedClientDemographics.getGender()));

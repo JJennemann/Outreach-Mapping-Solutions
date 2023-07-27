@@ -17,7 +17,6 @@ public class ClientBaseService {
 
     private static final String NO_CLIENTS_FOUND = "No clients matching your criteria were found";
     private static final String CLIENT_DELETED_SUCCESS = "Client was successfully deleted";
-    private static final String CLIENT_UPDATED_SUCCESS = "Client was successfully updated";
 
     @Autowired
     private ClientBaseRepository clientBaseRepository;
@@ -39,7 +38,7 @@ public class ClientBaseService {
 
             clientBaseRepository.save(newClient);
 
-            return new ResponseEntity<>(newClient.getId(), HttpStatus.CREATED);
+            return new ResponseEntity<>(newClient, HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>("Failed to create new client", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -94,7 +93,7 @@ public class ClientBaseService {
 
                 clientBaseRepository.save(clientToUpdate);
 
-                return new ResponseEntity<>(CLIENT_UPDATED_SUCCESS, HttpStatus.OK);
+                return new ResponseEntity<>(clientToUpdate, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to update the client", HttpStatus.INTERNAL_SERVER_ERROR);
