@@ -140,8 +140,8 @@ public class ClientBaseControllerIntegrationTest {
     public void testReturnAllClientsNotFound() throws Exception {
         ResponseEntity<?> response = clientBaseService.returnAllClients();
 
-        assertThat(response.getBody(), is("No clients matching your criteria were found"));
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No clients matching your criteria were found"));
         mockMvc.perform(get("/clientBase/returnAll"))
                 .andDo(print())
                 .andExpect(status().isNotFound())
@@ -204,7 +204,7 @@ public class ClientBaseControllerIntegrationTest {
                     .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(testClient1.getId())))
+                .andExpect(jsonPath("$.id", is(updatedTestClient.getId())))
                 .andExpect(jsonPath("$.firstName", is(updatedTestClient.getFirstName())))
                 .andExpect(jsonPath("$.middleName", is(updatedTestClient.getMiddleName())))
                 .andExpect(jsonPath("$.lastName", is(updatedTestClient.getLastName())))
