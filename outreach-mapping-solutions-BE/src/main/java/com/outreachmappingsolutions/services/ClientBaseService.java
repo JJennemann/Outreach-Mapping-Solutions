@@ -17,7 +17,6 @@ public class ClientBaseService {
 
     private static final String NO_CLIENTS_FOUND = "No clients matching your criteria were found";
     private static final String CLIENT_DELETED_SUCCESS = "Client was successfully deleted";
-    private static final String CLIENT_UPDATED_SUCCESS = "Client was successfully updated";
 
     @Autowired
     private ClientBaseRepository clientBaseRepository;

@@ -15,11 +15,6 @@ import java.util.Optional;
 public class ClientDemographicsService {
 
     private static final String NO_DEMOS_FOUND = "No client demographics matching your criteria were found";
-    private static final String NO_CLIENTS_FOUND = "No clients matching your criteria were found";
-    private static final String CLIENT_DEMO_ADDED_SUCCESS = "Client demographics were successfully added to the database";
-    private static final String CLIENT_DEMO_DELETED_SUCCESS = "Client demographics were successfully deleted";
-    private static final String CLIENT_UPDATED_SUCCESS = "Client demographics were successfully updated";
-
 
     @Autowired
     private ClientDemographicsRepository clientDemographicsRepository;
