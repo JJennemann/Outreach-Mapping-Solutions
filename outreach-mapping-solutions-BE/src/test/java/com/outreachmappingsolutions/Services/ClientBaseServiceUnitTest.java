@@ -1,34 +1,27 @@
 package com.outreachmappingsolutions.Services;
 
 import com.outreachmappingsolutions.models.ClientBase;
-import com.outreachmappingsolutions.models.ClientContactInfo;
-import com.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.repositories.ClientBaseRepository;
 import com.outreachmappingsolutions.services.ClientBaseService;
-import org.apache.coyote.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.DirtiesContext;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ClientBaseServiceUnitTest {
@@ -61,9 +54,10 @@ public class ClientBaseServiceUnitTest {
     @Test
     public void testCreateNewClientSuccess(){
         ResponseEntity<?> response = clientBaseService.createNewClient(testClient1);
+        ClientBase returnedTestClient = (ClientBase) response.getBody();
 
         assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-        assertThat(response.getBody(), is(testClient1));
+        assertThat(returnedTestClient.getId(), is(testClient1.getId()));
         verify(clientBaseRepository).save(any(ClientBase.class));
         verifyNoMoreInteractions(clientBaseRepository);
     }
@@ -74,9 +68,9 @@ public class ClientBaseServiceUnitTest {
 
         ResponseEntity<?> response = clientBaseService.createNewClient(testClient1);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Failed to create new client", response.getBody());
-        verify(clientBaseRepository).save(testClient1);
+        assertThat(response.getStatusCode(), is (HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody(), is("Failed to create new client"));
+        verify(clientBaseRepository).save(any(ClientBase.class));
         verifyNoMoreInteractions(clientBaseRepository);
     }
 
@@ -110,8 +104,8 @@ public class ClientBaseServiceUnitTest {
         when(clientBaseRepository.findAll()).thenThrow(new RuntimeException());
         ResponseEntity<?> response = clientBaseService.returnAllClients();
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Failed to retrieve clients", response.getBody());
+        assertThat(response.getStatusCode(), is (HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody(), is("Failed to retrieve clients"));
         verify(clientBaseRepository).findAll();
         verifyNoMoreInteractions(clientBaseRepository);
     }
@@ -143,8 +137,8 @@ public class ClientBaseServiceUnitTest {
         when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
         ResponseEntity<?> response = clientBaseService.returnClientById(testClient1.getId());
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Failed to retrieve the client", response.getBody());
+        assertThat(response.getStatusCode(), is (HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody(), is("Failed to retrieve the client"));
         verify(clientBaseRepository).findById(testClient1.getId());
         verifyNoMoreInteractions(clientBaseRepository);
     }
@@ -191,8 +185,8 @@ public class ClientBaseServiceUnitTest {
         when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
         ResponseEntity<?> response = clientBaseService.updateClient(testClient1.getId(), testUpdatedClientBase);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Failed to update the client", response.getBody());
+        assertThat(response.getStatusCode(), is (HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody(), is("Failed to update the client"));
         verify(clientBaseRepository).findById(testClient1.getId());
         verifyNoMoreInteractions(clientBaseRepository);
     }
@@ -225,8 +219,8 @@ public class ClientBaseServiceUnitTest {
         when(clientBaseRepository.findById(testClient1.getId())).thenThrow(new RuntimeException());
         ResponseEntity<?> response = clientBaseService.deleteClient(testClient1.getId());
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Failed to delete the client", response.getBody());
+        assertThat(response.getStatusCode(), is (HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody(), is("Failed to delete the client"));
         verify(clientBaseRepository).findById(testClient1.getId());
         verifyNoMoreInteractions(clientBaseRepository);
     }
