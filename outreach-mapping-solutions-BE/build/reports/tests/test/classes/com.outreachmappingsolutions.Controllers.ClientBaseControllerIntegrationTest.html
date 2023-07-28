@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ClientBaseControllerIntegrationTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ClientBaseControllerIntegrationTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.outreachmappingsolutions.Controllers.html">com.outreachmappingsolutions.Controllers</a> &gt; ClientBaseControllerIntegrationTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">9</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.449s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testCreateNewClientTestSuccess()</td>
+<td class="success">0.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testDeleteClientNotFound()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testDeleteClientSuccess()</td>
+<td class="success">0.025s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnAllClientsNotFound()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnAllClientsSuccess()</td>
+<td class="success">0.089s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnClientByIdNotFound()</td>
+<td class="success">0.164s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testReturnClientByIdSuccess()</td>
+<td class="success">0.058s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testUpdateClientNotFound()</td>
+<td class="success">0.040s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testUpdateClientSuccess()</td>
+<td class="success">0.026s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>09:40:39.181 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.outreachmappingsolutions.Controllers.ClientBaseControllerIntegrationTest]: ClientBaseControllerIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+09:40:39.240 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.outreachmappingsolutions.OutreachMappingSolutionsApplication for test class com.outreachmappingsolutions.Controllers.ClientBaseControllerIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:39.410-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:39.411-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:39.680-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:39.681-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:39.695-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:39.696-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:39.696-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:39.696-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:39.702-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:39.702-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:39.715-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:39.945-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:39.952-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:39.953-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:40.001-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:40.002-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 583 ms
+2023-07-28T09:40:40.018-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-28T09:40:40.111-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:40.111-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-28T09:40:40.117-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:40.186-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:40.209-05:00  INFO 69852 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-28T09:40:40.210-05:00  INFO 69852 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-28T09:40:40.268-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:40.321-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:40.424-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:40.725-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:40.747-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:40.905-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:41.078-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:41.078-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:41.079-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:41.103-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54766 (http) with context path ''
+2023-07-28T09:40:41.109-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 1.811 seconds (process running for 2.493)
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /clientBase/return/1
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#returnClientById(Integer)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Content-Type:&quot;text/plain;charset=UTF-8&quot;, Content-Length:&quot;44&quot;]
+     Content type = text/plain;charset=UTF-8
+             Body = No clients matching your criteria were found
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:41.268-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:41.273-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:41.276-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-28T09:40:41.276-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:41.289-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:41.289-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:41.362-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:41.362-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:41.365-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.366-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.366-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.366-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:41.367-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:41.367-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:41.371-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:41.403-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:41.403-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:41.403-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:41.411-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:41.411-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 121 ms
+2023-07-28T09:40:41.418-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-07-28T09:40:41.419-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:41.419-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-07-28T09:40:41.419-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:41.432-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:41.435-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:41.435-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:41.442-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:41.472-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:41.487-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:41.512-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:41.556-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:41.556-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:41.557-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:41.564-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54772 (http) with context path ''
+2023-07-28T09:40:41.566-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.286 seconds (process running for 2.95)
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /clientBase/return/1
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#returnClientById(Integer)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:&quot;application/json&quot;]
+     Content type = application/json
+             Body = {&quot;id&quot;:1,&quot;firstName&quot;:&quot;Chief&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:null,&quot;nameDataQuality&quot;:&quot;Partially Complete&quot;,&quot;dobMonth&quot;:null,&quot;dobDay&quot;:null,&quot;dobYear&quot;:null,&quot;dobDataQuality&quot;:&quot;Client Refused&quot;,&quot;firstThreeSsn&quot;:null,&quot;middleTwoSsn&quot;:null,&quot;lastFourSsn&quot;:null,&quot;ssnDataQuality&quot;:&quot;Client Refused&quot;,&quot;clientDemographics&quot;:{&quot;id&quot;:1,&quot;gender&quot;:null,&quot;racePrimary&quot;:null,&quot;raceSecondary&quot;:null,&quot;ethnicity&quot;:null,&quot;veteranStatus&quot;:null},&quot;clientContactInfo&quot;:{&quot;id&quot;:1,&quot;phonePrimary&quot;:null,&quot;phoneSecondary&quot;:null,&quot;email&quot;:null,&quot;iceName&quot;:null,&quot;iceRelationship&quot;:null,&quot;icePhonePrimary&quot;:null,&quot;icePhoneSecondary&quot;:null,&quot;iceEmail&quot;:null}}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:41.622-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:41.624-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:41.625-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-07-28T09:40:41.626-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:41.636-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:41.636-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:41.690-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:41.691-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:41.692-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.693-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.693-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.693-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:41.694-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:41.694-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:41.698-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:41.724-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:41.725-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:41.725-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:41.733-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:41.733-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 96 ms
+2023-07-28T09:40:41.738-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-07-28T09:40:41.739-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn19: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:41.739-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-07-28T09:40:41.739-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:41.749-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:41.752-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:41.752-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:41.758-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:41.783-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:41.788-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:41.811-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:41.846-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:41.846-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:41.846-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:41.850-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54774 (http) with context path ''
+2023-07-28T09:40:41.852-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.223 seconds (process running for 3.235)
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /clientBase/update/1
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json;charset=UTF-8&quot;, Accept:&quot;application/json&quot;, Content-Length:&quot;354&quot;]
+             Body = {&quot;id&quot;:null,&quot;firstName&quot;:&quot;Miles&quot;,&quot;middleName&quot;:&quot;Edward&quot;,&quot;lastName&quot;:&quot;O'Brien&quot;,&quot;nameDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;dobMonth&quot;:&quot;June&quot;,&quot;dobDay&quot;:&quot;9&quot;,&quot;dobYear&quot;:&quot;1959&quot;,&quot;dobDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;firstThreeSsn&quot;:111,&quot;middleTwoSsn&quot;:11,&quot;lastFourSsn&quot;:1111,&quot;ssnDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;clientDemographics&quot;:null,&quot;clientContactInfo&quot;:null}
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#updateClient(Integer, ClientBase)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;44&quot;]
+     Content type = application/json
+             Body = No clients matching your criteria were found
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:41.879-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:41.882-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:41.883-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-07-28T09:40:41.893-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:41.903-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:41.903-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:41.951-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:41.952-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:41.955-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.955-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.955-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:41.955-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:41.956-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:41.956-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:41.960-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:41.983-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:41.983-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:41.983-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:41.991-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:41.991-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 88 ms
+2023-07-28T09:40:41.998-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2023-07-28T09:40:41.998-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection conn24: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:41.999-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2023-07-28T09:40:41.999-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:42.007-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:42.010-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.010-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:42.016-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.036-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:42.041-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.059-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:42.093-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:42.093-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:42.093-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:42.097-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54776 (http) with context path ''
+2023-07-28T09:40:42.099-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.204 seconds (process running for 3.482)
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /clientBase/returnAll
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#returnAllClients()
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:&quot;application/json&quot;]
+     Content type = application/json
+             Body = [{&quot;id&quot;:1,&quot;firstName&quot;:&quot;Chief&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:null,&quot;nameDataQuality&quot;:&quot;Partially Complete&quot;,&quot;dobMonth&quot;:null,&quot;dobDay&quot;:null,&quot;dobYear&quot;:null,&quot;dobDataQuality&quot;:&quot;Client Refused&quot;,&quot;firstThreeSsn&quot;:null,&quot;middleTwoSsn&quot;:null,&quot;lastFourSsn&quot;:null,&quot;ssnDataQuality&quot;:&quot;Client Refused&quot;,&quot;clientDemographics&quot;:{&quot;id&quot;:1,&quot;gender&quot;:null,&quot;racePrimary&quot;:null,&quot;raceSecondary&quot;:null,&quot;ethnicity&quot;:null,&quot;veteranStatus&quot;:null},&quot;clientContactInfo&quot;:{&quot;id&quot;:1,&quot;phonePrimary&quot;:null,&quot;phoneSecondary&quot;:null,&quot;email&quot;:null,&quot;iceName&quot;:null,&quot;iceRelationship&quot;:null,&quot;icePhonePrimary&quot;:null,&quot;icePhoneSecondary&quot;:null,&quot;iceEmail&quot;:null}},{&quot;id&quot;:2,&quot;firstName&quot;:&quot;Wesley&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:&quot;Crusher&quot;,&quot;nameDataQuality&quot;:&quot;Partially Complete&quot;,&quot;dobMonth&quot;:null,&quot;dobDay&quot;:null,&quot;dobYear&quot;:null,&quot;dobDataQuality&quot;:&quot;Client Refused&quot;,&quot;firstThreeSsn&quot;:null,&quot;middleTwoSsn&quot;:null,&quot;lastFourSsn&quot;:null,&quot;ssnDataQuality&quot;:&quot;Client Refused&quot;,&quot;clientDemographics&quot;:{&quot;id&quot;:2,&quot;gender&quot;:null,&quot;racePrimary&quot;:null,&quot;raceSecondary&quot;:null,&quot;ethnicity&quot;:null,&quot;veteranStatus&quot;:null},&quot;clientContactInfo&quot;:{&quot;id&quot;:2,&quot;phonePrimary&quot;:null,&quot;phoneSecondary&quot;:null,&quot;email&quot;:null,&quot;iceName&quot;:null,&quot;iceRelationship&quot;:null,&quot;icePhonePrimary&quot;:null,&quot;icePhoneSecondary&quot;:null,&quot;iceEmail&quot;:null}},{&quot;id&quot;:3,&quot;firstName&quot;:&quot;Tom&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:null,&quot;nameDataQuality&quot;:&quot;Partially Complete&quot;,&quot;dobMonth&quot;:&quot;August&quot;,&quot;dobDay&quot;:&quot;19&quot;,&quot;dobYear&quot;:&quot;1952&quot;,&quot;dobDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;firstThreeSsn&quot;:null,&quot;middleTwoSsn&quot;:null,&quot;lastFourSsn&quot;:null,&quot;ssnDataQuality&quot;:&quot;Client Refused&quot;,&quot;clientDemographics&quot;:{&quot;id&quot;:3,&quot;gender&quot;:null,&quot;racePrimary&quot;:null,&quot;raceSecondary&quot;:null,&quot;ethnicity&quot;:null,&quot;veteranStatus&quot;:null},&quot;clientContactInfo&quot;:{&quot;id&quot;:3,&quot;phonePrimary&quot;:null,&quot;phoneSecondary&quot;:null,&quot;email&quot;:null,&quot;iceName&quot;:null,&quot;iceRelationship&quot;:null,&quot;icePhonePrimary&quot;:null,&quot;icePhoneSecondary&quot;:null,&quot;iceEmail&quot;:null}}]
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:42.173-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:42.175-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.176-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2023-07-28T09:40:42.189-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:42.200-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:42.200-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:42.255-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.255-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:42.257-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.257-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.257-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.257-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:42.259-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.259-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:42.263-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:42.285-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:42.286-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:42.286-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:42.292-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:42.292-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 92 ms
+2023-07-28T09:40:42.297-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2023-07-28T09:40:42.297-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection conn32: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:42.297-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2023-07-28T09:40:42.297-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:42.306-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:42.308-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.308-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:42.315-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.334-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:42.338-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.355-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:42.390-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:42.390-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:42.391-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-07-28T09:40:42.394-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54782 (http) with context path ''
+2023-07-28T09:40:42.395-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.204 seconds (process running for 3.779)
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /clientBase/create
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json;charset=UTF-8&quot;, Accept:&quot;application/json&quot;, Content-Length:&quot;328&quot;]
+             Body = {&quot;id&quot;:null,&quot;firstName&quot;:&quot;Chief&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:null,&quot;nameDataQuality&quot;:&quot;Partially Complete&quot;,&quot;dobMonth&quot;:null,&quot;dobDay&quot;:null,&quot;dobYear&quot;:null,&quot;dobDataQuality&quot;:&quot;Client Refused&quot;,&quot;firstThreeSsn&quot;:null,&quot;middleTwoSsn&quot;:null,&quot;lastFourSsn&quot;:null,&quot;ssnDataQuality&quot;:&quot;Client Refused&quot;,&quot;clientDemographics&quot;:null,&quot;clientContactInfo&quot;:null}
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#createNewClient(ClientBase)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 201
+    Error message = null
+          Headers = [Content-Type:&quot;application/json&quot;]
+     Content type = application/json
+             Body = {&quot;id&quot;:1,&quot;firstName&quot;:&quot;Chief&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:null,&quot;nameDataQuality&quot;:&quot;Partially Complete&quot;,&quot;dobMonth&quot;:null,&quot;dobDay&quot;:null,&quot;dobYear&quot;:null,&quot;dobDataQuality&quot;:&quot;Client Refused&quot;,&quot;firstThreeSsn&quot;:null,&quot;middleTwoSsn&quot;:null,&quot;lastFourSsn&quot;:null,&quot;ssnDataQuality&quot;:&quot;Client Refused&quot;,&quot;clientDemographics&quot;:{&quot;id&quot;:1,&quot;gender&quot;:null,&quot;racePrimary&quot;:null,&quot;raceSecondary&quot;:null,&quot;ethnicity&quot;:null,&quot;veteranStatus&quot;:null},&quot;clientContactInfo&quot;:{&quot;id&quot;:1,&quot;phonePrimary&quot;:null,&quot;phoneSecondary&quot;:null,&quot;email&quot;:null,&quot;iceName&quot;:null,&quot;iceRelationship&quot;:null,&quot;icePhonePrimary&quot;:null,&quot;icePhoneSecondary&quot;:null,&quot;iceEmail&quot;:null}}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:42.415-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:42.416-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.417-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2023-07-28T09:40:42.423-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:42.432-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:42.432-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:42.479-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.479-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:42.480-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.480-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.480-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.480-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:42.482-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.482-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:42.485-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:42.504-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:42.505-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:42.505-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:42.511-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:42.511-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 79 ms
+2023-07-28T09:40:42.516-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2023-07-28T09:40:42.516-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection conn35: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:42.516-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2023-07-28T09:40:42.516-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:42.524-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:42.527-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.527-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:42.533-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.554-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:42.557-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.576-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:42.605-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:42.605-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:42.605-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:42.608-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54784 (http) with context path ''
+2023-07-28T09:40:42.609-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.185 seconds (process running for 3.993)
+
+MockHttpServletRequest:
+      HTTP Method = DELETE
+      Request URI = /clientBase/delete/1
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#deleteClient(Integer)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Content-Type:&quot;text/plain;charset=UTF-8&quot;, Content-Length:&quot;44&quot;]
+     Content type = text/plain;charset=UTF-8
+             Body = No clients matching your criteria were found
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:42.618-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:42.619-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.620-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2023-07-28T09:40:42.620-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:42.628-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:42.628-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:42.684-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.684-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:42.685-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.685-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.685-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.686-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:42.687-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.687-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:42.690-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:42.710-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:42.710-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:42.710-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:42.718-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:42.718-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 89 ms
+2023-07-28T09:40:42.722-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2023-07-28T09:40:42.722-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection conn36: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:42.722-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2023-07-28T09:40:42.722-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:42.730-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:42.733-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.733-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:42.740-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.757-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:42.761-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.776-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:42.803-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:42.804-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:42.804-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:42.809-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54786 (http) with context path ''
+2023-07-28T09:40:42.811-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.189 seconds (process running for 4.195)
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /clientBase/returnAll
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#returnAllClients()
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Content-Type:&quot;text/plain;charset=UTF-8&quot;, Content-Length:&quot;44&quot;]
+     Content type = text/plain;charset=UTF-8
+             Body = No clients matching your criteria were found
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:42.819-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:42.820-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.821-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2023-07-28T09:40:42.822-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:42.829-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:42.829-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:42.873-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.873-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:42.875-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.875-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.875-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:42.875-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:42.876-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:42.876-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:42.880-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:42.900-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:42.900-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:42.901-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:42.907-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:42.908-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 78 ms
+2023-07-28T09:40:42.912-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2023-07-28T09:40:42.912-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection conn37: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:42.912-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2023-07-28T09:40:42.912-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:42.920-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:42.924-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.924-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:42.929-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:42.947-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:42.951-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:42.967-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:42.994-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:42.994-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:42.994-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:42.997-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54788 (http) with context path ''
+2023-07-28T09:40:42.999-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.176 seconds (process running for 4.383)
+
+MockHttpServletRequest:
+      HTTP Method = DELETE
+      Request URI = /clientBase/delete/1
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#deleteClient(Integer)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:&quot;text/plain;charset=UTF-8&quot;, Content-Length:&quot;31&quot;]
+     Content type = text/plain;charset=UTF-8
+             Body = Client was successfully deleted
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:43.013-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:43.014-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:43.016-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2023-07-28T09:40:43.025-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-28T09:40:43.033-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Starting ClientBaseControllerIntegrationTest using Java 17.0.7 with PID 69852 (started by joshjennemann in /Users/joshjennemann/Desktop/Personal_Projects/outreach-mapping-solutions-back-end/Outreach-Mapping-Solutions/outreach-mapping-solutions-BE)
+2023-07-28T09:40:43.033-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-07-28T09:40:43.078-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:43.078-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-07-28T09:40:43.080-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientBaseRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:43.080-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientContactInfoRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:43.080-05:00  INFO 69852 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.outreachmappingsolutions.repositories.ClientDemographicsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-07-28T09:40:43.080-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JDBC repository interfaces.
+2023-07-28T09:40:43.081-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-07-28T09:40:43.081-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-28T09:40:43.084-05:00  INFO 69852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 3 JPA repository interfaces.
+2023-07-28T09:40:43.104-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-07-28T09:40:43.104-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-28T09:40:43.105-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-28T09:40:43.111-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-28T09:40:43.111-05:00  INFO 69852 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 77 ms
+2023-07-28T09:40:43.115-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2023-07-28T09:40:43.116-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection conn39: url=jdbc:h2:mem:testdb user=SA
+2023-07-28T09:40:43.116-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2023-07-28T09:40:43.116-05:00  INFO 69852 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-07-28T09:40:43.123-05:00  INFO 69852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-28T09:40:43.125-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:43.125-05:00  INFO 69852 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-28T09:40:43.130-05:00  INFO 69852 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-28T09:40:43.146-05:00  INFO 69852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-28T09:40:43.150-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:43.170-05:00  WARN 69852 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-28T09:40:43.202-05:00  INFO 69852 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2023-07-28T09:40:43.203-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-07-28T09:40:43.203-05:00  INFO 69852 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-07-28T09:40:43.206-05:00  INFO 69852 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54794 (http) with context path ''
+2023-07-28T09:40:43.207-05:00  INFO 69852 --- [    Test worker] .o.C.ClientBaseControllerIntegrationTest : Started ClientBaseControllerIntegrationTest in 0.18 seconds (process running for 4.591)
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /clientBase/update/1
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json;charset=UTF-8&quot;, Accept:&quot;application/json&quot;, Content-Length:&quot;354&quot;]
+             Body = {&quot;id&quot;:null,&quot;firstName&quot;:&quot;Miles&quot;,&quot;middleName&quot;:&quot;Edward&quot;,&quot;lastName&quot;:&quot;O'Brien&quot;,&quot;nameDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;dobMonth&quot;:&quot;June&quot;,&quot;dobDay&quot;:&quot;9&quot;,&quot;dobYear&quot;:&quot;1959&quot;,&quot;dobDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;firstThreeSsn&quot;:111,&quot;middleTwoSsn&quot;:11,&quot;lastFourSsn&quot;:1111,&quot;ssnDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;clientDemographics&quot;:null,&quot;clientContactInfo&quot;:null}
+    Session Attrs = {}
+
+Handler:
+             Type = com.outreachmappingsolutions.controllers.ClientBaseController
+           Method = com.outreachmappingsolutions.controllers.ClientBaseController#updateClient(Integer, ClientBase)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:&quot;application/json&quot;]
+     Content type = application/json
+             Body = {&quot;id&quot;:1,&quot;firstName&quot;:&quot;Miles&quot;,&quot;middleName&quot;:&quot;Edward&quot;,&quot;lastName&quot;:&quot;O'Brien&quot;,&quot;nameDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;dobMonth&quot;:&quot;June&quot;,&quot;dobDay&quot;:&quot;9&quot;,&quot;dobYear&quot;:&quot;1959&quot;,&quot;dobDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;firstThreeSsn&quot;:111,&quot;middleTwoSsn&quot;:11,&quot;lastFourSsn&quot;:1111,&quot;ssnDataQuality&quot;:&quot;Data Quality Complete&quot;,&quot;clientDemographics&quot;:{&quot;id&quot;:1,&quot;gender&quot;:null,&quot;racePrimary&quot;:null,&quot;raceSecondary&quot;:null,&quot;ethnicity&quot;:null,&quot;veteranStatus&quot;:null},&quot;clientContactInfo&quot;:{&quot;id&quot;:1,&quot;phonePrimary&quot;:null,&quot;phoneSecondary&quot;:null,&quot;email&quot;:null,&quot;iceName&quot;:null,&quot;iceRelationship&quot;:null,&quot;icePhonePrimary&quot;:null,&quot;icePhoneSecondary&quot;:null,&quot;iceEmail&quot;:null}}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-07-28T09:40:43.226-05:00  INFO 69852 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-28T09:40:43.227-05:00  INFO 69852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-28T09:40:43.228-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2023-07-28T09:40:43.234-05:00  INFO 69852 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.1.1</a> at Jul 28, 2023, 9:40:45 AM</p>
+</div>
+</div>
+</body>
+</html>
