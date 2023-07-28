@@ -85,9 +85,9 @@ public class ClientContactInfoServiceIntegrationTest {
         List<ClientContactInfo> allTestClientContactInfo = (List<ClientContactInfo>) clientContactInfoRepository.findAll();
         assertThat(allTestClientContactInfo, hasSize(3));
 
-        assertThat(allTestClientContactInfo.get(0).getId(), is(responseBody.get(0).getId()));
-        assertThat(allTestClientContactInfo.get(1).getId(), is(responseBody.get(1).getId()));
-        assertThat(allTestClientContactInfo.get(2).getId(), is(responseBody.get(2).getId()));
+        assertThat(allTestClientContactInfo.get(0), is(responseBody.get(0)));
+        assertThat(allTestClientContactInfo.get(1), is(responseBody.get(1)));
+        assertThat(allTestClientContactInfo.get(2), is(responseBody.get(2)));
     }
 
     @Test
@@ -111,7 +111,7 @@ public class ClientContactInfoServiceIntegrationTest {
         ClientContactInfo returnedTestClientContactInfo = clientContactInfoRepository.findByClientId(testClient.getId()).get();
 
         assertThat(responseBody, notNullValue());
-        assertThat(returnedTestClientContactInfo.getId(), is(responseBody.getId()));
+        assertThat(returnedTestClientContactInfo, is(responseBody));
     }
 
     @Test
@@ -135,15 +135,15 @@ public class ClientContactInfoServiceIntegrationTest {
         ClientContactInfo returnedTestClientContactInfo = clientContactInfoRepository.findByClientId(testClient.getId()).get();
 
         assertThat(responseBody, notNullValue());
-        assertThat(returnedTestClientContactInfo.getId(), is(responseBody.getId()));
-        assertThat(returnedTestClientContactInfo.getPhonePrimary(), is(responseBody.getPhonePrimary()));
-        assertThat(returnedTestClientContactInfo.getPhoneSecondary(), is(responseBody.getPhoneSecondary()));
-        assertThat(returnedTestClientContactInfo.getEmail(), is(responseBody.getEmail()));
-        assertThat(returnedTestClientContactInfo.getIceName(), is(responseBody.getIceName()));
-        assertThat(returnedTestClientContactInfo.getIceRelationship(), is(responseBody.getIceRelationship()));
-        assertThat(returnedTestClientContactInfo.getIcePhonePrimary(), is(responseBody.getIcePhonePrimary()));
-        assertThat(returnedTestClientContactInfo.getIcePhoneSecondary(), is(responseBody.getIcePhoneSecondary()));
-        assertThat(returnedTestClientContactInfo.getIceEmail(), is(responseBody.getIceEmail()));
+        assertThat(returnedTestClientContactInfo, is(responseBody));
+//        assertThat(returnedTestClientContactInfo.getPhonePrimary(), is(responseBody.getPhonePrimary()));
+//        assertThat(returnedTestClientContactInfo.getPhoneSecondary(), is(responseBody.getPhoneSecondary()));
+//        assertThat(returnedTestClientContactInfo.getEmail(), is(responseBody.getEmail()));
+//        assertThat(returnedTestClientContactInfo.getIceName(), is(responseBody.getIceName()));
+//        assertThat(returnedTestClientContactInfo.getIceRelationship(), is(responseBody.getIceRelationship()));
+//        assertThat(returnedTestClientContactInfo.getIcePhonePrimary(), is(responseBody.getIcePhonePrimary()));
+//        assertThat(returnedTestClientContactInfo.getIcePhoneSecondary(), is(responseBody.getIcePhoneSecondary()));
+//        assertThat(returnedTestClientContactInfo.getIceEmail(), is(responseBody.getIceEmail()));
     }
 
     @Test

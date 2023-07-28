@@ -173,59 +173,37 @@ public class ClientBase {
         this.clientContactInfo = clientContactInfo;
     }
 
-    @Override
-    public String toString() {
-        return "ClientBase{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", nameDataQuality='" + nameDataQuality + '\'' +
-                ", dobMonth='" + dobMonth + '\'' +
-                ", dobDay='" + dobDay + '\'' +
-                ", dobYear='" + dobYear + '\'' +
-                ", dobDataQuality='" + dobDataQuality + '\'' +
-                ", firstThreeSsn=" + firstThreeSsn +
-                ", middleTwoSsn=" + middleTwoSsn +
-                ", lastFourSsn=" + lastFourSsn +
-                ", ssnDataQuality='" + ssnDataQuality + '\'' +
-                ", clientDemographics=" + clientDemographics +
-                ", clientContactInfo=" + clientContactInfo +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClientBase that = (ClientBase) o;
-        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(middleName, that.middleName) && Objects.equals(lastName, that.lastName) && Objects.equals(nameDataQuality, that.nameDataQuality) && Objects.equals(dobMonth, that.dobMonth) && Objects.equals(dobDay, that.dobDay) && Objects.equals(dobYear, that.dobYear) && Objects.equals(dobDataQuality, that.dobDataQuality) && Objects.equals(firstThreeSsn, that.firstThreeSsn) && Objects.equals(middleTwoSsn, that.middleTwoSsn) && Objects.equals(lastFourSsn, that.lastFourSsn) && Objects.equals(ssnDataQuality, that.ssnDataQuality) && Objects.equals(clientDemographics, that.clientDemographics) && Objects.equals(clientContactInfo, that.clientContactInfo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, middleName, lastName, nameDataQuality, dobMonth, dobDay, dobYear, dobDataQuality, firstThreeSsn, middleTwoSsn, lastFourSsn, ssnDataQuality, clientDemographics, clientContactInfo);
-    }
-
-    //    @Override
+//    @Override
+//    public String toString() {
+//        return "ClientBase{" +
+//                "id=" + id +
+//                ", firstName='" + firstName + '\'' +
+//                ", middleName='" + middleName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", nameDataQuality='" + nameDataQuality + '\'' +
+//                ", dobMonth='" + dobMonth + '\'' +
+//                ", dobDay='" + dobDay + '\'' +
+//                ", dobYear='" + dobYear + '\'' +
+//                ", dobDataQuality='" + dobDataQuality + '\'' +
+//                ", firstThreeSsn=" + firstThreeSsn +
+//                ", middleTwoSsn=" + middleTwoSsn +
+//                ", lastFourSsn=" + lastFourSsn +
+//                ", ssnDataQuality='" + ssnDataQuality + '\'' +
+//                ", clientDemographics=" + clientDemographics +
+//                ", clientContactInfo=" + clientContactInfo +
+//                '}';
+//    }
+//
+//    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;
 //        if (o == null || getClass() != o.getClass()) return false;
 //        ClientBase that = (ClientBase) o;
-//        return  Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) &&
-//                Objects.equals(getMiddleName(), that.getMiddleName()) &&
-//                Objects.equals(getLastName(), that.getLastName()) &&
-//                getDobMonth() == that.getDobMonth() &&
-//                getDobDay() == that.getDobDay() &&
-//                getDobYear() == that.getDobYear() &&
-//                Objects.equals(getFirstThreeSsn(), that.getFirstThreeSsn()) &&
-//                Objects.equals(getMiddleTwoSsn(), that.getMiddleTwoSsn()) &&
-//                Objects.equals(getLastFourSsn(), that.getLastFourSsn());
+//        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(middleName, that.middleName) && Objects.equals(lastName, that.lastName) && Objects.equals(nameDataQuality, that.nameDataQuality) && Objects.equals(dobMonth, that.dobMonth) && Objects.equals(dobDay, that.dobDay) && Objects.equals(dobYear, that.dobYear) && Objects.equals(dobDataQuality, that.dobDataQuality) && Objects.equals(firstThreeSsn, that.firstThreeSsn) && Objects.equals(middleTwoSsn, that.middleTwoSsn) && Objects.equals(lastFourSsn, that.lastFourSsn) && Objects.equals(ssnDataQuality, that.ssnDataQuality) && Objects.equals(clientDemographics, that.clientDemographics) && Objects.equals(clientContactInfo, that.clientContactInfo);
 //    }
 //
 //    @Override
 //    public int hashCode() {
-//        return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getDobMonth(),
-//                getDobDay(), getDobYear(), getFirstThreeSsn(), getMiddleTwoSsn(), getLastFourSsn());
+//        return Objects.hash(id, firstName, middleName, lastName, nameDataQuality, dobMonth, dobDay, dobYear, dobDataQuality, firstThreeSsn, middleTwoSsn, lastFourSsn, ssnDataQuality, clientDemographics, clientContactInfo);
 //    }
 }
