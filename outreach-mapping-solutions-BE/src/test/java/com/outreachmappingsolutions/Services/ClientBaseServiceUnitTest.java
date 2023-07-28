@@ -53,11 +53,16 @@ public class ClientBaseServiceUnitTest {
 
     @Test
     public void testCreateNewClientSuccess(){
+        when(clientBaseRepository.save(any(ClientBase.class))).thenAnswer(invocation -> {
+            ClientBase client = invocation.getArgument(0);
+            client.setId(1);
+            return client;
+        });
         ResponseEntity<?> response = clientBaseService.createNewClient(testClient1);
         ClientBase returnedTestClient = (ClientBase) response.getBody();
 
         assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-        assertThat(returnedTestClient.getId(), is(testClient1.getId()));
+        assertThat(returnedTestClient.getId(), is(1));
         verify(clientBaseRepository).save(any(ClientBase.class));
         verifyNoMoreInteractions(clientBaseRepository);
     }
