@@ -82,9 +82,9 @@ public class ClientDemographicsServiceIntegrationTest {
         List<ClientDemographics> allClientDemographics = (List<ClientDemographics>) clientDemographicsRepository.findAll();
         assertThat(allClientDemographics, hasSize(3));
 
-        assertThat(allClientDemographics.get(0).getId(), is(responseBody.get(0).getId()));
-        assertThat(allClientDemographics.get(1).getId(), is(responseBody.get(1).getId()));
-        assertThat(allClientDemographics.get(2).getId(), is(responseBody.get(2).getId()));
+        assertThat(allClientDemographics.get(0), is(responseBody.get(0)));
+        assertThat(allClientDemographics.get(1), is(responseBody.get(1)));
+        assertThat(allClientDemographics.get(2), is(responseBody.get(2)));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ClientDemographicsServiceIntegrationTest {
         ClientDemographics returnedTestClientDemographics = clientDemographicsRepository.findByClientId(testClient.getId()).get();
 
         assertThat(responseBody, notNullValue());
-        assertThat(returnedTestClientDemographics.getId(), is(responseBody.getId()));
+        assertThat(returnedTestClientDemographics, is(responseBody));
     }
 
     @Test
@@ -132,12 +132,12 @@ public class ClientDemographicsServiceIntegrationTest {
         ClientDemographics returnedTestClientDemographics = clientDemographicsRepository.findByClientId(testClient.getId()).get();
 
         assertThat(responseBody, notNullValue());
-        assertThat(returnedTestClientDemographics.getId(), is(responseBody.getId()));
-        assertThat(returnedTestClientDemographics.getGender(), is(responseBody.getGender()));
-        assertThat(returnedTestClientDemographics.getRacePrimary(), is(responseBody.getRacePrimary()));
-        assertThat(returnedTestClientDemographics.getRaceSecondary(), is(responseBody.getRaceSecondary()));
-        assertThat(returnedTestClientDemographics.getEthnicity(), is(responseBody.getEthnicity()));
-        assertThat(returnedTestClientDemographics.getVeteranStatus(), is(responseBody.getVeteranStatus()));
+        assertThat(returnedTestClientDemographics, is(responseBody));
+//        assertThat(returnedTestClientDemographics.getGender(), is(responseBody.getGender()));
+//        assertThat(returnedTestClientDemographics.getRacePrimary(), is(responseBody.getRacePrimary()));
+//        assertThat(returnedTestClientDemographics.getRaceSecondary(), is(responseBody.getRaceSecondary()));
+//        assertThat(returnedTestClientDemographics.getEthnicity(), is(responseBody.getEthnicity()));
+//        assertThat(returnedTestClientDemographics.getVeteranStatus(), is(responseBody.getVeteranStatus()));
     }
 
     @Test

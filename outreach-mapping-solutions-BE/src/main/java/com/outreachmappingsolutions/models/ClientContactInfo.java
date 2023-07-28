@@ -3,6 +3,8 @@ package com.outreachmappingsolutions.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name="client_contact_info")
 public class ClientContactInfo {
@@ -107,4 +109,32 @@ public class ClientContactInfo {
         this.iceEmail = iceEmail;
     }
 
+    @Override
+    public String toString() {
+        return "ClientContactInfo{" +
+                "id=" + id +
+                ", client=" + client +
+                ", phonePrimary='" + phonePrimary + '\'' +
+                ", phoneSecondary='" + phoneSecondary + '\'' +
+                ", email='" + email + '\'' +
+                ", iceName='" + iceName + '\'' +
+                ", iceRelationship='" + iceRelationship + '\'' +
+                ", icePhonePrimary='" + icePhonePrimary + '\'' +
+                ", icePhoneSecondary='" + icePhoneSecondary + '\'' +
+                ", iceEmail='" + iceEmail + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientContactInfo that = (ClientContactInfo) o;
+        return Objects.equals(id, that.id) && Objects.equals(client, that.client) && Objects.equals(phonePrimary, that.phonePrimary) && Objects.equals(phoneSecondary, that.phoneSecondary) && Objects.equals(email, that.email) && Objects.equals(iceName, that.iceName) && Objects.equals(iceRelationship, that.iceRelationship) && Objects.equals(icePhonePrimary, that.icePhonePrimary) && Objects.equals(icePhoneSecondary, that.icePhoneSecondary) && Objects.equals(iceEmail, that.iceEmail);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, client, phonePrimary, phoneSecondary, email, iceName, iceRelationship, icePhonePrimary, icePhoneSecondary, iceEmail);
+    }
 }
