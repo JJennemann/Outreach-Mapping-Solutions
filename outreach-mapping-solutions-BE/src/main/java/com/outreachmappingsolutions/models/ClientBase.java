@@ -173,25 +173,25 @@ public class ClientBase {
         this.clientContactInfo = clientContactInfo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClientBase that = (ClientBase) o;
-        return  Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) &&
-                Objects.equals(getMiddleName(), that.getMiddleName()) &&
-                Objects.equals(getLastName(), that.getLastName()) &&
-                getDobMonth() == that.getDobMonth() &&
-                getDobDay() == that.getDobDay() &&
-                getDobYear() == that.getDobYear() &&
-                Objects.equals(getFirstThreeSsn(), that.getFirstThreeSsn()) &&
-                Objects.equals(getMiddleTwoSsn(), that.getMiddleTwoSsn()) &&
-                Objects.equals(getLastFourSsn(), that.getLastFourSsn());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getDobMonth(),
-                getDobDay(), getDobYear(), getFirstThreeSsn(), getMiddleTwoSsn(), getLastFourSsn());
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        ClientBase that = (ClientBase) o;
+//        return  Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) &&
+//                Objects.equals(getMiddleName(), that.getMiddleName()) &&
+//                Objects.equals(getLastName(), that.getLastName()) &&
+//                getDobMonth() == that.getDobMonth() &&
+//                getDobDay() == that.getDobDay() &&
+//                getDobYear() == that.getDobYear() &&
+//                Objects.equals(getFirstThreeSsn(), that.getFirstThreeSsn()) &&
+//                Objects.equals(getMiddleTwoSsn(), that.getMiddleTwoSsn()) &&
+//                Objects.equals(getLastFourSsn(), that.getLastFourSsn());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getDobMonth(),
+//                getDobDay(), getDobYear(), getFirstThreeSsn(), getMiddleTwoSsn(), getLastFourSsn());
+//    }
 }

@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>ClientDemographicsService.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.outreachmappingsolutions.services;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.outreachmappingsolutions.models.ClientDemographics;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.outreachmappingsolutions.repositories.ClientDemographicsRepository;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.springframework.beans.factory.annotation.Autowired;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.springframework.http.HttpStatus;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.springframework.http.ResponseEntity;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.springframework.stereotype.Service;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Optional;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>@Service</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class ClientDemographicsService {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String NO_DEMOS_FOUND = &#34;No client demographics matching your criteria were found&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Autowired</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private ClientDemographicsRepository clientDemographicsRepository;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public ResponseEntity&#60;?&#62; returnAllClientDemographics() {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            List&#60;ClientDemographics&#62; allClientDemos = (List&#60;ClientDemographics&#62;) clientDemographicsRepository.findAll();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_25'/>
+25
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_25'>1</a>
+<span>
+1. returnAllClientDemographics : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (allClientDemos.isEmpty()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_26'/>
+26
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_26'>1</a>
+<span>
+1. returnAllClientDemographics : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnAllClientDemographics &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new ResponseEntity&#60;&#62;(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_28'/>
+28
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_28'>1</a>
+<span>
+1. returnAllClientDemographics : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnAllClientDemographics &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new ResponseEntity&#60;&#62;(allClientDemos, HttpStatus.OK);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (Exception e){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_31'>1</a>
+<span>
+1. returnAllClientDemographics : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnAllClientDemographics &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return new ResponseEntity&#60;&#62;(&#34;Failed to retrieve all client demographics&#34;, HttpStatus.INTERNAL_SERVER_ERROR);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public ResponseEntity&#60;?&#62; returnClientDemographicsByClientId(Integer clientId) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Optional&#60;ClientDemographics&#62; returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_38'/>
+38
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_38'>1</a>
+<span>
+1. returnClientDemographicsByClientId : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (returnedOptionalClientDemo.isEmpty()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_39'/>
+39
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_39'>1</a>
+<span>
+1. returnClientDemographicsByClientId : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnClientDemographicsByClientId &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new ResponseEntity&#60;&#62;(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_42'/>
+42
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_42'>1</a>
+<span>
+1. returnClientDemographicsByClientId : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnClientDemographicsByClientId &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new ResponseEntity&#60;&#62;(returnedClientDemo, HttpStatus.OK);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (Exception e){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_45'>1</a>
+<span>
+1. returnClientDemographicsByClientId : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnClientDemographicsByClientId &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return new ResponseEntity&#60;&#62;(&#34;Failed to retrieve the client&#39;s demographics&#34;, HttpStatus.INTERNAL_SERVER_ERROR);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public ResponseEntity&#60;?&#62; updateClientDemographics(Integer clientId, ClientDemographics clientDemographics) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Optional&#60;ClientDemographics&#62; returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_52'>1</a>
+<span>
+1. updateClientDemographics : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (returnedOptionalClientDemo.isEmpty()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_53'/>
+53
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_53'>1</a>
+<span>
+1. updateClientDemographics : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::updateClientDemographics &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new ResponseEntity&#60;&#62;(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_57'/>
+57
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_57'>1</a>
+<span>
+1. updateClientDemographics : removed call to com/outreachmappingsolutions/models/ClientDemographics::setGender &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                returnedClientDemo.setGender(clientDemographics.getGender());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_58'/>
+58
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_58'>1</a>
+<span>
+1. updateClientDemographics : removed call to com/outreachmappingsolutions/models/ClientDemographics::setRacePrimary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                returnedClientDemo.setRacePrimary(clientDemographics.getRacePrimary());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_59'/>
+59
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_59'>1</a>
+<span>
+1. updateClientDemographics : removed call to com/outreachmappingsolutions/models/ClientDemographics::setRaceSecondary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                returnedClientDemo.setRaceSecondary(clientDemographics.getRaceSecondary());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_60'>1</a>
+<span>
+1. updateClientDemographics : removed call to com/outreachmappingsolutions/models/ClientDemographics::setEthnicity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                returnedClientDemo.setEthnicity(clientDemographics.getEthnicity());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_61'>1</a>
+<span>
+1. updateClientDemographics : removed call to com/outreachmappingsolutions/models/ClientDemographics::setVeteranStatus &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                returnedClientDemo.setVeteranStatus(clientDemographics.getVeteranStatus());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                clientDemographicsRepository.save(returnedClientDemo);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_64'/>
+64
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_64'>1</a>
+<span>
+1. updateClientDemographics : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::updateClientDemographics &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new ResponseEntity&#60;&#62;(returnedClientDemo, HttpStatus.OK);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (Exception e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_67'/>
+67
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_67'>1</a>
+<span>
+1. updateClientDemographics : replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::updateClientDemographics &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return new ResponseEntity&#60;&#62;(&#34;Failed to update the client&#39;s demographics&#34;, HttpStatus.INTERNAL_SERVER_ERROR);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>// Creation and deletion of clientDemographics is cascaded with the clientBase creation and deletion</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//    public ResponseEntity&#60;?&#62; deleteClientDemographics(Integer clientId){</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        ClientDemographics returnedClientDemo = findClientDemoByClientId(clientId);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        if(returnedClientDemo.getId() == null){</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            return new ResponseEntity&#60;&#62;(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        } else{</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            Integer clientDemoToDeleteId = returnedClientDemo.getId();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            clientDemographicsRepository.deleteById(clientDemoToDeleteId);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            return new ResponseEntity&#60;&#62;(CLIENT_DEMO_DELETED_SUCCESS, HttpStatus.OK);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//    public ResponseEntity&#60;?&#62; createNewClientDemographics(Integer clientId, ClientDemographics clientDemographics){</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        ClientBase returnedClient = clientBaseService.findClientById(clientId);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        if(returnedClient.getId() == null){</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            return new ResponseEntity&#60;&#62;(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        } else{</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            clientDemographics.setClient(returnedClient);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            clientDemographicsRepository.save(clientDemographics);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//            return new ResponseEntity&#60;&#62;(clientDemographics, HttpStatus.OK);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fb19a0_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>//    }</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_25'>25</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_25'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnAllClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsNotFound()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_26'>26</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_26'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnAllClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsNotFound()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnAllClientDemographics &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_28'>28</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_28'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnAllClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsSuccess()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnAllClientDemographics &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnAllClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsError()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnAllClientDemographics &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnClientDemographicsByClientId<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdSuccess()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_39'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnClientDemographicsByClientId<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdNotFound()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnClientDemographicsByClientId &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_42'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnClientDemographicsByClientId<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdSuccess()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnClientDemographicsByClientId &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>returnClientDemographicsByClientId<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdError()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::returnClientDemographicsByClientId &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testUpdateClientDemographicsNotFound()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testUpdateClientDemographicsNotFound()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::updateClientDemographics &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_57'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsSuccess()]</span></span> removed call to com/outreachmappingsolutions/models/ClientDemographics::setGender &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_58'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsSuccess()]</span></span> removed call to com/outreachmappingsolutions/models/ClientDemographics::setRacePrimary &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsSuccess()]</span></span> removed call to com/outreachmappingsolutions/models/ClientDemographics::setRaceSecondary &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsSuccess()]</span></span> removed call to com/outreachmappingsolutions/models/ClientDemographics::setEthnicity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsSuccess()]</span></span> removed call to com/outreachmappingsolutions/models/ClientDemographics::setVeteranStatus &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_64'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testUpdateClientContactInfo()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::updateClientDemographics &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fb19a0_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fb19a0_67'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateClientDemographics<br/><b>Killed by : </b>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsError()]</span></span> replaced return value with null for com/outreachmappingsolutions/services/ClientDemographicsService::updateClientDemographics &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest]/[method:testReturnAllClientDemographicsSuccess()] (28 ms)</li><li>com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest]/[method:testReturnClientDemographicsByClientIdNotFound()] (9 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsError()] (1 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testReturnClientDemographicsByClientIdNotFound()] (4 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsError()] (1 ms)</li><li>com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest]/[method:testReturnClientDemographicsByClientIdSuccess()] (12 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsNotFound()] (0 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testReturnAllClientDemographicsNotFound()] (3 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnAllClientDemographicsSuccess()] (1 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testReturnClientDemographicsByClientIdSuccess()] (4 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testReturnAllClientDemographicsSuccess()] (6 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdNotFound()] (1 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdError()] (1 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsSuccess()] (7 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testReturnClientDemographicsByClientIdSuccess()] (0 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testUpdateClientContactInfo()] (5 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceIntegrationTest]/[method:testUpdateClientDemographicsNotFound()] (3 ms)</li><li>com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest]/[method:testReturnAllClientDemographicsNotFound()] (9 ms)</li><li>com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest]/[method:testUpdateClientDemographicsNotFound()] (1 ms)</li><li>com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest]/[method:testUpdateClientDemographicsNotFound()] (17 ms)</li><li>com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest.[engine:junit-jupiter]/[class:com.outreachmappingsolutions.Controllers.ClientDemographicsControllerIntegrationTest]/[method:testUpdateClientDemographicsSuccess()] (25 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.9.0
+
+</body>
+</html>
