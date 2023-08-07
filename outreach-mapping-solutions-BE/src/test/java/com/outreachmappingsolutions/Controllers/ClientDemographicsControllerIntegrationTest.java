@@ -91,10 +91,11 @@ public class ClientDemographicsControllerIntegrationTest {
         clientDemographicsRepository.save(testClientDemographics2);
         clientDemographicsRepository.save(testClientDemographics3);
 
-        List<ClientDemographics> allTestClientDemographics =
-                (List<ClientDemographics>) clientDemographicsService.returnAllClientDemographics().getBody();
+        ResponseEntity<?> response = clientDemographicsService.returnAllClientDemographics();
+        List<ClientDemographics> allTestClientDemographics = (List<ClientDemographics>) response.getBody();
 
-        assertThat(allTestClientDemographics, notNullValue());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(allTestClientDemographics, hasSize(3));
         mockMvc.perform(get("/clientDemographics/returnAll"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -128,9 +129,11 @@ public class ClientDemographicsControllerIntegrationTest {
         clientDemographicsRepository.save(testClientDemographics1);
         clientDemographicsRepository.save(testClientDemographics2);
         clientDemographicsRepository.save(testClientDemographics3);
-        ClientDemographics returnedTestClientDemographics = (ClientDemographics)
-                clientDemographicsService.returnClientDemographicsByClientId(testClient.getId()).getBody();
 
+        ResponseEntity<?> response = clientDemographicsService.returnClientDemographicsByClientId(testClient.getId());
+        ClientDemographics returnedTestClientDemographics = (ClientDemographics) response.getBody();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(returnedTestClientDemographics, notNullValue());
         mockMvc.perform(get("/clientDemographics/return/{clientId}", testClient.getId()))
                 .andDo(print())
@@ -160,10 +163,10 @@ public class ClientDemographicsControllerIntegrationTest {
     public void testUpdateClientDemographicsSuccess() throws Exception {
         clientDemographicsRepository.save(testClientDemographics1);
 
-        ClientDemographics returnedTestClientDemographics =
-                (ClientDemographics) clientDemographicsService.updateClientDemographics(testClient.getId(),
-                        testUpdatedClientDemographics).getBody();
+        ResponseEntity<?> response = clientDemographicsService.updateClientDemographics(testClient.getId(), testUpdatedClientDemographics);
+        ClientDemographics returnedTestClientDemographics = (ClientDemographics) response.getBody();
 
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(returnedTestClientDemographics, notNullValue());
         mockMvc.perform(put("/clientDemographics/update/{clientId}", testClient.getId())
                         .content(objectMapper.writeValueAsString(testUpdatedClientDemographics))

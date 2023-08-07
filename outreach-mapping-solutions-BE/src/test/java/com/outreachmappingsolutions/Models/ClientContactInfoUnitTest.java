@@ -12,6 +12,7 @@ public class ClientContactInfoUnitTest {
 
     @Test
     public void testClientContactInfoProperties(){
+        Integer id = 1;
         ClientBase testClient = new ClientBase();
         String phonePrimary = "111-111-1111";
         String phoneSecondary = "222-222-2222";
@@ -24,7 +25,7 @@ public class ClientContactInfoUnitTest {
 
         ClientContactInfo testClientContactInfo = new ClientContactInfo();
 
-        testClientContactInfo.setId(1);
+        testClientContactInfo.setId(id);
         testClientContactInfo.setClient(testClient);
         testClientContactInfo.setPhonePrimary(phonePrimary);
         testClientContactInfo.setPhoneSecondary(phoneSecondary);
@@ -35,7 +36,7 @@ public class ClientContactInfoUnitTest {
         testClientContactInfo.setIcePhoneSecondary(icePhoneSecondary);
         testClientContactInfo.setIceEmail(iceEmail);
 
-        assertThat(testClientContactInfo.getId(), is(1));
+        assertThat(testClientContactInfo.getId(), is(id));
         assertThat(testClientContactInfo.getClient(), is(testClient));
         assertThat(testClientContactInfo.getPhonePrimary(), is(phonePrimary));
         assertThat(testClientContactInfo.getPhoneSecondary(), is(phoneSecondary));
@@ -48,7 +49,7 @@ public class ClientContactInfoUnitTest {
     }
 
     @Test
-    public void testDefaultClientContactInfoContstructor(){
+    public void testClientContactInfoConstructorNoArgs(){
         ClientContactInfo testClientContactInfo = new ClientContactInfo();
 
         assertThat(testClientContactInfo.getId(), nullValue());
@@ -61,5 +62,10 @@ public class ClientContactInfoUnitTest {
         assertThat(testClientContactInfo.getIcePhonePrimary(), nullValue());
         assertThat(testClientContactInfo.getIcePhoneSecondary(), nullValue());
         assertThat(testClientContactInfo.getIceEmail(), nullValue());
+    }
+
+    @Test
+    public void testClientBaseEqualsMethod(){
+        ClientContactInfo testClientContactInfo = new ClientContactInfo();
     }
 }

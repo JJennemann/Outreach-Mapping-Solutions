@@ -100,7 +100,7 @@ public class ClientDemographicsServiceUnitTest {
 
     @Test
     public void testReturnClientDemographicsByClientIdSuccess(){
-        when(clientDemographicsRepository.findByClientId(testClient1.getId())).thenReturn(Optional.of(testClientDemographics1));
+        when(clientDemographicsRepository.findByClientId(testClient1.getId())).thenReturn(Optional.ofNullable(testClientDemographics1));
         ResponseEntity<?> response = clientDemographicsService.returnClientDemographicsByClientId(testClient1.getId());
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));

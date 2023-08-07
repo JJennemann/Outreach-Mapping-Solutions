@@ -108,9 +108,11 @@ public class ClientBaseControllerIntegrationTest {
         testClient3.setClientContactInfo(new ClientContactInfo());
         clientBaseRepository.save(testClient3);
 
-        List<ClientBase> allTestClients = (List<ClientBase>) clientBaseService.returnAllClients().getBody();
+        ResponseEntity<?> response = clientBaseService.returnAllClients();
+        List<ClientBase> allTestClients = (List<ClientBase>) response.getBody();
 
-        assertThat(allTestClients, notNullValue());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(allTestClients, hasSize(3));
         mockMvc.perform(get("/clientBase/returnAll"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -155,8 +157,11 @@ public class ClientBaseControllerIntegrationTest {
         clientBaseRepository.save(testClient1);
         clientBaseRepository.save(testClient2);
         clientBaseRepository.save(testClient3);
-        ClientBase returnedTestClient = (ClientBase) clientBaseService.returnClientById(testClient1.getId()).getBody();
 
+        ResponseEntity<?> response = clientBaseService.returnClientById(testClient1.getId());
+        ClientBase returnedTestClient = (ClientBase) response.getBody();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(returnedTestClient, notNullValue());
         mockMvc.perform(get("/clientBase/return/{clientId}", testClient1.getId()))
                 .andDo(print())
@@ -195,8 +200,11 @@ public class ClientBaseControllerIntegrationTest {
         testClient1.setClientDemographics(new ClientDemographics());
         testClient1.setClientContactInfo(new ClientContactInfo());
         clientBaseRepository.save(testClient1);
-        ClientBase updatedTestClient = (ClientBase) clientBaseService.updateClient(testClient1.getId(), testUpdatedClientBase).getBody();
 
+        ResponseEntity<?> response = clientBaseService.updateClient(testClient1.getId(), testUpdatedClientBase);
+        ClientBase updatedTestClient = (ClientBase) response.getBody();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(updatedTestClient, notNullValue());
         mockMvc.perform(put("/clientBase/update/{clientId}", testClient1.getId())
                     .content(objectMapper.writeValueAsString(testUpdatedClientBase))
@@ -242,7 +250,11 @@ public class ClientBaseControllerIntegrationTest {
         clientBaseRepository.save(testClient2);
         clientBaseRepository.save(testClient3);
 
-        mockMvc.perform(delete("/clientBase/delete/{clientId}", testClient1.getId()))
+        ResponseEntity<?> response = clientBaseService.deleteClient(testClient1.getId());
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is("Client was successfully deleted"));
+        mockMvc.perform(delete("/clientBase/delete/{clientId}", testClient2.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", is("Client was successfully deleted")));

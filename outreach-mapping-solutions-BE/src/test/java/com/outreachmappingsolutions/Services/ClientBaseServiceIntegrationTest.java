@@ -63,20 +63,22 @@ public class ClientBaseServiceIntegrationTest {
         ClientBase createdTestClient = allTestClients.get(0);
         assertThat(responseBody, notNullValue());
         assertThat(createdTestClient, is(responseBody));
-//        assertThat(createdTestClient.getFirstName(), is(responseBody.getFirstName()));
-//        assertThat(createdTestClient.getMiddleName(), is(responseBody.getMiddleName()));
-//        assertThat(createdTestClient.getLastName(), is(responseBody.getLastName()));
-//        assertThat(createdTestClient.getNameDataQuality(), is(responseBody.getNameDataQuality()));
-//        assertThat(createdTestClient.getDobMonth(), is(responseBody.getDobMonth()));
-//        assertThat(createdTestClient.getDobDay(), is(responseBody.getDobDay()));
-//        assertThat(createdTestClient.getDobYear(), is(responseBody.getDobYear()));
-//        assertThat(createdTestClient.getDobDataQuality(), is(responseBody.getDobDataQuality()));
-//        assertThat(createdTestClient.getFirstThreeSsn(), is(responseBody.getFirstThreeSsn()));
-//        assertThat(createdTestClient.getMiddleTwoSsn(), is(responseBody.getMiddleTwoSsn()));
-//        assertThat(createdTestClient.getLastFourSsn(), is(responseBody.getLastFourSsn()));
-//        assertThat(createdTestClient.getSsnDataQuality(), is(responseBody.getSsnDataQuality()));
-//        assertThat(createdTestClient.getClientDemographics().getId(), is(responseBody.getClientDemographics().getId()));
-//        assertThat(createdTestClient.getClientContactInfo().getId(), is(responseBody.getClientContactInfo().getId()));
+        assertThat(createdTestClient.getClientDemographics(), notNullValue());
+        assertThat(createdTestClient.getClientContactInfo(), notNullValue());
+        assertThat(createdTestClient.getFirstName(), is(responseBody.getFirstName()));
+        assertThat(createdTestClient.getMiddleName(), is(responseBody.getMiddleName()));
+        assertThat(createdTestClient.getLastName(), is(responseBody.getLastName()));
+        assertThat(createdTestClient.getNameDataQuality(), is(responseBody.getNameDataQuality()));
+        assertThat(createdTestClient.getDobMonth(), is(responseBody.getDobMonth()));
+        assertThat(createdTestClient.getDobDay(), is(responseBody.getDobDay()));
+        assertThat(createdTestClient.getDobYear(), is(responseBody.getDobYear()));
+        assertThat(createdTestClient.getDobDataQuality(), is(responseBody.getDobDataQuality()));
+        assertThat(createdTestClient.getFirstThreeSsn(), is(responseBody.getFirstThreeSsn()));
+        assertThat(createdTestClient.getMiddleTwoSsn(), is(responseBody.getMiddleTwoSsn()));
+        assertThat(createdTestClient.getLastFourSsn(), is(responseBody.getLastFourSsn()));
+        assertThat(createdTestClient.getSsnDataQuality(), is(responseBody.getSsnDataQuality()));
+        assertThat(createdTestClient.getClientDemographics().getId(), is(responseBody.getClientDemographics().getId()));
+        assertThat(createdTestClient.getClientContactInfo().getId(), is(responseBody.getClientContactInfo().getId()));
     }
 
     @Test
@@ -147,20 +149,20 @@ public class ClientBaseServiceIntegrationTest {
 
         assertThat(responseBody, notNullValue());
         assertThat(returnedTestClient, is(responseBody));
-//        assertThat(returnedTestClient.getFirstName(), is(responseBody.getFirstName()));
-//        assertThat(returnedTestClient.getMiddleName(), is(responseBody.getMiddleName()));
-//        assertThat(returnedTestClient.getLastName(), is(responseBody.getLastName()));
-//        assertThat(returnedTestClient.getNameDataQuality(), is(responseBody.getNameDataQuality()));
-//        assertThat(returnedTestClient.getDobMonth(), is(responseBody.getDobMonth()));
-//        assertThat(returnedTestClient.getDobDay(), is(responseBody.getDobDay()));
-//        assertThat(returnedTestClient.getDobYear(), is(responseBody.getDobYear()));
-//        assertThat(returnedTestClient.getDobDataQuality(), is(responseBody.getDobDataQuality()));
-//        assertThat(returnedTestClient.getFirstThreeSsn(), is(responseBody.getFirstThreeSsn()));
-//        assertThat(returnedTestClient.getMiddleTwoSsn(), is(responseBody.getMiddleTwoSsn()));
-//        assertThat(returnedTestClient.getLastFourSsn(), is(responseBody.getLastFourSsn()));
-//        assertThat(returnedTestClient.getSsnDataQuality(), is(responseBody.getSsnDataQuality()));
-//        assertThat(returnedTestClient.getClientDemographics().getId(), is(responseBody.getClientDemographics().getId()));
-//        assertThat(returnedTestClient.getClientContactInfo().getId(), is(responseBody.getClientContactInfo().getId()));
+        assertThat(returnedTestClient.getFirstName(), is(responseBody.getFirstName()));
+        assertThat(returnedTestClient.getMiddleName(), is(responseBody.getMiddleName()));
+        assertThat(returnedTestClient.getLastName(), is(responseBody.getLastName()));
+        assertThat(returnedTestClient.getNameDataQuality(), is(responseBody.getNameDataQuality()));
+        assertThat(returnedTestClient.getDobMonth(), is(responseBody.getDobMonth()));
+        assertThat(returnedTestClient.getDobDay(), is(responseBody.getDobDay()));
+        assertThat(returnedTestClient.getDobYear(), is(responseBody.getDobYear()));
+        assertThat(returnedTestClient.getDobDataQuality(), is(responseBody.getDobDataQuality()));
+        assertThat(returnedTestClient.getFirstThreeSsn(), is(responseBody.getFirstThreeSsn()));
+        assertThat(returnedTestClient.getMiddleTwoSsn(), is(responseBody.getMiddleTwoSsn()));
+        assertThat(returnedTestClient.getLastFourSsn(), is(responseBody.getLastFourSsn()));
+        assertThat(returnedTestClient.getSsnDataQuality(), is(responseBody.getSsnDataQuality()));
+        assertThat(returnedTestClient.getClientDemographics().getId(), is(responseBody.getClientDemographics().getId()));
+        assertThat(returnedTestClient.getClientContactInfo().getId(), is(responseBody.getClientContactInfo().getId()));
     }
 
     @Test

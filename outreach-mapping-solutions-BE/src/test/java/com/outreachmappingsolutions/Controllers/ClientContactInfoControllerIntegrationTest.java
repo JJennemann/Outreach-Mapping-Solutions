@@ -97,10 +97,12 @@ public class ClientContactInfoControllerIntegrationTest {
         clientContactInfoRepository.save(testClientContactInfo1);
         clientContactInfoRepository.save(testClientContactInfo2);
         clientContactInfoRepository.save(testClientContactInfo3);
-        List<ClientContactInfo> allTestClientContactInfo =
-                (List<ClientContactInfo>) clientContactInfoService.returnAllClientContactInfo().getBody();
 
-        assertThat(allTestClientContactInfo, notNullValue());
+        ResponseEntity<?> response = clientContactInfoService.returnAllClientContactInfo();
+        List<ClientContactInfo> allTestClientContactInfo = (List<ClientContactInfo>)  response.getBody();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(allTestClientContactInfo, hasSize(3));
         mockMvc.perform(get("/clientContactInfo/returnAll"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -137,9 +139,11 @@ public class ClientContactInfoControllerIntegrationTest {
         clientContactInfoRepository.save(testClientContactInfo1);
         clientContactInfoRepository.save(testClientContactInfo2);
         clientContactInfoRepository.save(testClientContactInfo3);
-        ClientContactInfo returnedTestClientContactInfo = (ClientContactInfo)
-                clientContactInfoService.returnClientContactInfoByClientId(testClient.getId()).getBody();
 
+        ResponseEntity<?> response = clientContactInfoService.returnClientContactInfoByClientId(testClient.getId());
+        ClientContactInfo returnedTestClientContactInfo = (ClientContactInfo) response.getBody();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(get("/clientContactInfo/return/{clientId}", testClient.getId()))
                 .andDo(print())
@@ -173,10 +177,10 @@ public class ClientContactInfoControllerIntegrationTest {
     public void testUpdateClientContactInfoSuccess() throws Exception{
         clientContactInfoRepository.save(testClientContactInfo1);
 
-        ClientContactInfo returnedTestClientContactInfo =
-                (ClientContactInfo) clientContactInfoService.updateClientContactInfo(testClient.getId(),
-                        testUpdatedClientContactInfo).getBody();
+        ResponseEntity<?> response = clientContactInfoService.updateClientContactInfo(testClient.getId(), testUpdatedClientContactInfo);
+        ClientContactInfo returnedTestClientContactInfo = (ClientContactInfo) response.getBody();
 
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(returnedTestClientContactInfo, notNullValue());
         mockMvc.perform(put("/clientContactInfo/update/{clientId}", testClient.getId())
                     .content(objectMapper.writeValueAsString(testUpdatedClientContactInfo))

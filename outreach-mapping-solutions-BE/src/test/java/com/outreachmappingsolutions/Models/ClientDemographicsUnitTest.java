@@ -12,6 +12,7 @@ public class ClientDemographicsUnitTest {
 
     @Test
     public void testClientDemographicsProperties(){
+        Integer id = 1;
         ClientBase testClient = new ClientBase();
         String gender="Male";
         String racePrimary="White/Caucasian";
@@ -21,7 +22,7 @@ public class ClientDemographicsUnitTest {
 
         ClientDemographics testClientDemographics = new ClientDemographics();
 
-        testClientDemographics.setId(1);
+        testClientDemographics.setId(id);
         testClientDemographics.setClient(testClient);
         testClientDemographics.setGender(gender);
         testClientDemographics.setRacePrimary(racePrimary);
@@ -29,7 +30,7 @@ public class ClientDemographicsUnitTest {
         testClientDemographics.setEthnicity(ethnicity);
         testClientDemographics.setVeteranStatus(veteranStatus);
 
-        assertThat(testClientDemographics.getId(), is(1));
+        assertThat(testClientDemographics.getId(), is(id));
         assertThat(testClientDemographics.getClient(), is(testClient));
         assertThat(testClientDemographics.getGender(), is(gender));
         assertThat(testClientDemographics.getRacePrimary(), is(racePrimary));

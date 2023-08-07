@@ -13,6 +13,7 @@ public class ClientBaseUnitTest {
     
     @Test
     public void testClientBaseProperties(){
+        Integer id = 1;
         ClientDemographics testClientDemographics = new ClientDemographics();
         ClientContactInfo testClientContactInfo = new ClientContactInfo();
         String firstName = "John";
@@ -30,7 +31,7 @@ public class ClientBaseUnitTest {
 
         ClientBase testClient = new ClientBase();
 
-        testClient.setId(1);
+        testClient.setId(id);
         testClient.setClientDemographics(testClientDemographics);
         testClient.setClientContactInfo(testClientContactInfo);
         testClient.setFirstName(firstName);
@@ -46,7 +47,7 @@ public class ClientBaseUnitTest {
         testClient.setLastFourSsn(lastFourSsn);
         testClient.setSsnDataQuality(ssnDataQuality);
 
-        assertThat(testClient.getId(), is(1));
+        assertThat(testClient.getId(), is(id));
         assertThat(testClient.getClientDemographics(), is(testClientDemographics));
         assertThat(testClient.getClientContactInfo(), is(testClient.getClientContactInfo()));
         assertThat(testClient.getFirstName(), is(firstName));
@@ -85,9 +86,7 @@ public class ClientBaseUnitTest {
     }
 
     @Test
-    public void testClientBaseConstructorParametrized(){
-        ClientDemographics testClientDemographics = new ClientDemographics();
-        ClientContactInfo testClientContactInfo = new ClientContactInfo();
+    public void testClientBaseConstructorParameterized(){
         String firstName = "John";
         String middleName = "James";
         String lastName = "Doe";
@@ -119,5 +118,27 @@ public class ClientBaseUnitTest {
         assertThat(testClient.getMiddleTwoSsn(), is(middleTwoSsn));
         assertThat(testClient.getLastFourSsn(), is(lastFourSsn));
         assertThat(testClient.getSsnDataQuality(), is(ssnDataQuality));
+    }
+
+
+    @Test
+    public void testClientBaseEqualsMethod() {
+        // Create two instances with the same attributes
+        ClientBase testClient1 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient2 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient3 = new ClientBase();
+        ClientBase testClient4 = new ClientBase();
+        // Ensure they are equal as they have the same attributes
+        assertThat(testClient1.equals(testClient2), is(true));
+    }
+
+    @Test
+    public void testClientBaseHashCodeMethod() {
+        // Create two instances with the same attributes
+        ClientBase testClient1 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient2 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+
+        // Ensure they have the same hash code as they have the same attributes
+        assertThat(testClient1.hashCode(), is(testClient2.hashCode()));
     }
 }
