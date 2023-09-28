@@ -15,7 +15,7 @@ import { ClientProfileAssessmentsComponent } from './portals/client-portal/clien
 import { ClientProfileCaseNotesComponent } from './portals/client-portal/client-profile/client-profile-case-notes/client-profile-case-notes.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/portal', pathMatch:'full'},
+  { path: '', redirectTo: '/client-portal/search', pathMatch:'full'},
 
   { path: 'client-portal', redirectTo: '/client-portal/search', pathMatch:'full'},
 
