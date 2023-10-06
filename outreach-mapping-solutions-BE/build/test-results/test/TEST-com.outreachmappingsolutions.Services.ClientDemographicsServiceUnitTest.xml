@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-09-28T19:06:48" hostname="Joshs-Air.lan" time="0.011">
+  <properties/>
+  <testcase name="testUpdateClientDemographicsSuccess()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.006"/>
+  <testcase name="testReturnAllClientDemographicsSuccess()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.001"/>
+  <testcase name="testReturnAllClientDemographicsError()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.0"/>
+  <testcase name="testUpdateClientDemographicsNotFound()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.0"/>
+  <testcase name="testReturnClientDemographicsByClientIdError()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.001"/>
+  <testcase name="testReturnAllClientDemographicsNotFound()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.0"/>
+  <testcase name="testReturnClientDemographicsByClientIdSuccess()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.001"/>
+  <testcase name="testReturnClientDemographicsByClientIdNotFound()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.0"/>
+  <testcase name="testUpdateClientDemographicsError()" classname="com.outreachmappingsolutions.Services.ClientDemographicsServiceUnitTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

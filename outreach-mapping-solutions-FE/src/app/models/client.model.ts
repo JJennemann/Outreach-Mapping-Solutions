@@ -13,6 +13,8 @@ export class Client {
     public middleTwoSsn: number;
     public lastFourSsn: number;
 
+
+
     constructor(id: number, firstName?: string, middleName?: string, lastName?:string,
                 dobMonth?: string, dobDay?: number, dobYear?: number,
                 firstThreeSsn?: number, middleTwoSsn?: number, lastFourSsn?: number){
