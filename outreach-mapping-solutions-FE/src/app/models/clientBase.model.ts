@@ -1,4 +1,4 @@
-export class Client {
+export class ClientBase {
     public id: number;
 
     public firstName: string;
@@ -15,10 +15,10 @@ export class Client {
 
 
 
-    constructor(id: number, firstName?: string, middleName?: string, lastName?:string,
+    constructor(firstName?: string, middleName?: string, lastName?:string,
                 dobMonth?: string, dobDay?: number, dobYear?: number,
                 firstThreeSsn?: number, middleTwoSsn?: number, lastFourSsn?: number){
-        this.id = id;
+
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;

@@ -3,6 +3,8 @@ import { Client } from 'src/app/models/client.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
 import { NgForm } from '@angular/forms';
 import { ClientDemographics } from 'src/app/models/client-demographics.model';
+import { HttpClient } from '@angular/common/http';
+import { ClientBase } from 'src/app/models/clientBase.model';
 
 @Component({
   selector: 'app-client-search',
@@ -11,7 +13,7 @@ import { ClientDemographics } from 'src/app/models/client-demographics.model';
 })
 export class ClientSearchComponent {
   
-  clientToAdd: Client;
+  clientToAdd: ClientBase;
   formFirstName: string;
   formMiddleName: string;
   formLastName: string;
@@ -28,7 +30,7 @@ export class ClientSearchComponent {
   days: number[];
   @Output() returnedClients = new EventEmitter<Client[]>();
 
-constructor(private clientPortalService: ClientPortalService){
+constructor(private clientPortalService: ClientPortalService, private http: HttpClient){
   this.dataQuality = this.clientPortalService.dataQuality;
   this.monthsDays = this.clientPortalService.monthsDays;
 
@@ -51,10 +53,14 @@ clientSearch(){
 
 
 addToDatabase(){
-  this.clientToAdd = new Client(6, this.formFirstName, this.formMiddleName, this.formLastName, this.formDobMonth,
+  this.clientToAdd = new ClientBase(this.formFirstName, this.formMiddleName, this.formLastName, this.formDobMonth,
                                 this.formDobDay, this.formDobYear, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour);
-  this.clientPortalService.addClientToDatabase(this.clientToAdd);
+  // this.clientPortalService.addClientToDatabase(this.clientToAdd);
 
+    this.http.post('http://localhost:8080/clientBase/create', this.clientToAdd)
+    .subscribe(responseData => {
+      console.log(responseData);
+    });
 
   }
 
