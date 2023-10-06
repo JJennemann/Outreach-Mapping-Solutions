@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.outreachmappingsolutions.Models.ClientContactInfoUnitTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-09-28T19:06:48" hostname="Joshs-Air.lan" time="0.001">
+  <properties/>
+  <testcase name="testClientBaseEqualsMethod()" classname="com.outreachmappingsolutions.Models.ClientContactInfoUnitTest" time="0.0"/>
+  <testcase name="testClientContactInfoProperties()" classname="com.outreachmappingsolutions.Models.ClientContactInfoUnitTest" time="0.0"/>
+  <testcase name="testClientContactInfoConstructorNoArgs()" classname="com.outreachmappingsolutions.Models.ClientContactInfoUnitTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
