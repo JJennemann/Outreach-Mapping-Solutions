@@ -45,12 +45,15 @@ monthSelected(event: Event){
 allClients = this.clientPortalService.getAllClients();
 
 clientSearch(){
-  this.clientPortalService.allClientsEmitted.emit(this.allClients) 
+  
+  // this.clientPortalService.allClientsEmitted.emit(this.allClients) 
 }
 
 
 
-
+// Creating the clientBase object, then sending it via POST request to backend, saving returned response, assigning clientID, 
+// and navigating to client profile
+// -- Need to break up into multiple methods!!
 addToDatabase(){
   this.clientToAdd = new ClientBase(this.formFirstName, this.formMiddleName, this.formLastName, this.formDobMonth,
                                 this.formDobDay, this.formDobYear, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour);
@@ -66,9 +69,6 @@ addToDatabase(){
       this.router.navigate(['/client-portal', 'profile', this.newClientId, 'overview'])
       
     });
-
-    
-
   }
 
 }
