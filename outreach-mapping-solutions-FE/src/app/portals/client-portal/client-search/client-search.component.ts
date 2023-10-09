@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Client } from 'src/app/models/client.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
-import { NgForm } from '@angular/forms';
-import { ClientDemographics } from 'src/app/models/client-demographics.model';
 import { HttpClient } from '@angular/common/http';
 import { ClientBase } from 'src/app/models/clientBase.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-search',
@@ -23,14 +21,15 @@ export class ClientSearchComponent {
   formSsnFirstThree: number;
   formSsnMiddleTwo: number;
   formSsnLastFour: number;
+  newClientId: number;
 
 
   dataQuality: string[];
   monthsDays: {month: string, days: number}[];
   days: number[];
-  @Output() returnedClients = new EventEmitter<Client[]>();
+  // @Output() returnedClients = new EventEmitter<Client[]>();
 
-constructor(private clientPortalService: ClientPortalService, private http: HttpClient){
+constructor(private clientPortalService: ClientPortalService, private http: HttpClient, private router: Router){
   this.dataQuality = this.clientPortalService.dataQuality;
   this.monthsDays = this.clientPortalService.monthsDays;
 
@@ -56,13 +55,20 @@ addToDatabase(){
   this.clientToAdd = new ClientBase(this.formFirstName, this.formMiddleName, this.formLastName, this.formDobMonth,
                                 this.formDobDay, this.formDobYear, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour);
   // this.clientPortalService.addClientToDatabase(this.clientToAdd);
-
+    console.log(this.clientToAdd);
     this.http.post('http://localhost:8080/clientBase/create', this.clientToAdd)
-    .subscribe(responseData => {
-      console.log(responseData);
+    .subscribe((responseData)=> {
+      console.log('Response: ', responseData);
+
+      const jsonResponse = JSON.parse(JSON.stringify(responseData));
+    
+      this.newClientId = jsonResponse.id;
+      this.router.navigate(['/client-portal', 'profile', this.newClientId, 'overview'])
+      
     });
 
-  }
+    
 
+  }
 
 }
