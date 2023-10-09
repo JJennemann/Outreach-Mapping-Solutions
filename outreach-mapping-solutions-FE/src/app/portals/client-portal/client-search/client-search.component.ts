@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-search.component.css']
 })
 export class ClientSearchComponent {
-  
+  resultsReturned: Boolean = false;
+  clientSearchResults: ClientBase[];
+
   clientToAdd: ClientBase;
   formFirstName: string;
   formMiddleName: string;
@@ -45,7 +47,14 @@ monthSelected(event: Event){
 allClients = this.clientPortalService.getAllClients();
 
 clientSearch(){
-  
+this.resultsReturned=true;
+
+this.http.get('http://localhost:8080/clientBase/returnAll').subscribe(
+  (response)=>{
+    const jsonResponse = JSON.parse(JSON.stringify(response));
+    this.clientSearchResults=jsonResponse;
+  }
+)
   // this.clientPortalService.allClientsEmitted.emit(this.allClients) 
 }
 
