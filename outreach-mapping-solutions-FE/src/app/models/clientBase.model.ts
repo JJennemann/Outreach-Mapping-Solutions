@@ -13,7 +13,9 @@ export class ClientBase {
     public middleTwoSsn: number;
     public lastFourSsn: number;
 
-
+    public displayName: string;
+    public displayDob: string;
+    public displaySsn: string;
 
     constructor(firstName?: string, middleName?: string, lastName?:string,
                 dobMonth?: string, dobDay?: number, dobYear?: number,
@@ -29,4 +31,10 @@ export class ClientBase {
         this.middleTwoSsn = middleTwoSsn;
         this.lastFourSsn = lastFourSsn;
     }
+
+setDisplayFields(displayName: string, displayDob: string, displaySsn: string){
+    this.displayName = displayName;
+    this.displayDob = displayDob;
+    this.displaySsn = displaySsn;
+}
 }
