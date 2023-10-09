@@ -9,6 +9,10 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientPortalService {
+
+    
+
+
     dataQuality= ["Complete", "Partial", "Client Did Not Know", "Client Refused", "Data Not Collected"]
 
 
