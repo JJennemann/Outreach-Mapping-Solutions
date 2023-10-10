@@ -24,10 +24,10 @@ public class ClientBaseService {
     public ResponseEntity<?> createNewClient(ClientBase clientBase) {
         try {
             ClientBase newClient = new ClientBase(clientBase.getFirstName(), clientBase.getMiddleName(),
-                    clientBase.getLastName(), clientBase.getNameDataQuality(), clientBase.getDobMonth(),
-                    clientBase.getDobDay(), clientBase.getDobYear(), clientBase.getDobDataQuality(),
+                    clientBase.getLastName(), clientBase.getDisplayName(), clientBase.getNameDataQuality(), clientBase.getDobMonth(),
+                    clientBase.getDobDay(), clientBase.getDobYear(), clientBase.getDisplayDob(), clientBase.getDobDataQuality(),
                     clientBase.getFirstThreeSsn(), clientBase.getMiddleTwoSsn(), clientBase.getLastFourSsn(),
-                    clientBase.getSsnDataQuality());
+                    clientBase.getDisplaySsn(), clientBase.getSsnDataQuality());
             ClientDemographics newClientDemographics = new ClientDemographics();
             newClientDemographics.setClient(newClient);
             ClientContactInfo newClientContactInfo = new ClientContactInfo();
