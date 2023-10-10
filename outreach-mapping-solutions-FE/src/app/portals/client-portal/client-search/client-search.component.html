@@ -14,7 +14,7 @@
   </div>
   <label for="nameDataQuality" class="form-label mb-0">Name Data Quality</label>
   <div class="col-md-3">
-    <select id="nameDataQuality"class="form-select">
+    <select id="nameDataQuality"class="form-select" name="formNameDataQuality" [(ngModel)]="formNameDataQuality">
       <option Selected>Please Select..</option>
       <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
     </select>
@@ -39,7 +39,7 @@
 
   <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality</label>
   <div class="col-md-3">
-    <select id="dobDataQuality"class="form-select">
+    <select id="dobDataQuality"class="form-select" name="formDobDataQuality" [(ngModel)]="formDobDataQuality">
       <option Selected>Please Select..</option>
       <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
     </select>
@@ -58,7 +58,7 @@
 
     <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality</label>
     <div class="col-md-3">
-      <select id="ssnDataQuality"class="form-select">
+      <select id="ssnDataQuality" class="form-select" name="formSsnDataQuality" [(ngModel)]="formSsnDataQuality">
         <option Selected>Please Select..</option>
         <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
       </select>

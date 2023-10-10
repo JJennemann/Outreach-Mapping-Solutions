@@ -21,8 +21,8 @@ export class DemographicsEditComponent implements OnInit{
 
   // clientIdFourDemos: ClientDemographics;
   dataQuality: string[];
-  monthsDays: {month: string, days: number}[];
-  days: number[];
+  monthsDays: {month: string, days: string}[];
+  days: string[];
   @Output() updatedClient: EventEmitter<Client> = new EventEmitter();
   @Output() updatedClientDemographics: EventEmitter<ClientDemographics> = new EventEmitter();
 

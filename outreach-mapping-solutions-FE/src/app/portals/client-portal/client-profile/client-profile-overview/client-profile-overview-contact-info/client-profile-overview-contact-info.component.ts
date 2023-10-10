@@ -14,7 +14,7 @@ export class ClientProfileOverviewContactInfoComponent implements OnInit{
 
   constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute){
   this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
-  console.log(this.clientReturnedId);
+  
   }
 
   ngOnInit(): void {
