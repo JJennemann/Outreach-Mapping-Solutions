@@ -82,7 +82,7 @@ this.http.get('http://localhost:8080/clientBase/returnAll').subscribe(
 // Creating the clientBase object, then sending it via POST request to backend, saving returned response, assigning clientID, 
 // and navigating to client profile
 // -- Need to break up into multiple methods!!
-addToDatabase(){
+createNewClientBase(){
   this.clientToAdd = new ClientBase(this.formFirstName, this.formMiddleName, this.formLastName, this.formNameDataQuality, this.formDobMonth,
                                 this.formDobDay, this.formDobYear,this.formDobDataQuality, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour, this.formSsnDataQuality);
   // this.clientPortalService.addClientToDatabase(this.clientToAdd);
