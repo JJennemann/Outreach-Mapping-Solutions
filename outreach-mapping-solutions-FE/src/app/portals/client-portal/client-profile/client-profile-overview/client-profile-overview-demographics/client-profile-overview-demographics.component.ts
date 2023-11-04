@@ -2,6 +2,7 @@
 
 import { Component, ElementRef, OnInit, ViewChild, Renderer2} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ClientContactInfo } from 'src/app/models/client-contact-info.model';
 import { ClientDemographics } from 'src/app/models/client-demographics.model';
 
 import { ClientBase } from 'src/app/models/clientBase.model';
@@ -14,18 +15,20 @@ import { ClientPortalService } from 'src/app/services/client-portal.service';
 })
 export class ClientProfileOverviewDemographicsComponent implements OnInit  {
 
-  activeClient: ClientBase;
-  activeClientDemographics;
+activeClient: ClientBase;
+// activeClientDemographics: ClientDemographics;
+
 
 constructor(private clientPortalService: ClientPortalService){
   this.activeClient = this.clientPortalService.currentClient;
-  this.activeClientDemographics = this.activeClient.clientDemographics;
-  
+  // this.activeClientDemographics = this.activeClient.clientDemographics;
 }
 
 ngOnInit(): void {
-    
+  // this.activeClient = this.clientPortalService.currentClient;
+  // this.activeClientDemographics = this.activeClient.clientDemographics;
 }
+
 //   clientReturned: Client;
 //   clientDemographics: ClientDemographics;
 //   clientReturnedId: number;

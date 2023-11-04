@@ -10,3 +10,9 @@ export const ClientBaseConstants = {
     UPDATE_CLIENT : "/clientBase/update/",
     DELETE_CLIENT : "/clientBase/delete/"
 }
+
+export const ClientDemographicsConstants = {
+    RETURN_ALL_CLIENT_DEMOGRAPHICS : "/clientDemographics/returnAll",
+    RETURN_CLIENT_DEMOGRAPHICS_BY_CLIENT_ID : "/clientDemographics/return/",
+    UPDATE_CLIENT_DEMOGRAPHICS : "/clientDemographics/update/"
+}

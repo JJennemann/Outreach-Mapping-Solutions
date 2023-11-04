@@ -6,6 +6,7 @@ import { ClientDemographics } from 'src/app/models/client-demographics.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
 
 import * as bootstrap from 'bootstrap';
+import { ClientBase } from 'src/app/models/clientBase.model';
 
 @Component({
   selector: 'app-demographics-edit',
@@ -14,9 +15,90 @@ import * as bootstrap from 'bootstrap';
 })
 export class DemographicsEditComponent implements OnInit{
 
-  ngOnInit(): void {
+
+  activeClient: ClientBase;
+  // routerClientId: number;
+  activeClientDemographics: ClientDemographics;
+ 
+  dataQuality: string[];
+  monthsDays: {month: string, days: string}[];
+  days: string[];
+
+  raceSelections: string[] = ["Black/African-American", "White/Caucasian", "Asian/Pacific Islander", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+  ethnicitySelections: string[] = ["Hispanic", "Non-Hispanic", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
+  genderSelections: string[] = ["Male", "Female", "Trans Male-to-Female", "Trans Female-to-Male", "Non-Binary", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
+  veteranSelections: string[] = ["Veteran", "Not a Veteran", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+  
+  @ViewChild('editClientBasicInformationModal') editClientBasicInformationModal:ElementRef;
+  @ViewChild('exitWithoutSavingBtn') exitWithoutSavingBtn: ElementRef;
+
+  constructor(private clientPortalService: ClientPortalService, private renderer: Renderer2){
+    this.activeClient = this.clientPortalService.currentClient;
+    this.activeClientDemographics = this.activeClient.clientDemographics;
+
+
+    this.dataQuality = this.clientPortalService.dataQuality;
+    this.monthsDays = this.clientPortalService.monthsDays;
+    
+    this.clientPortalService.days.subscribe((days) => {
+      this.days = days
+      });
     
   }
+
+ngOnInit(): void {
+  
+}
+
+monthSelected(event: Event){
+  this.clientPortalService.selectedMonth(event);
+}
+
+updateClientBase(){
+  const updatedClientBase = new ClientBase(this.activeClient.firstName, this.activeClient.middleName, this.activeClient.lastName, this.activeClient.nameDataQuality, this.activeClient.dobMonth,
+    this.activeClient.dobDay, this.activeClient.dobYear, this.activeClient.dobDataQuality, this.activeClient.firstThreeSsn, this.activeClient.middleTwoSsn, this.activeClient.lastFourSsn, this.activeClient.ssnDataQuality);
+
+  this.saveUpdatedClientBase(updatedClientBase);
+}
+
+saveUpdatedClientBase(updatedClientBase: ClientBase){
+  console.log(updatedClientBase);
+  this.clientPortalService.updateClientBase(updatedClientBase).subscribe(responseData => {
+    const updatedClient = <ClientBase> responseData;
+    this.clientPortalService.setCurrentClient(updatedClient);
+    this.activeClient = this.clientPortalService.currentClient;
+    this.updateClientDemographics();
+  });
+}
+
+updateClientDemographics(){
+  const updatedClientDemographics = new ClientDemographics(this.activeClientDemographics.gender, this.activeClientDemographics.racePrimary, this.activeClientDemographics.raceSecondary,
+    this.activeClientDemographics.ethnicity, this.activeClientDemographics.veteran);
+  
+  this.saveUpdatedClientDemographics(updatedClientDemographics);
+}
+  
+saveUpdatedClientDemographics(updatedClientDemographics: ClientDemographics){
+  this.clientPortalService.updateClientDemographics(updatedClientDemographics, this.activeClient.id).subscribe(responseData => {
+    const updatedClient = <ClientBase> responseData;
+    this.clientPortalService.setCurrentClient(updatedClient);
+    this.activeClient = this.clientPortalService.currentClient;
+  });
+}
+// saveUpdatedClient(updatedClientBase: ClientBase, updatedClientDemographics: ClientDemographics){
+//   this.clientPortalService.updateClientBase(updatedClientBase).subscribe(responseData => {
+//     this.activeClient = <ClientBase> responseData;
+//     this.clientPortalService.setCurrentClient(updatedClientBase);
+//     this.activeClient = this.clientPortalService.currentClient;
+//       this.clientPortalService.updateClientDemographics(updatedClientDemographics, this.activeClient.id).subscribe(responseData => {
+//         this.activeClient = <ClientBase> responseData;
+//         this.clientPortalService.setCurrentClient(updatedClientBase);
+//         this.activeClient = this.clientPortalService.currentClient;
+//       });
+//   });
+
+
+
 //   formClientReturned: Client;
 //   @Input() updatedFormClient: Client;
 //   formClientDemographics: ClientDemographics;
@@ -24,13 +106,12 @@ export class DemographicsEditComponent implements OnInit{
 
 //   // clientIdFourDemos: ClientDemographics;
 //   dataQuality: string[];
-//   monthsDays: {month: string, days: string}[];
-//   days: string[];
+//   monthsDays: {month: string, days: number}[];
+//   days: number[];
 //   @Output() updatedClient: EventEmitter<Client> = new EventEmitter();
 //   @Output() updatedClientDemographics: EventEmitter<ClientDemographics> = new EventEmitter();
 
-//   @ViewChild('editClientBasicInformationModal') editClientBasicInformationModal:ElementRef;
-//   @ViewChild('exitWithoutSavingBtn') exitWithoutSavingBtn: ElementRef;
+
 
 //   raceSelections: string[] = ["Black/African-American", "White/Caucasian", "Asian/Pacific Islander", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
 //   ethnicitySelections: string[] = ["Hispanic", "Non-Hispanic", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
@@ -55,71 +136,74 @@ export class DemographicsEditComponent implements OnInit{
 //   this.formClientDemographics = {...this.updatedFormClientDemographics};
 //   }
 
-//   monthSelected(event: Event){
-//     this.clientPortalService.selectedMonth(event);
-//   }
   
 //   clientDobMonth(month: string){
 //     this.clientPortalService.clientDobMonth(month);
 //   }
 
-//   // saveUpdatedFormData() {
-//   //   this.clientPortalService.updateClient(this.formClientReturned);
-//   //   this.updatedClient.emit(this.formClientReturned);
-//   //   this.updatedClientDemographics.emit(this.formClientDemographics);
-//   // }
-
-
-// // confirmation(){
-// //     if(confirm("Are you sure you want to exit without saving?")){
-// //       this.dismissModal();
-// //     } else{
-
-// //     }
-// //   }
-
-// confirmed=false;
-
-//   confirmation() {
-//     if (confirm("Are you sure you want to exit without saving?")) {
-//       this.exitWithoutSavingBtn.nativeElement.setAttribute('data-bs-dismiss', 'modal');
-//       this.dismissModal();
-//       this.exitWithoutSavingBtn.nativeElement.removeAttribute('data-bs-dismiss');
-//     } else {
-//     }
+//   saveUpdatedFormData() {
+//     this.clientPortalService.updateClient(this.formClientReturned);
+//     this.updatedClient.emit(this.formClientReturned);
+//     this.updatedClientDemographics.emit(this.formClientDemographics);
 //   }
+
+
+
+
+confirmed=false;
+
+  confirmation() {
+    if (confirm("Are you sure you want to exit without saving?")) {
+      this.exitWithoutSavingBtn.nativeElement.setAttribute('data-bs-dismiss', 'modal');
+      this.dismissModal();
+      this.exitWithoutSavingBtn.nativeElement.removeAttribute('data-bs-dismiss');
+    } else {
+    }
+  }
   
 
 
-//   resetFormFields(){
-//     this.formClientReturned = {...this.updatedFormClient};
-//     this.formClientDemographics = {...this.updatedFormClientDemographics};
-//   }
+  resetFormFields(){
+    // this.formClientReturned = {...this.updatedFormClient};
+    // this.formClientDemographics = {...this.updatedFormClientDemographics};
+  }
   
 
 
-//   dismissModal() {
-//     this.resetFormFields();
-//     const modalElement: HTMLElement = this.editClientBasicInformationModal.nativeElement;
-//     modalElement.classList.remove('show');
-//     modalElement.style.display = 'none';
-//     document.body.classList.remove('modal-open');
-//     const modalBackdropElement: HTMLElement | null = document.querySelector('.modal-backdrop');
-//     if (modalBackdropElement) {
-//       modalBackdropElement.remove();
-//     }
+  dismissModal() {
+    this.resetFormFields();
+    const modalElement: HTMLElement = this.editClientBasicInformationModal.nativeElement;
+    modalElement.classList.remove('show');
+    modalElement.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    const modalBackdropElement: HTMLElement | null = document.querySelector('.modal-backdrop');
+    if (modalBackdropElement) {
+      modalBackdropElement.remove();
+    }
     
-//     const closeButton: HTMLElement | null = modalElement.querySelector('.exitWithoutSavingBtn');
-//     if (closeButton) {
-//       this.renderer.listen(closeButton, 'click', () => {});
-//       closeButton.click();
+    const closeButton: HTMLElement | null = modalElement.querySelector('.exitWithoutSavingBtn');
+    if (closeButton) {
+      this.renderer.listen(closeButton, 'click', () => {});
+      closeButton.click();
 
-//   }
-//   }
+  }
+  }
 
   
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
   // dismissModal(){
   //   this.resetFormFields();

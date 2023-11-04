@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ClientBase } from '../models/clientBase.model';
 import { Router } from '@angular/router';
-import { ClientBaseConstants } from '../constants/app.constants';
+import { ClientBaseConstants, ClientDemographicsConstants } from '../constants/app.constants';
 import { RootUrl } from '../constants/app.constants';
 
 
@@ -21,17 +21,38 @@ constructor(private http: HttpClient){
 
 }
 
-getAllClients1(){
+getAllClients(){
     return this.http.get(RootUrl.ROOT_URL + ClientBaseConstants.RETURN_ALL_CLIENTS);
 }
 
-postNewClientBase(clientBase: ClientBase){
-    return this.http.post(RootUrl.ROOT_URL + ClientBaseConstants.CREATE_NEW_CLIENT, clientBase);
+getClientById(clientId: number){
+    return this.http.get(RootUrl.ROOT_URL + ClientBaseConstants.RETURN_CLIENT_BY_ID + clientId);
+}
+
+postNewClientBase(newClientBase: ClientBase){
+    return this.http.post(RootUrl.ROOT_URL + ClientBaseConstants.CREATE_NEW_CLIENT, newClientBase);
+}
+
+updateClientBase(updatedClientBase: ClientBase){
+    return this.http.put(RootUrl.ROOT_URL + ClientBaseConstants.UPDATE_CLIENT + this.currentClient.id, updatedClientBase);
+}
+
+getAllClientDemographics(){
+    return this.http.get(RootUrl.ROOT_URL + ClientDemographicsConstants.RETURN_ALL_CLIENT_DEMOGRAPHICS);
+}
+
+getClientDemographicsByClientId(clientId: number){
+    return this.http.get(RootUrl.ROOT_URL + ClientDemographicsConstants.RETURN_CLIENT_DEMOGRAPHICS_BY_CLIENT_ID + clientId);
+}
+
+updateClientDemographics(updatedClientDemographics: ClientDemographics, clientId: number){
+    console.log(clientId, updatedClientDemographics);
+    return this.http.put(RootUrl.ROOT_URL + ClientDemographicsConstants.UPDATE_CLIENT_DEMOGRAPHICS + clientId, updatedClientDemographics);
 }
 
 setCurrentClient(selectedClient: ClientBase){
     this.currentClient = selectedClient;
-    this.log();
+    // this.log();
 }
 
 log(){

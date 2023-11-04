@@ -38,6 +38,7 @@ constructor(private clientPortalService: ClientPortalService, private router: Ro
   this.dataQuality = this.clientPortalService.dataQuality;
   this.monthsDays = this.clientPortalService.monthsDays;
 
+
   this.clientPortalService.days.subscribe(
     (days) => this.days = days
   );
@@ -50,7 +51,7 @@ monthSelected(event: Event){
 searchClient(){
 this.resultsReturned=true;
 
-this.clientPortalService.getAllClients1().subscribe(responseData => {
+this.clientPortalService.getAllClients().subscribe(responseData => {
   this.returnedSearchResults = <ClientBase[]> responseData;
 });
 }
@@ -65,14 +66,13 @@ createNewClientBase(){
 addClient(clientToAdd: ClientBase){
   this.clientPortalService.postNewClientBase(clientToAdd).subscribe(responseData => {
     this.newClient = <ClientBase> responseData;
-    this.clientRoute();
+    this.addClientRoute();
+    this.setCurrentClient(this.newClient);
   });
 }
 
-clientRoute(){
+addClientRoute(){
   this.router.navigate(['/client-portal', 'profile', this.newClient.id, 'overview']);
-
-  this.setCurrentClient(this.newClient);
 }
 
 setCurrentClient(clientToSet: ClientBase){

@@ -1,4 +1,4 @@
-<!-- 
+
 
       <div class="modal fade" #editClientBasicInformationModal id="editClientBasicInformationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
@@ -13,15 +13,15 @@
                         <div class="row my-3">
                             <div class="col-md-4">
                                 <label for="inputFirstName" class="form-label mb-0" >First Name:</label>
-                                <input type="text" class="form-control" id="inputFirstName" name="firstName" [(ngModel)]="formClientReturned.firstName"  >
+                                <input type="text" class="form-control" id="inputFirstName" name="firstName" [(ngModel)]="activeClient.firstName"  >
                             </div>
                             <div class="col-md-4">
                                 <label for="inputMiddleName" class="form-label mb-0">Middle Name:</label>
-                                <input type="text" class="form-control" id="inputMiddleName"  name="middleName" [(ngModel)]="formClientReturned.middleName">
+                                <input type="text" class="form-control" id="inputMiddleName"  name="middleName" [(ngModel)]="activeClient.middleName">
                                 </div>
                             <div class="col-md-4">
                                 <label for="inputLastName" class="form-label mb-0">Last Name:</label>
-                                <input type="text" class="form-control" id="inputLastName" name="lastName" [(ngModel)]="formClientReturned.lastName">
+                                <input type="text" class="form-control" id="inputLastName" name="lastName" [(ngModel)]="activeClient.lastName">
                             </div> 
                         </div>
                         <div class="row my-3">
@@ -37,19 +37,19 @@
                       <div class="row my-3">
                         <label  class="form-label mb-0">Date of Birth:</label>
                         <div class="col-md-5">
-                            <select class="form-select"  (change)="monthSelected($event)" name="dobMonth" [(ngModel)]="formClientReturned.dobMonth">
-                                <option Selected>{{formClientReturned.dobMonth}}</option>
+                            <select class="form-select"  (change)="monthSelected($event)" name="dobMonth" [(ngModel)]="activeClient.dobMonth">
+                                <option Selected>{{activeClient.dobMonth}}</option>
                                 <option *ngFor="let monthDay of monthsDays"> {{ monthDay.month }}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-select" name="dobDay" [(ngModel)]="formClientReturned.dobDay">
-                                <option Selected>{{formClientReturned.dobDay}}</option>
+                            <select class="form-select" name="dobDay" [(ngModel)]="activeClient.dobDay">
+                                <option Selected>{{activeClient.dobDay}}</option>
                                 <option *ngFor="let day of days">{{ day }}</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control"  minLength="4" maxLength="4" name="dobYear" placeholder="YYYY" [(ngModel)]="formClientReturned.dobYear">
+                            <input type="text" class="form-control"  minLength="4" maxLength="4" name="dobYear" placeholder="YYYY" [(ngModel)]="activeClient.dobYear">
                         </div>
                         </div>
                       <div class="row my-3">
@@ -65,13 +65,13 @@
                       <div class="row my-3">
                         <label class="form-label mb-0">Social Security Number:</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" maxlength="3" placeholder="123" name="firstThreeSsn" [(ngModel)]="formClientReturned.firstThreeSsn">
+                            <input type="text" class="form-control" maxlength="3" placeholder="123" name="firstThreeSsn" [(ngModel)]="activeClient.firstThreeSsn">
                           </div>
                           <div class="col-md-2">
-                              <input type="text" class="form-control" maxlength="2" placeholder="45" name="middleTwoSsn" [(ngModel)]="formClientReturned.middleTwoSsn">
+                              <input type="text" class="form-control" maxlength="2" placeholder="45" name="middleTwoSsn" [(ngModel)]="activeClient.middleTwoSsn">
                             </div>
                           <div class="col-md-4">
-                            <input type="text" class="form-control" maxlength="4" placeholder="6789" name="lastFourSsn" [(ngModel)]="formClientReturned.lastFourSsn">
+                            <input type="text" class="form-control" maxlength="4" placeholder="6789" name="lastFourSsn" [(ngModel)]="activeClient.lastFourSsn">
                           </div>
                       </div>
                       <div class="row my-3">
@@ -87,7 +87,7 @@
                       <div class="row my-3">
                         <div class="col-md-4">
                         <label  class="form-label mb-0">Gender:</label>
-                          <select class="form-select" name="gender" [(ngModel)]="formClientDemographics.gender" >
+                          <select class="form-select" name="gender" [(ngModel)]="this.activeClientDemographics.gender" >
                             <option [value]="undefined" disabled selected>Please Select...</option>
                             <option *ngFor="let gender of genderSelections">{{ gender }}</option>
                           </select>
@@ -97,21 +97,21 @@
                       <div class="row my-3">
                         <div class="col-md-4">
                         <label  class="form-label mb-0">Race (Primary):</label>
-                          <select class="form-select" name="racePrimary" [(ngModel)]="formClientDemographics.racePrimary">
+                          <select class="form-select" name="racePrimary" [(ngModel)]="this.activeClientDemographics.racePrimary">
                             <option [value]="undefined" disabled selected>Please Select...</option>
                             <option *ngFor="let race of raceSelections"> {{ race }}</option>
                           </select>
                         </div>
                         <div class="col-md-4">
                         <label  class="form-label mb-0">Race (Secondary):</label>
-                          <select class="form-select" name="raceSecondary" [(ngModel)]="formClientDemographics.raceSecondary">
+                          <select class="form-select" name="raceSecondary" [(ngModel)]="this.activeClientDemographics.raceSecondary">
                             <option [value]="undefined" disabled selected>Please Select...</option>
                             <option *ngFor="let race of raceSelections"> {{ race }}</option>
                           </select>
                         </div>
                         <div class="col-md-4">
                         <label  class="form-label mb-0">Ethnicity:</label>
-                          <select class="form-select" name="ethnicity" [(ngModel)]="formClientDemographics.ethnicity">
+                          <select class="form-select" name="ethnicity" [(ngModel)]="this.activeClientDemographics.ethnicity">
                             <option [value]="undefined" disabled selected>Please Select...</option>
                             <option *ngFor="let ethnicity of ethnicitySelections"> {{ ethnicity }}</option>
                           </select>
@@ -121,7 +121,7 @@
                       <div class="row my-3">
                         <div class="col-md-4">
                         <label  class="form-label mb-0">Veteran Status:</label>
-                          <select class="form-select" name="veteran" [(ngModel)]="formClientDemographics.veteran" >
+                          <select class="form-select" name="veteran" [(ngModel)]="this.activeClientDemographics.veteran" >
                             <option [value]="undefined" disabled selected>Please Select...</option>
                             <option *ngFor="let veteranStatus of veteranSelections">{{ veteranStatus }}</option>
                           </select>
@@ -134,8 +134,8 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary exitWithoutSavingBtn" aria-label="Close" (click)="confirmation()" #exitWithoutSavingBtn>Exit without Saving</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveUpdatedFormData()">Save Updated Info</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateClientBase()">Save Updated Info</button>
                 </div>
               </div>
             </div>
-          </div>  -->
+          </div> 
