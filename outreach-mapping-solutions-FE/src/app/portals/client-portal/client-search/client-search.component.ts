@@ -12,7 +12,7 @@ export class ClientSearchComponent {
   resultsReturned: Boolean = false;
   returnedSearchResults: ClientBase[];
   clientBaseToCreate: ClientBase;
-  selectedClient: ClientBase;  
+  newClient: ClientBase;  
 
   formFirstName: string;
   formMiddleName: string;
@@ -64,13 +64,19 @@ createNewClientBase(){
 
 addClient(clientToAdd: ClientBase){
   this.clientPortalService.postNewClientBase(clientToAdd).subscribe(responseData => {
-    this.selectedClient = <ClientBase> responseData;
+    this.newClient = <ClientBase> responseData;
     this.clientRoute();
   });
 }
 
 clientRoute(){
-  this.router.navigate(['/client-portal', 'profile', this.selectedClient.id, 'overview']);
+  this.router.navigate(['/client-portal', 'profile', this.newClient.id, 'overview']);
+
+  this.setCurrentClient(this.newClient);
+}
+
+setCurrentClient(clientToSet: ClientBase){
+  this.clientPortalService.setCurrentClient(clientToSet);
 }
 
 }

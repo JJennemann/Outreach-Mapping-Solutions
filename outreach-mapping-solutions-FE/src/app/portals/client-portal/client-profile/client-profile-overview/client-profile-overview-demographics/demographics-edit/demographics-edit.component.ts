@@ -3,7 +3,6 @@ import { Component, ElementRef, OnInit, ViewChild, EventEmitter, Output, Input, 
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ClientDemographics } from 'src/app/models/client-demographics.model';
 
-import { Client } from 'src/app/models/client.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
 
 import * as bootstrap from 'bootstrap';
@@ -14,105 +13,109 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./demographics-edit.component.css']
 })
 export class DemographicsEditComponent implements OnInit{
-  formClientReturned: Client;
-  @Input() updatedFormClient: Client;
-  formClientDemographics: ClientDemographics;
-  @Input() updatedFormClientDemographics: ClientDemographics;
 
-  // clientIdFourDemos: ClientDemographics;
-  dataQuality: string[];
-  monthsDays: {month: string, days: string}[];
-  days: string[];
-  @Output() updatedClient: EventEmitter<Client> = new EventEmitter();
-  @Output() updatedClientDemographics: EventEmitter<ClientDemographics> = new EventEmitter();
-
-  @ViewChild('editClientBasicInformationModal') editClientBasicInformationModal:ElementRef;
-  @ViewChild('exitWithoutSavingBtn') exitWithoutSavingBtn: ElementRef;
-
-  raceSelections: string[] = ["Black/African-American", "White/Caucasian", "Asian/Pacific Islander", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
-  ethnicitySelections: string[] = ["Hispanic", "Non-Hispanic", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
-  genderSelections: string[] = ["Male", "Female", "Trans Male-to-Female", "Trans Female-to-Male", "Non-Binary", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
-  veteranSelections: string[] = ["Veteran", "Not a Veteran", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
-
-constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2){
-  this.dataQuality = this.clientPortalService.dataQuality;
-  this.monthsDays = this.clientPortalService.monthsDays;
-  this.formClientReturned = this.updatedFormClient;
-  this.formClientDemographics = this.updatedFormClientDemographics;
-
-
-this.clientPortalService.days.subscribe((days) => {
-  this.days = days
-  });
-
-}
-
-ngOnInit(): void {
-  this.formClientReturned = {...this.updatedFormClient};
-  this.formClientDemographics = {...this.updatedFormClientDemographics};
+  ngOnInit(): void {
+    
   }
+//   formClientReturned: Client;
+//   @Input() updatedFormClient: Client;
+//   formClientDemographics: ClientDemographics;
+//   @Input() updatedFormClientDemographics: ClientDemographics;
 
-  monthSelected(event: Event){
-    this.clientPortalService.selectedMonth(event);
-  }
-  
-  clientDobMonth(month: string){
-    this.clientPortalService.clientDobMonth(month);
-  }
+//   // clientIdFourDemos: ClientDemographics;
+//   dataQuality: string[];
+//   monthsDays: {month: string, days: string}[];
+//   days: string[];
+//   @Output() updatedClient: EventEmitter<Client> = new EventEmitter();
+//   @Output() updatedClientDemographics: EventEmitter<ClientDemographics> = new EventEmitter();
 
-  saveUpdatedFormData() {
-    this.clientPortalService.updateClient(this.formClientReturned);
-    this.updatedClient.emit(this.formClientReturned);
-    this.updatedClientDemographics.emit(this.formClientDemographics);
-  }
+//   @ViewChild('editClientBasicInformationModal') editClientBasicInformationModal:ElementRef;
+//   @ViewChild('exitWithoutSavingBtn') exitWithoutSavingBtn: ElementRef;
+
+//   raceSelections: string[] = ["Black/African-American", "White/Caucasian", "Asian/Pacific Islander", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+//   ethnicitySelections: string[] = ["Hispanic", "Non-Hispanic", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
+//   genderSelections: string[] = ["Male", "Female", "Trans Male-to-Female", "Trans Female-to-Male", "Non-Binary", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
+//   veteranSelections: string[] = ["Veteran", "Not a Veteran", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+
+// constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2){
+//   this.dataQuality = this.clientPortalService.dataQuality;
+//   this.monthsDays = this.clientPortalService.monthsDays;
+//   this.formClientReturned = this.updatedFormClient;
+//   this.formClientDemographics = this.updatedFormClientDemographics;
 
 
-// confirmation(){
-//     if(confirm("Are you sure you want to exit without saving?")){
-//       this.dismissModal();
-//     } else{
+// this.clientPortalService.days.subscribe((days) => {
+//   this.days = days
+//   });
 
-//     }
+// }
+
+// ngOnInit(): void {
+//   this.formClientReturned = {...this.updatedFormClient};
+//   this.formClientDemographics = {...this.updatedFormClientDemographics};
 //   }
 
-confirmed=false;
+//   monthSelected(event: Event){
+//     this.clientPortalService.selectedMonth(event);
+//   }
+  
+//   clientDobMonth(month: string){
+//     this.clientPortalService.clientDobMonth(month);
+//   }
 
-  confirmation() {
-    if (confirm("Are you sure you want to exit without saving?")) {
-      this.exitWithoutSavingBtn.nativeElement.setAttribute('data-bs-dismiss', 'modal');
-      this.dismissModal();
-      this.exitWithoutSavingBtn.nativeElement.removeAttribute('data-bs-dismiss');
-    } else {
-    }
-  }
+//   // saveUpdatedFormData() {
+//   //   this.clientPortalService.updateClient(this.formClientReturned);
+//   //   this.updatedClient.emit(this.formClientReturned);
+//   //   this.updatedClientDemographics.emit(this.formClientDemographics);
+//   // }
+
+
+// // confirmation(){
+// //     if(confirm("Are you sure you want to exit without saving?")){
+// //       this.dismissModal();
+// //     } else{
+
+// //     }
+// //   }
+
+// confirmed=false;
+
+//   confirmation() {
+//     if (confirm("Are you sure you want to exit without saving?")) {
+//       this.exitWithoutSavingBtn.nativeElement.setAttribute('data-bs-dismiss', 'modal');
+//       this.dismissModal();
+//       this.exitWithoutSavingBtn.nativeElement.removeAttribute('data-bs-dismiss');
+//     } else {
+//     }
+//   }
   
 
 
-  resetFormFields(){
-    this.formClientReturned = {...this.updatedFormClient};
-    this.formClientDemographics = {...this.updatedFormClientDemographics};
-  }
+//   resetFormFields(){
+//     this.formClientReturned = {...this.updatedFormClient};
+//     this.formClientDemographics = {...this.updatedFormClientDemographics};
+//   }
   
 
 
-  dismissModal() {
-    this.resetFormFields();
-    const modalElement: HTMLElement = this.editClientBasicInformationModal.nativeElement;
-    modalElement.classList.remove('show');
-    modalElement.style.display = 'none';
-    document.body.classList.remove('modal-open');
-    const modalBackdropElement: HTMLElement | null = document.querySelector('.modal-backdrop');
-    if (modalBackdropElement) {
-      modalBackdropElement.remove();
-    }
+//   dismissModal() {
+//     this.resetFormFields();
+//     const modalElement: HTMLElement = this.editClientBasicInformationModal.nativeElement;
+//     modalElement.classList.remove('show');
+//     modalElement.style.display = 'none';
+//     document.body.classList.remove('modal-open');
+//     const modalBackdropElement: HTMLElement | null = document.querySelector('.modal-backdrop');
+//     if (modalBackdropElement) {
+//       modalBackdropElement.remove();
+//     }
     
-    const closeButton: HTMLElement | null = modalElement.querySelector('.exitWithoutSavingBtn');
-    if (closeButton) {
-      this.renderer.listen(closeButton, 'click', () => {});
-      closeButton.click();
+//     const closeButton: HTMLElement | null = modalElement.querySelector('.exitWithoutSavingBtn');
+//     if (closeButton) {
+//       this.renderer.listen(closeButton, 'click', () => {});
+//       closeButton.click();
 
-  }
-  }
+//   }
+//   }
 
   
   

@@ -4,7 +4,6 @@ import { ClientPortalComponent } from './portals/client-portal/client-portal.com
 import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MapsPortalComponent } from './portals/maps-portal/maps-portal.component';
-import { Client } from './models/client.model';
 import { ClientProfileComponent } from './portals/client-portal/client-profile/client-profile.component';
 import { ClientSearchComponent } from './portals/client-portal/client-search/client-search.component';
 import { PortalsComponent } from './portals/portals.component';
