@@ -28,7 +28,7 @@ ngOnInit(): void {
 // this.route.parent.params.subscribe((params: Params) => {
 //     this.clientIdUrl = +params['id'];
 //   });
-this.clientIdUrl = this.clientPortalService.getClientIdSelected();
+this.clientIdUrl = this.clientPortalService.currentClient.id;
 
 }
 

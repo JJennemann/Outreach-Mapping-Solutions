@@ -2,39 +2,39 @@
     <h4 style="text-decoration: underline;">Client Basic Information</h4>
     <div class="col-md-4">
         <label for="inputName" class="form-label mb-0">Name:</label>
-        <div id="inputName"> {{ clientReturned.lastName + ", " + clientReturned.firstName + " " + clientReturned.middleName }}</div>
+        <div id="inputName"> {{ activeClient.lastName + ", " + activeClient.firstName + " " + activeClient.middleName }}</div>
     </div>
     <div class="col-md-4">
         <label for="inputDob" class="form-label mb-0">Date of Birth:</label>
-        <div > {{ clientReturned.dobMonth + " " + clientReturned.dobDay + ", " + clientReturned.dobYear }}</div>
+        <div > {{ activeClient.dobMonth + " " + activeClient.dobDay + ", " + activeClient.dobYear }}</div>
     </div>
     <div class="col-md-4">
         <label for="inputSsn" class="form-label mb-0">Social Security Number:</label>
 
-        <div> {{ clientReturned.firstThreeSsn + "-" + clientReturned.middleTwoSsn + "-" + clientReturned.lastFourSsn }}</div>
+        <div> {{ activeClient.firstThreeSsn + "-" + activeClient.middleTwoSsn + "-" + activeClient.lastFourSsn }}</div>
     </div>
 
     <div class="col-md-12">
         <label for="inputGender" class="form-label mb-0">Gender:</label>
-        <div id="inputGender"> {{ clientDemographics.gender }} </div>
+        <div id="inputGender"> {{ activeClient.clientDemographics.gender }} </div>
     </div>
     <div class="col-md-4">
         <label for="inputPrimaryRace" class="form-label mb-0">Race (Primary):</label>
-        <div id="inputPrimaryRace"> {{ clientDemographics.racePrimary }} </div>
+        <div id="inputPrimaryRace"> {{ activeClient.clientDemographics.racePrimary }} </div>
     </div>
     <div class="col-md-4">
         <label for="inputSecondaryRace" class="form-label mb-0">Race (Secondary):</label>
 
-        <div> {{ clientDemographics.raceSecondary }} </div>
+        <div> {{ activeClient.clientDemographics.raceSecondary }} </div>
     </div>
 
     <div class="col-md-4">
         <label for="inputEthnicity" class="form-label mb-0">Ethnicity:</label>
-        <div id="inputEthnicity"> {{ clientDemographics.ethnicity }} </div>
+        <div id="inputEthnicity"> {{ activeClient.clientDemographics.ethnicity }} </div>
     </div>
     <div class="col-md-12">
         <label for="inputVeteran" class="form-label mb-0">Veteran Status:</label>
-        <div id="inputVeteran">{{ clientDemographics.veteran }}</div>
+        <div id="inputVeteran">{{ activeClient.clientDemographics.veteran }}</div>
     </div>
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClientBasicInformationModal" 
@@ -45,10 +45,12 @@
 </div>
 
 <app-demographics-edit 
-(updatedClient)="handleUpdatedClient($event)"
-(updatedClientDemographics)="handleUpdatedDemographics($event)"
-[updatedFormClient] = "clientReturned"
-[updatedFormClientDemographics] = "clientDemographics"
+
 
 >
 </app-demographics-edit>
+
+<!-- (updatedClient)="handleUpdatedClient($event)"
+(updatedClientDemographics)="handleUpdatedDemographics($event)"
+[updatedFormClient] = "activeClient"
+[updatedFormClientDemographics] = "activeClient.clientDemographics" -->

@@ -1,3 +1,6 @@
+import { ClientContactInfo } from "./client-contact-info.model";
+import { ClientDemographics } from "./client-demographics.model";
+
 export class ClientBase {
     public id: number;
 
@@ -19,10 +22,14 @@ export class ClientBase {
     public displaySsn: string;
     public ssnDataQuality: string;
 
+    public clientDemographics: ClientDemographics;
+    public clientContactInfo: ClientContactInfo;
+
 
     constructor(firstName?: string, middleName?: string, lastName?:string, nameDataQuality?: string,
                 dobMonth?: string, dobDay?: string, dobYear?: string, dobDataQuality?: string,
-                firstThreeSsn?: string, middleTwoSsn?: string, lastFourSsn?: string, ssnDataQuality?: string){
+                firstThreeSsn?: string, middleTwoSsn?: string, lastFourSsn?: string, ssnDataQuality?: string,
+                clientDemographics?: ClientDemographics, clientContactInfo?: ClientContactInfo){
 
         this.firstName = firstName;
         this.middleName = middleName;
@@ -41,6 +48,9 @@ export class ClientBase {
         this.lastFourSsn = lastFourSsn;
         this.displaySsn = this.formatClientSsn(firstThreeSsn, middleTwoSsn, lastFourSsn);
         this.ssnDataQuality = ssnDataQuality;
+
+        this.clientDemographics = clientDemographics;
+        this.clientContactInfo = clientContactInfo;
     }
 
 
