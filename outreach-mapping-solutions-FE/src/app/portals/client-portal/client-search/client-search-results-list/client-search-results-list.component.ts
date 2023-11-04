@@ -10,22 +10,22 @@ import { ClientPortalService } from 'src/app/services/client-portal.service';
   styleUrls: ['./client-search-results-list.component.css']
 })
 export class ClientSearchResultsListComponent implements OnInit{
-  @Input() returnedClients: Client[];
+  // @Input() returnedClients: Client[];
 
 
 
-  constructor(private clientPortalService: ClientPortalService){
-    this.clientPortalService.allClientsEmitted.subscribe(
-      (clientsReturned: Client[]) => this.returnedClients = clientsReturned
-    );
-  }
+  // constructor(private clientPortalService: ClientPortalService){
+  //   this.clientPortalService.allClientsEmitted.subscribe(
+  //     (clientsReturned: Client[]) => this.returnedClients = clientsReturned
+  //   );
+  // }
   
   ngOnInit(): void {
-   this.returnedClients = this.clientPortalService.getAllClients();
+  //  this.returnedClients = this.clientPortalService.getAllClients();
   }
 
-  onClientSelected(clientId: number){
-    this.clientPortalService.setClientIdSelected(clientId);
-  }
+  // onClientSelected(clientId: number){
+  //   this.clientPortalService.setClientIdSelected(clientId);
+  // }
 
 }

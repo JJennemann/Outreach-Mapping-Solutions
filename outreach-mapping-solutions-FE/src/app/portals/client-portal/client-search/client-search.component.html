@@ -66,7 +66,7 @@
   <div class="row g-1 " style="justify-content: center;">
     <div class="col-md-4 m-1" >
       <!-- <button type="button" class="m-1 btn btn-primary btn-sm" (click)="clientSearch()" routerLink="results">Search Client</button> -->
-      <button type="button" class="m-1 btn btn-primary btn-sm" (click)="clientSearch()">Search Client</button>
+      <button type="button" class="m-1 btn btn-primary btn-sm" (click)="searchClient()">Search Client</button>
     </div>
     <div class="col-md-4 m-1" >
       <button type="button" class="m-1 btn btn-secondary btn-sm" (click)="createNewClientBase()" >Add Client</button>
@@ -87,7 +87,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let client of clientSearchResults">
+        <tr *ngFor="let client of returnedSearchResults">
             <td> {{ client.id }}</td>
             <!-- <td><a [routerLink]="['/client-portal', 'profile', client.id, 'overview']" (click)="onClientSelected(client.id)" >{{ client.lastName + ", " + client.firstName + " " + client.middleName }}</a> </td> -->
             <td><a [routerLink]="['/client-portal', 'profile', client.id, 'overview']" >{{ client.displayName }}</a> </td>

@@ -3,12 +3,65 @@ import { Client } from '../models/client.model';
 import { ClientDemographics } from '../models/client-demographics.model';
 import { ClientContactInfo } from '../models/client-contact-info.model';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ClientBase } from '../models/clientBase.model';
+import { Router } from '@angular/router';
+import { ClientBaseConstants } from '../constants/app.constants';
+import { RootUrl } from '../constants/app.constants';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientPortalService {
+
+// // newClientId: number;
+// newClient: ClientBase;
+// clientSearchResults: ClientBase[];
+
+
+constructor(private http: HttpClient){
+
+}
+
+getAllClients1(){
+    return this.http.get(RootUrl.ROOT_URL + ClientBaseConstants.RETURN_ALL_CLIENTS);
+}
+
+postNewClientBase(clientBase: ClientBase){
+    return this.http.post(RootUrl.ROOT_URL + ClientBaseConstants.CREATE_NEW_CLIENT, clientBase);
+}
+
+// getSearchResults(){
+//     this.http.get('http://localhost:8080/clientBase/returnAll').subscribe(
+//         (response)=>{
+//           const jsonResponse = JSON.parse(JSON.stringify(response));
+//           this.clientSearchResults=jsonResponse;
+      
+//           // this.formatSearchResults(this.clientSearchResults);
+//         }
+//       )
+//       return this.clientSearchResults
+// }
+
+// postNewClientBase(clientBase: ClientBase){
+//     this.http.post('http://localhost:8080/clientBase/create', clientBase)
+//     .subscribe((responseData)=> {
+      
+
+//       const jsonResponse = JSON.parse(JSON.stringify(responseData));
+    
+//       this.newClient = jsonResponse;
+    
+
+//     })
+//     console.log(this.newClient);
+//     return this.newClient;
+//   }
+
+
+
+
 
 
 
