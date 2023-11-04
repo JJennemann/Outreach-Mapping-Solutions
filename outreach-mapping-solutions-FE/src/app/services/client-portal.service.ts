@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ClientBase } from '../models/clientBase.model';
 import { Router } from '@angular/router';
-import { ClientBaseConstants, ClientDemographicsConstants } from '../constants/app.constants';
-import { RootUrl } from '../constants/app.constants';
+import { ClientBaseConstants, ClientDemographicsConstants, RootUrl } from '../constants/app.constants';
+
 
 
 @Injectable({

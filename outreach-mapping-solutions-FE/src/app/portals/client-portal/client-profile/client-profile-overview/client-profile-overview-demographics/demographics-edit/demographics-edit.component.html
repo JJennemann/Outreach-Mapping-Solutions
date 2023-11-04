@@ -121,7 +121,7 @@
                       <div class="row my-3">
                         <div class="col-md-4">
                         <label  class="form-label mb-0">Veteran Status:</label>
-                          <select class="form-select" name="veteran" [(ngModel)]="this.activeClientDemographics.veteran" >
+                          <select class="form-select" name="veteran" [(ngModel)]="this.activeClientDemographics.veteranStatus" >
                             <option [value]="undefined" disabled selected>Please Select...</option>
                             <option *ngFor="let veteranStatus of veteranSelections">{{ veteranStatus }}</option>
                           </select>

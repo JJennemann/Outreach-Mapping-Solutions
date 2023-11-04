@@ -73,7 +73,7 @@ saveUpdatedClientBase(updatedClientBase: ClientBase){
 
 updateClientDemographics(){
   const updatedClientDemographics = new ClientDemographics(this.activeClientDemographics.gender, this.activeClientDemographics.racePrimary, this.activeClientDemographics.raceSecondary,
-    this.activeClientDemographics.ethnicity, this.activeClientDemographics.veteran);
+    this.activeClientDemographics.ethnicity, this.activeClientDemographics.veteranStatus);
   
   this.saveUpdatedClientDemographics(updatedClientDemographics);
 }

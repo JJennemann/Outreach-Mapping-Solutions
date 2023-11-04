@@ -6,16 +6,16 @@ export class ClientDemographics{
     public racePrimary: string;
     public raceSecondary: string;
     public ethnicity: string;
-    public veteran: string;
+    public veteranStatus: string;
 
 
-    constructor( gender?: string, racePrimary?: string, raceSecondary?: string, ethnicity?: string, veteran?: string){
+    constructor( gender?: string, racePrimary?: string, raceSecondary?: string, ethnicity?: string, veteranStatus?: string){
         // this.id = id;
         // this.client = client;
         this.gender = gender;
         this.racePrimary = racePrimary;
         this.raceSecondary = raceSecondary;
         this.ethnicity = ethnicity;
-        this.veteran = veteran;
+        this.veteranStatus = veteranStatus;
     }
 }
