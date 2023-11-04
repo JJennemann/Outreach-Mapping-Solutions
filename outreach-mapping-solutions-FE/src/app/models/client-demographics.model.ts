@@ -1,7 +1,7 @@
 export class ClientDemographics{
 
-    public id: number;
-    public client: number;
+    // public id: number;
+    // public client: number;
     public gender: string;
     public racePrimary: string;
     public raceSecondary: string;
@@ -9,9 +9,9 @@ export class ClientDemographics{
     public veteran: string;
 
 
-    constructor(id: number, client?: number, gender?: string, racePrimary?: string, raceSecondary?: string, ethnicity?: string, veteran?: string){
-        this.id = id;
-        this.client = client;
+    constructor( gender?: string, racePrimary?: string, raceSecondary?: string, ethnicity?: string, veteran?: string){
+        // this.id = id;
+        // this.client = client;
         this.gender = gender;
         this.racePrimary = racePrimary;
         this.raceSecondary = raceSecondary;

@@ -3,10 +3,10 @@ import { Component, ElementRef, OnInit, ViewChild, EventEmitter, Output, Input, 
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ClientDemographics } from 'src/app/models/client-demographics.model';
 
-import { Client } from 'src/app/models/client.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
 
 import * as bootstrap from 'bootstrap';
+import { ClientBase } from 'src/app/models/clientBase.model';
 
 @Component({
   selector: 'app-demographics-edit',
@@ -14,66 +14,141 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./demographics-edit.component.css']
 })
 export class DemographicsEditComponent implements OnInit{
-  formClientReturned: Client;
-  @Input() updatedFormClient: Client;
-  formClientDemographics: ClientDemographics;
-  @Input() updatedFormClientDemographics: ClientDemographics;
 
-  // clientIdFourDemos: ClientDemographics;
+
+  activeClient: ClientBase;
+  // routerClientId: number;
+  activeClientDemographics: ClientDemographics;
+ 
   dataQuality: string[];
-  monthsDays: {month: string, days: number}[];
-  days: number[];
-  @Output() updatedClient: EventEmitter<Client> = new EventEmitter();
-  @Output() updatedClientDemographics: EventEmitter<ClientDemographics> = new EventEmitter();
-
-  @ViewChild('editClientBasicInformationModal') editClientBasicInformationModal:ElementRef;
-  @ViewChild('exitWithoutSavingBtn') exitWithoutSavingBtn: ElementRef;
+  monthsDays: {month: string, days: string}[];
+  days: string[];
 
   raceSelections: string[] = ["Black/African-American", "White/Caucasian", "Asian/Pacific Islander", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
   ethnicitySelections: string[] = ["Hispanic", "Non-Hispanic", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
   genderSelections: string[] = ["Male", "Female", "Trans Male-to-Female", "Trans Female-to-Male", "Non-Binary", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
   veteranSelections: string[] = ["Veteran", "Not a Veteran", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+  
+  @ViewChild('editClientBasicInformationModal') editClientBasicInformationModal:ElementRef;
+  @ViewChild('exitWithoutSavingBtn') exitWithoutSavingBtn: ElementRef;
 
-constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2){
-  this.dataQuality = this.clientPortalService.dataQuality;
-  this.monthsDays = this.clientPortalService.monthsDays;
-  this.formClientReturned = this.updatedFormClient;
-  this.formClientDemographics = this.updatedFormClientDemographics;
+  constructor(private clientPortalService: ClientPortalService, private renderer: Renderer2){
+    this.activeClient = this.clientPortalService.currentClient;
+    this.activeClientDemographics = this.activeClient.clientDemographics;
 
 
-this.clientPortalService.days.subscribe((days) => {
-  this.days = days
-  });
-
-}
+    this.dataQuality = this.clientPortalService.dataQuality;
+    this.monthsDays = this.clientPortalService.monthsDays;
+    
+    this.clientPortalService.days.subscribe((days) => {
+      this.days = days
+      });
+    
+  }
 
 ngOnInit(): void {
-  this.formClientReturned = {...this.updatedFormClient};
-  this.formClientDemographics = {...this.updatedFormClientDemographics};
-  }
-
-  monthSelected(event: Event){
-    this.clientPortalService.selectedMonth(event);
-  }
   
-  clientDobMonth(month: string){
-    this.clientPortalService.clientDobMonth(month);
-  }
+}
 
-  saveUpdatedFormData() {
-    this.clientPortalService.updateClient(this.formClientReturned);
-    this.updatedClient.emit(this.formClientReturned);
-    this.updatedClientDemographics.emit(this.formClientDemographics);
-  }
+monthSelected(event: Event){
+  this.clientPortalService.selectedMonth(event);
+}
+
+updateClientBase(){
+  const updatedClientBase = new ClientBase(this.activeClient.firstName, this.activeClient.middleName, this.activeClient.lastName, this.activeClient.nameDataQuality, this.activeClient.dobMonth,
+    this.activeClient.dobDay, this.activeClient.dobYear, this.activeClient.dobDataQuality, this.activeClient.firstThreeSsn, this.activeClient.middleTwoSsn, this.activeClient.lastFourSsn, this.activeClient.ssnDataQuality);
+
+  this.saveUpdatedClientBase(updatedClientBase);
+}
+
+saveUpdatedClientBase(updatedClientBase: ClientBase){
+  console.log(updatedClientBase);
+  this.clientPortalService.updateClientBase(updatedClientBase).subscribe(responseData => {
+    const updatedClient = <ClientBase> responseData;
+    this.clientPortalService.setCurrentClient(updatedClient);
+    this.activeClient = this.clientPortalService.currentClient;
+    this.updateClientDemographics();
+  });
+}
+
+updateClientDemographics(){
+  const updatedClientDemographics = new ClientDemographics(this.activeClientDemographics.gender, this.activeClientDemographics.racePrimary, this.activeClientDemographics.raceSecondary,
+    this.activeClientDemographics.ethnicity, this.activeClientDemographics.veteran);
+  
+  this.saveUpdatedClientDemographics(updatedClientDemographics);
+}
+  
+saveUpdatedClientDemographics(updatedClientDemographics: ClientDemographics){
+  this.clientPortalService.updateClientDemographics(updatedClientDemographics, this.activeClient.id).subscribe(responseData => {
+    const updatedClient = <ClientBase> responseData;
+    this.clientPortalService.setCurrentClient(updatedClient);
+    this.activeClient = this.clientPortalService.currentClient;
+  });
+}
+// saveUpdatedClient(updatedClientBase: ClientBase, updatedClientDemographics: ClientDemographics){
+//   this.clientPortalService.updateClientBase(updatedClientBase).subscribe(responseData => {
+//     this.activeClient = <ClientBase> responseData;
+//     this.clientPortalService.setCurrentClient(updatedClientBase);
+//     this.activeClient = this.clientPortalService.currentClient;
+//       this.clientPortalService.updateClientDemographics(updatedClientDemographics, this.activeClient.id).subscribe(responseData => {
+//         this.activeClient = <ClientBase> responseData;
+//         this.clientPortalService.setCurrentClient(updatedClientBase);
+//         this.activeClient = this.clientPortalService.currentClient;
+//       });
+//   });
 
 
-// confirmation(){
-//     if(confirm("Are you sure you want to exit without saving?")){
-//       this.dismissModal();
-//     } else{
 
-//     }
+//   formClientReturned: Client;
+//   @Input() updatedFormClient: Client;
+//   formClientDemographics: ClientDemographics;
+//   @Input() updatedFormClientDemographics: ClientDemographics;
+
+//   // clientIdFourDemos: ClientDemographics;
+//   dataQuality: string[];
+//   monthsDays: {month: string, days: number}[];
+//   days: number[];
+//   @Output() updatedClient: EventEmitter<Client> = new EventEmitter();
+//   @Output() updatedClientDemographics: EventEmitter<ClientDemographics> = new EventEmitter();
+
+
+
+//   raceSelections: string[] = ["Black/African-American", "White/Caucasian", "Asian/Pacific Islander", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+//   ethnicitySelections: string[] = ["Hispanic", "Non-Hispanic", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
+//   genderSelections: string[] = ["Male", "Female", "Trans Male-to-Female", "Trans Female-to-Male", "Non-Binary", "Client Doesn't Know", "Client Refused", "Data Not Collected"];
+//   veteranSelections: string[] = ["Veteran", "Not a Veteran", "Client Doesn't Know", "Client Refused", "Data Not Collected", "Not Applicable"];
+
+// constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2){
+//   this.dataQuality = this.clientPortalService.dataQuality;
+//   this.monthsDays = this.clientPortalService.monthsDays;
+//   this.formClientReturned = this.updatedFormClient;
+//   this.formClientDemographics = this.updatedFormClientDemographics;
+
+
+// this.clientPortalService.days.subscribe((days) => {
+//   this.days = days
+//   });
+
+// }
+
+// ngOnInit(): void {
+//   this.formClientReturned = {...this.updatedFormClient};
+//   this.formClientDemographics = {...this.updatedFormClientDemographics};
 //   }
+
+  
+//   clientDobMonth(month: string){
+//     this.clientPortalService.clientDobMonth(month);
+//   }
+
+//   saveUpdatedFormData() {
+//     this.clientPortalService.updateClient(this.formClientReturned);
+//     this.updatedClient.emit(this.formClientReturned);
+//     this.updatedClientDemographics.emit(this.formClientDemographics);
+//   }
+
+
+
 
 confirmed=false;
 
@@ -89,8 +164,8 @@ confirmed=false;
 
 
   resetFormFields(){
-    this.formClientReturned = {...this.updatedFormClient};
-    this.formClientDemographics = {...this.updatedFormClientDemographics};
+    // this.formClientReturned = {...this.updatedFormClient};
+    // this.formClientDemographics = {...this.updatedFormClientDemographics};
   }
   
 
@@ -117,6 +192,18 @@ confirmed=false;
   
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
   // dismissModal(){
   //   this.resetFormFields();

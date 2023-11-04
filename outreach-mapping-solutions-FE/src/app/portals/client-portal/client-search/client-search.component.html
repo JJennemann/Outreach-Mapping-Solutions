@@ -14,8 +14,8 @@
   </div>
   <label for="nameDataQuality" class="form-label mb-0">Name Data Quality</label>
   <div class="col-md-3">
-    <select id="nameDataQuality"class="form-select">
-      <option Selected>Please Select..</option>
+    <select id="nameDataQuality"class="form-select" name="formNameDataQuality" [(ngModel)]="formNameDataQuality">
+      <option [value]="undefined"  selected>Please Select..</option>
       <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
     </select>
   </div>
@@ -23,13 +23,13 @@
   <label for="inputDob" class="form-label mb-0">Date of Birth</label>
   <div class="col-md-3">
       <select class="form-select" id="inputDob" (change)="monthSelected($event)" name="formDobMonth" [(ngModel)]="formDobMonth">
-        <option [value]="undefined" disabled selected>Month</option>
+        <option [value]="undefined" selected>Month</option>
         <option *ngFor="let monthDay of monthsDays" > {{ monthDay.month }}</option>
       </select>
   </div>
   <div class="col-md-2">
       <select class="form-select" id="inputDob" name="formDobDay" [(ngModel)]="formDobDay">
-        <option [value]="undefined" disabled selected>Day</option>
+        <option [value]="undefined" selected>Day</option>
           <option *ngFor="let day of days">{{ day }}</option>
       </select>
   </div>
@@ -39,8 +39,8 @@
 
   <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality</label>
   <div class="col-md-3">
-    <select id="dobDataQuality"class="form-select">
-      <option Selected>Please Select..</option>
+    <select id="dobDataQuality" class="form-select" name="formDobDataQuality" [(ngModel)]="formDobDataQuality">
+      <option [value]="undefined" selected>Please Select..</option>
       <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
     </select>
   </div>
@@ -58,19 +58,46 @@
 
     <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality</label>
     <div class="col-md-3">
-      <select id="ssnDataQuality"class="form-select">
-        <option Selected>Please Select..</option>
+      <select id="ssnDataQuality" class="form-select" name="formSsnDataQuality" [(ngModel)]="formSsnDataQuality">
+        <option [value]="undefined" selected>Please Select..</option>
         <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
       </select>
     </div>
   <div class="row g-1 " style="justify-content: center;">
     <div class="col-md-4 m-1" >
-      <button type="button" class="m-1 btn btn-primary btn-sm" (click)="clientSearch()" routerLink="results">Search Client</button>
+      <!-- <button type="button" class="m-1 btn btn-primary btn-sm" (click)="clientSearch()" routerLink="results">Search Client</button> -->
+      <button type="button" class="m-1 btn btn-primary btn-sm" (click)="searchClient()">Search Client</button>
     </div>
     <div class="col-md-4 m-1" >
-      <button type="button" class="m-1 btn btn-secondary btn-sm" (click)="addToDatabase()" >Add Client</button>
+      <button type="button" class="m-1 btn btn-secondary btn-sm" (click)="createNewClientBase()" >Add Client</button>
     </div>
   </div>
 </form>
 
-<router-outlet></router-outlet>
+<div *ngIf="!resultsReturned; else searchResults"></div>
+
+<ng-template #searchResults>
+  <table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">Client ID</th>
+            <th scope="col">Client Name</th>
+            <th scope="col">Client Date of Birth</th>
+            <th scope="col">Client SSN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of returnedSearchResults">
+            <td> {{ client.id }}</td>
+            <!-- <td><a [routerLink]="['/client-portal', 'profile', client.id, 'overview']" (click)="onClientSelected(client.id)" >{{ client.lastName + ", " + client.firstName + " " + client.middleName }}</a> </td> -->
+            <td><a [routerLink]="['/client-portal', 'profile', client.id, 'overview']" (click)="setCurrentClient(client)" >{{ client.displayName }}</a> </td>
+            
+            <td>{{ client.displayDob }}</td>
+            <td>{{ client.displaySsn }}</td>
+        </tr>
+    </tbody>
+  </table>
+      
+</ng-template>
+
+<!-- <router-outlet></router-outlet> -->

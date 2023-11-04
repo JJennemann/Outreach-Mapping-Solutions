@@ -63,6 +63,7 @@ import { ContactInfoEditComponent } from './portals/client-portal/client-profile
     PortalsComponent,
     DemographicsEditComponent,
     ContactInfoEditComponent,
+
     
   ],
   imports: [
