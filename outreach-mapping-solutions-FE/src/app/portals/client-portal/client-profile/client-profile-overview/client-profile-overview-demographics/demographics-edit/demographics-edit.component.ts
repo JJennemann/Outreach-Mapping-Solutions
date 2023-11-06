@@ -47,14 +47,19 @@ export class DemographicsEditComponent implements OnInit{
   }
 
 ngOnInit(): void {
+  this.clientPortalService.selectedMonth(this.activeClient.dobMonth);
   
 }
 
 monthSelected(event: Event){
-  this.clientPortalService.selectedMonth(event);
+  const monthSelected = (event.target as HTMLSelectElement).value
+
+  console.log(monthSelected)
+  this.clientPortalService.selectedMonth(monthSelected);
 }
 
 updateClientBase(){
+  console.log(this.activeClient);
   const updatedClientBase = new ClientBase(this.activeClient.firstName, this.activeClient.middleName, this.activeClient.lastName, this.activeClient.nameDataQuality, this.activeClient.dobMonth,
     this.activeClient.dobDay, this.activeClient.dobYear, this.activeClient.dobDataQuality, this.activeClient.firstThreeSsn, this.activeClient.middleTwoSsn, this.activeClient.lastFourSsn, this.activeClient.ssnDataQuality);
 
@@ -62,7 +67,7 @@ updateClientBase(){
 }
 
 saveUpdatedClientBase(updatedClientBase: ClientBase){
-  console.log(updatedClientBase);
+console.log(updatedClientBase);
   this.clientPortalService.updateClientBase(updatedClientBase).subscribe(responseData => {
     const updatedClient = <ClientBase> responseData;
     this.clientPortalService.setCurrentClient(updatedClient);
@@ -73,7 +78,7 @@ saveUpdatedClientBase(updatedClientBase: ClientBase){
 
 updateClientDemographics(){
   const updatedClientDemographics = new ClientDemographics(this.activeClientDemographics.gender, this.activeClientDemographics.racePrimary, this.activeClientDemographics.raceSecondary,
-    this.activeClientDemographics.ethnicity, this.activeClientDemographics.veteran);
+    this.activeClientDemographics.ethnicity, this.activeClientDemographics.veteranStatus);
   
   this.saveUpdatedClientDemographics(updatedClientDemographics);
 }
