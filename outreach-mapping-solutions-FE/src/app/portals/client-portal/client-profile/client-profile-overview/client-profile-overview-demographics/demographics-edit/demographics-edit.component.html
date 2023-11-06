@@ -27,7 +27,7 @@
                         <div class="row my-3">
                             <label for="nameDataQuality" class="form-label mb-0">Name Data Quality:</label>
                             <div class="col-md-6">
-                                <select id="nameDataQuality" class="form-select">
+                                <select name="nameDataQuality" class="form-select" [(ngModel)]="activeClient.nameDataQuality">
                                     <option Selected>Please Select..</option>
                                     <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
                                 </select>
@@ -38,13 +38,13 @@
                         <label  class="form-label mb-0">Date of Birth:</label>
                         <div class="col-md-5">
                             <select class="form-select"  (change)="monthSelected($event)" name="dobMonth" [(ngModel)]="activeClient.dobMonth">
-                                <option Selected>{{activeClient.dobMonth}}</option>
+                                <!-- <option Selected>{{activeClient.dobMonth}}</option> -->
                                 <option *ngFor="let monthDay of monthsDays"> {{ monthDay.month }}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <select class="form-select" name="dobDay" [(ngModel)]="activeClient.dobDay">
-                                <option Selected>{{activeClient.dobDay}}</option>
+                                <!-- <option Selected>{{activeClient.dobDay}}</option> -->
                                 <option *ngFor="let day of days">{{ day }}</option>
                             </select>
                         </div>
@@ -55,7 +55,7 @@
                       <div class="row my-3">
                         <label for="dobDataQuality" class="form-label mb-0">Date of Birth Data Quality:</label>
                         <div class="col-md-6">
-                          <select id="dobDataQuality"class="form-select">
+                          <select name="dobDataQuality"class="form-select" [(ngModel)]="activeClient.dobDataQuality">
                             <option Selected>Please Select..</option>
                             <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
                           </select>
@@ -77,7 +77,7 @@
                       <div class="row my-3">
                         <label for="ssnDataQuality" class="form-label mb-0">Social Security Data Quality:</label>
                         <div class="col-md-6">
-                          <select id="ssnDataQuality"class="form-select">
+                          <select name="ssnDataQuality"class="form-select" [(ngModel)]="activeClient.ssnDataQuality">
                             <option Selected>Please Select..</option>
                             <option *ngFor="let dataQualityElement of dataQuality"> {{  dataQualityElement }}</option>
                           </select>

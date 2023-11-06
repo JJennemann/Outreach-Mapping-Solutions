@@ -106,8 +106,8 @@ dataQuality= ["Complete", "Partial", "Client Did Not Know", "Client Refused", "D
     months30Days=["April", "June", "September", "November"];
 
 
-    selectedMonth(event: Event){
-        const monthSelected = (event.target as HTMLSelectElement).value
+    selectedMonth(monthSelected: string){
+        // const monthSelected = (event.target as HTMLSelectElement).value
         if(this.months31Days.includes(monthSelected)){
             this.days.emit(this.days31);
         }

@@ -45,7 +45,9 @@ constructor(private clientPortalService: ClientPortalService, private router: Ro
 }
 
 monthSelected(event: Event){
-  this.clientPortalService.selectedMonth(event);
+  const monthSelected = (event.target as HTMLSelectElement).value;
+
+  this.clientPortalService.selectedMonth(monthSelected);
 }
 
 searchClient(){
