@@ -1,1 +1,13 @@
-<p>client-map works!</p>
+<div id="map-container" style="width: 100%; height: 400px;"></div>
+
+<div id="popup" class="ol-popup">
+  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+  <div id="popup-content">
+    <form id="marker-form">
+      <label for="marker-info">Marker Information:</label>
+      <input type="text" id="marker-info" name="marker-info" required>
+      <button type="button" id="save-button">Save</button>
+      <button type="button" id="cancel-button">Cancel</button>
+    </form>
+  </div>
+</div>
