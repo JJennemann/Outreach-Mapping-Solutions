@@ -13,6 +13,7 @@ import { ClientProfileMapComponent } from './portals/client-portal/client-profil
 import { ClientProfileAssessmentsComponent } from './portals/client-portal/client-profile/client-profile-assessments/client-profile-assessments.component';
 import { ClientProfileCaseNotesComponent } from './portals/client-portal/client-profile/client-profile-case-notes/client-profile-case-notes.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/client-portal/search', pathMatch:'full'},
 

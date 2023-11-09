@@ -32,6 +32,9 @@ import { PortalsComponent } from './portals/portals.component';
 import { ReportsPortalComponent } from './portals/reports-portal/reports-portal.component';
 import { DemographicsEditComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-demographics/demographics-edit/demographics-edit.component';
 import { ContactInfoEditComponent } from './portals/client-portal/client-profile/client-profile-overview/client-profile-overview-contact-info/contact-info-edit/contact-info-edit.component';
+import { ClientMapComponent } from './portals/client-portal/client-profile/client-profile-map/client-map/client-map.component';
+import { InteractionListComponent } from './portals/client-portal/client-profile/client-profile-map/interaction-list/interaction-list.component';
+import { InteractionFormComponent } from './portals/client-portal/client-profile/client-profile-map/interaction-form/interaction-form.component';
 
 
 
@@ -63,6 +66,9 @@ import { ContactInfoEditComponent } from './portals/client-portal/client-profile
     PortalsComponent,
     DemographicsEditComponent,
     ContactInfoEditComponent,
+    ClientMapComponent,
+    InteractionListComponent,
+    InteractionFormComponent,
 
     
   ],
