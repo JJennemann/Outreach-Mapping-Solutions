@@ -48,13 +48,12 @@ export class DemographicsEditComponent implements OnInit{
 
 ngOnInit(): void {
   this.clientPortalService.selectedMonth(this.activeClient.dobMonth);
-  
+
 }
 
 monthSelected(event: Event){
   const monthSelected = (event.target as HTMLSelectElement).value
 
-  console.log(monthSelected)
   this.clientPortalService.selectedMonth(monthSelected);
 }
 
@@ -171,6 +170,7 @@ confirmed=false;
   resetFormFields(){
     // this.formClientReturned = {...this.updatedFormClient};
     // this.formClientDemographics = {...this.updatedFormClientDemographics};
+
   }
   
 
