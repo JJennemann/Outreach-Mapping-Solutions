@@ -6,13 +6,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-client-search',
   templateUrl: './client-search.component.html',
-  styleUrls: ['./client-search.component.css']
+  styleUrls: ['./client-search.component.css'],
 })
 export class ClientSearchComponent {
+  test: String;
+
   resultsReturned: Boolean = false;
   returnedSearchResults: ClientBase[];
   clientBaseToCreate: ClientBase;
-  newClient: ClientBase;  
+  newClient: ClientBase;
 
   formFirstName: string;
   formMiddleName: string;
@@ -30,55 +32,72 @@ export class ClientSearchComponent {
   formSsnDataQuality: string;
 
   dataQuality: string[];
-  monthsDays: {month: string, days: string}[];
+  monthsDays: { month: string; days: string }[];
   days: string[];
 
+  constructor(
+    private clientPortalService: ClientPortalService,
+    private router: Router
+  ) {
+    this.dataQuality = this.clientPortalService.dataQuality;
+    this.monthsDays = this.clientPortalService.monthsDays;
 
-constructor(private clientPortalService: ClientPortalService, private router: Router){
-  this.dataQuality = this.clientPortalService.dataQuality;
-  this.monthsDays = this.clientPortalService.monthsDays;
+    this.clientPortalService.days.subscribe((days) => (this.days = days));
+  }
 
+  monthSelected(event: Event) {
+    const monthSelected = (event.target as HTMLSelectElement).value;
 
-  this.clientPortalService.days.subscribe(
-    (days) => this.days = days
-  );
-}
+    this.clientPortalService.selectedMonth(monthSelected);
+  }
 
-monthSelected(event: Event){
-  const monthSelected = (event.target as HTMLSelectElement).value;
+  searchClient() {
+    this.resultsReturned = true;
 
-  this.clientPortalService.selectedMonth(monthSelected);
-}
+    this.clientPortalService.getAllClients().subscribe((responseData) => {
+      this.returnedSearchResults = <ClientBase[]>responseData;
+    });
+  }
 
-searchClient(){
-this.resultsReturned=true;
+  createNewClientBase() {
+    const clientBaseToCreate = new ClientBase(
+      this.formFirstName,
+      this.formMiddleName,
+      this.formLastName,
+      this.formNameDataQuality,
+      this.formDobMonth,
+      this.formDobDay,
+      this.formDobYear,
+      this.formDobDataQuality,
+      this.formSsnFirstThree,
+      this.formSsnMiddleTwo,
+      this.formSsnLastFour,
+      this.formSsnDataQuality
+    );
 
-this.clientPortalService.getAllClients().subscribe(responseData => {
-  this.returnedSearchResults = <ClientBase[]> responseData;
-});
-}
+    this.addClient(clientBaseToCreate);
+  }
 
-createNewClientBase(){
-  const clientBaseToCreate = new ClientBase(this.formFirstName, this.formMiddleName, this.formLastName, this.formNameDataQuality, this.formDobMonth,
-                          this.formDobDay, this.formDobYear,this.formDobDataQuality, this.formSsnFirstThree, this.formSsnMiddleTwo, this.formSsnLastFour, this.formSsnDataQuality);
-  
-  this.addClient(clientBaseToCreate);
-}
+  addClient(clientToAdd: ClientBase) {
+    this.clientPortalService
+      .postNewClientBase(clientToAdd)
+      .subscribe((responseData) => {
+        this.newClient = <ClientBase>responseData;
+        this.addClientRoute();
+        this.setCurrentClient(this.newClient);
+      });
+  }
 
-addClient(clientToAdd: ClientBase){
-  this.clientPortalService.postNewClientBase(clientToAdd).subscribe(responseData => {
-    this.newClient = <ClientBase> responseData;
-    this.addClientRoute();
-    this.setCurrentClient(this.newClient);
-  });
-}
+  addClientRoute() {
+    this.router.navigate([
+      '/client-portal',
+      'profile',
+      this.newClient.id,
+      'overview',
+    ]);
+  }
 
-addClientRoute(){
-  this.router.navigate(['/client-portal', 'profile', this.newClient.id, 'overview']);
-}
-
-setCurrentClient(clientToSet: ClientBase){
-  this.clientPortalService.setCurrentClient(clientToSet);
-}
-
+  setCurrentClient(clientToSet: ClientBase) {
+    this.clientPortalService.setCurrentClient(clientToSet);
+  }
 }
