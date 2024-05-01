@@ -1,5 +1,8 @@
 package com.outreachmappingsolutions.services;
 
+import com.outreachmappingsolutions.dtos.CreateNewClientBaseDTO;
+import com.outreachmappingsolutions.dtos.ClientBaseDTO;
+import com.outreachmappingsolutions.mappers.ClientMapper;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.models.ClientDemographics;
@@ -21,13 +24,14 @@ public class ClientBaseService {
     @Autowired
     private ClientBaseRepository clientBaseRepository;
 
-    public ResponseEntity<?> createNewClient(ClientBase clientBase) {
+    public ResponseEntity<?> createNewClient(CreateNewClientBaseDTO newClientBaseDTO) {
         try {
-            ClientBase newClient = new ClientBase(clientBase.getFirstName(), clientBase.getMiddleName(),
-                    clientBase.getLastName(), clientBase.getDisplayName(), clientBase.getNameDataQuality(), clientBase.getDobMonth(),
-                    clientBase.getDobDay(), clientBase.getDobYear(), clientBase.getDisplayDob(), clientBase.getDobDataQuality(),
-                    clientBase.getFirstThreeSsn(), clientBase.getMiddleTwoSsn(), clientBase.getLastFourSsn(),
-                    clientBase.getDisplaySsn(), clientBase.getSsnDataQuality());
+            ClientBase newClient = new ClientBase(newClientBaseDTO.getFirstName(), newClientBaseDTO.getMiddleName(),
+                    newClientBaseDTO.getLastName(), newClientBaseDTO.getNameDataQuality(), newClientBaseDTO.getDobMonth(),
+                    newClientBaseDTO.getDobDay(), newClientBaseDTO.getDobYear(), newClientBaseDTO.getDobDataQuality(),
+                    newClientBaseDTO.getFirstThreeSsn(), newClientBaseDTO.getMiddleTwoSsn(), newClientBaseDTO.getLastFourSsn(),
+                    newClientBaseDTO.getSsnDataQuality());
+
             ClientDemographics newClientDemographics = new ClientDemographics();
             newClientDemographics.setClient(newClient);
             ClientContactInfo newClientContactInfo = new ClientContactInfo();
@@ -38,11 +42,30 @@ public class ClientBaseService {
 
             clientBaseRepository.save(newClient);
 
-            return new ResponseEntity<>(newClient, HttpStatus.CREATED);
+            ClientBaseDTO newClientResponseDTO = new ClientBaseDTO(newClient);
+
+            return new ResponseEntity<>(newClientResponseDTO, HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>("Failed to create new client", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public ResponseEntity<?> returnClientById(Integer clientId) {
+        try {
+            Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
+            if (returnedOptionalClient.isEmpty()) {
+                return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
+            } else {
+                ClientBase returnedClient = returnedOptionalClient.get();
+                ClientBaseDTO returnedClientDTO = ClientMapper.INSTANCE.clientToClientBaseDTO(returnedClient);
+
+                return new ResponseEntity<>(returnedClientDTO, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to retrieve the client", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public ResponseEntity<?> returnAllClients() {
         try{
             List<ClientBase> allClients = (List<ClientBase>) clientBaseRepository.findAll();
@@ -56,19 +79,6 @@ public class ClientBaseService {
         }
     }
 
-    public ResponseEntity<?> returnClientById(Integer clientId) {
-        try {
-            Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
-            if (returnedOptionalClient.isEmpty()) {
-                return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
-            } else {
-                ClientBase returnedClient = returnedOptionalClient.get();
-                return new ResponseEntity<>(returnedClient, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>("Failed to retrieve the client", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     public ResponseEntity<?> updateClient(Integer clientId, ClientBase updatedClientBase){
         try {
             Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);

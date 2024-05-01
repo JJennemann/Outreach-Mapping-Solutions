@@ -21,8 +21,8 @@ public class ClientBaseUnitTest {
         String lastName = "Doe";
         String nameDataQuality = "Complete Data Quality";
         String dobMonth = "January";
-        String dobDay = "1";
-        String dobYear = "1999";
+        Integer dobDay = 1;
+        Integer dobYear = 1999;
         String dobDataQuality = "Complete Data Quality";
         Integer firstThreeSsn = 123;
         Integer middleTwoSsn = 45;
@@ -92,8 +92,8 @@ public class ClientBaseUnitTest {
         String lastName = "Doe";
         String nameDataQuality = "Complete Data Quality";
         String dobMonth = "January";
-        String dobDay = "1";
-        String dobYear = "1999";
+        Integer dobDay = 1;
+        Integer dobYear = 1999;
         String dobDataQuality = "Complete Data Quality";
         Integer firstThreeSsn = 123;
         Integer middleTwoSsn = 45;
@@ -124,8 +124,8 @@ public class ClientBaseUnitTest {
     @Test
     public void testClientBaseEqualsMethod() {
         // Create two instances with the same attributes
-        ClientBase testClient1 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
-        ClientBase testClient2 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient1 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", 1, 1999, "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient2 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", 1, 1999, "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
         ClientBase testClient3 = new ClientBase();
         ClientBase testClient4 = new ClientBase();
         // Ensure they are equal as they have the same attributes
@@ -135,8 +135,8 @@ public class ClientBaseUnitTest {
     @Test
     public void testClientBaseHashCodeMethod() {
         // Create two instances with the same attributes
-        ClientBase testClient1 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
-        ClientBase testClient2 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", "1", "1999", "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient1 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", 1, 1999, "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
+        ClientBase testClient2 = new ClientBase("John", "James", "Doe", "Complete Data Quality", "January", 1, 1999, "Complete Data Quality", 123, 45, 6789, "Complete Data Quality");
 
         // Ensure they have the same hash code as they have the same attributes
         assertThat(testClient1.hashCode(), is(testClient2.hashCode()));
