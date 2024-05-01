@@ -1,99 +1,102 @@
-import { ClientContactInfo } from "./client-contact-info.model";
-import { ClientDemographics } from "./client-demographics.model";
+import { ClientContactInfo } from './client-contact-info.model';
+import { ClientDemographics } from './client-demographics.model';
 
 export class ClientBase {
-    public id: number;
+  public id: number;
 
-    public firstName: string;
-    public middleName: string;
-    public lastName: string;
-    public displayName: string;
-    public nameDataQuality: string;
+  public firstName: string;
+  public middleName: string;
+  public lastName: string;
+  public nameDataQuality: string;
 
-    public dobMonth: string;
-    public dobDay: string;
-    public dobYear: string;
-    public displayDob: string;
-    public dobDataQuality: string;
+  public dobMonth: string;
+  public dobDay: string;
+  public dobYear: string;
+  public dobDataQuality: string;
 
-    public firstThreeSsn: string;
-    public middleTwoSsn: string;
-    public lastFourSsn: string;
-    public displaySsn: string;
-    public ssnDataQuality: string;
+  public firstThreeSsn: string;
+  public middleTwoSsn: string;
+  public lastFourSsn: string;
+  public ssnDataQuality: string;
 
-    public clientDemographics: ClientDemographics;
-    public clientContactInfo: ClientContactInfo;
+  public clientDemographics: ClientDemographics;
+  public clientContactInfo: ClientContactInfo;
 
+  constructor(
+    firstName?: string,
+    middleName?: string,
+    lastName?: string,
+    nameDataQuality?: string,
+    dobMonth?: string,
+    dobDay?: string,
+    dobYear?: string,
+    dobDataQuality?: string,
+    firstThreeSsn?: string,
+    middleTwoSsn?: string,
+    lastFourSsn?: string,
+    ssnDataQuality?: string,
+    clientDemographics?: ClientDemographics,
+    clientContactInfo?: ClientContactInfo
+  ) {
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.nameDataQuality = nameDataQuality;
 
-    constructor(firstName?: string, middleName?: string, lastName?:string, nameDataQuality?: string,
-                dobMonth?: string, dobDay?: string, dobYear?: string, dobDataQuality?: string,
-                firstThreeSsn?: string, middleTwoSsn?: string, lastFourSsn?: string, ssnDataQuality?: string,
-                clientDemographics?: ClientDemographics, clientContactInfo?: ClientContactInfo){
+    this.dobMonth = dobMonth;
+    this.dobDay = dobDay;
+    this.dobYear = dobYear;
+    this.dobDataQuality = dobDataQuality;
 
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.displayName = this.formatClientName(firstName, middleName, lastName);
-        this.nameDataQuality = nameDataQuality;
+    this.firstThreeSsn = firstThreeSsn;
+    this.middleTwoSsn = middleTwoSsn;
+    this.lastFourSsn = lastFourSsn;
+    this.ssnDataQuality = ssnDataQuality;
 
-        this.dobMonth = dobMonth;
-        this.dobDay = dobDay;
-        this.dobYear = dobYear;
-        this.displayDob = this.formatClientDob(dobMonth, dobDay, dobYear);
-        this.dobDataQuality = dobDataQuality;
-
-        this.firstThreeSsn = firstThreeSsn;
-        this.middleTwoSsn = middleTwoSsn;
-        this.lastFourSsn = lastFourSsn;
-        this.displaySsn = this.formatClientSsn(firstThreeSsn, middleTwoSsn, lastFourSsn);
-        this.ssnDataQuality = ssnDataQuality;
-
-        this.clientDemographics = clientDemographics;
-        this.clientContactInfo = clientContactInfo;
-    }
-
-
-formatClientName(firstName: string, middleName: string, lastName: string){
-    if(firstName===null || firstName===undefined){
-      firstName='';
-    }
-    if(middleName===null || middleName===undefined){
-      middleName='';
-    }
-    if(lastName===null || lastName===undefined){
-      lastName='';
-    }
-    return lastName + ", " + firstName + " " + middleName;
+    this.clientDemographics = clientDemographics;
+    this.clientContactInfo = clientContactInfo;
   }
-  
-  formatClientDob(month: string, day: string, year: string){
-    if(month===null || month===undefined){
-        month = '';
-    }
-    if(day===null || day===undefined){
-        day = '';
-    }
-    if(year===null || year===undefined){
-        year = '';
-    }
-    return month + " " + day + ", " + year;
-  }
-  
-  formatClientSsn(firstThree: string, middleTwo: string, lastFour: string){
-  if(firstThree===null || firstThree===undefined){
-    firstThree = '';
-  }
-  
-  if(middleTwo===null || middleTwo===undefined){
-    middleTwo = '  ';
-  }
-  
-  if(lastFour===null || lastFour===undefined){
-    lastFour = '';
-  }
-  return firstThree + "-" + middleTwo + "-" + lastFour;
-  }
-  
 
+  // Logic I was using for display versions, don't think necessary? And if I do come back to it, probably should be handled on back end?
+
+  // formatClientName(firstName: string, middleName: string, lastName: string){
+  //     if(firstName===null || firstName===undefined){
+  //       firstName='';
+  //     }
+  //     if(middleName===null || middleName===undefined){
+  //       middleName='';
+  //     }
+  //     if(lastName===null || lastName===undefined){
+  //       lastName='';
+  //     }
+  //     return lastName + ", " + firstName + " " + middleName;
+  //   }
+
+  //   formatClientDob(month: string, day: string, year: string){
+  //     if(month===null || month===undefined){
+  //         month = '';
+  //     }
+  //     if(day===null || day===undefined){
+  //         day = '';
+  //     }
+  //     if(year===null || year===undefined){
+  //         year = '';
+  //     }
+  //     return month + " " + day + ", " + year;
+  //   }
+
+  //   formatClientSsn(firstThree: string, middleTwo: string, lastFour: string){
+  //   if(firstThree===null || firstThree===undefined){
+  //     firstThree = '';
+  //   }
+
+  //   if(middleTwo===null || middleTwo===undefined){
+  //     middleTwo = '  ';
+  //   }
+
+  //   if(lastFour===null || lastFour===undefined){
+  //     lastFour = '';
+  //   }
+  //   return firstThree + "-" + middleTwo + "-" + lastFour;
+  //   }
 }
