@@ -2,7 +2,10 @@ package com.outreachmappingsolutions.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -13,6 +16,14 @@ public class ClientDemographics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @CreationTimestamp
+    @Column(nullable=false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column (nullable=false)
+    private LocalDateTime lastModified;
 
     @OneToOne
     @JsonIgnore
@@ -25,13 +36,29 @@ public class ClientDemographics {
     private String ethnicity;
     private String veteranStatus;
 
+    public ClientDemographics() {
+    }
+
+    public ClientDemographics(ClientBase client, String gender, String racePrimary, String raceSecondary,
+                              String ethnicity, String veteranStatus) {
+        this.client = client;
+        this.gender = gender;
+        this.racePrimary = racePrimary;
+        this.raceSecondary = raceSecondary;
+        this.ethnicity = ethnicity;
+        this.veteranStatus = veteranStatus;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getLastModified() {
+        return lastModified;
     }
 
     public ClientBase getClient() {

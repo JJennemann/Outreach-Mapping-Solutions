@@ -41,14 +41,14 @@ public class ClientBaseServiceUnitTest {
     public void createTestData(){
         MockitoAnnotations.openMocks(this);
 
-        testClient1 = new ClientBase("John", "James", "Doe", "Data Quality Complete", "February", "28", "2001",
+        testClient1 = new ClientBase("John", "James", "Doe", "Data Quality Complete", "February", 28, 2001,
                 "Data Quality Complete", 111, 11, 1111, "Data Quality Complete");
 
         testClient2 = new ClientBase("Jane", null, null, null, null, null, null, null, null, null, null, null);
         testClient2.setId(2);
 
-        testUpdatedClientBase = new ClientBase("Jack", "Delano", "Johnson", "Data Quality Complete", "January", "1",
-                "1999", "Data Quality Complete", 222, 22, 2222, "Data Quality Complete");
+        testUpdatedClientBase = new ClientBase("Jack", "Delano", "Johnson", "Data Quality Complete", "January", 1,
+                1999, "Data Quality Complete", 222, 22, 2222, "Data Quality Complete");
     }
 
     @Test
