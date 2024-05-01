@@ -1,8 +1,11 @@
 package com.outreachmappingsolutions.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Objects;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="client_base_data")
@@ -11,6 +14,14 @@ public class ClientBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @CreationTimestamp
+    @Column(nullable=false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column (nullable=false)
+    private LocalDateTime lastModified;
 
     private String firstName;
     private String middleName;
