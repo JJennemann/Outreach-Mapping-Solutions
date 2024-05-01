@@ -1,0 +1,43 @@
+/* #map-container {
+    margin: 40px;
+    height: 500px;
+    width: auto;
+    font-family: sans-serif;
+    background-color: #04041b;
+  }
+  #tools {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  }
+  #tools a {
+    display: inline-block;
+    padding: 0.5rem;
+    background: white;
+    cursor: pointer;
+  } */
+
+   /* Style for the map container */
+#map-container {
+    width: 100%;
+    height: 400px;
+  }
+  
+  /* Style for the popup container */
+  .ol-popup {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style for the popup closer (close button) */
+  .ol-popup-closer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    cursor: pointer;
+  }
+  

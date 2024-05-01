@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientContactInfo } from 'src/app/models/client-contact-info.model';
+import { ClientBase } from 'src/app/models/clientBase.model';
 import { ClientPortalService } from 'src/app/services/client-portal.service';
 
 @Component({
@@ -9,24 +10,36 @@ import { ClientPortalService } from 'src/app/services/client-portal.service';
   styleUrls: ['./client-profile-overview-contact-info.component.css']
 })
 export class ClientProfileOverviewContactInfoComponent implements OnInit{
-  clientContactInfo: ClientContactInfo;
-  clientReturnedId: number;
 
-  constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute){
-  this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
-  console.log(this.clientReturnedId);
-  }
+  activeClient: ClientBase;
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.clientReturnedId = +params['id'];
-    })
-    this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
-    console.log(this.clientReturnedId);
-  }
+constructor(private clientPortalService: ClientPortalService){
+  this.activeClient = this.clientPortalService.currentClient;
+  
+}
 
-  loadClientContactInfoAndOpenModal(){
-    this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
-    console.log(this.clientContactInfo);
-  }
+ngOnInit(): void {
+    
+}
+
+  // clientContactInfo: ClientContactInfo;
+  // clientReturnedId: number;
+
+  // constructor(private clientPortalService: ClientPortalService, private route: ActivatedRoute){
+  // this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
+  
+  // }
+
+  // ngOnInit(): void {
+  //   this.route.params.subscribe((params: Params) => {
+  //     this.clientReturnedId = +params['id'];
+  //   })
+  //   this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
+  //   console.log(this.clientReturnedId);
+  // }
+
+  // loadClientContactInfoAndOpenModal(){
+  //   this.clientContactInfo = this.clientPortalService.getClientContactInfoById(this.clientReturnedId);
+  //   console.log(this.clientContactInfo);
+  // }
 }
