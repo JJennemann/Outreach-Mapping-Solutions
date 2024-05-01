@@ -15,19 +15,16 @@ public class ClientBase {
     private String firstName;
     private String middleName;
     private String lastName;
-    private String displayName;
     private String nameDataQuality;
 
     private String dobMonth;
-    private String dobDay;
-    private String dobYear;
-    private String displayDob;
+    private Integer dobDay;
+    private Integer dobYear;
     private String dobDataQuality;
 
-    private String firstThreeSsn;
-    private String middleTwoSsn;
-    private String lastFourSsn;
-    private String displaySsn;
+    private Integer firstThreeSsn;
+    private Integer middleTwoSsn;
+    private Integer lastFourSsn;
     private String ssnDataQuality;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -39,23 +36,23 @@ public class ClientBase {
     public ClientBase() {
     }
 
-    public ClientBase(String firstName, String middleName, String lastName, String displayName, String nameDataQuality, String dobMonth,
-                      String dobDay, String dobYear, String displayDob, String dobDataQuality, String firstThreeSsn,
-                      String middleTwoSsn, String lastFourSsn, String displaySsn, String ssnDataQuality) {
+    public ClientBase(String firstName, String middleName, String lastName, String nameDataQuality, String dobMonth,
+                      Integer dobDay, Integer dobYear, String dobDataQuality, Integer firstThreeSsn,
+                      Integer middleTwoSsn, Integer lastFourSsn, String ssnDataQuality) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.displayName = displayName;
+
         this.nameDataQuality = nameDataQuality;
         this.dobMonth = dobMonth;
         this.dobDay = dobDay;
         this.dobYear = dobYear;
-        this.displayDob = displayDob;
+
         this.dobDataQuality = dobDataQuality;
         this.firstThreeSsn = firstThreeSsn;
         this.middleTwoSsn = middleTwoSsn;
         this.lastFourSsn = lastFourSsn;
-        this.displaySsn = displaySsn;
+
         this.ssnDataQuality = ssnDataQuality;
     }
 
@@ -91,14 +88,6 @@ public class ClientBase {
         this.lastName = lastName;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public String getNameDataQuality() {
         return nameDataQuality;
     }
@@ -115,28 +104,20 @@ public class ClientBase {
         this.dobMonth = dobMonth;
     }
 
-    public String getDobDay() {
+    public Integer getDobDay() {
         return dobDay;
     }
 
-    public void setDobDay(String dobDay) {
+    public void setDobDay(Integer dobDay) {
         this.dobDay = dobDay;
     }
 
-    public String getDobYear() {
+    public Integer getDobYear() {
         return dobYear;
     }
 
-    public void setDobYear(String dobYear) {
+    public void setDobYear(Integer dobYear) {
         this.dobYear = dobYear;
-    }
-
-    public String getDisplayDob() {
-        return displayDob;
-    }
-
-    public void setDisplayDob(String displayDob) {
-        this.displayDob = displayDob;
     }
 
     public String getDobDataQuality() {
@@ -147,36 +128,28 @@ public class ClientBase {
         this.dobDataQuality = dobDataQuality;
     }
 
-    public String getFirstThreeSsn() {
+    public Integer getFirstThreeSsn() {
         return firstThreeSsn;
     }
 
-    public void setFirstThreeSsn(String firstThreeSsn) {
+    public void setFirstThreeSsn(Integer firstThreeSsn) {
         this.firstThreeSsn = firstThreeSsn;
     }
 
-    public String getMiddleTwoSsn() {
+    public Integer getMiddleTwoSsn() {
         return middleTwoSsn;
     }
 
-    public void setMiddleTwoSsn(String middleTwoSsn) {
+    public void setMiddleTwoSsn(Integer middleTwoSsn) {
         this.middleTwoSsn = middleTwoSsn;
     }
 
-    public String getLastFourSsn() {
+    public Integer getLastFourSsn() {
         return lastFourSsn;
     }
 
-    public void setLastFourSsn(String lastFourSsn) {
+    public void setLastFourSsn(Integer lastFourSsn) {
         this.lastFourSsn = lastFourSsn;
-    }
-
-    public String getDisplaySsn() {
-        return displaySsn;
-    }
-
-    public void setDisplaySsn(String displaySsn) {
-        this.displaySsn = displaySsn;
     }
 
     public String getSsnDataQuality() {

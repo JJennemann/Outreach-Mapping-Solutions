@@ -43,10 +43,10 @@ public class ClientBaseServiceIntegrationTest {
         testClient2 = new ClientBase("Wesley", null, "Crusher", "Partially Complete", null, null, null, "Client Refused",
                 null, null, null, "Client Refused");
 
-        testClient3 = new ClientBase("Tom", null, null, "Partially Complete", "August", "19", "1952",
+        testClient3 = new ClientBase("Tom", null, null, "Partially Complete", "August", 19, 1952,
                 "Data Quality Complete", null, null, null, "Client Refused");
 
-        testUpdatedClient = new ClientBase("Miles", "Edward", "O'Brien", "Data Quality Complete", "June", "9", "1959",
+        testUpdatedClient = new ClientBase("Miles", "Edward", "O'Brien", "Data Quality Complete", "June", 9, 1959,
                 "Data Quality Complete", 111, 11, 1111, "Data Quality Complete");
     }
 
