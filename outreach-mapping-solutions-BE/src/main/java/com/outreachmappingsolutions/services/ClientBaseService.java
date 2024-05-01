@@ -1,6 +1,7 @@
 package com.outreachmappingsolutions.services;
 
 import com.outreachmappingsolutions.dtos.CreateNewClientBaseDTO;
+import com.outreachmappingsolutions.dtos.ClientBaseDTO;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.models.ClientDemographics;
@@ -30,7 +31,6 @@ public class ClientBaseService {
                     newClientBaseDTO.getFirstThreeSsn(), newClientBaseDTO.getMiddleTwoSsn(), newClientBaseDTO.getLastFourSsn(),
                     newClientBaseDTO.getSsnDataQuality());
 
-            //no dto updates below this point
             ClientDemographics newClientDemographics = new ClientDemographics();
             newClientDemographics.setClient(newClient);
             ClientContactInfo newClientContactInfo = new ClientContactInfo();
@@ -41,7 +41,9 @@ public class ClientBaseService {
 
             clientBaseRepository.save(newClient);
 
-            return new ResponseEntity<>(newClient, HttpStatus.CREATED);
+            ClientBaseDTO newClientResponseDTO = new ClientBaseDTO(newClient);
+
+            return new ResponseEntity<>(newClientResponseDTO, HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>("Failed to create new client", HttpStatus.INTERNAL_SERVER_ERROR);
         }
