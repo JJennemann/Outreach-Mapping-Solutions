@@ -1,5 +1,6 @@
 package com.outreachmappingsolutions.services;
 
+import com.outreachmappingsolutions.dtos.CreateNewClientBaseDTO;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.models.ClientDemographics;
@@ -21,13 +22,15 @@ public class ClientBaseService {
     @Autowired
     private ClientBaseRepository clientBaseRepository;
 
-    public ResponseEntity<?> createNewClient(ClientBase clientBase) {
+    public ResponseEntity<?> createNewClient(CreateNewClientBaseDTO newClientBaseDTO) {
         try {
-            ClientBase newClient = new ClientBase(clientBase.getFirstName(), clientBase.getMiddleName(),
-                    clientBase.getLastName(), clientBase.getNameDataQuality(), clientBase.getDobMonth(),
-                    clientBase.getDobDay(), clientBase.getDobYear(), clientBase.getDobDataQuality(),
-                    clientBase.getFirstThreeSsn(), clientBase.getMiddleTwoSsn(), clientBase.getLastFourSsn(),
-                    clientBase.getSsnDataQuality());
+            ClientBase newClient = new ClientBase(newClientBaseDTO.getFirstName(), newClientBaseDTO.getMiddleName(),
+                    newClientBaseDTO.getLastName(), newClientBaseDTO.getNameDataQuality(), newClientBaseDTO.getDobMonth(),
+                    newClientBaseDTO.getDobDay(), newClientBaseDTO.getDobYear(), newClientBaseDTO.getDobDataQuality(),
+                    newClientBaseDTO.getFirstThreeSsn(), newClientBaseDTO.getMiddleTwoSsn(), newClientBaseDTO.getLastFourSsn(),
+                    newClientBaseDTO.getSsnDataQuality());
+
+            //no dto updates below this point
             ClientDemographics newClientDemographics = new ClientDemographics();
             newClientDemographics.setClient(newClient);
             ClientContactInfo newClientContactInfo = new ClientContactInfo();

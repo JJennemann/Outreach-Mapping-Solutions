@@ -71,8 +71,12 @@ public class ClientBase {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getLastModified() {
+        return lastModified;
     }
 
     public String getFirstName() {

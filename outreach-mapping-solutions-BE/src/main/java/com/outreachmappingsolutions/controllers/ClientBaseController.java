@@ -1,5 +1,6 @@
 package com.outreachmappingsolutions.controllers;
 
+import com.outreachmappingsolutions.dtos.CreateNewClientBaseDTO;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.services.ClientBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class ClientBaseController {
     private ClientBaseService clientBaseService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createNewClient(@RequestBody ClientBase clientBase){
-        return clientBaseService.createNewClient(clientBase);
+    public ResponseEntity<?> createNewClient(@RequestBody CreateNewClientBaseDTO newClientBaseDTO){
+        return clientBaseService.createNewClient(newClientBaseDTO);
     }
 
     @GetMapping("/returnAll")

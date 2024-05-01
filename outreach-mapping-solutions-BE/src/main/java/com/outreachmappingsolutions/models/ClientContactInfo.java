@@ -2,7 +2,10 @@ package com.outreachmappingsolutions.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +15,15 @@ public class ClientContactInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @CreationTimestamp
+    @Column(nullable=false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column (nullable=false)
+    private LocalDateTime lastModified;
+
 
     @OneToOne
     @JsonIgnore
@@ -28,13 +40,33 @@ public class ClientContactInfo {
     private String icePhoneSecondary;
     private String iceEmail;
 
+    public ClientContactInfo() {
+    }
+
+    public ClientContactInfo(ClientBase client, String phonePrimary, String phoneSecondary, String email,
+                             String iceName, String iceRelationship, String icePhonePrimary,
+                             String icePhoneSecondary, String iceEmail) {
+        this.client = client;
+        this.phonePrimary = phonePrimary;
+        this.phoneSecondary = phoneSecondary;
+        this.email = email;
+        this.iceName = iceName;
+        this.iceRelationship = iceRelationship;
+        this.icePhonePrimary = icePhonePrimary;
+        this.icePhoneSecondary = icePhoneSecondary;
+        this.iceEmail = iceEmail;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getLastModified() {
+        return lastModified;
     }
 
     public ClientBase getClient() {
