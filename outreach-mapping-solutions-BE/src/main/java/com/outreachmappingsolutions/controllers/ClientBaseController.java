@@ -19,14 +19,14 @@ public class ClientBaseController {
         return clientBaseService.createNewClient(newClientBaseDTO);
     }
 
-    @GetMapping("/returnAll")
-    public ResponseEntity<?> returnAllClients(){
-        return clientBaseService.returnAllClients();
-    }
-
     @GetMapping("/return/{clientId}")
     public ResponseEntity<?> returnClientById(@PathVariable Integer clientId){
         return clientBaseService.returnClientById(clientId);
+    }
+
+    @GetMapping("/returnAll")
+    public ResponseEntity<?> returnAllClients(){
+        return clientBaseService.returnAllClients();
     }
 
     @PutMapping("/update/{clientId}")
