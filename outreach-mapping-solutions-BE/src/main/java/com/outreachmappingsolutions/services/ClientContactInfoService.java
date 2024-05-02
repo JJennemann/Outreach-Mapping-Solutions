@@ -1,5 +1,7 @@
 package com.outreachmappingsolutions.services;
 
+import com.outreachmappingsolutions.dtos.ClientContactInfoDTO;
+import com.outreachmappingsolutions.mappers.ClientMapper;
 import com.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.repositories.ClientContactInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,17 @@ import java.util.Optional;
 @Service
 public class ClientContactInfoService {
 
-    private static final String NO_CONTACT_INFO_FOUND = "No client contact information matching your criteria was found";
-    private static final String CONTACT_INFO_UPDATED_SUCCESS = "Client contact information was successfully updated";
+    private static final String NO_CONTACT_INFO_FOUND = "No client contact information matching your criteria was found.";
+    private static final String RETURN_CONTACT_INFO_FAILED = "Something went wrong. Failed to retrieve client contact information. Try again.";
+    private static final String CONTACT_INFO_UPDATE_FAILED = "Failed to update client contact information.";
 
-    @Autowired
-    private ClientContactInfoRepository clientContactInfoRepository;
+    private final ClientContactInfoRepository clientContactInfoRepository;
+    private final ClientMapper clientMapper;
+
+    public ClientContactInfoService(ClientContactInfoRepository clientContactInfoRepository, ClientMapper clientMapper) {
+        this.clientContactInfoRepository = clientContactInfoRepository;
+        this.clientMapper = clientMapper;
+    }
 
     public ResponseEntity<?> returnAllClientContactInfo() {
         try {
@@ -25,10 +33,14 @@ public class ClientContactInfoService {
             if (allClientContactInfo.isEmpty()) {
                 return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                return new ResponseEntity<>(allClientContactInfo, HttpStatus.OK);
+                List<ClientContactInfoDTO> allClientContactInfoDTOs = allClientContactInfo.stream()
+                        .map(clientContactInfo -> clientMapper.mapDTOFromClientContactInfo(clientContactInfo))
+                        .toList();
+
+                return new ResponseEntity<>(allClientContactInfoDTOs, HttpStatus.OK);
             }
         } catch(Exception e){
-            return new ResponseEntity<>("Failed to retrieve all client contact information", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(RETURN_CONTACT_INFO_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -39,34 +51,31 @@ public class ClientContactInfoService {
                 return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
-                return new ResponseEntity<>(returnedClientContactInfo, HttpStatus.OK);
+                ClientContactInfoDTO returnedClientContactInfoDTO = clientMapper.mapDTOFromClientContactInfo(returnedClientContactInfo);
+
+                return new ResponseEntity<>(returnedClientContactInfoDTO, HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("Failed to retrieve the client's contact information", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(RETURN_CONTACT_INFO_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<?> updateClientContactInfo(Integer clientId, ClientContactInfo clientContactInfo) {
+    public ResponseEntity<?> updateClientContactInfo(Integer clientId, ClientContactInfoDTO clientContactInfoToUpdate) {
         try {
             Optional<ClientContactInfo> returnedOptionalClientContactInfo = clientContactInfoRepository.findByClientId(clientId);
             if (returnedOptionalClientContactInfo.isEmpty()) {
                 return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
-                returnedClientContactInfo.setPhonePrimary(clientContactInfo.getPhonePrimary());
-                returnedClientContactInfo.setPhoneSecondary(clientContactInfo.getPhoneSecondary());
-                returnedClientContactInfo.setEmail(clientContactInfo.getEmail());
-                returnedClientContactInfo.setIceName(clientContactInfo.getIceName());
-                returnedClientContactInfo.setIceRelationship(clientContactInfo.getIceRelationship());
-                returnedClientContactInfo.setIcePhonePrimary(clientContactInfo.getIcePhonePrimary());
-                returnedClientContactInfo.setIcePhoneSecondary(clientContactInfo.getIcePhoneSecondary());
-                returnedClientContactInfo.setIceEmail(clientContactInfo.getIceEmail());
-                clientContactInfoRepository.save(returnedClientContactInfo);
+                ClientContactInfo updatedClientContactInfo = returnedOptionalClientContactInfo.get();
+                clientMapper.updateClientContactInfoFromDTO(clientContactInfoToUpdate, updatedClientContactInfo);
+                clientContactInfoRepository.save(updatedClientContactInfo);
 
-                return new ResponseEntity<>(returnedClientContactInfo, HttpStatus.OK);
+                ClientContactInfoDTO updatedClientContactInfoDTO = clientMapper.mapDTOFromClientContactInfo(updatedClientContactInfo);
+
+                return new ResponseEntity<>(updatedClientContactInfoDTO, HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("Failed to update the client's contact information", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(CONTACT_INFO_UPDATE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

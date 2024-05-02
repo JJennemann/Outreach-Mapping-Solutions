@@ -1,5 +1,6 @@
 package com.outreachmappingsolutions.controllers;
 
+import com.outreachmappingsolutions.dtos.ClientContactInfoDTO;
 import com.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.services.ClientContactInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class ClientContactInfoController {
 
     @PutMapping("/update/{clientId}")
     public ResponseEntity<?> updateClientContactInfo(@PathVariable Integer clientId,
-                                                     @RequestBody ClientContactInfo clientContactInfo){
-        return clientContactInfoService.updateClientContactInfo(clientId, clientContactInfo);
+                                                     @RequestBody ClientContactInfoDTO clientContactInfoToUpdate){
+        return clientContactInfoService.updateClientContactInfo(clientId, clientContactInfoToUpdate);
     }
 
 

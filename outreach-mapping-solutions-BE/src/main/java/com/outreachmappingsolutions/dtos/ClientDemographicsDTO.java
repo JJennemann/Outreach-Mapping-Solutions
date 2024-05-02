@@ -19,9 +19,9 @@ public class ClientDemographicsDTO {
     public ClientDemographicsDTO() {
     }
 
-    public ClientDemographicsDTO(Integer id, Integer clientId, LocalDateTime createdAt,
-                                 LocalDateTime lastModified, String gender, String racePrimary,
-                                 String raceSecondary, String ethnicity, String veteranStatus) {
+    public ClientDemographicsDTO(Integer id, Integer clientId, LocalDateTime createdAt, LocalDateTime lastModified,
+                                 String gender, String racePrimary, String raceSecondary, String ethnicity,
+                                 String veteranStatus) {
         this.id = id;
         this.clientId = clientId;
         this.createdAt = createdAt;
@@ -40,7 +40,6 @@ public class ClientDemographicsDTO {
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Integer getClientId() {
         return clientId;
     }

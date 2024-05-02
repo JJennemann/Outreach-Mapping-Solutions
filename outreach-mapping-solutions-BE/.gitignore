@@ -2,3 +2,5 @@
 !gradle/wrapper/gradle-wrapper.jar
 !**/build.gradle
 !**/settings.gradle
+.DS_Store
+../.DS_Store

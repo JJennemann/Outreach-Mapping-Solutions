@@ -36,11 +36,10 @@ public class ClientBaseService {
         this.clientMapper = clientMapper;
     }
 
-
     public ResponseEntity<?> createNewClient(CreateOrUpdateClientBaseDTO newClientBaseDTO) {
         try {
             ClientBase newClient = new ClientBase();
-            clientMapper.updateClientFromDTO(newClientBaseDTO, newClient);
+            clientMapper.createOrUpdateClientBaseFromDTO(newClientBaseDTO, newClient);
 
             ClientDemographics newClientDemographics = new ClientDemographics();
             newClientDemographics.setClient(newClient);
@@ -52,12 +51,29 @@ public class ClientBaseService {
 
             clientBaseRepository.save(newClient);
 
-            CreateOrUpdateClientBaseDTO newClientDTO = new CreateOrUpdateClientBaseDTO(newClient);
+            CreateOrUpdateClientBaseDTO newClientDTO = clientMapper.mapDTOFromClientBase(newClient);
 
 
             return new ResponseEntity<>(newClientDTO, HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>(CREATE_CLIENT_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<?> returnAllClients() {
+        try{
+            List<ClientBase> allClients = (List<ClientBase>) clientBaseRepository.findAll();
+            if (allClients.isEmpty()) {
+                return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
+            } else {
+                List<CompleteClientEntityDTO> allClientDTOs = allClients.stream()
+                        .map(returnedClient -> ClientMapper.INSTANCE.clientToClientBaseDTO(returnedClient))
+                        .toList();
+
+                return new ResponseEntity<>(allClientDTOs, HttpStatus.OK);
+            }
+        } catch (Exception e){
+            return new ResponseEntity<>(RETURN_CLIENTS_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -77,35 +93,19 @@ public class ClientBaseService {
         }
     }
 
-    public ResponseEntity<?> returnAllClients() {
-        try{
-            List<ClientBase> allClients = (List<ClientBase>) clientBaseRepository.findAll();
-            if (allClients.isEmpty()) {
-                return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
-            } else {
-                List<CompleteClientEntityDTO> allClientDTOs = allClients.stream()
-                        .map(client -> new CompleteClientEntityDTO(client))
-                        .toList();
-
-                return new ResponseEntity<>(allClientDTOs, HttpStatus.OK);
-            }
-        } catch (Exception e){
-            return new ResponseEntity<>(RETURN_CLIENTS_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    public ResponseEntity<?> updateClient(Integer clientId, CreateOrUpdateClientBaseDTO updatedClientBaseDTO){
+    public ResponseEntity<?> updateClient(Integer clientId, CreateOrUpdateClientBaseDTO clientBaseToUpdate){
         try {
             Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
             if (returnedOptionalClient.isEmpty()) {
                 return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                ClientBase clientToUpdate = returnedOptionalClient.get();
-                clientMapper.updateClientFromDTO(updatedClientBaseDTO, clientToUpdate);
-                clientBaseRepository.save(clientToUpdate);
-                CreateOrUpdateClientBaseDTO clientBaseUpdatedDTO = new CreateOrUpdateClientBaseDTO(clientToUpdate);
+                ClientBase updatedClientBase = returnedOptionalClient.get();
+                clientMapper.createOrUpdateClientBaseFromDTO(clientBaseToUpdate, updatedClientBase);
+                clientBaseRepository.save(updatedClientBase);
 
-                return new ResponseEntity<>(clientBaseUpdatedDTO, HttpStatus.OK);
+                CreateOrUpdateClientBaseDTO updatedClientBaseDTO = clientMapper.mapDTOFromClientBase(updatedClientBase);
+
+                return new ResponseEntity<>(updatedClientBaseDTO, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(CLIENT_UPDATE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);

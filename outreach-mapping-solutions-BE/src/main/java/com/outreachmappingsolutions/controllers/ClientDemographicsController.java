@@ -1,5 +1,6 @@
 package com.outreachmappingsolutions.controllers;
 
+import com.outreachmappingsolutions.dtos.ClientDemographicsDTO;
 import com.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.services.ClientDemographicsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class ClientDemographicsController {
 
     @PutMapping("/update/{clientId}")
     public ResponseEntity<?> updateClientDemographics(@PathVariable Integer clientId,
-                                                      @RequestBody ClientDemographics clientDemographics){
-        return clientDemographicsService.updateClientDemographics(clientId, clientDemographics);
+                                                      @RequestBody ClientDemographicsDTO updatedClientDemoDTO){
+        return clientDemographicsService.updateClientDemographics(clientId, updatedClientDemoDTO);
     }
 
 

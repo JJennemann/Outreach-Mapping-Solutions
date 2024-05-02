@@ -19,19 +19,20 @@ public class ClientBaseController {
         return clientBaseService.createNewClient(newClientBaseDTO);
     }
 
-    @GetMapping("/return/{clientId}")
-    public ResponseEntity<?> returnClientById(@PathVariable Integer clientId){
-        return clientBaseService.returnClientById(clientId);
-    }
-
     @GetMapping("/returnAll")
     public ResponseEntity<?> returnAllClients(){
         return clientBaseService.returnAllClients();
     }
 
+    @GetMapping("/return/{clientId}")
+    public ResponseEntity<?> returnClientById(@PathVariable Integer clientId){
+        return clientBaseService.returnClientById(clientId);
+    }
+
     @PutMapping("/update/{clientId}")
-    public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody CreateOrUpdateClientBaseDTO updateClientBaseDTO){
-        return clientBaseService.updateClient(clientId, updateClientBaseDTO);
+    public ResponseEntity<?> updateClient(@PathVariable Integer clientId,
+                                          @RequestBody CreateOrUpdateClientBaseDTO clientBaseToUpdate){
+        return clientBaseService.updateClient(clientId, clientBaseToUpdate);
     }
 
     @DeleteMapping("/delete/{clientId}")
