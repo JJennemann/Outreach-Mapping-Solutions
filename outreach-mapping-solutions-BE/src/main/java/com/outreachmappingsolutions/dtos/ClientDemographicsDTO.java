@@ -1,5 +1,7 @@
 package com.outreachmappingsolutions.dtos;
 
+import com.outreachmappingsolutions.models.ClientDemographics;
+
 import java.time.LocalDateTime;
 
 public class ClientDemographicsDTO {
@@ -19,50 +21,34 @@ public class ClientDemographicsDTO {
     public ClientDemographicsDTO() {
     }
 
-    public ClientDemographicsDTO(Integer id, Integer clientId, LocalDateTime createdAt,
-                                 LocalDateTime lastModified, String gender, String racePrimary,
-                                 String raceSecondary, String ethnicity, String veteranStatus) {
-        this.id = id;
-        this.clientId = clientId;
-        this.createdAt = createdAt;
-        this.lastModified = lastModified;
-        this.gender = gender;
-        this.racePrimary = racePrimary;
-        this.raceSecondary = raceSecondary;
-        this.ethnicity = ethnicity;
-        this.veteranStatus = veteranStatus;
+    public ClientDemographicsDTO(ClientDemographics clientDemographics){
+        this.id = clientDemographics.getId();
+        this.clientId = clientDemographics.getClient().getId();
+        this.createdAt = clientDemographics.getCreatedAt();
+        this.lastModified = clientDemographics.getLastModified();
+        this.gender = clientDemographics.getGender();
+        this.racePrimary = clientDemographics.getRacePrimary();
+        this.raceSecondary = clientDemographics.getRaceSecondary();
+        this.ethnicity = clientDemographics.getEthnicity();
+        this.veteranStatus = clientDemographics.getVeteranStatus();
     }
+
+
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public LocalDateTime getLastModified() {
         return lastModified;
-    }
-
-    public void setLastModified(LocalDateTime lastModified) {
-        this.lastModified = lastModified;
     }
 
     public String getGender() {

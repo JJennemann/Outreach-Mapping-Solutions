@@ -1,6 +1,7 @@
 package com.outreachmappingsolutions.services;
 
 
+import com.outreachmappingsolutions.dtos.ClientDemographicsDTO;
 import com.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.repositories.ClientDemographicsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +15,28 @@ import java.util.Optional;
 @Service
 public class ClientDemographicsService {
 
-    private static final String NO_DEMOS_FOUND = "No client demographics matching your criteria were found";
+    private static final String NO_DEMOS_FOUND = "No client demographics matching your criteria were found.";
+    private static final String RETURN_DEMOS_FAILED = "Something went wrong. Failed to retrieve client demographics. Try again.";
+    private static final String DEMOS_UPDATE_FAILED = "Failed to update client demographics.";
+
 
     @Autowired
     private ClientDemographicsRepository clientDemographicsRepository;
 
     public ResponseEntity<?> returnAllClientDemographics() {
         try {
-            List<ClientDemographics> allClientDemos = (List<ClientDemographics>) clientDemographicsRepository.findAll();
-            if (allClientDemos.isEmpty()) {
+            List<ClientDemographics> allClientDemographics = (List<ClientDemographics>) clientDemographicsRepository.findAll();
+            if (allClientDemographics.isEmpty()) {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                return new ResponseEntity<>(allClientDemos, HttpStatus.OK);
+                List<ClientDemographicsDTO> allClientDemographicDTOs = allClientDemographics.stream()
+                        .map(clientDemographics -> new ClientDemographicsDTO(clientDemographics))
+                        .toList();
+
+                return new ResponseEntity<>(allClientDemographicDTOs, HttpStatus.OK);
             }
         } catch (Exception e){
-            return new ResponseEntity<>("Failed to retrieve all client demographics", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(RETURN_DEMOS_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -42,7 +50,7 @@ public class ClientDemographicsService {
                 return new ResponseEntity<>(returnedClientDemo, HttpStatus.OK);
             }
         } catch (Exception e){
-            return new ResponseEntity<>("Failed to retrieve the client's demographics", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(RETURN_DEMOS_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -64,7 +72,7 @@ public class ClientDemographicsService {
                 return new ResponseEntity<>(returnedClientDemo, HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("Failed to update the client's demographics", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(DEMOS_UPDATE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
