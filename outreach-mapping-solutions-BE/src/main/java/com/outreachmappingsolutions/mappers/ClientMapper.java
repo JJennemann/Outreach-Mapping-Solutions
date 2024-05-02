@@ -47,6 +47,7 @@ public interface ClientMapper {
     void updateClientContactInfoFromDTO(ClientContactInfoDTO dto, @MappingTarget ClientContactInfo entity);
 
     //Maps ClientContactInfo entities to ClientContactInfoDTOs
+    //Maps ClientContactInfo entities to ClientContactInfoDTOs
     @Mapping(target="clientId", ignore=true)
     ClientContactInfoDTO mapDTOFromClientContactInfo(ClientContactInfo clientContactInfo);
 
