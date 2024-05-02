@@ -34,7 +34,7 @@ public class ClientContactInfoService {
                 return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 List<ClientContactInfoDTO> allClientContactInfoDTOs = allClientContactInfo.stream()
-                        .map(clientContactInfo -> clientMapper.updateDTOFromClientContactInfo(clientContactInfo))
+                        .map(clientContactInfo -> clientMapper.mapDTOFromClientContactInfo(clientContactInfo))
                         .toList();
 
                 return new ResponseEntity<>(allClientContactInfoDTOs, HttpStatus.OK);
@@ -51,7 +51,7 @@ public class ClientContactInfoService {
                 return new ResponseEntity<>(NO_CONTACT_INFO_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 ClientContactInfo returnedClientContactInfo = returnedOptionalClientContactInfo.get();
-                ClientContactInfoDTO returnedClientContactInfoDTO = clientMapper.updateDTOFromClientContactInfo(returnedClientContactInfo);
+                ClientContactInfoDTO returnedClientContactInfoDTO = clientMapper.mapDTOFromClientContactInfo(returnedClientContactInfo);
 
                 return new ResponseEntity<>(returnedClientContactInfoDTO, HttpStatus.OK);
             }
@@ -70,7 +70,7 @@ public class ClientContactInfoService {
                 clientMapper.updateClientContactInfoFromDTO(clientContactInfoToUpdate, updatedClientContactInfo);
                 clientContactInfoRepository.save(updatedClientContactInfo);
 
-                ClientContactInfoDTO updatedClientContactInfoDTO = clientMapper.updateDTOFromClientContactInfo(updatedClientContactInfo);
+                ClientContactInfoDTO updatedClientContactInfoDTO = clientMapper.mapDTOFromClientContactInfo(updatedClientContactInfo);
 
                 return new ResponseEntity<>(updatedClientContactInfoDTO, HttpStatus.OK);
             }

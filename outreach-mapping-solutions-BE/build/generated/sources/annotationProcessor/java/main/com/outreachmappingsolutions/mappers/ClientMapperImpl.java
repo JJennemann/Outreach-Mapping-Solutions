@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-02T14:27:27-0500",
+    date = "2024-05-02T14:58:07-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.1.1.jar, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
@@ -81,6 +81,26 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
+    public ClientDemographicsDTO mapDTOFromClientDemographics(ClientDemographics clientDemographics) {
+        if ( clientDemographics == null ) {
+            return null;
+        }
+
+        ClientDemographicsDTO clientDemographicsDTO = new ClientDemographicsDTO();
+
+        clientDemographicsDTO.setId( clientDemographics.getId() );
+        clientDemographicsDTO.setCreatedAt( clientDemographics.getCreatedAt() );
+        clientDemographicsDTO.setLastModified( clientDemographics.getLastModified() );
+        clientDemographicsDTO.setGender( clientDemographics.getGender() );
+        clientDemographicsDTO.setRacePrimary( clientDemographics.getRacePrimary() );
+        clientDemographicsDTO.setRaceSecondary( clientDemographics.getRaceSecondary() );
+        clientDemographicsDTO.setEthnicity( clientDemographics.getEthnicity() );
+        clientDemographicsDTO.setVeteranStatus( clientDemographics.getVeteranStatus() );
+
+        return clientDemographicsDTO;
+    }
+
+    @Override
     public void updateClientContactInfoFromDTO(ClientContactInfoDTO dto, ClientContactInfo entity) {
         if ( dto == null ) {
             return;
@@ -97,7 +117,7 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
-    public ClientContactInfoDTO updateDTOFromClientContactInfo(ClientContactInfo clientContactInfo) {
+    public ClientContactInfoDTO mapDTOFromClientContactInfo(ClientContactInfo clientContactInfo) {
         if ( clientContactInfo == null ) {
             return null;
         }

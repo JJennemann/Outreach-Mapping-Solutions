@@ -35,7 +35,7 @@ public class ClientDemographicsService {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 List<ClientDemographicsDTO> allClientDemographicDTOs = allClientDemos.stream()
-                        .map(clientDemo -> new ClientDemographicsDTO(clientDemo))
+                        .map(clientDemo -> clientMapper.mapDTOFromClientDemographics(clientDemo))
                         .toList();
 
                 return new ResponseEntity<>(allClientDemographicDTOs, HttpStatus.OK);
@@ -52,7 +52,7 @@ public class ClientDemographicsService {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();
-                ClientDemographicsDTO returnedClientDemoDTO = new ClientDemographicsDTO(returnedClientDemo);
+                ClientDemographicsDTO returnedClientDemoDTO = clientMapper.mapDTOFromClientDemographics(returnedClientDemo);
 
                 return new ResponseEntity<>(returnedClientDemoDTO, HttpStatus.OK);
             }
@@ -71,7 +71,7 @@ public class ClientDemographicsService {
                 clientMapper.updateClientDemographicsFromDTO(clientDemoToUpdate, updatedClientDemo);
                 clientDemographicsRepository.save(updatedClientDemo);
 
-                ClientDemographicsDTO updatedClientContactInfoDTO = new ClientDemographicsDTO(updatedClientDemo);
+                ClientDemographicsDTO updatedClientContactInfoDTO = clientMapper.mapDTOFromClientDemographics(updatedClientDemo);
 
                 return new ResponseEntity<>(updatedClientContactInfoDTO, HttpStatus.OK);
             }

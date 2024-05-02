@@ -1,7 +1,5 @@
 package com.outreachmappingsolutions.dtos;
 
-import com.outreachmappingsolutions.models.ClientDemographics;
-
 import java.time.LocalDateTime;
 
 public class ClientDemographicsDTO {
@@ -21,18 +19,19 @@ public class ClientDemographicsDTO {
     public ClientDemographicsDTO() {
     }
 
-    public ClientDemographicsDTO(ClientDemographics clientDemographics){
-        this.id = clientDemographics.getId();
-        this.clientId = clientDemographics.getClient().getId();
-        this.createdAt = clientDemographics.getCreatedAt();
-        this.lastModified = clientDemographics.getLastModified();
-        this.gender = clientDemographics.getGender();
-        this.racePrimary = clientDemographics.getRacePrimary();
-        this.raceSecondary = clientDemographics.getRaceSecondary();
-        this.ethnicity = clientDemographics.getEthnicity();
-        this.veteranStatus = clientDemographics.getVeteranStatus();
+    public ClientDemographicsDTO(Integer id, Integer clientId, LocalDateTime createdAt, LocalDateTime lastModified,
+                                 String gender, String racePrimary, String raceSecondary, String ethnicity,
+                                 String veteranStatus) {
+        this.id = id;
+        this.clientId = clientId;
+        this.createdAt = createdAt;
+        this.lastModified = lastModified;
+        this.gender = gender;
+        this.racePrimary = racePrimary;
+        this.raceSecondary = raceSecondary;
+        this.ethnicity = ethnicity;
+        this.veteranStatus = veteranStatus;
     }
-
 
     public Integer getId() {
         return id;
@@ -41,7 +40,6 @@ public class ClientDemographicsDTO {
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Integer getClientId() {
         return clientId;
     }

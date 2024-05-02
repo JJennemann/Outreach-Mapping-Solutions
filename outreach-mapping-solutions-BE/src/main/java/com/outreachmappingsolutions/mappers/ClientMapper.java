@@ -18,7 +18,7 @@ public interface ClientMapper {
 
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
-    // for returning entire client object, with demo and contact info subobjects
+    // for returning entire client object, with demo and contact info nested objects
     @Mapping(source = "clientDemographics", target = "clientDemographicsDTO")
     @Mapping(source = "clientContactInfo", target = "clientContactInfoDTO")
     @Mapping(target = "clientDemographicsDTO.clientId", ignore=true)
@@ -26,20 +26,26 @@ public interface ClientMapper {
     CompleteClientEntityDTO clientToClientBaseDTO(ClientBase client);
 
 
-    // allows for updating clientBase objects by mapping the new clientBase entity from the passed in DTO
+    // Maps ClientBaseDTOs to ClientBase entities
     @Mapping (target="clientDemographics", ignore = true)
     @Mapping (target="clientContactInfo", ignore = true)
     void createOrUpdateClientBaseFromDTO(CreateOrUpdateClientBaseDTO dto, @MappingTarget ClientBase entity);
 
-//    // allows for updating clientDemographics objects by mapping the new clientDemographics entity from the passed in DTO
+    // Maps clientDemographicDTOs to clientDemographic entities
     @Mapping(target="client", ignore=true)
     void updateClientDemographicsFromDTO(ClientDemographicsDTO dto, @MappingTarget ClientDemographics entity);
 
+    // Maps clientDemographic entities to ClientDemographicDT0s
+    @Mapping(target="clientId", ignore = true)
+    ClientDemographicsDTO mapDTOFromClientDemographics(ClientDemographics clientDemographics);
+
+    // Maps clientContactInfoDTOs to ClientContactInfo entities
     @Mapping(target="client", ignore=true)
     void updateClientContactInfoFromDTO(ClientContactInfoDTO dto, @MappingTarget ClientContactInfo entity);
 
+    //Maps ClientContactInfo entities to ClientContactInfoDTOs
     @Mapping(target="clientId", ignore=true)
-    ClientContactInfoDTO updateDTOFromClientContactInfo(ClientContactInfo clientContactInfo);
+    ClientContactInfoDTO mapDTOFromClientContactInfo(ClientContactInfo clientContactInfo);
 
 
 
