@@ -39,7 +39,7 @@ public class ClientBaseService {
     public ResponseEntity<?> createNewClient(CreateOrUpdateClientBaseDTO newClientBaseDTO) {
         try {
             ClientBase newClient = new ClientBase();
-            clientMapper.updateClientFromDTO(newClientBaseDTO, newClient);
+            clientMapper.createOrUpdateClientBaseFromDTO(newClientBaseDTO, newClient);
 
             ClientDemographics newClientDemographics = new ClientDemographics();
             newClientDemographics.setClient(newClient);
@@ -100,7 +100,7 @@ public class ClientBaseService {
                 return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 ClientBase clientToUpdate = returnedOptionalClient.get();
-                clientMapper.updateClientFromDTO(updatedClientBaseDTO, clientToUpdate);
+                clientMapper.createOrUpdateClientBaseFromDTO(updatedClientBaseDTO, clientToUpdate);
                 clientBaseRepository.save(clientToUpdate);
 
                 CreateOrUpdateClientBaseDTO clientBaseUpdatedDTO = new CreateOrUpdateClientBaseDTO(clientToUpdate);

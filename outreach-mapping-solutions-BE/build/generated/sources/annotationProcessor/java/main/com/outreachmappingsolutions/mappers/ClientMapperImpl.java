@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-02T11:54:36-0500",
+    date = "2024-05-02T13:46:10-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.1.1.jar, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
@@ -26,8 +26,8 @@ public class ClientMapperImpl implements ClientMapper {
 
         CompleteClientEntityDTO completeClientEntityDTO = new CompleteClientEntityDTO();
 
-        completeClientEntityDTO.setClientDemographicsDTO( demographicsToDemographicsDTO( client.getClientDemographics() ) );
-        completeClientEntityDTO.setClientContactInfoDTO( contactInfoToContactInfoDTO( client.getClientContactInfo() ) );
+        completeClientEntityDTO.setClientDemographicsDTO( clientDemographicsToClientDemographicsDTO( client.getClientDemographics() ) );
+        completeClientEntityDTO.setClientContactInfoDTO( clientContactInfoToClientContactInfoDTO( client.getClientContactInfo() ) );
         completeClientEntityDTO.setId( client.getId() );
         completeClientEntityDTO.setCreatedAt( client.getCreatedAt() );
         completeClientEntityDTO.setLastModified( client.getLastModified() );
@@ -48,52 +48,7 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
-    public ClientDemographicsDTO demographicsToDemographicsDTO(ClientDemographics clientDemographics) {
-        if ( clientDemographics == null ) {
-            return null;
-        }
-
-        ClientDemographicsDTO clientDemographicsDTO = new ClientDemographicsDTO();
-
-        clientDemographicsDTO.setClientId( clientDemographicsClientId( clientDemographics ) );
-        clientDemographicsDTO.setId( clientDemographics.getId() );
-        clientDemographicsDTO.setCreatedAt( clientDemographics.getCreatedAt() );
-        clientDemographicsDTO.setLastModified( clientDemographics.getLastModified() );
-        clientDemographicsDTO.setGender( clientDemographics.getGender() );
-        clientDemographicsDTO.setRacePrimary( clientDemographics.getRacePrimary() );
-        clientDemographicsDTO.setRaceSecondary( clientDemographics.getRaceSecondary() );
-        clientDemographicsDTO.setEthnicity( clientDemographics.getEthnicity() );
-        clientDemographicsDTO.setVeteranStatus( clientDemographics.getVeteranStatus() );
-
-        return clientDemographicsDTO;
-    }
-
-    @Override
-    public ClientContactInfoDTO contactInfoToContactInfoDTO(ClientContactInfo clientContactInfo) {
-        if ( clientContactInfo == null ) {
-            return null;
-        }
-
-        ClientContactInfoDTO clientContactInfoDTO = new ClientContactInfoDTO();
-
-        clientContactInfoDTO.setClientId( clientContactInfoClientId( clientContactInfo ) );
-        clientContactInfoDTO.setId( clientContactInfo.getId() );
-        clientContactInfoDTO.setCreatedAt( clientContactInfo.getCreatedAt() );
-        clientContactInfoDTO.setLastModified( clientContactInfo.getLastModified() );
-        clientContactInfoDTO.setPhonePrimary( clientContactInfo.getPhonePrimary() );
-        clientContactInfoDTO.setPhoneSecondary( clientContactInfo.getPhoneSecondary() );
-        clientContactInfoDTO.setEmail( clientContactInfo.getEmail() );
-        clientContactInfoDTO.setIceName( clientContactInfo.getIceName() );
-        clientContactInfoDTO.setIceRelationship( clientContactInfo.getIceRelationship() );
-        clientContactInfoDTO.setIcePhonePrimary( clientContactInfo.getIcePhonePrimary() );
-        clientContactInfoDTO.setIcePhoneSecondary( clientContactInfo.getIcePhoneSecondary() );
-        clientContactInfoDTO.setIceEmail( clientContactInfo.getIceEmail() );
-
-        return clientContactInfoDTO;
-    }
-
-    @Override
-    public void updateClientFromDTO(CreateOrUpdateClientBaseDTO dto, ClientBase entity) {
+    public void createOrUpdateClientBaseFromDTO(CreateOrUpdateClientBaseDTO dto, ClientBase entity) {
         if ( dto == null ) {
             return;
         }
@@ -112,33 +67,57 @@ public class ClientMapperImpl implements ClientMapper {
         entity.setSsnDataQuality( dto.getSsnDataQuality() );
     }
 
-    private Integer clientDemographicsClientId(ClientDemographics clientDemographics) {
+    @Override
+    public void updateClientDemographicsFromDTO(ClientDemographicsDTO dto, ClientDemographics entity) {
+        if ( dto == null ) {
+            return;
+        }
+
+        entity.setGender( dto.getGender() );
+        entity.setRacePrimary( dto.getRacePrimary() );
+        entity.setRaceSecondary( dto.getRaceSecondary() );
+        entity.setEthnicity( dto.getEthnicity() );
+        entity.setVeteranStatus( dto.getVeteranStatus() );
+    }
+
+    protected ClientDemographicsDTO clientDemographicsToClientDemographicsDTO(ClientDemographics clientDemographics) {
         if ( clientDemographics == null ) {
             return null;
         }
-        ClientBase client = clientDemographics.getClient();
-        if ( client == null ) {
-            return null;
-        }
-        Integer id = client.getId();
-        if ( id == null ) {
-            return null;
-        }
-        return id;
+
+        ClientDemographicsDTO clientDemographicsDTO = new ClientDemographicsDTO();
+
+        clientDemographicsDTO.setId( clientDemographics.getId() );
+        clientDemographicsDTO.setCreatedAt( clientDemographics.getCreatedAt() );
+        clientDemographicsDTO.setLastModified( clientDemographics.getLastModified() );
+        clientDemographicsDTO.setGender( clientDemographics.getGender() );
+        clientDemographicsDTO.setRacePrimary( clientDemographics.getRacePrimary() );
+        clientDemographicsDTO.setRaceSecondary( clientDemographics.getRaceSecondary() );
+        clientDemographicsDTO.setEthnicity( clientDemographics.getEthnicity() );
+        clientDemographicsDTO.setVeteranStatus( clientDemographics.getVeteranStatus() );
+
+        return clientDemographicsDTO;
     }
 
-    private Integer clientContactInfoClientId(ClientContactInfo clientContactInfo) {
+    protected ClientContactInfoDTO clientContactInfoToClientContactInfoDTO(ClientContactInfo clientContactInfo) {
         if ( clientContactInfo == null ) {
             return null;
         }
-        ClientBase client = clientContactInfo.getClient();
-        if ( client == null ) {
-            return null;
-        }
-        Integer id = client.getId();
-        if ( id == null ) {
-            return null;
-        }
-        return id;
+
+        ClientContactInfoDTO clientContactInfoDTO = new ClientContactInfoDTO();
+
+        clientContactInfoDTO.setId( clientContactInfo.getId() );
+        clientContactInfoDTO.setCreatedAt( clientContactInfo.getCreatedAt() );
+        clientContactInfoDTO.setLastModified( clientContactInfo.getLastModified() );
+        clientContactInfoDTO.setPhonePrimary( clientContactInfo.getPhonePrimary() );
+        clientContactInfoDTO.setPhoneSecondary( clientContactInfo.getPhoneSecondary() );
+        clientContactInfoDTO.setEmail( clientContactInfo.getEmail() );
+        clientContactInfoDTO.setIceName( clientContactInfo.getIceName() );
+        clientContactInfoDTO.setIceRelationship( clientContactInfo.getIceRelationship() );
+        clientContactInfoDTO.setIcePhonePrimary( clientContactInfo.getIcePhonePrimary() );
+        clientContactInfoDTO.setIcePhoneSecondary( clientContactInfo.getIcePhoneSecondary() );
+        clientContactInfoDTO.setIceEmail( clientContactInfo.getIceEmail() );
+
+        return clientContactInfoDTO;
     }
 }

@@ -2,6 +2,7 @@ package com.outreachmappingsolutions.services;
 
 
 import com.outreachmappingsolutions.dtos.ClientDemographicsDTO;
+import com.outreachmappingsolutions.mappers.ClientMapper;
 import com.outreachmappingsolutions.models.ClientDemographics;
 import com.outreachmappingsolutions.repositories.ClientDemographicsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +21,23 @@ public class ClientDemographicsService {
     private static final String DEMOS_UPDATE_FAILED = "Failed to update client demographics.";
 
 
-    @Autowired
-    private ClientDemographicsRepository clientDemographicsRepository;
+
+    private final ClientDemographicsRepository clientDemographicsRepository;
+    private final ClientMapper clientMapper;
+
+    public ClientDemographicsService(ClientDemographicsRepository clientDemographicsRepository, ClientMapper clientMapper) {
+        this.clientDemographicsRepository = clientDemographicsRepository;
+        this.clientMapper = clientMapper;
+    }
 
     public ResponseEntity<?> returnAllClientDemographics() {
         try {
-            List<ClientDemographics> allClientDemographics = (List<ClientDemographics>) clientDemographicsRepository.findAll();
-            if (allClientDemographics.isEmpty()) {
+            List<ClientDemographics> allClientDemos = (List<ClientDemographics>) clientDemographicsRepository.findAll();
+            if (allClientDemos.isEmpty()) {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                List<ClientDemographicsDTO> allClientDemographicDTOs = allClientDemographics.stream()
-                        .map(clientDemographics -> new ClientDemographicsDTO(clientDemographics))
+                List<ClientDemographicsDTO> allClientDemographicDTOs = allClientDemos.stream()
+                        .map(clientDemo -> new ClientDemographicsDTO(clientDemo))
                         .toList();
 
                 return new ResponseEntity<>(allClientDemographicDTOs, HttpStatus.OK);
@@ -47,29 +54,28 @@ public class ClientDemographicsService {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();
-                return new ResponseEntity<>(returnedClientDemo, HttpStatus.OK);
+                ClientDemographicsDTO returnedClientDemoDTO = new ClientDemographicsDTO(returnedClientDemo);
+
+                return new ResponseEntity<>(returnedClientDemoDTO, HttpStatus.OK);
             }
         } catch (Exception e){
             return new ResponseEntity<>(RETURN_DEMOS_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<?> updateClientDemographics(Integer clientId, ClientDemographics clientDemographics) {
+    public ResponseEntity<?> updateClientDemographics(Integer clientId, ClientDemographicsDTO updatedClientDemoDTO) {
         try {
             Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);
             if (returnedOptionalClientDemo.isEmpty()) {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                ClientDemographics returnedClientDemo = returnedOptionalClientDemo.get();
+                ClientDemographics clientDemoToUpdate = returnedOptionalClientDemo.get();
+                clientMapper.updateClientDemographicsFromDTO(updatedClientDemoDTO, clientDemoToUpdate);
+                clientDemographicsRepository.save(clientDemoToUpdate);
 
-                returnedClientDemo.setGender(clientDemographics.getGender());
-                returnedClientDemo.setRacePrimary(clientDemographics.getRacePrimary());
-                returnedClientDemo.setRaceSecondary(clientDemographics.getRaceSecondary());
-                returnedClientDemo.setEthnicity(clientDemographics.getEthnicity());
-                returnedClientDemo.setVeteranStatus(clientDemographics.getVeteranStatus());
-                clientDemographicsRepository.save(returnedClientDemo);
+                ClientDemographicsDTO clientDemoUpdatedDTO = new ClientDemographicsDTO(clientDemoToUpdate);
 
-                return new ResponseEntity<>(returnedClientDemo, HttpStatus.OK);
+                return new ResponseEntity<>(clientDemoUpdatedDTO, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(DEMOS_UPDATE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
