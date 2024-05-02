@@ -1,47 +1,50 @@
 package com.outreachmappingsolutions.mappers;
 
-import com.outreachmappingsolutions.dtos.ClientBaseDTO;
 import com.outreachmappingsolutions.dtos.ClientContactInfoDTO;
 import com.outreachmappingsolutions.dtos.ClientDemographicsDTO;
+import com.outreachmappingsolutions.dtos.CompleteClientEntityDTO;
+import com.outreachmappingsolutions.dtos.CreateOrUpdateClientBaseDTO;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.models.ClientContactInfo;
 import com.outreachmappingsolutions.models.ClientDemographics;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-01T15:01:44-0500",
+    date = "2024-05-02T11:54:36-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.1.1.jar, environment: Java 17.0.7 (Oracle Corporation)"
 )
+@Component
 public class ClientMapperImpl implements ClientMapper {
 
     @Override
-    public ClientBaseDTO clientToClientBaseDTO(ClientBase client) {
+    public CompleteClientEntityDTO clientToClientBaseDTO(ClientBase client) {
         if ( client == null ) {
             return null;
         }
 
-        ClientBaseDTO clientBaseDTO = new ClientBaseDTO();
+        CompleteClientEntityDTO completeClientEntityDTO = new CompleteClientEntityDTO();
 
-        clientBaseDTO.setClientDemographicsDTO( demographicsToDemographicsDTO( client.getClientDemographics() ) );
-        clientBaseDTO.setClientContactInfoDTO( contactInfoToContactInfoDTO( client.getClientContactInfo() ) );
-        clientBaseDTO.setId( client.getId() );
-        clientBaseDTO.setCreatedAt( client.getCreatedAt() );
-        clientBaseDTO.setLastModified( client.getLastModified() );
-        clientBaseDTO.setFirstName( client.getFirstName() );
-        clientBaseDTO.setMiddleName( client.getMiddleName() );
-        clientBaseDTO.setLastName( client.getLastName() );
-        clientBaseDTO.setNameDataQuality( client.getNameDataQuality() );
-        clientBaseDTO.setDobMonth( client.getDobMonth() );
-        clientBaseDTO.setDobDay( client.getDobDay() );
-        clientBaseDTO.setDobYear( client.getDobYear() );
-        clientBaseDTO.setDobDataQuality( client.getDobDataQuality() );
-        clientBaseDTO.setFirstThreeSsn( client.getFirstThreeSsn() );
-        clientBaseDTO.setMiddleTwoSsn( client.getMiddleTwoSsn() );
-        clientBaseDTO.setLastFourSsn( client.getLastFourSsn() );
-        clientBaseDTO.setSsnDataQuality( client.getSsnDataQuality() );
+        completeClientEntityDTO.setClientDemographicsDTO( demographicsToDemographicsDTO( client.getClientDemographics() ) );
+        completeClientEntityDTO.setClientContactInfoDTO( contactInfoToContactInfoDTO( client.getClientContactInfo() ) );
+        completeClientEntityDTO.setId( client.getId() );
+        completeClientEntityDTO.setCreatedAt( client.getCreatedAt() );
+        completeClientEntityDTO.setLastModified( client.getLastModified() );
+        completeClientEntityDTO.setFirstName( client.getFirstName() );
+        completeClientEntityDTO.setMiddleName( client.getMiddleName() );
+        completeClientEntityDTO.setLastName( client.getLastName() );
+        completeClientEntityDTO.setNameDataQuality( client.getNameDataQuality() );
+        completeClientEntityDTO.setDobMonth( client.getDobMonth() );
+        completeClientEntityDTO.setDobDay( client.getDobDay() );
+        completeClientEntityDTO.setDobYear( client.getDobYear() );
+        completeClientEntityDTO.setDobDataQuality( client.getDobDataQuality() );
+        completeClientEntityDTO.setFirstThreeSsn( client.getFirstThreeSsn() );
+        completeClientEntityDTO.setMiddleTwoSsn( client.getMiddleTwoSsn() );
+        completeClientEntityDTO.setLastFourSsn( client.getLastFourSsn() );
+        completeClientEntityDTO.setSsnDataQuality( client.getSsnDataQuality() );
 
-        return clientBaseDTO;
+        return completeClientEntityDTO;
     }
 
     @Override
@@ -87,6 +90,26 @@ public class ClientMapperImpl implements ClientMapper {
         clientContactInfoDTO.setIceEmail( clientContactInfo.getIceEmail() );
 
         return clientContactInfoDTO;
+    }
+
+    @Override
+    public void updateClientFromDTO(CreateOrUpdateClientBaseDTO dto, ClientBase entity) {
+        if ( dto == null ) {
+            return;
+        }
+
+        entity.setFirstName( dto.getFirstName() );
+        entity.setMiddleName( dto.getMiddleName() );
+        entity.setLastName( dto.getLastName() );
+        entity.setNameDataQuality( dto.getNameDataQuality() );
+        entity.setDobMonth( dto.getDobMonth() );
+        entity.setDobDay( dto.getDobDay() );
+        entity.setDobYear( dto.getDobYear() );
+        entity.setDobDataQuality( dto.getDobDataQuality() );
+        entity.setFirstThreeSsn( dto.getFirstThreeSsn() );
+        entity.setMiddleTwoSsn( dto.getMiddleTwoSsn() );
+        entity.setLastFourSsn( dto.getLastFourSsn() );
+        entity.setSsnDataQuality( dto.getSsnDataQuality() );
     }
 
     private Integer clientDemographicsClientId(ClientDemographics clientDemographics) {

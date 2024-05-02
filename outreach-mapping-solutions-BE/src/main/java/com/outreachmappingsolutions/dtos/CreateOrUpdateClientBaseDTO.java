@@ -1,10 +1,10 @@
 package com.outreachmappingsolutions.dtos;
 
-import com.outreachmappingsolutions.models.ClientContactInfo;
+import com.outreachmappingsolutions.models.ClientBase;
 
 import java.time.LocalDateTime;
 
-public class CreateNewClientBaseDTO {
+public class CreateOrUpdateClientBaseDTO {
 
     private Integer id;
 
@@ -27,52 +27,37 @@ public class CreateNewClientBaseDTO {
     private String ssnDataQuality;
 
 
-    public CreateNewClientBaseDTO() {
+    public CreateOrUpdateClientBaseDTO() {
     }
 
-    public CreateNewClientBaseDTO(Integer id, LocalDateTime createdAt, LocalDateTime lastModified, String firstName,
-                                  String middleName, String lastName, String nameDataQuality, String dobMonth,
-                                  Integer dobDay, Integer dobYear, String dobDataQuality, Integer firstThreeSsn,
-                                  Integer middleTwoSsn, Integer lastFourSsn, String ssnDataQuality) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.lastModified = lastModified;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.nameDataQuality = nameDataQuality;
-        this.dobMonth = dobMonth;
-        this.dobDay = dobDay;
-        this.dobYear = dobYear;
-        this.dobDataQuality = dobDataQuality;
-        this.firstThreeSsn = firstThreeSsn;
-        this.middleTwoSsn = middleTwoSsn;
-        this.lastFourSsn = lastFourSsn;
-        this.ssnDataQuality = ssnDataQuality;
+    public CreateOrUpdateClientBaseDTO(ClientBase clientBase) {
+        this.id = clientBase.getId();
+        this.createdAt = clientBase.getCreatedAt();
+        this.lastModified = clientBase.getLastModified();
+        this.firstName = clientBase.getFirstName();
+        this.middleName = clientBase.getMiddleName();
+        this.lastName = clientBase.getLastName();
+        this.nameDataQuality = clientBase.getNameDataQuality();
+        this.dobMonth = clientBase.getDobMonth();
+        this.dobDay = clientBase.getDobDay();
+        this.dobYear = clientBase.getDobYear();
+        this.dobDataQuality = clientBase.getDobDataQuality();
+        this.firstThreeSsn = clientBase.getFirstThreeSsn();
+        this.middleTwoSsn = clientBase.getMiddleTwoSsn();
+        this.lastFourSsn = clientBase.getLastFourSsn();
+        this.ssnDataQuality = clientBase.getSsnDataQuality();
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public LocalDateTime getLastModified() {
         return lastModified;
-    }
-
-    public void setLastModified(LocalDateTime lastModified) {
-        this.lastModified = lastModified;
     }
 
     public String getFirstName() {

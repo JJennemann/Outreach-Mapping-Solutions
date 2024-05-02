@@ -4,7 +4,7 @@ import com.outreachmappingsolutions.models.ClientBase;
 
 import java.time.LocalDateTime;
 
-public class ClientBaseDTO {
+public class CompleteClientEntityDTO {
 
 
     private Integer id;
@@ -30,10 +30,10 @@ public class ClientBaseDTO {
     private ClientDemographicsDTO clientDemographicsDTO;
     private ClientContactInfoDTO clientContactInfoDTO;
 
-    public ClientBaseDTO() {
+    public CompleteClientEntityDTO() {
     }
 
-    public ClientBaseDTO(ClientBase clientBase) {
+    public CompleteClientEntityDTO(ClientBase clientBase) {
         this.id = clientBase.getId();
         this.createdAt = clientBase.getCreatedAt();
         this.lastModified = clientBase.getLastModified();

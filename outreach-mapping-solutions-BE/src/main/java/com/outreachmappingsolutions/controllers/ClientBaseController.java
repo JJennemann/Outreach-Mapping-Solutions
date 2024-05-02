@@ -1,6 +1,6 @@
 package com.outreachmappingsolutions.controllers;
 
-import com.outreachmappingsolutions.dtos.CreateNewClientBaseDTO;
+import com.outreachmappingsolutions.dtos.CreateOrUpdateClientBaseDTO;
 import com.outreachmappingsolutions.models.ClientBase;
 import com.outreachmappingsolutions.services.ClientBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class ClientBaseController {
     private ClientBaseService clientBaseService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createNewClient(@RequestBody CreateNewClientBaseDTO newClientBaseDTO){
+    public ResponseEntity<?> createNewClient(@RequestBody CreateOrUpdateClientBaseDTO newClientBaseDTO){
         return clientBaseService.createNewClient(newClientBaseDTO);
     }
 
@@ -30,8 +30,8 @@ public class ClientBaseController {
     }
 
     @PutMapping("/update/{clientId}")
-    public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody ClientBase updateClientBase){
-        return clientBaseService.updateClient(clientId, updateClientBase);
+    public ResponseEntity<?> updateClient(@PathVariable Integer clientId, @RequestBody CreateOrUpdateClientBaseDTO updateClientBaseDTO){
+        return clientBaseService.updateClient(clientId, updateClientBaseDTO);
     }
 
     @DeleteMapping("/delete/{clientId}")
