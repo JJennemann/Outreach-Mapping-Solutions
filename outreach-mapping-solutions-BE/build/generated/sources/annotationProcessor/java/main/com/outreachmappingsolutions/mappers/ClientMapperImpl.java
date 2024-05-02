@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-02T13:46:10-0500",
+    date = "2024-05-02T14:27:27-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.1.1.jar, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
@@ -78,6 +78,45 @@ public class ClientMapperImpl implements ClientMapper {
         entity.setRaceSecondary( dto.getRaceSecondary() );
         entity.setEthnicity( dto.getEthnicity() );
         entity.setVeteranStatus( dto.getVeteranStatus() );
+    }
+
+    @Override
+    public void updateClientContactInfoFromDTO(ClientContactInfoDTO dto, ClientContactInfo entity) {
+        if ( dto == null ) {
+            return;
+        }
+
+        entity.setPhonePrimary( dto.getPhonePrimary() );
+        entity.setPhoneSecondary( dto.getPhoneSecondary() );
+        entity.setEmail( dto.getEmail() );
+        entity.setIceName( dto.getIceName() );
+        entity.setIceRelationship( dto.getIceRelationship() );
+        entity.setIcePhonePrimary( dto.getIcePhonePrimary() );
+        entity.setIcePhoneSecondary( dto.getIcePhoneSecondary() );
+        entity.setIceEmail( dto.getIceEmail() );
+    }
+
+    @Override
+    public ClientContactInfoDTO updateDTOFromClientContactInfo(ClientContactInfo clientContactInfo) {
+        if ( clientContactInfo == null ) {
+            return null;
+        }
+
+        ClientContactInfoDTO clientContactInfoDTO = new ClientContactInfoDTO();
+
+        clientContactInfoDTO.setId( clientContactInfo.getId() );
+        clientContactInfoDTO.setCreatedAt( clientContactInfo.getCreatedAt() );
+        clientContactInfoDTO.setLastModified( clientContactInfo.getLastModified() );
+        clientContactInfoDTO.setPhonePrimary( clientContactInfo.getPhonePrimary() );
+        clientContactInfoDTO.setPhoneSecondary( clientContactInfo.getPhoneSecondary() );
+        clientContactInfoDTO.setEmail( clientContactInfo.getEmail() );
+        clientContactInfoDTO.setIceName( clientContactInfo.getIceName() );
+        clientContactInfoDTO.setIceRelationship( clientContactInfo.getIceRelationship() );
+        clientContactInfoDTO.setIcePhonePrimary( clientContactInfo.getIcePhonePrimary() );
+        clientContactInfoDTO.setIcePhoneSecondary( clientContactInfo.getIcePhoneSecondary() );
+        clientContactInfoDTO.setIceEmail( clientContactInfo.getIceEmail() );
+
+        return clientContactInfoDTO;
     }
 
     protected ClientDemographicsDTO clientDemographicsToClientDemographicsDTO(ClientDemographics clientDemographics) {

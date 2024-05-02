@@ -35,10 +35,12 @@ public interface ClientMapper {
     @Mapping(target="client", ignore=true)
     void updateClientDemographicsFromDTO(ClientDemographicsDTO dto, @MappingTarget ClientDemographics entity);
 
-//    // allows for the subobjects to get client ID in DTOs
-//    @Mapping(source = "client.id", target = "clientId")
-//    ClientDemographicsDTO demographicsToDemographicsDTO(ClientDemographics clientDemographics);
-//    @Mapping(source = "client.id", target = "clientId")
-//    ClientContactInfoDTO contactInfoToContactInfoDTO(ClientContactInfo clientContactInfo);
+    @Mapping(target="client", ignore=true)
+    void updateClientContactInfoFromDTO(ClientContactInfoDTO dto, @MappingTarget ClientContactInfo entity);
+
+    @Mapping(target="clientId", ignore=true)
+    ClientContactInfoDTO updateDTOFromClientContactInfo(ClientContactInfo clientContactInfo);
+
+
 
 }

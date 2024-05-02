@@ -93,19 +93,19 @@ public class ClientBaseService {
         }
     }
 
-    public ResponseEntity<?> updateClient(Integer clientId, CreateOrUpdateClientBaseDTO updatedClientBaseDTO){
+    public ResponseEntity<?> updateClient(Integer clientId, CreateOrUpdateClientBaseDTO clientBaseToUpdate){
         try {
             Optional<ClientBase> returnedOptionalClient = clientBaseRepository.findById(clientId);
             if (returnedOptionalClient.isEmpty()) {
                 return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                ClientBase clientToUpdate = returnedOptionalClient.get();
-                clientMapper.createOrUpdateClientBaseFromDTO(updatedClientBaseDTO, clientToUpdate);
-                clientBaseRepository.save(clientToUpdate);
+                ClientBase updatedClientBase = returnedOptionalClient.get();
+                clientMapper.createOrUpdateClientBaseFromDTO(clientBaseToUpdate, updatedClientBase);
+                clientBaseRepository.save(updatedClientBase);
 
-                CreateOrUpdateClientBaseDTO clientBaseUpdatedDTO = new CreateOrUpdateClientBaseDTO(clientToUpdate);
+                CreateOrUpdateClientBaseDTO updatedClientBaseDTO = new CreateOrUpdateClientBaseDTO(updatedClientBase);
 
-                return new ResponseEntity<>(clientBaseUpdatedDTO, HttpStatus.OK);
+                return new ResponseEntity<>(updatedClientBaseDTO, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(CLIENT_UPDATE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);

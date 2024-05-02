@@ -20,8 +20,6 @@ public class ClientDemographicsService {
     private static final String RETURN_DEMOS_FAILED = "Something went wrong. Failed to retrieve client demographics. Try again.";
     private static final String DEMOS_UPDATE_FAILED = "Failed to update client demographics.";
 
-
-
     private final ClientDemographicsRepository clientDemographicsRepository;
     private final ClientMapper clientMapper;
 
@@ -63,19 +61,19 @@ public class ClientDemographicsService {
         }
     }
 
-    public ResponseEntity<?> updateClientDemographics(Integer clientId, ClientDemographicsDTO updatedClientDemoDTO) {
+    public ResponseEntity<?> updateClientDemographics(Integer clientId, ClientDemographicsDTO clientDemoToUpdate) {
         try {
             Optional<ClientDemographics> returnedOptionalClientDemo = clientDemographicsRepository.findByClientId(clientId);
             if (returnedOptionalClientDemo.isEmpty()) {
                 return new ResponseEntity<>(NO_DEMOS_FOUND, HttpStatus.NOT_FOUND);
             } else {
-                ClientDemographics clientDemoToUpdate = returnedOptionalClientDemo.get();
-                clientMapper.updateClientDemographicsFromDTO(updatedClientDemoDTO, clientDemoToUpdate);
-                clientDemographicsRepository.save(clientDemoToUpdate);
+                ClientDemographics updatedClientDemo = returnedOptionalClientDemo.get();
+                clientMapper.updateClientDemographicsFromDTO(clientDemoToUpdate, updatedClientDemo);
+                clientDemographicsRepository.save(updatedClientDemo);
 
-                ClientDemographicsDTO clientDemoUpdatedDTO = new ClientDemographicsDTO(clientDemoToUpdate);
+                ClientDemographicsDTO updatedClientContactInfoDTO = new ClientDemographicsDTO(updatedClientDemo);
 
-                return new ResponseEntity<>(clientDemoUpdatedDTO, HttpStatus.OK);
+                return new ResponseEntity<>(updatedClientContactInfoDTO, HttpStatus.OK);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(DEMOS_UPDATE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);

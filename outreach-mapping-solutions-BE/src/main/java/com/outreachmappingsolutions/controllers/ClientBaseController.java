@@ -31,8 +31,8 @@ public class ClientBaseController {
 
     @PutMapping("/update/{clientId}")
     public ResponseEntity<?> updateClient(@PathVariable Integer clientId,
-                                          @RequestBody CreateOrUpdateClientBaseDTO updatedClientBaseDTO){
-        return clientBaseService.updateClient(clientId, updatedClientBaseDTO);
+                                          @RequestBody CreateOrUpdateClientBaseDTO clientBaseToUpdate){
+        return clientBaseService.updateClient(clientId, clientBaseToUpdate);
     }
 
     @DeleteMapping("/delete/{clientId}")
