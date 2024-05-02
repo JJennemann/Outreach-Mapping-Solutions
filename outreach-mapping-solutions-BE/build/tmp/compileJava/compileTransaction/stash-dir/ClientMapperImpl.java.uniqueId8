@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-02T14:27:27-0500",
+    date = "2024-05-02T15:11:26-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.1.1.jar, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
@@ -68,6 +68,33 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
+    public CreateOrUpdateClientBaseDTO mapDTOFromClientBase(ClientBase clientBase) {
+        if ( clientBase == null ) {
+            return null;
+        }
+
+        CreateOrUpdateClientBaseDTO createOrUpdateClientBaseDTO = new CreateOrUpdateClientBaseDTO();
+
+        createOrUpdateClientBaseDTO.setId( clientBase.getId() );
+        createOrUpdateClientBaseDTO.setCreatedAt( clientBase.getCreatedAt() );
+        createOrUpdateClientBaseDTO.setLastModified( clientBase.getLastModified() );
+        createOrUpdateClientBaseDTO.setFirstName( clientBase.getFirstName() );
+        createOrUpdateClientBaseDTO.setMiddleName( clientBase.getMiddleName() );
+        createOrUpdateClientBaseDTO.setLastName( clientBase.getLastName() );
+        createOrUpdateClientBaseDTO.setNameDataQuality( clientBase.getNameDataQuality() );
+        createOrUpdateClientBaseDTO.setDobMonth( clientBase.getDobMonth() );
+        createOrUpdateClientBaseDTO.setDobDay( clientBase.getDobDay() );
+        createOrUpdateClientBaseDTO.setDobYear( clientBase.getDobYear() );
+        createOrUpdateClientBaseDTO.setDobDataQuality( clientBase.getDobDataQuality() );
+        createOrUpdateClientBaseDTO.setFirstThreeSsn( clientBase.getFirstThreeSsn() );
+        createOrUpdateClientBaseDTO.setMiddleTwoSsn( clientBase.getMiddleTwoSsn() );
+        createOrUpdateClientBaseDTO.setLastFourSsn( clientBase.getLastFourSsn() );
+        createOrUpdateClientBaseDTO.setSsnDataQuality( clientBase.getSsnDataQuality() );
+
+        return createOrUpdateClientBaseDTO;
+    }
+
+    @Override
     public void updateClientDemographicsFromDTO(ClientDemographicsDTO dto, ClientDemographics entity) {
         if ( dto == null ) {
             return;
@@ -78,6 +105,26 @@ public class ClientMapperImpl implements ClientMapper {
         entity.setRaceSecondary( dto.getRaceSecondary() );
         entity.setEthnicity( dto.getEthnicity() );
         entity.setVeteranStatus( dto.getVeteranStatus() );
+    }
+
+    @Override
+    public ClientDemographicsDTO mapDTOFromClientDemographics(ClientDemographics clientDemographics) {
+        if ( clientDemographics == null ) {
+            return null;
+        }
+
+        ClientDemographicsDTO clientDemographicsDTO = new ClientDemographicsDTO();
+
+        clientDemographicsDTO.setId( clientDemographics.getId() );
+        clientDemographicsDTO.setCreatedAt( clientDemographics.getCreatedAt() );
+        clientDemographicsDTO.setLastModified( clientDemographics.getLastModified() );
+        clientDemographicsDTO.setGender( clientDemographics.getGender() );
+        clientDemographicsDTO.setRacePrimary( clientDemographics.getRacePrimary() );
+        clientDemographicsDTO.setRaceSecondary( clientDemographics.getRaceSecondary() );
+        clientDemographicsDTO.setEthnicity( clientDemographics.getEthnicity() );
+        clientDemographicsDTO.setVeteranStatus( clientDemographics.getVeteranStatus() );
+
+        return clientDemographicsDTO;
     }
 
     @Override
@@ -97,7 +144,7 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
-    public ClientContactInfoDTO updateDTOFromClientContactInfo(ClientContactInfo clientContactInfo) {
+    public ClientContactInfoDTO mapDTOFromClientContactInfo(ClientContactInfo clientContactInfo) {
         if ( clientContactInfo == null ) {
             return null;
         }

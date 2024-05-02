@@ -31,6 +31,9 @@ public interface ClientMapper {
     @Mapping (target="clientContactInfo", ignore = true)
     void createOrUpdateClientBaseFromDTO(CreateOrUpdateClientBaseDTO dto, @MappingTarget ClientBase entity);
 
+    //Maps ClientBase entities to ClientBaseDTOs
+    CreateOrUpdateClientBaseDTO mapDTOFromClientBase(ClientBase clientBase);
+
     // Maps clientDemographicDTOs to clientDemographic entities
     @Mapping(target="client", ignore=true)
     void updateClientDemographicsFromDTO(ClientDemographicsDTO dto, @MappingTarget ClientDemographics entity);

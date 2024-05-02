@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-02T14:58:07-0500",
+    date = "2024-05-02T15:16:51-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.1.1.jar, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
@@ -65,6 +65,33 @@ public class ClientMapperImpl implements ClientMapper {
         entity.setMiddleTwoSsn( dto.getMiddleTwoSsn() );
         entity.setLastFourSsn( dto.getLastFourSsn() );
         entity.setSsnDataQuality( dto.getSsnDataQuality() );
+    }
+
+    @Override
+    public CreateOrUpdateClientBaseDTO mapDTOFromClientBase(ClientBase clientBase) {
+        if ( clientBase == null ) {
+            return null;
+        }
+
+        CreateOrUpdateClientBaseDTO createOrUpdateClientBaseDTO = new CreateOrUpdateClientBaseDTO();
+
+        createOrUpdateClientBaseDTO.setId( clientBase.getId() );
+        createOrUpdateClientBaseDTO.setCreatedAt( clientBase.getCreatedAt() );
+        createOrUpdateClientBaseDTO.setLastModified( clientBase.getLastModified() );
+        createOrUpdateClientBaseDTO.setFirstName( clientBase.getFirstName() );
+        createOrUpdateClientBaseDTO.setMiddleName( clientBase.getMiddleName() );
+        createOrUpdateClientBaseDTO.setLastName( clientBase.getLastName() );
+        createOrUpdateClientBaseDTO.setNameDataQuality( clientBase.getNameDataQuality() );
+        createOrUpdateClientBaseDTO.setDobMonth( clientBase.getDobMonth() );
+        createOrUpdateClientBaseDTO.setDobDay( clientBase.getDobDay() );
+        createOrUpdateClientBaseDTO.setDobYear( clientBase.getDobYear() );
+        createOrUpdateClientBaseDTO.setDobDataQuality( clientBase.getDobDataQuality() );
+        createOrUpdateClientBaseDTO.setFirstThreeSsn( clientBase.getFirstThreeSsn() );
+        createOrUpdateClientBaseDTO.setMiddleTwoSsn( clientBase.getMiddleTwoSsn() );
+        createOrUpdateClientBaseDTO.setLastFourSsn( clientBase.getLastFourSsn() );
+        createOrUpdateClientBaseDTO.setSsnDataQuality( clientBase.getSsnDataQuality() );
+
+        return createOrUpdateClientBaseDTO;
     }
 
     @Override

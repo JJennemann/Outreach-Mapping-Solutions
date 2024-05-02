@@ -51,7 +51,7 @@ public class ClientBaseService {
 
             clientBaseRepository.save(newClient);
 
-            CreateOrUpdateClientBaseDTO newClientDTO = new CreateOrUpdateClientBaseDTO(newClient);
+            CreateOrUpdateClientBaseDTO newClientDTO = clientMapper.mapDTOFromClientBase(newClient);
 
 
             return new ResponseEntity<>(newClientDTO, HttpStatus.CREATED);
@@ -67,7 +67,7 @@ public class ClientBaseService {
                 return new ResponseEntity<>(NO_CLIENTS_FOUND, HttpStatus.NOT_FOUND);
             } else {
                 List<CompleteClientEntityDTO> allClientDTOs = allClients.stream()
-                        .map(client -> new CompleteClientEntityDTO(client))
+                        .map(returnedClient -> ClientMapper.INSTANCE.clientToClientBaseDTO(returnedClient))
                         .toList();
 
                 return new ResponseEntity<>(allClientDTOs, HttpStatus.OK);
@@ -103,7 +103,7 @@ public class ClientBaseService {
                 clientMapper.createOrUpdateClientBaseFromDTO(clientBaseToUpdate, updatedClientBase);
                 clientBaseRepository.save(updatedClientBase);
 
-                CreateOrUpdateClientBaseDTO updatedClientBaseDTO = new CreateOrUpdateClientBaseDTO(updatedClientBase);
+                CreateOrUpdateClientBaseDTO updatedClientBaseDTO = clientMapper.mapDTOFromClientBase(updatedClientBase);
 
                 return new ResponseEntity<>(updatedClientBaseDTO, HttpStatus.OK);
             }
