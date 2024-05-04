@@ -59,44 +59,44 @@ export class ClientBase {
 
   // Logic I was using for display versions, don't think necessary? And if I do come back to it, probably should be handled on back end?
 
-  // formatClientName(firstName: string, middleName: string, lastName: string){
-  //     if(firstName===null || firstName===undefined){
-  //       firstName='';
-  //     }
-  //     if(middleName===null || middleName===undefined){
-  //       middleName='';
-  //     }
-  //     if(lastName===null || lastName===undefined){
-  //       lastName='';
-  //     }
-  //     return lastName + ", " + firstName + " " + middleName;
-  //   }
+  formatClientName(firstName: string, middleName: string, lastName: string) {
+    if (firstName === null || firstName === undefined) {
+      firstName = '';
+    }
+    if (middleName === null || middleName === undefined) {
+      middleName = '';
+    }
+    if (lastName === null || lastName === undefined) {
+      lastName = '';
+    }
+    return lastName + ', ' + firstName + ' ' + middleName;
+  }
 
-  //   formatClientDob(month: string, day: string, year: string){
-  //     if(month===null || month===undefined){
-  //         month = '';
-  //     }
-  //     if(day===null || day===undefined){
-  //         day = '';
-  //     }
-  //     if(year===null || year===undefined){
-  //         year = '';
-  //     }
-  //     return month + " " + day + ", " + year;
-  //   }
+  formatClientDob(month: string, day: string, year: string) {
+    if (month === null || month === undefined) {
+      month = '';
+    }
+    if (day === null || day === undefined) {
+      day = '';
+    }
+    if (year === null || year === undefined) {
+      year = '';
+    }
+    return month + ' ' + day + ', ' + year;
+  }
 
-  //   formatClientSsn(firstThree: string, middleTwo: string, lastFour: string){
-  //   if(firstThree===null || firstThree===undefined){
-  //     firstThree = '';
-  //   }
+  formatClientSsn(firstThree: string, middleTwo: string, lastFour: string) {
+    if (firstThree === null || firstThree === undefined) {
+      firstThree = '';
+    }
 
-  //   if(middleTwo===null || middleTwo===undefined){
-  //     middleTwo = '  ';
-  //   }
+    if (middleTwo === null || middleTwo === undefined) {
+      middleTwo = '  ';
+    }
 
-  //   if(lastFour===null || lastFour===undefined){
-  //     lastFour = '';
-  //   }
-  //   return firstThree + "-" + middleTwo + "-" + lastFour;
-  //   }
+    if (lastFour === null || lastFour === undefined) {
+      lastFour = '';
+    }
+    return firstThree + '-' + middleTwo + '-' + lastFour;
+  }
 }
