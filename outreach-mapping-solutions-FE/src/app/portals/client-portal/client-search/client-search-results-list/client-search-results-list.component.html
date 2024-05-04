@@ -1,23 +1,36 @@
 <!-- <table class="table table-striped">
-    <thead class="table-primary">
-        <tr>
-            <th scope="col">Client ID</th>
-            <th scope="col">Client Name</th>
-            <th scope="col">Client Date of Birth</th>
-            <th scope="col">Client SSN</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let client of returnedClients">
-            <td> {{ client.id }}</td>
-            <td><a [routerLink]="['/client-portal', 'profile', client.id, 'overview']" (click)="onClientSelected(client.id)" >{{ client.lastName + ", " + client.firstName + " " + client.middleName }}</a> </td>
-            <td>{{ client.dobMonth + " " + client.dobDay + ", " + client.dobYear}}</td>
-            <td>{{ client.firstThreeSsn + "-" + client.middleTwoSsn + "-" + client.lastFourSsn }}</td>
-        </tr>
-    </tbody>
-  </table>
-      
-  
-  
-  
-   -->
+  <thead class="table-primary">
+    <tr>
+      <th scope="col">Client ID</th>
+      <th scope="col">Client Name</th>
+      <th scope="col">Client Date of Birth</th>
+      <th scope="col">Client SSN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of returnedClients">
+      <td>{{ client.id }}</td>
+      <td>
+        <a
+          [routerLink]="['/client-portal', 'profile', client.id, 'overview']"
+          (click)="onClientSelected(client.id)"
+          >{{
+            client.lastName + ", " + client.firstName + " " + client.middleName
+          }}</a
+        >
+      </td>
+      <td>
+        {{ client.dobMonth + " " + client.dobDay + ", " + client.dobYear }}
+      </td>
+      <td>
+        {{
+          client.firstThreeSsn +
+            "-" +
+            client.middleTwoSsn +
+            "-" +
+            client.lastFourSsn
+        }}
+      </td>
+    </tr>
+  </tbody>
+</table> -->
