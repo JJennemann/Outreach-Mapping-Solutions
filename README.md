@@ -3,7 +3,7 @@
 
 <h3>Homeless Outreach Client Database with GIS Functionality</h3>
 
-This project aims to develop a comprehensive database system for homeless outreach clients, enhanced with GIS capabilities to track client locations over time. By integrating Angular, Spring Boot, and MySQL, this platform allows outreach workers to record, access, and visualize the geographic data of clients they serve. This real-time location tracking enables more effective coordination among service providers, ensuring timely access to housing and other critical resources.
+This project aims to develop a comprehensive database system for homeless outreach clients, enhanced with GIS capabilities to track client locations over time. By integrating React, Spring Boot, and MySQL, this platform allows outreach workers to record, access, and visualize the geographic data of clients they serve. This real-time location tracking enables more effective coordination among service providers, ensuring timely access to housing and other critical resources.
 
 <h3>Purpose</h3>
 
