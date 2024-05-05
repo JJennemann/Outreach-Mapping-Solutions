@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
+import {
+  ClientBaseFormData,
+  initialClientBaseFormData,
+} from "./clientBaseFormData.ts";
+import { useForm, Controller } from "react-hook-form";
 
 const dataQualitySelections = [
   "Complete",
@@ -24,22 +29,59 @@ const months = [
   "December",
 ];
 
-// prettier-ignore
-const days29=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'];
-// prettier-ignore
-const days30=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
-// prettier-ignore
-const days31=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+const days29 = Array.from({ length: 29 }, (_, i) => i + 1);
+const days30 = Array.from({ length: 30 }, (_, i) => i + 1);
+const days31 = Array.from({ length: 31 }, (_, i) => i + 1);
 
 //prettier-ignore
 const months31Days=["January", "March", "May", "July", "August", "October", "December"];
 const months30Days = ["April", "June", "September", "November"];
 
 export function ClientBaseForm() {
+  const [month, setMonth] = useState("");
   const [monthsDays, setMonthsDays] = useState([]);
+  const [formData, setFormData] = useState(initialClientBaseFormData);
+
+  useEffect(
+    function () {
+      if (month === "February") {
+        setMonthsDays(days29);
+      }
+
+      if (months31Days.includes(month)) {
+        setMonthsDays(days31);
+      }
+
+      if (months30Days.includes(month)) {
+        setMonthsDays(days30);
+      }
+    },
+    [month]
+  );
+
+  function handleSelectMonth(e) {
+    setMonth(e.target.value);
+    handleChange(e);
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newClientData = { ...formData };
+    console.log("New Client Data:", newClientData);
+    // Here you can further process the newClientData, such as saving it to a database
+  }
 
   return (
-    <form className="form-client-search">
+    <form className="form-client-search" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="firstName">
           First Name
@@ -47,8 +89,8 @@ export function ClientBaseForm() {
             type="text"
             id="firstName"
             name="firstName"
-            // value={formData.firstName}
-            // onChange={handleChange}
+            value={formData.firstName}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="middleName">
@@ -57,8 +99,8 @@ export function ClientBaseForm() {
             type="text"
             id="middleName"
             name="middleName"
-            // value={formData.firstName}
-            // onChange={handleChange}
+            value={formData.middleName}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="lastName">
@@ -67,8 +109,8 @@ export function ClientBaseForm() {
             type="text"
             id="lastName"
             name="lastName"
-            // value={formData.firstName}
-            // onChange={handleChange}
+            value={formData.lastName}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -79,9 +121,10 @@ export function ClientBaseForm() {
           <select
             id="nameDataQuality"
             name="nameDataQuality"
-            // value={selectedOption}
-            // onchange={handleChange}
+            value={formData.nameDataQuality}
+            onChange={handleChange}
           >
+            <option>Please Select...</option>
             {dataQualitySelections.map((selection, index) => (
               <option key={index} value={selection}>
                 {selection}
@@ -97,11 +140,10 @@ export function ClientBaseForm() {
           <select
             id="dobInput"
             name="dobMonth"
-            // onChange={handleMonthSelection}
-            // value={selectedOption}
+            onChange={handleSelectMonth}
+            value={formData.dobMonth}
           >
             <option>Month</option>
-
             {months.map((month, index) => (
               <option key={index} value={month}>
                 {month}
@@ -112,8 +154,8 @@ export function ClientBaseForm() {
           <select
             id="dobInput"
             name="dobDay"
-            // value={selectedOption}
-            // onChange={handleChange}
+            value={formData.dobDay}
+            onChange={handleChange}
           >
             <option>Day</option>
             {monthsDays.map((day, index) => (
@@ -129,21 +171,22 @@ export function ClientBaseForm() {
             name="dobYear"
             maxLength="4"
             placeholder="YYYY"
-            // value={formData.firstName}
-            // onChange={handleChange}/
+            value={formData.dobYear === 0 ? "YYYY" : formData.dobYear}
+            onChange={handleChange}
           />
         </div>
       </div>
 
       <div className="data-quality-selection">
-        <label htmlFor="nameDataQuality">
+        <label htmlFor="dobDataQuality">
           Date of Birth Data Quality
           <select
-            id="nameDataQuality"
-            name="nameDataQuality"
-            // value={selectedOption}
-            // onchange={handleChange}
+            id="dobDataQuality"
+            name="dobDataQuality"
+            value={formData.dobDataQuality}
+            onChange={handleChange}
           >
+            <option>Please Select...</option>
             {dataQualitySelections.map((option, index) => (
               <option key={index} value={option}>
                 {option}
@@ -161,9 +204,8 @@ export function ClientBaseForm() {
             id="ssnInput"
             name="firstThreeSsn"
             maxLength="3"
-
-            // value={formData.firstName}
-            // onChange={handleChange}
+            value={formData.firstThreeSsn === 0 ? "" : formData.firstThreeSsn}
+            onChange={handleChange}
           />
           <span>-</span>
           <input
@@ -171,8 +213,8 @@ export function ClientBaseForm() {
             id="ssnInput"
             name="middleTwoSsn"
             maxLength="2"
-            // value={formData.firstName}
-            // onChange={handleChange}
+            value={formData.middleTwoSsn === 0 ? "" : formData.middleTwoSsn}
+            onChange={handleChange}
           />
           <span>-</span>
           <input
@@ -180,21 +222,22 @@ export function ClientBaseForm() {
             id="ssnInput"
             name="lastFourSsn"
             maxLength="4"
-            // value={formData.firstName}
-            // onChange={handleChange}
+            value={formData.lastFourSsn === 0 ? "" : formData.lastFourSsn}
+            onChange={handleChange}
           />
         </div>
       </div>
 
       <div className="data-quality-selection">
-        <label htmlFor="nameDataQuality">
+        <label htmlFor="ssnDataQuality">
           Social Security Number Data Quality
           <select
-            id="nameDataQuality"
-            name="nameDataQuality"
-            // value={selectedOption}
-            // onchange={handleChange}
+            id="ssnDataQuality"
+            name="ssnDataQuality"
+            value={formData.ssnDataQuality}
+            onChange={handleChange}
           >
+            <option>Please Select...</option>
             {dataQualitySelections.map((option, index) => (
               <option key={index} value={option}>
                 {option}
@@ -203,6 +246,7 @@ export function ClientBaseForm() {
           </select>
         </label>
       </div>
+      <button type="submit">Submit</button>
     </form>
   );
 }
