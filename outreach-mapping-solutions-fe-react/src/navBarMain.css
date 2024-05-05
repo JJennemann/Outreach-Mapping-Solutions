@@ -10,21 +10,22 @@
   gap: 1em;
 }
 
-li {
-  border-style: solid;
-  padding: 10px;
-  text-align: center;
-}
-
 li:hover {
   background-color: lightgray;
 }
 
-.nav-bar-link:active {
-  color: darkgray;
+.nav-bar-link.active {
+  /* padding: 10px; */
+  background-color: lightskyblue;
+  /* border-style: solid; */
+
+  /* text-align: center; */
 }
 
 .nav-bar-link {
-  text-decoration: none;
-  color: black;
+  padding: 10px;
+  background-color: lightgray;
+  border-style: solid;
+
+  text-align: center;
 }
