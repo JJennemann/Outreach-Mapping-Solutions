@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import "./clientBaseForm.css";
-import {
-  ClientBaseFormData,
-  initialClientBaseFormData,
-} from "./clientBaseFormData.ts";
-import { useForm, Controller } from "react-hook-form";
+import { initialClientBaseFormData } from "./clientBaseFormData.ts";
 
 const dataQualitySelections = [
   "Complete",
@@ -64,8 +60,8 @@ export function ClientBaseForm() {
     handleChange(e);
   }
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+  function handleChange(e) {
+    const { name, value } = e.target;
 
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -73,12 +69,25 @@ export function ClientBaseForm() {
     }));
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newClientData = { ...formData };
-    console.log("New Client Data:", newClientData);
-    // Here you can further process the newClientData, such as saving it to a database
-  }
+    try {
+      const response = await fetch("http://localhost:8080/clientBase/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      console.log(formData);
+      const result = await response.json();
+      console.log("Success:", result);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+    // const newClientData = { ...formData };
+    // console.log("New Client Data:", newClientData);
+  };
 
   return (
     <form className="form-client-search" onSubmit={handleSubmit}>

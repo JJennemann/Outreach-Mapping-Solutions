@@ -1,16 +1,18 @@
 import { useState } from "react";
 import "./index.css";
-import { NavBarMain } from "./navBarMain";
+import { NavBarMain } from "./navBarMain/navBarMain";
 import { ClientPortal } from "./clientPortal";
 import { ReportPortal } from "./reportPortal";
 import { MapPortal } from "./mapPortal";
-import { Login } from "./login";
+import { Login } from "./login/login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <div className="portal-main-container">
-      <NavBarMain />
+      <div className="nav-bar-main">
+        <NavBarMain />
+      </div>
       <div className="selected-portal">
         <Routes>
           <Route path="/" exact element={<ClientPortal />} />
