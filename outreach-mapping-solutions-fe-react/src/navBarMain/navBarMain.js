@@ -1,12 +1,7 @@
-import { useState } from "react";
 import "./navBarMain.css";
 import { NavLink } from "react-router-dom";
 
 export function NavBarMain() {
-  const [selected, setSelected] = useState(null);
-
-  function handleSelectNavLink() {}
-
   return (
     <nav className="nav-bar-main">
       <ul className="nav-bar-links">
