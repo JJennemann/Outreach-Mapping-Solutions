@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./clientBaseForm.css";
 import { initialClientBaseFormData } from "./clientBaseFormData.ts";
+import axios from "axios";
 
 const dataQualitySelections = [
   "Complete",
@@ -60,14 +61,12 @@ export function ClientBaseForm() {
     handleChange(e);
   }
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  }
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   function handleClearForm() {
     setFormData(initialClientBaseFormData);
@@ -76,16 +75,16 @@ export function ClientBaseForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/clientBase/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      console.log(formData);
-      const result = await response.json();
-      console.log("Success:", result);
+      const response = await axios.post(
+        "http://localhost:8080/clientBase/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Success:", response.data);
     } catch (error) {
       console.log("Error:", error);
     }
