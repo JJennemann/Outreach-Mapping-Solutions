@@ -38,7 +38,7 @@ export function NavBarMain() {
             isActive ? "nav-bar-link active" : "nav-bar-link"
           }
         >
-          Client Portal
+          Login
         </NavLink>
       </ul>
     </nav>
