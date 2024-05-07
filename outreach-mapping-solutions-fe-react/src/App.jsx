@@ -1,11 +1,10 @@
-import { useState } from "react";
 import "./index.css";
 import { NavBarMain } from "./navBarMain/navBarMain";
 import { ClientPortal } from "./clientPortal";
 import { ReportPortal } from "./reportPortal";
 import { MapPortal } from "./mapPortal";
 import { Login } from "./login/login";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
@@ -19,7 +18,7 @@ export default function App() {
           <Route path="/client-portal" element={<ClientPortal />} />
           <Route path="/report-portal" element={<ReportPortal />} />
           <Route path="/map-portal" element={<MapPortal />} />
-          <Route path="/login-portal" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </div>
