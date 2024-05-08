@@ -1,45 +1,22 @@
-import "./navBarMain.css";
+import styles from "./navBarMain.module.css";
 import { NavLink } from "react-router-dom";
 
 export function NavBarMain() {
   return (
-    <nav className="nav-bar-main">
-      <ul className="nav-bar-links">
-        <NavLink
-          to="/client-portal"
-          className={({ isActive }) =>
-            isActive ? "nav-bar-link active" : "nav-bar-link"
-          }
-        >
-          Client Portal
-        </NavLink>
-
-        <NavLink
-          to="/report-portal"
-          className={({ isActive }) =>
-            isActive ? "nav-bar-link active" : "nav-bar-link"
-          }
-        >
-          Report Portal
-        </NavLink>
-
-        <NavLink
-          to="/map-portal"
-          className={({ isActive }) =>
-            isActive ? "nav-bar-link active" : "nav-bar-link"
-          }
-        >
-          Map Portal
-        </NavLink>
-
-        <NavLink
-          to="/log-in"
-          className={({ isActive }) =>
-            isActive ? "nav-bar-link active" : "nav-bar-link"
-          }
-        >
-          Login
-        </NavLink>
+    <nav className={styles.navBarMain}>
+      <ul>
+        <li>
+          <NavLink to="/client-portal">Client Portal</NavLink>
+        </li>
+        <li>
+          <NavLink to="/report-portal">Report Portal</NavLink>
+        </li>
+        <li>
+          <NavLink to="/map-portal">Map Portal</NavLink>
+        </li>
+        <li>
+          <NavLink to="/log-in">Login</NavLink>
+        </li>
       </ul>
     </nav>
   );
