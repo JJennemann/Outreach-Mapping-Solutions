@@ -6,7 +6,7 @@ export function NavBarMain() {
     <nav className={styles.navBarMain}>
       <ul>
         <li>
-          <NavLink to="/client-portal/search">Client Portal</NavLink>
+          <NavLink to="/client-portal">Client Portal</NavLink>
         </li>
         <li>
           <NavLink to="/report-portal">Report Portal</NavLink>
