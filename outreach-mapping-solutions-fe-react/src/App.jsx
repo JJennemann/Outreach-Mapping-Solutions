@@ -17,11 +17,15 @@ export default function App() {
         </div>
         <div className="selected-portal">
           <Routes>
+            <Route
+              index
+              element={<Navigate replace to="client-portal/search" />}
+            />
             <Route path="client-portal" element={<ClientPortal />}>
+              <Route index element={<Navigate replace to="search" />} />
               <Route path="search" element={<ClientSearch />} />
               <Route path="profile" element={<ClientProfile />} />
-              <Route path="" element={<Navigate to="search" />} />
-              <Route path="*" element={<Navigate to="search" />} />
+              <Route path="*" element={<Navigate replace to="search" />} />
             </Route>
             <Route path="report-portal" element={<ReportPortal />} />
             <Route path="map-portal" element={<MapPortal />} />
