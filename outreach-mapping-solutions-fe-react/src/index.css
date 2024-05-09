@@ -1,0 +1,19 @@
+.portal-main-container {
+  display: flex;
+  flex-direction: row;
+  /* border-style: solid; */
+  gap: 20px;
+}
+
+.nav-bar-main {
+  /* border-style: solid; */
+  justify-content: center;
+  padding: 10px;
+  border: 1;
+}
+
+.selected-portal {
+  width: 60%;
+  justify-content: left;
+  /* border-style: solid; */
+}

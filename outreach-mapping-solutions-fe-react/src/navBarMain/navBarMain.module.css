@@ -1,0 +1,32 @@
+.navBarMain {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+}
+.navBarMain :global(.active) {
+  padding: 10px;
+  background-color: lightskyblue;
+  /* border-style: solid; */
+
+  /* text-align: center; */
+}
+
+.navBarMain ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.navBarMain li :hover {
+  background-color: red;
+  padding: 10px;
+}
+
+.navBarMain li {
+  padding: 10px;
+  background-color: lightgray;
+  border-style: solid;
+
+  text-align: center;
+}
