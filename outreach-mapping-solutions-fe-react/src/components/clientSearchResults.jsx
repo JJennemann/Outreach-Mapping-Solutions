@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ClientSearchResults({ searchResults }) {
   const searchResultsRows = Object.keys(searchResults).map((resultId) => {
     const returnedClient = searchResults[resultId];
@@ -5,11 +7,13 @@ export default function ClientSearchResults({ searchResults }) {
       <tr key={resultId}>
         <td>{returnedClient.id}</td>
         <td>
-          {returnedClient.lastName +
-            ", " +
-            returnedClient.firstName +
-            " " +
-            returnedClient.middleName}
+          <Link to={`/client-portal/client-profile/?id=${returnedClient.id}`}>
+            {returnedClient.lastName +
+              ", " +
+              returnedClient.firstName +
+              " " +
+              returnedClient.middleName}
+          </Link>
         </td>
         <td>
           {returnedClient.dobMonth +

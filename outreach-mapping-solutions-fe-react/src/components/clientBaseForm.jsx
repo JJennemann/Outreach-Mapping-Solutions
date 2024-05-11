@@ -34,7 +34,7 @@ const days31 = Array.from({ length: 31 }, (_, i) => i + 1);
 const months31Days=["January", "March", "May", "July", "August", "October", "December"];
 const months30Days = ["April", "June", "September", "November"];
 
-export default function ClientBaseForm({ onClientSearch }) {
+export function ClientBaseForm({ onClientSearch }) {
   const [month, setMonth] = useState("");
   const [monthsDays, setMonthsDays] = useState([]);
   const [formData, setFormData] = useState(initialClientBaseFormData);
