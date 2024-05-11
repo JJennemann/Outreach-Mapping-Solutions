@@ -3,34 +3,20 @@ import { Link } from "react-router-dom";
 export default function ClientSearchResults({ searchResults }) {
   const searchResultsRows = Object.keys(searchResults).map((resultId) => {
     const returnedClient = searchResults[resultId];
+    const { id, displayName, displayDob, displaySsn } = returnedClient;
+
     return (
       <tr key={resultId}>
-        <td>{returnedClient.id}</td>
+        <td>{id}</td>
         <td>
           <Link
             to={`/client-portal/client-profile/?clientId=${returnedClient.id}`}
           >
-            {returnedClient.lastName +
-              ", " +
-              returnedClient.firstName +
-              " " +
-              returnedClient.middleName}
+            {displayName}
           </Link>
         </td>
-        <td>
-          {returnedClient.dobMonth +
-            " " +
-            returnedClient.dobDay +
-            ", " +
-            returnedClient.dobYear}
-        </td>
-        <td>
-          {returnedClient.firstThreeSsn +
-            "-" +
-            returnedClient.middleTwoSsn +
-            "-" +
-            returnedClient.lastFourSsn}
-        </td>
+        <td>{displayDob}</td>
+        <td>{displaySsn}</td>
       </tr>
     );
   });
