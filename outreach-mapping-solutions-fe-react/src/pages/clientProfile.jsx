@@ -7,6 +7,7 @@ import ClientInformation from "../components/clientProfileComponents/clientInfor
 import ClientMap from "../components/clientProfileComponents/clientMap";
 import ClientCaseNotes from "../components/clientProfileComponents/clientCaseNotes";
 import ClientAssessments from "../components/clientProfileComponents/clientAssessments";
+import styles from "./clientProfile.module.css";
 
 export default function ClientProfile() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,7 +59,7 @@ export default function ClientProfile() {
   };
 
   return (
-    <div>
+    <div className={styles.clientProfile}>
       <ClientProfileNavBar
         onNavSelection={handleNavSelection}
         navSelection={navSelection}
