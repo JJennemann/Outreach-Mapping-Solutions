@@ -49,6 +49,8 @@ public class ClientBaseService {
             newClient.setClientDemographics(newClientDemographics);
             newClient.setClientContactInfo(newClientContactInfo);
 
+            newClient.updateDisplayData();
+
             clientBaseRepository.save(newClient);
 
             CreateOrUpdateClientBaseDTO newClientDTO = clientMapper.mapDTOFromClientBase(newClient);

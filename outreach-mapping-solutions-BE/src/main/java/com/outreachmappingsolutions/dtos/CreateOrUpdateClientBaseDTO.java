@@ -15,16 +15,19 @@ public class CreateOrUpdateClientBaseDTO {
     private String middleName;
     private String lastName;
     private String nameDataQuality;
+    private String displayName;
 
     private String dobMonth;
-    private Integer dobDay;
-    private Integer dobYear;
+    private String dobDay;
+    private String dobYear;
     private String dobDataQuality;
+    private String displayDob;
 
-    private Integer firstThreeSsn;
-    private Integer middleTwoSsn;
-    private Integer lastFourSsn;
+    private String firstThreeSsn;
+    private String middleTwoSsn;
+    private String lastFourSsn;
     private String ssnDataQuality;
+    private String displaySsn;
 
 
     public CreateOrUpdateClientBaseDTO() {
@@ -32,15 +35,16 @@ public class CreateOrUpdateClientBaseDTO {
 
     public CreateOrUpdateClientBaseDTO(Integer id, LocalDateTime createdAt, LocalDateTime lastModified,
                                        String firstName, String middleName, String lastName, String nameDataQuality,
-                                       String dobMonth, Integer dobDay, Integer dobYear, String dobDataQuality,
-                                       Integer firstThreeSsn, Integer middleTwoSsn,
-                                       Integer lastFourSsn, String ssnDataQuality) {
+                                       String dobMonth, String dobDay, String dobYear, String dobDataQuality,
+                                       String firstThreeSsn, String middleTwoSsn,
+                                       String lastFourSsn, String ssnDataQuality) {
         this.id = id;
         this.createdAt = createdAt;
         this.lastModified = lastModified;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
+
         this.nameDataQuality = nameDataQuality;
         this.dobMonth = dobMonth;
         this.dobDay = dobDay;
@@ -100,6 +104,15 @@ public class CreateOrUpdateClientBaseDTO {
         this.lastName = lastName;
     }
 
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+
     public String getNameDataQuality() {
         return nameDataQuality;
     }
@@ -116,19 +129,19 @@ public class CreateOrUpdateClientBaseDTO {
         this.dobMonth = dobMonth;
     }
 
-    public Integer getDobDay() {
+    public String getDobDay() {
         return dobDay;
     }
 
-    public void setDobDay(Integer dobDay) {
+    public void setDobDay(String dobDay) {
         this.dobDay = dobDay;
     }
 
-    public Integer getDobYear() {
+    public String getDobYear() {
         return dobYear;
     }
 
-    public void setDobYear(Integer dobYear) {
+    public void setDobYear(String dobYear) {
         this.dobYear = dobYear;
     }
 
@@ -140,27 +153,36 @@ public class CreateOrUpdateClientBaseDTO {
         this.dobDataQuality = dobDataQuality;
     }
 
-    public Integer getFirstThreeSsn() {
+    public String getDisplayDob() {
+        return displayDob;
+    }
+
+    public void setDisplayDob(String displayDob) {
+        this.displayDob = displayDob;
+    }
+
+
+    public String getFirstThreeSsn() {
         return firstThreeSsn;
     }
 
-    public void setFirstThreeSsn(Integer firstThreeSsn) {
+    public void setFirstThreeSsn(String firstThreeSsn) {
         this.firstThreeSsn = firstThreeSsn;
     }
 
-    public Integer getMiddleTwoSsn() {
+    public String getMiddleTwoSsn() {
         return middleTwoSsn;
     }
 
-    public void setMiddleTwoSsn(Integer middleTwoSsn) {
+    public void setMiddleTwoSsn(String middleTwoSsn) {
         this.middleTwoSsn = middleTwoSsn;
     }
 
-    public Integer getLastFourSsn() {
+    public String getLastFourSsn() {
         return lastFourSsn;
     }
 
-    public void setLastFourSsn(Integer lastFourSsn) {
+    public void setLastFourSsn(String lastFourSsn) {
         this.lastFourSsn = lastFourSsn;
     }
 
@@ -170,6 +192,14 @@ public class CreateOrUpdateClientBaseDTO {
 
     public void setSsnDataQuality(String ssnDataQuality) {
         this.ssnDataQuality = ssnDataQuality;
+    }
+
+    public String getDisplaySsn() {
+        return displaySsn;
+    }
+
+    public void setDisplaySsn(String displaySsn) {
+        this.displaySsn = displaySsn;
     }
 
 }
