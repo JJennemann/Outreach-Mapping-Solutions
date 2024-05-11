@@ -1,7 +1,7 @@
 import styles from "./navBarMain.module.css";
 import { NavLink } from "react-router-dom";
 
-export function NavBarMain() {
+export default function NavBarMain() {
   return (
     <nav className={styles.navBarMain}>
       <ul>

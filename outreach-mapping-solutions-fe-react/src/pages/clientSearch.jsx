@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import { ClientBaseForm } from "./clientBaseForm/clientBaseForm";
-import { ClientSearchResults } from "./clientSearchResults/clientSearchResults";
+import { ClientBaseForm } from "../components/clientSearchComponents/clientBaseForm";
+import ClientSearchResults from "../components/clientSearchComponents/clientSearchResults";
 import axios from "axios";
 
 export default function ClientSearch() {
