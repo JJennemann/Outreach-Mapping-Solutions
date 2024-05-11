@@ -1,0 +1,13 @@
+.clientBaseRecord {
+  border: solid;
+}
+
+.clientBaseRecord th {
+  border: solid;
+  padding: 10px;
+}
+
+.clientBaseRecord td {
+  border: solid;
+  padding: 10px;
+}

@@ -1,12 +1,13 @@
-import "./index.css";
-import { NavBarMain } from "./navBarMain/navBarMain";
-import ClientProfile from "./clientProfile";
-import ClientPortal from "./clientPortal";
-import { ReportPortal } from "./reportPortal";
-import { MapPortal } from "./mapPortal";
-import { Login } from "./login/login";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import ClientSearch from "./clientSearch";
+
+import "./index.css";
+import NavBarMain from "./components/navBarMain";
+import ReportPortal from "./portals/reportPortal";
+import MapPortal from "./portals/mapPortal";
+import Login from "./portals/login";
+import ClientProfile from "./pages/clientProfile";
+import ClientPortal from "./portals/clientPortal";
+import ClientSearch from "./pages/clientSearch";
 
 export default function App() {
   return (
@@ -17,11 +18,16 @@ export default function App() {
         </div>
         <div className="selected-portal">
           <Routes>
+            <Route
+              index
+              element={<Navigate replace to="client-portal/search" />}
+            />
             <Route path="client-portal" element={<ClientPortal />}>
+              <Route index element={<Navigate replace to="search" />} />
               <Route path="search" element={<ClientSearch />} />
-              <Route path="profile" element={<ClientProfile />} />
-              <Route path="" element={<Navigate to="search" />} />
-              <Route path="*" element={<Navigate to="search" />} />
+              <Route path="client-profile" element={<ClientProfile />} />
+
+              <Route path="*" element={<Navigate replace to="search" />} />
             </Route>
             <Route path="report-portal" element={<ReportPortal />} />
             <Route path="map-portal" element={<MapPortal />} />
