@@ -16,6 +16,7 @@
   list-style-type: none;
   display: flex;
   flex-direction: column;
+
   gap: 1em;
 }
 
@@ -30,4 +31,13 @@
   border-style: solid;
 
   text-align: center;
+}
+
+.navBarMain a:link,
+.navBarMain a:visited {
+  text-decoration: none;
+  color: var(--color-light--2);
+  /* text-transform: uppercase; */
+  /* font-size: 1.5rem;
+  font-weight: 600; */
 }

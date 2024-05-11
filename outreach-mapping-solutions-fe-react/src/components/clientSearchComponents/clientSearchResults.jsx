@@ -7,7 +7,9 @@ export default function ClientSearchResults({ searchResults }) {
       <tr key={resultId}>
         <td>{returnedClient.id}</td>
         <td>
-          <Link to={`/client-portal/client-profile/?id=${returnedClient.id}`}>
+          <Link
+            to={`/client-portal/client-profile/?clientId=${returnedClient.id}`}
+          >
             {returnedClient.lastName +
               ", " +
               returnedClient.firstName +

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./clientBaseForm.css";
-import { initialClientBaseFormData } from "../clientBaseForm/clientBaseFormData.jsx";
+import { initialClientBaseFormData } from "../../clientBaseForm/clientBaseFormData.jsx";
 import axios from "axios";
 
 const dataQualitySelections = [

@@ -2,18 +2,18 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import ClientProfileNavBar from "../components/clientProfileNavBar";
-import ClientInformation from "../components/clientInformation";
-import ClientMap from "../components/clientMap";
-import ClientCaseNotes from "../components/clientCaseNotes";
-import ClientAssessments from "../components/clientAssessments";
+import ClientProfileNavBar from "../components/clientProfileComponents/clientProfileNavBar";
+import ClientInformation from "../components/clientProfileComponents/clientInformation";
+import ClientMap from "../components/clientProfileComponents/clientMap";
+import ClientCaseNotes from "../components/clientProfileComponents/clientCaseNotes";
+import ClientAssessments from "../components/clientProfileComponents/clientAssessments";
 
 export default function ClientProfile() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [clientData, setClientData] = useState({});
-  const [navSelection, setNavSelection] = useState("");
+  const [navSelection, setNavSelection] = useState("client information");
 
-  const clientId = searchParams.get("id");
+  const clientId = searchParams.get("clientId");
 
   useEffect(
     function () {
@@ -45,15 +45,15 @@ export default function ClientProfile() {
   const renderProfileSection = () => {
     switch (navSelection) {
       case "overview":
-        return <ClientInformation />;
+        return <ClientInformation clientData={clientData} />;
       case "map":
-        return <ClientMap />;
+        return <ClientMap clientData={clientData} />;
       case "case notes":
-        return <ClientCaseNotes />;
+        return <ClientCaseNotes clientData={clientData} />;
       case "assessments":
-        return <ClientAssessments />;
+        return <ClientAssessments clientData={clientData} />;
       default:
-        return <ClientInformation />;
+        return <ClientInformation clientData={clientData} />;
     }
   };
 
@@ -64,7 +64,6 @@ export default function ClientProfile() {
         navSelection={navSelection}
       />
       {renderProfileSection()}
-      <p>Client Profile {clientId}</p>
     </div>
   );
 }
