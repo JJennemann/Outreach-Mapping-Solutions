@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import "./index.css";
-import NavBarMain from "./navBarMain/navBarMain";
-import ReportPortal from "./reportPortal";
-import MapPortal from "./mapPortal";
-import Login from "./login/login";
-import ClientProfile from "./clientProfile";
-import ClientPortal from "./clientPortal";
-import ClientSearch from "./clientSearch";
+import NavBarMain from "./components/navBarMain";
+import ReportPortal from "./portals/reportPortal";
+import MapPortal from "./portals/mapPortal";
+import Login from "./portals/login";
+import ClientProfile from "./pages/clientProfile";
+import ClientPortal from "./portals/clientPortal";
+import ClientSearch from "./pages/clientSearch";
 
 export default function App() {
   return (

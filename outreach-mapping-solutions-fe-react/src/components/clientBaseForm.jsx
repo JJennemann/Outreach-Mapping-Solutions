@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./clientBaseForm.css";
-import { initialClientBaseFormData } from "./clientBaseFormData.jsx";
+import { initialClientBaseFormData } from "../clientBaseForm/clientBaseFormData.jsx";
 import axios from "axios";
 
 const dataQualitySelections = [
@@ -34,7 +34,7 @@ const days31 = Array.from({ length: 31 }, (_, i) => i + 1);
 const months31Days=["January", "March", "May", "July", "August", "October", "December"];
 const months30Days = ["April", "June", "September", "November"];
 
-export function ClientBaseForm({ onClientSearch }) {
+export default function ClientBaseForm({ onClientSearch }) {
   const [month, setMonth] = useState("");
   const [monthsDays, setMonthsDays] = useState([]);
   const [formData, setFormData] = useState(initialClientBaseFormData);

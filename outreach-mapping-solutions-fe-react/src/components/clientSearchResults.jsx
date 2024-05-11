@@ -1,4 +1,4 @@
-export function ClientSearchResults({ searchResults }) {
+export default function ClientSearchResults({ searchResults }) {
   const searchResultsRows = Object.keys(searchResults).map((resultId) => {
     const returnedClient = searchResults[resultId];
     return (
